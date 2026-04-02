@@ -1,0 +1,9 @@
+[     526ms] [WARNING] Manifest: property 'start_url' ignored, should be same origin as document. @ https://imgcdn.floweraura.com/ssr-build/manifest.json:0
+[    1309ms] [ERROR] Access to XMLHttpRequest at 'https://apis.floweraura.com/' from origin 'https://www.floweraura.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://www.floweraura.com/p/flower/pastel-blooms-of-serenity-9721530fl:0
+[    1310ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://apis.floweraura.com/:0
+[    1756ms] [ERROR] Attestation check for Attribution Reporting on https://www.facebook.com failed. @ https://www.floweraura.com/p/flower/pastel-blooms-of-serenity-9721530fl:0
+[   30119ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:80
+[   30130ms] [ERROR] Not signed in with the identity provider. @ https://www.floweraura.com/p/flower/pastel-blooms-of-serenity-9721530fl:0
+[   32887ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://accounts.google.com/gsi/client:81
+[   53403ms] Uncaught TypeError: Cannot read properties of null (reading 'offsetTop')
+    at ae (https://imgcdn.floweraura.com/ssr-build/static/js/16.be024394.chunk.js:0:2924)

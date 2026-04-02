@@ -1,0 +1,117 @@
+- generic [ref=e2]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link "Floweraura.com - Online Flower Delivery" [ref=e12] [cursor=pointer]:
+          - /url: /
+          - img "Floweraura.com - Online Flower Delivery" [ref=e13]
+        - strong [ref=e15]:
+          - link "FlowerAura" [ref=e16] [cursor=pointer]:
+            - /url: /
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]:
+              - img "country-flag" [ref=e26]
+              - generic "Deliver to ?" [ref=e27]
+            - img "dropdown-img" [ref=e28]
+          - generic [ref=e31]:
+            - paragraph [ref=e32]:
+              - text: Search for
+              - text: "|"
+            - emphasis [ref=e33]
+        - list [ref=e35]:
+          - listitem [ref=e36]:
+            - link "Track Order" [ref=e37] [cursor=pointer]:
+              - /url: /trackorder
+              - emphasis [ref=e38]
+              - generic [ref=e39]: Track Order
+          - listitem [ref=e40]:
+            - link "0 Cart" [ref=e41] [cursor=pointer]:
+              - /url: /cart
+              - paragraph [ref=e42]: "0"
+              - emphasis [ref=e43]
+              - generic [ref=e44]: Cart
+          - listitem [ref=e45] [cursor=pointer]:
+            - emphasis [ref=e46]
+            - generic [ref=e47]: Sign In
+          - listitem [ref=e48]:
+            - link "More" [ref=e49] [cursor=pointer]:
+              - /url: "#"
+              - emphasis [ref=e50]
+              - generic [ref=e51]: More
+    - navigation [ref=e52]:
+      - list [ref=e55]:
+        - listitem [ref=e56]:
+          - link "Flowers" [ref=e57] [cursor=pointer]:
+            - /url: /all-flowers?ref=menu_flowers_desk
+        - listitem [ref=e58]:
+          - link "Cakes" [ref=e59] [cursor=pointer]:
+            - /url: /all-cakes?ref=menu_cakes_desk
+        - listitem [ref=e60]:
+          - link "Combos" [ref=e61] [cursor=pointer]:
+            - /url: /gift-hampers?ref=menu_combos_desk
+        - listitem [ref=e62]:
+          - link "Birthday" [ref=e63] [cursor=pointer]:
+            - /url: /birthday?ref=menu_birthday_desk
+        - listitem [ref=e64]:
+          - link "Anniversary" [ref=e65] [cursor=pointer]:
+            - /url: /anniversary?ref=menu_anniversary_desk
+        - listitem [ref=e66]:
+          - link "Gifts" [ref=e67] [cursor=pointer]:
+            - /url: /gifts?ref=menu_gifts_desk
+        - listitem [ref=e68]:
+          - link "Personalised" [ref=e69] [cursor=pointer]:
+            - /url: /personalised-gifts?ref=menu_personalised_desk
+        - listitem [ref=e70]:
+          - link "Plants" [ref=e71] [cursor=pointer]:
+            - /url: /plants?ref=menu_plants_desk
+        - listitem [ref=e72]:
+          - link "Chocolates" [ref=e73] [cursor=pointer]:
+            - /url: /chocolates?ref=menu_chocolates_desk
+        - listitem [ref=e74]:
+          - link "Occasions" [ref=e75]:
+            - /url: "#"
+        - listitem [ref=e76]:
+          - link "International" [ref=e77]:
+            - /url: "#"
+  - generic [ref=e80]:
+    - generic [ref=e81]:
+      - generic [ref=e83]:
+        - img "empty cart image" [ref=e84]
+        - heading "Hey, cart bag seems to be empty, Let's add some items." [level=3] [ref=e85]
+      - link "Continue Shopping" [ref=e87] [cursor=pointer]:
+        - /url: /
+    - generic [ref=e90]:
+      - heading "Browse Through Our Best Categories" [level=2] [ref=e91]
+      - list [ref=e92]:
+        - listitem [ref=e93]:
+          - link "Flowers Flowers" [ref=e94] [cursor=pointer]:
+            - /url: /flowers
+            - img "Flowers" [ref=e96]
+            - heading "Flowers" [level=4] [ref=e97]
+        - listitem [ref=e98]:
+          - link "Cakes Cakes" [ref=e99] [cursor=pointer]:
+            - /url: /cakes
+            - img "Cakes" [ref=e101]
+            - heading "Cakes" [level=4] [ref=e102]
+        - listitem [ref=e103]:
+          - link "Gifts Gifts" [ref=e104] [cursor=pointer]:
+            - /url: /gifts
+            - img "Gifts" [ref=e106]
+            - heading "Gifts" [level=4] [ref=e107]
+        - listitem [ref=e108]:
+          - link "Combos Combos" [ref=e109] [cursor=pointer]:
+            - /url: /combos
+            - img "Combos" [ref=e111]
+            - heading "Combos" [level=4] [ref=e112]
+        - listitem [ref=e113]:
+          - link "Personalized Gifts Personalized Gifts" [ref=e114] [cursor=pointer]:
+            - /url: /personalised-gifts
+            - img "Personalized Gifts" [ref=e116]
+            - heading "Personalized Gifts" [level=4] [ref=e117]
+        - listitem [ref=e118]:
+          - link "Plants Plants" [ref=e119] [cursor=pointer]:
+            - /url: /plants
+            - img "Plants" [ref=e121]
+            - heading "Plants" [level=4] [ref=e122]

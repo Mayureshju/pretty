@@ -1,0 +1,633 @@
+- generic [ref=e2]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link "Floweraura.com - Online Flower Delivery" [ref=e12] [cursor=pointer]:
+          - /url: /
+          - img "Floweraura.com - Online Flower Delivery" [ref=e13]
+        - strong [ref=e15]:
+          - link "FlowerAura" [ref=e16] [cursor=pointer]:
+            - /url: /
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]:
+              - img "country-flag" [ref=e26]
+              - generic "Deliver to ?" [ref=e27]
+            - img "dropdown-img" [ref=e28]
+          - generic [ref=e31]:
+            - paragraph [ref=e32]:
+              - text: Search for
+              - text: "|"
+            - emphasis [ref=e33]
+        - list [ref=e35]:
+          - listitem [ref=e36]:
+            - link "Track Order" [ref=e37] [cursor=pointer]:
+              - /url: /trackorder
+              - emphasis [ref=e38]
+              - generic [ref=e39]: Track Order
+          - listitem [ref=e40]:
+            - link "0 Cart" [ref=e41] [cursor=pointer]:
+              - /url: /cart
+              - paragraph [ref=e42]: "0"
+              - emphasis [ref=e43]
+              - generic [ref=e44]: Cart
+          - listitem [ref=e45] [cursor=pointer]:
+            - generic [ref=e48]: INR
+          - listitem [ref=e49] [cursor=pointer]:
+            - emphasis [ref=e50]
+            - generic [ref=e51]: Sign In
+          - listitem [ref=e52]:
+            - link "More" [ref=e53] [cursor=pointer]:
+              - /url: "#"
+              - emphasis [ref=e54]
+              - generic [ref=e55]: More
+    - navigation [ref=e56]:
+      - list [ref=e59]:
+        - listitem [ref=e60]:
+          - link "Flowers" [ref=e61] [cursor=pointer]:
+            - /url: /all-flowers?ref=menu_flowers_desk
+        - listitem [ref=e62]:
+          - link "Cakes" [ref=e63] [cursor=pointer]:
+            - /url: /all-cakes?ref=menu_cakes_desk
+        - listitem [ref=e64]:
+          - link "Combos" [ref=e65] [cursor=pointer]:
+            - /url: /gift-hampers?ref=menu_combos_desk
+        - listitem [ref=e66]:
+          - link "Birthday" [ref=e67] [cursor=pointer]:
+            - /url: /birthday?ref=menu_birthday_desk
+        - listitem [ref=e68]:
+          - link "Anniversary" [ref=e69] [cursor=pointer]:
+            - /url: /anniversary?ref=menu_anniversary_desk
+        - listitem [ref=e70]:
+          - link "Gifts" [ref=e71] [cursor=pointer]:
+            - /url: /gifts?ref=menu_gifts_desk
+        - listitem [ref=e72]:
+          - link "Personalised" [ref=e73] [cursor=pointer]:
+            - /url: /personalised-gifts?ref=menu_personalised_desk
+        - listitem [ref=e74]:
+          - link "Plants" [ref=e75] [cursor=pointer]:
+            - /url: /plants?ref=menu_plants_desk
+        - listitem [ref=e76]:
+          - link "Chocolates" [ref=e77] [cursor=pointer]:
+            - /url: /chocolates?ref=menu_chocolates_desk
+        - listitem [ref=e78]:
+          - link "Occasions" [ref=e79]:
+            - /url: "#"
+        - listitem [ref=e80]:
+          - link "International" [ref=e81]:
+            - /url: "#"
+  - generic [ref=e82]:
+    - generic [ref=e83]:
+      - generic [ref=e88] [cursor=pointer]:
+        - generic [ref=e90]:
+          - button [ref=e91]
+          - button "Flowers" [ref=e93]:
+            - img "Flowers" [ref=e95]
+          - button "Birthday Cakes" [ref=e96]:
+            - img "Birthday Cakes" [ref=e98]
+          - button "Plants" [ref=e99]:
+            - img "Plants" [ref=e101]
+          - button "Hampers" [ref=e102]:
+            - img "Hampers" [ref=e104]
+        - navigation "Bullet Navigation" [ref=e106]:
+          - button "Go to Slide 1" [pressed] [ref=e107]
+          - button "Go to Slide 2" [ref=e108]
+          - button "Go to Slide 3" [ref=e109]
+          - button "Go to Slide 4" [ref=e110]
+          - button "Go to Slide 5" [ref=e111]
+      - generic [ref=e114]:
+        - paragraph
+        - list [ref=e115]:
+          - listitem [ref=e116]:
+            - link "Send Flowers in India Flowers" [ref=e117] [cursor=pointer]:
+              - /url: /all-flowers?ref=home_cat1_pos1_desk
+              - img "Send Flowers in India" [ref=e119]
+              - generic [ref=e120]: Flowers
+          - listitem [ref=e121]:
+            - link "Buy Cakes from Floweraura Cakes" [ref=e122] [cursor=pointer]:
+              - /url: /cakes?ref=home_cat1_pos2_desk
+              - img "Buy Cakes from Floweraura" [ref=e124]
+              - generic [ref=e125]: Cakes
+          - listitem [ref=e126]:
+            - link "Combos Combos" [ref=e127] [cursor=pointer]:
+              - /url: /combos?ref=home_cat1_pos3_desk
+              - img "Combos" [ref=e129]
+              - generic [ref=e130]: Combos
+          - listitem [ref=e131]:
+            - link "Balloon Decor Balloon Decor" [ref=e132] [cursor=pointer]:
+              - /url: /gifts/balloon-decorations?ref=home_cat1_pos4_desk
+              - img "Balloon Decor" [ref=e134]
+              - generic [ref=e135]: Balloon Decor
+          - listitem [ref=e136]:
+            - link "Buy Plants Online Plants" [ref=e137] [cursor=pointer]:
+              - /url: /plants?ref=home_cat1_pos5_desk
+              - img "Buy Plants Online" [ref=e139]
+              - generic [ref=e140]: Plants
+          - listitem [ref=e141]:
+            - link "Hampers Hampers" [ref=e142] [cursor=pointer]:
+              - /url: /hampers/same-day-delivery?ref=home_cat1_pos6_desk
+              - img "Hampers" [ref=e144]
+              - generic [ref=e145]: Hampers
+          - listitem [ref=e146]:
+            - link "Same Day Same Day" [ref=e147] [cursor=pointer]:
+              - /url: /same-day-delivery-gifts?ref=home_cat1_pos7_desk
+              - img "Same Day" [ref=e149]
+              - generic [ref=e150]: Same Day
+          - listitem [ref=e151]:
+            - link "International International" [ref=e152] [cursor=pointer]:
+              - /url: /delivery-countries?ref=home_cat1_pos8_desk
+              - img "International" [ref=e154]
+              - generic [ref=e155]: International
+      - generic [ref=e157]:
+        - generic [ref=e159]: Shop By Occasions & Relations
+        - paragraph [ref=e160]: Surprise Your Loved Ones
+        - list [ref=e162]:
+          - listitem [ref=e163]:
+            - link "Send Birthday Gifts Through Floweraura Birthday Gifts" [ref=e164] [cursor=pointer]:
+              - /url: /birthday?ref=home_cat2_pos1_desk
+              - img "Send Birthday Gifts Through Floweraura" [ref=e166]
+              - generic [ref=e167]: Birthday Gifts
+          - listitem [ref=e168]:
+            - link "Send Anniversary Flower Gifts in India Anniversary Gifts" [ref=e169] [cursor=pointer]:
+              - /url: /anniversary?ref=home_cat2_pos2_desk
+              - img "Send Anniversary Flower Gifts in India" [ref=e171]
+              - generic [ref=e172]: Anniversary Gifts
+          - listitem [ref=e173]:
+            - link "Flowers Gift for Him Gifts for Him" [ref=e174] [cursor=pointer]:
+              - /url: /gifts/for-him?ref=home_cat2_pos3_desk
+              - img "Flowers Gift for Him" [ref=e176]
+              - generic [ref=e177]: Gifts for Him
+          - listitem [ref=e178]:
+            - link "Send Gifts for Her Through Floweraura Gifts for Her" [ref=e179] [cursor=pointer]:
+              - /url: /gifts/for-her?ref=home_cat2_pos4_desk
+              - img "Send Gifts for Her Through Floweraura" [ref=e181]
+              - generic [ref=e182]: Gifts for Her
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - heading "Best Selling Flowers & Gifts" [level=2] [ref=e187]
+            - link "View All" [ref=e189] [cursor=pointer]:
+              - /url: /best-seller
+          - paragraph [ref=e190]: Surprise Your Loved Ones
+        - list [ref=e193]:
+          - listitem [ref=e194]:
+            - 'link "Order Online Red Roses Bouquet Flowers 10 Red Roses Bouquet ₹ 695 ₹ 770 10% OFF ★ 4.9 (1645 reviews) Earliest Delivery : In 3 hours" [ref=e195] [cursor=pointer]':
+              - /url: /p/flower/red-roses-bouquet-flo05170001md
+              - img "Order Online Red Roses Bouquet Flowers" [ref=e198]
+              - generic [ref=e199]: 10 Red Roses Bouquet
+              - generic [ref=e200]:
+                - generic [ref=e201]: ₹ 695
+                - generic [ref=e202]: ₹ 770
+                - generic [ref=e203]: 10% OFF
+              - generic [ref=e204]:
+                - generic [ref=e205]:
+                  - generic [ref=e206]: ★
+                  - generic [ref=e207]: "4.9"
+                - generic [ref=e208]: (1645 reviews)
+              - generic [ref=e210]: "Earliest Delivery : In 3 hours"
+            - img "whiteHeart" [ref=e212] [cursor=pointer]
+          - listitem [ref=e213]:
+            - 'link "Profuse Jade Terrarium ₹ 695 ₹ 999 31% OFF ★ 4.9 (68 reviews) Earliest Delivery : In 3 hours" [ref=e214] [cursor=pointer]':
+              - /url: /p/plant/profuse-jade-terrarium-9969080pl
+              - generic [ref=e217]: Profuse Jade Terrarium
+              - generic [ref=e218]:
+                - generic [ref=e219]: ₹ 695
+                - generic [ref=e220]: ₹ 999
+                - generic [ref=e221]: 31% OFF
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]: ★
+                  - generic [ref=e225]: "4.9"
+                - generic [ref=e226]: (68 reviews)
+              - generic [ref=e228]: "Earliest Delivery : In 3 hours"
+            - img "whiteHeart" [ref=e230] [cursor=pointer]
+          - listitem [ref=e231]:
+            - 'link "Chocolate Truffle Cake Chocolate Truffle Cake ₹ 595 ₹ 745 21% OFF ★ 4.9 (829 reviews) Earliest Delivery : In 3 hours" [ref=e232] [cursor=pointer]':
+              - /url: /p/cake/tempting-truffle-joy-cak0920170059
+              - img "Chocolate Truffle Cake" [ref=e235]
+              - generic [ref=e239]: Chocolate Truffle Cake
+              - generic [ref=e240]:
+                - generic [ref=e241]: ₹ 595
+                - generic [ref=e242]: ₹ 745
+                - generic [ref=e243]: 21% OFF
+              - generic [ref=e244]:
+                - generic [ref=e245]:
+                  - generic [ref=e246]: ★
+                  - generic [ref=e247]: "4.9"
+                - generic [ref=e248]: (829 reviews)
+              - generic [ref=e250]: "Earliest Delivery : In 3 hours"
+            - img "whiteHeart" [ref=e252] [cursor=pointer]
+          - listitem [ref=e253]:
+            - 'link "Bellina Purple Orchid Bouquet Bellina Purple Orchid Bouquet ₹ 795 ₹ 999 21% OFF ★ 4.9 (676 reviews) Earliest Delivery : In 3 hours" [ref=e254] [cursor=pointer]':
+              - /url: /p/flower/purple-orchid-bouquet-fab0006
+              - img "Bellina Purple Orchid Bouquet" [ref=e257]
+              - generic [ref=e258]: Bellina Purple Orchid Bouquet
+              - generic [ref=e259]:
+                - generic [ref=e260]: ₹ 795
+                - generic [ref=e261]: ₹ 999
+                - generic [ref=e262]: 21% OFF
+              - generic [ref=e263]:
+                - generic [ref=e264]:
+                  - generic [ref=e265]: ★
+                  - generic [ref=e266]: "4.9"
+                - generic [ref=e267]: (676 reviews)
+              - generic [ref=e269]: "Earliest Delivery : In 3 hours"
+            - img "whiteHeart" [ref=e271] [cursor=pointer]
+          - listitem [ref=e272]:
+            - link [ref=e273] [cursor=pointer]:
+              - /url: /p/flower/pastel-blooms-of-serenity-9721530fl
+              - img [ref=e276]
+              - generic [ref=e277]: Pastel Blooms Of Serenity
+              - generic [ref=e278]:
+                - generic [ref=e279]: ₹ 595
+                - generic [ref=e280]: ₹ 795
+                - generic [ref=e281]: 26% OFF
+              - generic [ref=e282]:
+                - generic [ref=e283]:
+                  - generic [ref=e284]: ★
+                  - generic [ref=e285]: "5"
+                - generic [ref=e286]: (2 reviews)
+              - generic [ref=e288]: "Earliest Delivery : In 3 hours"
+            - img [ref=e290] [cursor=pointer]
+          - listitem [ref=e291]:
+            - link [ref=e292] [cursor=pointer]:
+              - /url: /p/flower/red-roses-wrapped-in-heartfelt-devotion-9719400fl
+              - img [ref=e295]
+              - generic [ref=e296]: Red Roses Wrapped In Heartfelt Devotion
+              - generic [ref=e297]:
+                - generic [ref=e298]: ₹ 545
+                - generic [ref=e299]: ₹ 795
+                - generic [ref=e300]: 32% OFF
+              - generic [ref=e301]:
+                - generic [ref=e302]:
+                  - generic [ref=e303]: ★
+                  - generic [ref=e304]: "4.8"
+                - generic [ref=e305]: (4 reviews)
+              - generic [ref=e307]: "Earliest Delivery : In 3 hours"
+            - img [ref=e309] [cursor=pointer]
+          - listitem [ref=e310]:
+            - link [ref=e311] [cursor=pointer]:
+              - /url: /p/cake/red-velvet-cake029
+              - img [ref=e314]
+              - generic [ref=e318]: Decadent Red Velvet Cake
+              - generic [ref=e319]:
+                - generic [ref=e320]: ₹ 685
+                - generic [ref=e321]: ₹ 895
+                - generic [ref=e322]: 24% OFF
+              - generic [ref=e323]:
+                - generic [ref=e324]:
+                  - generic [ref=e325]: ★
+                  - generic [ref=e326]: "4.9"
+                - generic [ref=e327]: (320 reviews)
+              - generic [ref=e329]: "Earliest Delivery : In 3 hours"
+            - img [ref=e331] [cursor=pointer]
+          - listitem [ref=e332]:
+            - link [ref=e333] [cursor=pointer]:
+              - /url: /p/gift/twin-hearts-floral-balloons-bouquet-9719900basd
+              - generic [ref=e336]: Twin Hearts Floral Balloon
+              - generic [ref=e337]:
+                - generic [ref=e338]: ₹ 895
+                - generic [ref=e339]: ₹ 1295
+                - generic [ref=e340]: 31% OFF
+              - generic [ref=e341]:
+                - generic [ref=e342]:
+                  - generic [ref=e343]: ★
+                  - generic [ref=e344]: "4.6"
+                - generic [ref=e345]: (8 reviews)
+              - generic [ref=e347]: "Earliest Delivery : In 3 hours"
+            - img [ref=e349] [cursor=pointer]
+      - button [ref=e356] [cursor=pointer]
+      - list [ref=e360]:
+        - listitem [ref=e361]:
+          - img "Delicious Cakes" [ref=e364]
+          - generic [ref=e365]:
+            - generic [ref=e366]: Delicious Cakes
+            - generic [ref=e367]:
+              - link "Birthday Cakes" [ref=e368] [cursor=pointer]:
+                - /url: /birthday/cakes
+              - link "Anniversary Cakes" [ref=e369] [cursor=pointer]:
+                - /url: /anniversary/cakes
+              - link "Designer Cakes" [ref=e370] [cursor=pointer]:
+                - /url: /cakes/designer
+              - link "Photo Cakes" [ref=e371] [cursor=pointer]:
+                - /url: /cakes/photo
+              - link "Chocolate Cakes" [ref=e372] [cursor=pointer]:
+                - /url: /cakes/chocolate
+        - listitem [ref=e373]:
+          - img "Gifting Gallery" [ref=e376]
+          - generic [ref=e377]:
+            - generic [ref=e378]: Gifting Gallery
+            - generic [ref=e379]:
+              - link "Photo Gifts" [ref=e380] [cursor=pointer]:
+                - /url: /gifts/photo-gifts
+              - link "Mugs" [ref=e381] [cursor=pointer]:
+                - /url: /gifts/mugs
+              - link "Cushions" [ref=e382] [cursor=pointer]:
+                - /url: /gifts/cushions
+              - link "Name Gifts" [ref=e383] [cursor=pointer]:
+                - /url: /personalised-gifts/name-gifts
+              - link "Caricatures" [ref=e384] [cursor=pointer]:
+                - /url: /personalised-gifts/caricatures
+        - listitem [ref=e385]:
+          - generic [ref=e386]:
+            - generic:
+              - img "Floral Delights"
+          - generic [ref=e387]:
+            - generic [ref=e388]: Floral Delights
+            - generic [ref=e389]:
+              - link "Red Roses" [ref=e390] [cursor=pointer]:
+                - /url: /flowers/roses
+              - link "Birthday Flowers" [ref=e391] [cursor=pointer]:
+                - /url: /birthday/flowers
+              - link "Anniversary Flowers" [ref=e392] [cursor=pointer]:
+                - /url: /anniversary/flowers
+              - link "Exotic Flowers" [ref=e393] [cursor=pointer]:
+                - /url: /flowers/exotic
+              - link "Flower Boxes" [ref=e394] [cursor=pointer]:
+                - /url: /flowers/in-box
+        - listitem [ref=e395]:
+          - generic [ref=e396]:
+            - generic:
+              - img "Plant Paradise"
+          - generic [ref=e397]:
+            - generic [ref=e398]: Plant Paradise
+            - generic [ref=e399]:
+              - link "Bonsai" [ref=e400] [cursor=pointer]:
+                - /url: /plants/bonsai
+              - link "Indoor" [ref=e401] [cursor=pointer]:
+                - /url: /plants/indoor
+              - link "Air Purifying" [ref=e402] [cursor=pointer]:
+                - /url: /plants/air-purifying
+              - link "Lucky Bamboo" [ref=e403] [cursor=pointer]:
+                - /url: /plants/lucky-bamboo
+              - link "Flowering" [ref=e404] [cursor=pointer]:
+                - /url: /plants/flowering
+      - link "Offer Banner" [ref=e407] [cursor=pointer]:
+        - /url: /refer-and-earn
+        - generic:
+          - img "Offer Banner"
+      - generic [ref=e409]:
+        - generic [ref=e411]:
+          - heading "Customer Testimonial" [level=2] [ref=e412]
+          - link "View All" [ref=e414] [cursor=pointer]:
+            - /url: /reviews
+        - list [ref=e417]:
+          - listitem [ref=e418]:
+            - generic [ref=e420]:
+              - paragraph [ref=e421]: Awesome flowers and beautifully arranged. Had ordered for my Gurumaa and she appreciated the thoughtful collection, hod bless each of you in sourcing, putting all together and delivering it. Thank you
+              - generic [ref=e422]:
+                - generic [ref=e423]:
+                  - generic [ref=e424]: Sanjay Diwan
+                  - generic [ref=e425]: ★5
+                - generic [ref=e426]: Posted On :24/01/2026
+          - listitem [ref=e427]:
+            - generic [ref=e429]:
+              - paragraph [ref=e430]: Thanks a lot to FlowerAura for making my moms birthday special she was very happy thanks a lot
+              - generic [ref=e431]:
+                - generic [ref=e432]:
+                  - generic [ref=e433]: Aaditya Singhal
+                  - generic [ref=e434]: ★5
+                - generic [ref=e435]: Posted On :14/01/2026
+          - listitem [ref=e436]:
+            - generic [ref=e438]:
+              - paragraph [ref=e439]: This cake was much better than I had imagined. It was very fresh and tasted great. Thank you Flower Aura.
+              - generic [ref=e440]:
+                - generic [ref=e441]:
+                  - generic [ref=e442]: Samiksha
+                  - generic [ref=e443]: ★5
+                - generic [ref=e444]: Posted On :09/01/2026
+      - generic [ref=e445]:
+        - generic [ref=e446]:
+          - 'heading "FlowerAura: Send Flowers, Cakes, Gifts & Plants Online Across India" [level=1] [ref=e447]'
+          - paragraph [ref=e448]: "At FlowerAura, we take pride in delivering the highest quality flowers, cakes, plants, and gifts to your loved ones. Our diverse range ensures there's something perfect for every occasion. From romantic roses to delightful chocolate cakes and vibrant indoor plants, we have it all. As India's most trusted gifting brand, we guarantee fresh and beautiful flowers, delicious cakes, vibrant plants, and unique gifts that bring joy and smiles. Enjoy the convenience of doorstep delivery with our safe and secure packaging, ensuring your order arrives in pristine condition. Let’s explore our collection a little better:"
+          - paragraph [ref=e449]:
+            - strong [ref=e450]: Flowers
+            - text: ": At FlowerAura, we offer a stunning range of"
+            - link "flower bouquets" [ref=e451] [cursor=pointer]:
+              - /url: https://www.floweraura.com/flowers/bouquet
+            - text: and arrangements. Choose from a variety of Valentine flowers like roses, carnations, sunflowers, orchids, and gerberas. For something special, explore our luxury flowers like Cape Cup, Taal palm, Limonium, and Eucalyptus. Our reliable
+            - link "flower delivery in India" [ref=e452] [cursor=pointer]:
+              - /url: https://www.floweraura.com/flowers
+            - text: service ensures your flowers are handled with care and arrive fresh and beautiful. We also offer city-specific services like flower delivery in Bangalore, Delhi or Gurgaon to bring smiles to every doorstep.
+          - paragraph [ref=e453]:
+            - strong [ref=e454]: Cakes
+            - text: ": Our freshly baked & delicious cakes are FSSAI-certified, ensuring safety and quality. We offer a wide range of flavours, such as chocolate, black forest, red velvet, tiramisu, coffee, blueberry, and various cake types, including bomb cakes,"
+            - link "designer cakes" [ref=e455] [cursor=pointer]:
+              - /url: https://www.floweraura.com/cakes/designer
+            - text: theme cakes, photo cakes, pinata cakes, fruit cakes, & bento cakes. Our
+            - link "online cake delivery" [ref=e456] [cursor=pointer]:
+              - /url: https://www.floweraura.com/cakes
+            - text: service guarantees safe and timely delivery. Whether you're craving something sweet in
+            - link "Bangalore" [ref=e457] [cursor=pointer]:
+              - /url: https://www.floweraura.com/cake-delivery/bangalore
+            - text: ","
+            - link "Delhi" [ref=e458] [cursor=pointer]:
+              - /url: https://www.floweraura.com/cake-delivery/delhi
+            - text: ", or"
+            - link "Gurgaon" [ref=e459] [cursor=pointer]:
+              - /url: https://www.floweraura.com/cake-delivery/gurgaon
+            - text: ", our cake delivery service ensures happiness reaches on time."
+          - paragraph [ref=e460]:
+            - strong [ref=e461]: Plants
+            - text: ": At FlowerAura, we understand the need of"
+            - link "plants for home" [ref=e462] [cursor=pointer]:
+              - /url: https://www.floweraura.com/plants/indoor
+            - text: and offer an extensive range of plants to brighten your indoor spaces. Our plants are not just healthy but also come potted in beautiful planters that add a touch of elegance to any space. With FlowerAura's doorstep
+            - link "plants delivery same day" [ref=e463] [cursor=pointer]:
+              - /url: https://www.floweraura.com/plants/same-day-delivery
+            - text: ", you can enjoy the convenience of having your plants delivered safely and swiftly."
+          - paragraph [ref=e464]:
+            - strong [ref=e465]: Gifts
+            - text: ": Finding new and trendy gift ideas can be challenging, but we cater to that need with an amazing gift range. Our variety includes gifts under categories such as home decor, dining & serving, jewellery, showpieces, candles, spiritual gifts, soft toys, and perfumes. We also offer a wide range of heart-warming personalised gifts like mugs, cushions, wooden planks, photo frames, LED lamps, neon lights, caricatures, key chains, bar accessories, sippers, bottles, and more. One can also explore and order"
+            - link "gifts online" [ref=e466] [cursor=pointer]:
+              - /url: https://www.floweraura.com/gifts
+            - text: based on the occasion and the relationships they want to pamper.
+          - paragraph [ref=e467]:
+            - strong [ref=e468]: Combos & Hampers
+            - text: ": At FlowerAura, we recognise the joy of gifting and offer an exquisite range of"
+            - link "combo gifts" [ref=e469] [cursor=pointer]:
+              - /url: https://www.floweraura.com/combos
+            - text: and hampers to make every occasion special. From delightful
+            - link "cakes and flowers combos" [ref=e470] [cursor=pointer]:
+              - /url: https://www.floweraura.com/combos/flowers-and-cakes
+            - text: to charming plant & cake pairings and even elegant flower & plant combos, we have something to suit every taste and preference. Our thoughtfully curated hampers, filled with premium goodies, are designed to delight your loved ones and add a touch of elegance to your celebrations.
+          - paragraph [ref=e471]:
+            - strong [ref=e472]: Personalised Gifts
+            - text: ": Every gift should reflect your unique bond with your loved ones. That's why we offer a stunning collection of"
+            - link "personalised gifts" [ref=e473] [cursor=pointer]:
+              - /url: https://www.floweraura.com/personalised-gifts
+            - text: ", perfect for adding a personal touch to any occasion. From custom mugs, cushions, and water bottles to creative caricatures, diaries, coasters, fridge magnets, key chains, and more, our range is designed to make every moment memorable. Our seamless delivery service ensures that your personalised gifts reach their destination on the same day, bringing joy and a heartfelt connection to your special ones."
+          - heading "Shop & Send Gifts Online On Different Occasions to Surprise Your Loved Ones" [level=2] [ref=e474]
+          - paragraph [ref=e475]: Every special moment in life deserves to be celebrated with love and thoughtfulness. At FlowerAura, the perfect gift can transform any occasion into a cherished memory.
+          - paragraph [ref=e476]:
+            - strong [ref=e477]: "Birthday:"
+            - text: Surprise your loved ones with
+            - link "birthday gifts" [ref=e478] [cursor=pointer]:
+              - /url: https://www.floweraura.com/birthday
+            - text: that bring joy and happiness. Explore a variety of options, including cakes, personalised gifts, and combos, to create lasting memories on their special day.
+          - paragraph [ref=e479]:
+            - strong [ref=e480]: "Anniversary:"
+            - text: Mark your milestones with meaningful
+            - link "anniversary gifts" [ref=e481] [cursor=pointer]:
+              - /url: https://www.floweraura.com/anniversary
+            - text: . Whether it’s flowers, cakes, or personalised keepsakes, our selection will help you celebrate your love and create beautiful memories together.
+          - paragraph [ref=e482]:
+            - strong [ref=e483]: "Mother’s Day:"
+            - text: Let your mom know just how much you love and appreciate her with thoughtful
+            - link "Mother’s Day gifts" [ref=e484] [cursor=pointer]:
+              - /url: https://www.floweraura.com/mothers-day
+            - text: . Go for jewellery, décor items, crockery, self-care hampers, flowers, and more to express your gratitude! Make her day truly unforgettable with a gesture straight from the heart.
+          - paragraph [ref=e485]:
+            - strong [ref=e486]: "Father’s Day:"
+            - text: Shower your dad with true love by surprising him with heartfelt
+            - link "Father’s Day gifts" [ref=e487] [cursor=pointer]:
+              - /url: https://www.floweraura.com/fathers-day
+            - text: which reflect the depth of your feelings toward him. Make his day immensely special by sending elegant flower arrangements, personalized keepsakes, indulgent hampers, and thoughtful gadgets.
+          - paragraph [ref=e488]: At FlowerAura, we cater to all occasions and have the best gifts that reflect your love and thoughtfulness, making every celebration unforgettable. Choose FlowerAura for your special moments, and let us help you create lasting memories with the perfect gift for every occasion.
+          - heading "Never Miss Out on Celebrations with FlowerAura On-time Delivery" [level=2] [ref=e489]
+          - paragraph [ref=e490]: At FlowerAura, we understand the importance of timely surprises in making every celebration unforgettable. With our reliable same-day delivery and midnight delivery services, you can rest assured that your thoughtful gifts will reach their destination on time, no matter the occasion. Whether it's our delightful range of cakes, stunning floral arrangements, personalised gifts, or carefully curated combos, we ensure your loved ones receive their surprises when it matters most. From birthdays and anniversaries to festive occasions like Raksha Bandhan and Diwali, FlowerAura's on-time delivery guarantees you never miss out on making your moments truly special.
+          - heading "Save Big with FlowerAura's Exclusive Offers and Discounts" [level=2] [ref=e491]
+          - paragraph [ref=e492]:
+            - text: At FlowerAura, we believe in making gifting easy and affordable for everyone. That's why we keep dropping special offers throughout the year, ensuring you always have the perfect gift at the best price. Whether it's a birthday, anniversary, or just because, our exclusive discounts and year-round offers help you save big while spreading joy. Explore our wide range of flowers, cakes, and personalised gifts, and enjoy significant savings on every purchase. With
+            - link "FlowerAura Coupons" [ref=e493] [cursor=pointer]:
+              - /url: https://www.floweraura.com/coupon-deals
+            - text: ", you can make every moment special without breaking the bank. Stay tuned for more exciting deals, and start gifting today! Check out our late cups and deals!"
+          - 'heading "Unleash the Power of Gifting: Install Our Android & iOS App Today" [level=2] [ref=e494]'
+          - paragraph [ref=e495]:
+            - text: Gifts hold the magical ability to convey emotions that words alone may struggle to express. FlowerAura understands the profound importance of gifting in our lives. That's why we bring you an extraordinary feature-packed App, available for Android and iOS devices, to experience the joy of gifting like never before. Our user-friendly app is your on-the-go companion for shopping for online gifts. Offering seamless navigation, it allows for easy browsing of our diverse collection. With
+            - link "FlowerAura App" [ref=e496] [cursor=pointer]:
+              - /url: https://www.floweraura.com/download-app
+            - text: ", you can keep track of your orders and stay updated with notifications on ongoing offers and deals for the best finds at unbeatable prices. So, download it now and start spreading smiles!"
+        - generic [ref=e497] [cursor=pointer]: Read More
+      - generic [ref=e499]:
+        - generic [ref=e500]: Related Blog
+        - list [ref=e501]:
+          - listitem [ref=e502]:
+            - generic [ref=e503]:
+              - 'img "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips"'
+            - generic [ref=e504]: "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips"
+            - generic [ref=e505]:
+              - generic [ref=e506]: "Mumbai moves fast. People are always on the go, plans change quickly, and celebrations often happen in the middle of a packed schedule. Yet, one thing never feels rushed here:"
+              - link "Read More..." [ref=e507] [cursor=pointer]:
+                - /url: https://www.floweraura.com/blog/ultimate-flower-gifting-guide-in-mumbai
+          - listitem [ref=e508]:
+            - generic [ref=e509]:
+              - 'img "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning"'
+            - generic [ref=e510]: "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning"
+            - generic [ref=e511]:
+              - generic [ref=e512]: Flowers have always been a symbol of beauty, nature, and love, but did you know that the meaning behind different flower colors is just as important? Each hue carries its
+              - link "Read More..." [ref=e513] [cursor=pointer]:
+                - /url: https://www.floweraura.com/blog/hidden-power-colors-how-flower-color-influences-their-symbolic-meaning
+          - listitem [ref=e514]:
+            - generic [ref=e515]:
+              - img "Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science"
+            - generic [ref=e516]: Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science
+            - generic [ref=e517]:
+              - generic [ref=e518]: The first thing you notice during Diwali is the glow. Diyas flicker. Rangoli colours burst across the floor. And everywhere you look, strings of bright orange and yellow marigolds frame
+              - link "Read More..." [ref=e519] [cursor=pointer]:
+                - /url: https://www.floweraura.com/blog/why-marigolds-are-heart-indian-festivals-tradition-symbolism-science
+    - generic [ref=e520]:
+      - generic [ref=e521]:
+        - list [ref=e522]:
+          - listitem [ref=e523]:
+            - link "About Us" [ref=e524] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e525]:
+            - link "Sell With Us" [ref=e526] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e527]:
+            - link "Coupons & Deals" [ref=e528] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e529]:
+            - link "Cancellation & Refund" [ref=e530] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e531]:
+            - link "Terms and Conditions" [ref=e532] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e533]:
+            - link "Retails Stores" [ref=e534] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e535]:
+            - link "Career" [ref=e536] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e537]:
+          - listitem [ref=e538]:
+            - link "Media" [ref=e539] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e540]:
+            - link "Privacy Policy" [ref=e541] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e542]:
+            - link "Reviews" [ref=e543] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e544]:
+            - link "Blog" [ref=e545] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e546]:
+            - link "Sitemap" [ref=e547] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e548]:
+            - link "Quotes" [ref=e549] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e550]:
+          - listitem [ref=e551]:
+            - link "Corporate Gifts" [ref=e552] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e553]:
+            - link "Franchise" [ref=e554] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e555]:
+            - link "FAQ" [ref=e556] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e557]:
+            - link "Contact Us" [ref=e558] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e559]:
+            - link "Download App" [ref=e560] [cursor=pointer]:
+              - /url: /download-app
+        - generic [ref=e561]:
+          - generic [ref=e562]: Simplify your gifting experience with our app.
+          - generic [ref=e563]:
+            - img "scanQr" [ref=e564]
+            - list [ref=e565]:
+              - listitem [ref=e566]:
+                - link "Download App From Play Store" [ref=e567] [cursor=pointer]:
+                  - /url: https://play.google.com/store/apps/details?id=com.floweraura&referrer=utm_source%3Dfooter_web%26utm_medium%3Dweb%26utm_campaign%3Dapp_download_web_footer
+                  - generic [ref=e568]:
+                    - img "Download App From Play Store"
+              - listitem [ref=e569]:
+                - link "Download App From App Store" [ref=e570] [cursor=pointer]:
+                  - /url: https://apps.apple.com/in/app/floweraura/id1490812119
+                  - generic [ref=e571]:
+                    - img "Download App From App Store"
+          - generic [ref=e572]:
+            - heading "Spread The Love On Social Media" [level=3] [ref=e573]
+            - list [ref=e574]:
+              - listitem [ref=e575]:
+                - link "facebook" [ref=e576] [cursor=pointer]:
+                  - /url: https://www.facebook.com/floweraura
+              - listitem [ref=e577]:
+                - link "twitter" [ref=e578] [cursor=pointer]:
+                  - /url: https://twitter.com/floweraura
+              - listitem [ref=e579]:
+                - link "youtube" [ref=e580] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UCKHMl8G_5dkJFUvORqQBHTA/featured
+              - listitem [ref=e581]:
+                - link "pinterest" [ref=e582] [cursor=pointer]:
+                  - /url: https://in.pinterest.com/FlowerAuraOfficial
+              - listitem [ref=e583]:
+                - link "instagram" [ref=e584] [cursor=pointer]:
+                  - /url: https://www.instagram.com/flowerauraofficial
+              - listitem [ref=e585]:
+                - link "linkedin" [ref=e586] [cursor=pointer]:
+                  - /url: https://in.linkedin.com/company/floweraura
+      - generic [ref=e587]:
+        - generic [ref=e588]:
+          - generic [ref=e589]:
+            - img "fa_logo"
+          - generic [ref=e590]: Copyright. 2026. FA GIFTS PVT. LTD
+        - generic [ref=e591]:
+          - generic [ref=e592]: "We Accept:"
+          - generic:
+            - img "visa"

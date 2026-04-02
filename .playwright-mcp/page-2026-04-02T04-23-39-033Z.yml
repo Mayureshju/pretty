@@ -1,0 +1,391 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Flower Aura" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e6]
+          - generic [ref=e17]: Flower Aura
+        - generic [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: 🇮🇳
+          - generic [ref=e20]: Delhi...
+          - img [ref=e21]
+        - generic [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: Search for
+          - generic [ref=e26]: flowers
+          - img [ref=e27]
+        - generic [ref=e30]:
+          - link "Track Order" [ref=e31] [cursor=pointer]:
+            - /url: /trackorder
+            - img [ref=e32]
+            - generic [ref=e36]: Track Order
+          - link "0 Cart" [ref=e37] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]: "0"
+            - generic [ref=e43]: Cart
+          - generic [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - generic [ref=e48]: INR
+          - generic [ref=e49] [cursor=pointer]:
+            - img [ref=e50]
+            - generic [ref=e53]: Sign In
+          - generic [ref=e54] [cursor=pointer]:
+            - img [ref=e55]
+            - generic [ref=e57]: More
+    - navigation [ref=e58]:
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - link "Flowers" [ref=e62] [cursor=pointer]:
+            - /url: /all-flowers
+        - listitem [ref=e63]:
+          - link "Cakes" [ref=e64] [cursor=pointer]:
+            - /url: /all-cakes
+        - listitem [ref=e65]:
+          - link "Combos" [ref=e66] [cursor=pointer]:
+            - /url: /gift-hampers
+        - listitem [ref=e67]:
+          - link "Birthday" [ref=e68] [cursor=pointer]:
+            - /url: /birthday
+        - listitem [ref=e69]:
+          - link "Anniversary" [ref=e70] [cursor=pointer]:
+            - /url: /anniversary
+        - listitem [ref=e71]:
+          - link "Gifts" [ref=e72] [cursor=pointer]:
+            - /url: /gifts
+        - listitem [ref=e73]:
+          - link "Personalised" [ref=e74] [cursor=pointer]:
+            - /url: /personalised-gifts
+        - listitem [ref=e75]:
+          - link "Plants" [ref=e76] [cursor=pointer]:
+            - /url: /plants
+        - listitem [ref=e77]:
+          - link "Chocolates" [ref=e78] [cursor=pointer]:
+            - /url: /chocolates
+        - listitem [ref=e79]:
+          - link "Occasions" [ref=e80] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e81]:
+          - link "International" [ref=e82] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e83]:
+      - navigation [ref=e86]:
+        - link "Home" [ref=e87] [cursor=pointer]:
+          - /url: /
+        - img [ref=e88]
+        - link "Flowers" [ref=e90] [cursor=pointer]:
+          - /url: /all-flowers
+        - img [ref=e91]
+        - generic [ref=e93]: Pastel Blooms Of Serenity
+      - generic [ref=e94]:
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - button [ref=e98] [cursor=pointer]
+              - button [ref=e99] [cursor=pointer]
+              - button [ref=e100] [cursor=pointer]
+              - button [ref=e101] [cursor=pointer]
+              - button [ref=e102] [cursor=pointer]
+              - button [ref=e103] [cursor=pointer]
+            - img "Pastel Blooms Of Serenity" [ref=e105]
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - heading "Pastel Blooms Of Serenity" [level=1] [ref=e108]
+              - button [ref=e109] [cursor=pointer]:
+                - img [ref=e110]
+            - generic [ref=e112]:
+              - generic [ref=e113]: ★ 5
+              - generic [ref=e114]: •
+              - generic [ref=e115]: 2 Reviews
+            - generic [ref=e116]:
+              - generic [ref=e117]: ₹ 595
+              - generic [ref=e118]: ₹ 795
+              - generic [ref=e119]: 26% OFF
+            - generic [ref=e120]:
+              - paragraph [ref=e121]: Make this gift extra special
+              - generic [ref=e122]:
+                - button "Basic Basic ₹ 595" [ref=e123] [cursor=pointer]:
+                  - img "Basic" [ref=e125]
+                  - generic [ref=e126]:
+                    - paragraph [ref=e127]: Basic
+                    - paragraph [ref=e128]: ₹ 595
+                - button "Large Large ₹ 995" [ref=e129] [cursor=pointer]:
+                  - img "Large" [ref=e131]
+                  - generic [ref=e132]:
+                    - paragraph [ref=e133]: Large
+                    - paragraph [ref=e134]: ₹ 995
+                - button "With Cake With Cake ₹ 1245" [ref=e135] [cursor=pointer]:
+                  - img "With Cake" [ref=e137]
+                  - generic [ref=e138]:
+                    - paragraph [ref=e139]: With Cake
+                    - paragraph [ref=e140]: ₹ 1245
+            - generic [ref=e141]:
+              - paragraph [ref=e142]: Recommended Addon Products
+              - generic [ref=e143]:
+                - generic [ref=e144]:
+                  - img "Love You Card" [ref=e146]
+                  - generic [ref=e147]:
+                    - paragraph [ref=e148]: Love You Card
+                    - generic [ref=e149]:
+                      - generic [ref=e150]: ₹ 129
+                      - button "ADD" [ref=e151] [cursor=pointer]
+                - generic [ref=e152]:
+                  - img "Photo Cake" [ref=e154]
+                  - generic [ref=e155]:
+                    - paragraph [ref=e156]: Photo Cake
+                    - generic [ref=e157]:
+                      - generic [ref=e158]: ₹ 595
+                      - button "ADD" [ref=e159] [cursor=pointer]
+                - generic [ref=e160]:
+                  - img "Silk Chocolates" [ref=e162]
+                  - generic [ref=e163]:
+                    - paragraph [ref=e164]: Silk Chocolates
+                    - generic [ref=e165]:
+                      - generic [ref=e166]: ₹ 395
+                      - button "ADD" [ref=e167] [cursor=pointer]
+                - generic [ref=e168]:
+                  - img "Teddy Bear" [ref=e170]
+                  - generic [ref=e171]:
+                    - paragraph [ref=e172]: Teddy Bear
+                    - generic [ref=e173]:
+                      - generic [ref=e174]: ₹ 445
+                      - button "ADD" [ref=e175] [cursor=pointer]
+            - generic [ref=e176]:
+              - generic [ref=e177]:
+                - paragraph [ref=e178]: Select Area / Location
+                - button "Use My Location" [ref=e179] [cursor=pointer]:
+                  - img [ref=e180]
+                  - text: Use My Location
+              - generic [ref=e183]:
+                - img [ref=e184]
+                - textbox "Select Area / Location" [ref=e187]
+              - button "Saved Addresses" [ref=e188] [cursor=pointer]:
+                - text: Saved Addresses
+                - img [ref=e189]
+            - button "Offers Available" [ref=e191] [cursor=pointer]:
+              - generic [ref=e192]:
+                - img [ref=e193]
+                - generic [ref=e196]: Offers Available
+              - img [ref=e197]
+            - generic [ref=e199]:
+              - heading "Product Contains" [level=3] [ref=e200]
+              - list [ref=e201]:
+                - listitem [ref=e202]: 2 Pink Roses
+                - listitem [ref=e204]: 2 White Carnation
+                - listitem [ref=e206]: 1 Purple Daisy
+                - listitem [ref=e208]: Pink Non Woven Paper
+            - generic [ref=e210]:
+              - heading "Description" [level=3] [ref=e211]
+              - paragraph [ref=e212]: A charming bouquet crafted to bring a smile at first sight. This arrangement features two pink roses, two white carnations, and delicate purple daisies, all gathered with lush greens for a balanced and graceful look. Wrapped in pink paper and finished with pastel ribbons, the bouquet carries a gentle, heartfelt feel making it a lovely choice for surprising your loved ones.
+            - generic [ref=e213]:
+              - paragraph [ref=e214]: SKU Number
+              - paragraph [ref=e215]: 9721530FL
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - img [ref=e219]
+            - paragraph [ref=e224]: 20+ Mn Smiles
+            - paragraph [ref=e225]: Delivered
+          - generic [ref=e226]:
+            - img [ref=e228]
+            - paragraph [ref=e231]: 20000+
+            - paragraph [ref=e232]: Pincodes Covered
+          - generic [ref=e233]:
+            - img [ref=e235]
+            - paragraph [ref=e240]: 620+ Cities Enjoying
+            - paragraph [ref=e241]: same-day delivery
+        - generic [ref=e242]:
+          - heading "Product Reviews" [level=2] [ref=e243]
+          - generic [ref=e244]:
+            - img [ref=e245]
+            - generic [ref=e247]: "5"
+          - generic [ref=e248]:
+            - generic [ref=e249]:
+              - generic [ref=e250]:
+                - generic [ref=e251]: Nidhal
+                - generic [ref=e252]:
+                  - img [ref=e253]
+                  - text: Verified
+                - generic [ref=e255]: ★ 5
+              - generic [ref=e256]:
+                - generic [ref=e257]: 1st Jan 2026
+                - generic [ref=e258]: •
+                - generic [ref=e259]: Bengaluru
+                - generic [ref=e260]: •
+                - generic [ref=e261]: "Occasion : New Year"
+              - paragraph [ref=e262]: Appreciate the quality and timely deliver. Kudos keep up spreading smiles and happiness through your work !!
+            - generic [ref=e263]:
+              - generic [ref=e264]:
+                - generic [ref=e265]: Jasbir Kaur
+                - generic [ref=e266]:
+                  - img [ref=e267]
+                  - text: Verified
+                - generic [ref=e269]: ★ 5
+              - generic [ref=e270]:
+                - generic [ref=e271]: 2nd Jan 2026
+                - generic [ref=e272]: •
+                - generic [ref=e273]: Kapurthala
+              - paragraph [ref=e274]: So beautiful
+        - generic [ref=e275]:
+          - heading "Similar Products" [level=2] [ref=e276]
+          - generic [ref=e277]:
+            - link "10 Red Roses Bouquet 10 Red Roses Bouquet ₹ 695 ₹ 770 10% OFF ★ 4.9 (1,645)" [ref=e278] [cursor=pointer]:
+              - /url: /p/flower/1
+              - img "10 Red Roses Bouquet" [ref=e280]
+              - generic [ref=e281]:
+                - heading "10 Red Roses Bouquet" [level=3] [ref=e282]
+                - generic [ref=e283]:
+                  - generic [ref=e284]: ₹ 695
+                  - generic [ref=e285]: ₹ 770
+                  - generic [ref=e286]: 10% OFF
+                - generic [ref=e287]:
+                  - generic [ref=e288]: ★ 4.9
+                  - generic [ref=e289]: (1,645)
+            - link "Bellina Purple Orchid Bouquet Bellina Purple Orchid Bouquet ₹ 795 ₹ 999 21% OFF ★ 4.9 (676)" [ref=e290] [cursor=pointer]:
+              - /url: /p/flower/2
+              - img "Bellina Purple Orchid Bouquet" [ref=e292]
+              - generic [ref=e293]:
+                - heading "Bellina Purple Orchid Bouquet" [level=3] [ref=e294]
+                - generic [ref=e295]:
+                  - generic [ref=e296]: ₹ 795
+                  - generic [ref=e297]: ₹ 999
+                  - generic [ref=e298]: 21% OFF
+                - generic [ref=e299]:
+                  - generic [ref=e300]: ★ 4.9
+                  - generic [ref=e301]: (676)
+            - link "Red Roses Wrapped In Devotion Red Roses Wrapped In Devotion ₹ 545 ₹ 795 32% OFF ★ 4.8 (4)" [ref=e302] [cursor=pointer]:
+              - /url: /p/flower/3
+              - img "Red Roses Wrapped In Devotion" [ref=e304]
+              - generic [ref=e305]:
+                - heading "Red Roses Wrapped In Devotion" [level=3] [ref=e306]
+                - generic [ref=e307]:
+                  - generic [ref=e308]: ₹ 545
+                  - generic [ref=e309]: ₹ 795
+                  - generic [ref=e310]: 32% OFF
+                - generic [ref=e311]:
+                  - generic [ref=e312]: ★ 4.8
+                  - generic [ref=e313]: (4)
+            - link "Lily and the Celestial Daisy Lily and the Celestial Daisy ₹ 1995 ₹ 2245 12% OFF ★ 4.9 (32)" [ref=e314] [cursor=pointer]:
+              - /url: /p/flower/4
+              - img "Lily and the Celestial Daisy" [ref=e316]
+              - generic [ref=e317]:
+                - heading "Lily and the Celestial Daisy" [level=3] [ref=e318]
+                - generic [ref=e319]:
+                  - generic [ref=e320]: ₹ 1995
+                  - generic [ref=e321]: ₹ 2245
+                  - generic [ref=e322]: 12% OFF
+                - generic [ref=e323]:
+                  - generic [ref=e324]: ★ 4.9
+                  - generic [ref=e325]: (32)
+      - generic [ref=e327]:
+        - button "ADD TO CART" [ref=e328] [cursor=pointer]
+        - button "BUY NOW | ₹ 595" [ref=e329] [cursor=pointer]
+    - contentinfo [ref=e330]:
+      - generic [ref=e332]:
+        - list [ref=e333]:
+          - listitem [ref=e334]:
+            - link "About Us" [ref=e335] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e336]:
+            - link "Sell With Us" [ref=e337] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e338]:
+            - link "Coupons & Deals" [ref=e339] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e340]:
+            - link "Cancellation & Refund" [ref=e341] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e342]:
+            - link "Terms and Conditions" [ref=e343] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e344]:
+            - link "Retail Stores" [ref=e345] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e346]:
+            - link "Career" [ref=e347] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e348]:
+          - listitem [ref=e349]:
+            - link "Media" [ref=e350] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e351]:
+            - link "Privacy Policy" [ref=e352] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e353]:
+            - link "Reviews" [ref=e354] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e355]:
+            - link "Blog" [ref=e356] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e357]:
+            - link "Sitemap" [ref=e358] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e359]:
+            - link "Quotes" [ref=e360] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e361]:
+          - listitem [ref=e362]:
+            - link "Corporate Gifts" [ref=e363] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e364]:
+            - link "Franchise" [ref=e365] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e366]:
+            - link "FAQ" [ref=e367] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e368]:
+            - link "Contact Us" [ref=e369] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e370]:
+            - link "Download App" [ref=e371] [cursor=pointer]:
+              - /url: /download-app
+        - generic [ref=e372]:
+          - paragraph [ref=e373]: Simplify your gifting experience with our app.
+          - generic [ref=e374]:
+            - generic [ref=e375] [cursor=pointer]:
+              - img [ref=e376]
+              - generic [ref=e378]:
+                - generic [ref=e379]: Get it on
+                - generic [ref=e380]: Google Play
+            - generic [ref=e381] [cursor=pointer]:
+              - img [ref=e382]
+              - generic [ref=e384]:
+                - generic [ref=e385]: Download on the
+                - generic [ref=e386]: App Store
+          - heading "Spread The Love On Social Media" [level=3] [ref=e387]
+          - generic [ref=e388]:
+            - link "Facebook" [ref=e389] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e390]
+            - link "Twitter" [ref=e392] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e393]
+            - link "YouTube" [ref=e395] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e396]
+            - link "Pinterest" [ref=e398] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e399]
+            - link "Instagram" [ref=e401] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e402]
+            - link "LinkedIn" [ref=e404] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e405]
+      - generic [ref=e408]:
+        - generic [ref=e409]:
+          - generic [ref=e410]: FLOWER AURA
+          - generic [ref=e411]: Copyright. 2026. FA GIFTS PVT. LTD
+        - generic [ref=e412]:
+          - generic [ref=e413]: "We Accept:"
+          - generic [ref=e414]: Visa
+          - generic [ref=e415]: MC
+          - generic [ref=e416]: Amex
+          - generic [ref=e417]: UPI
+          - generic [ref=e418]: PayPal
+          - generic [ref=e419]: Paytm
+    - link [ref=e420] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e421]
+  - button "Open Next.js Dev Tools" [ref=e428] [cursor=pointer]:
+    - img [ref=e429]

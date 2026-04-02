@@ -1,0 +1,12 @@
+[     190ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[     199ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[     230ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  102230ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  103712ms] [LOG] [Fast Refresh] done in 1522ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  103998ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  104069ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  104308ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[  104318ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  104373ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  113755ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  113785ms] [LOG] [Fast Refresh] done in 95ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441

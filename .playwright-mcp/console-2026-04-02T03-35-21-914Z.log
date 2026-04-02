@@ -1,0 +1,17 @@
+[     140ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[     147ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[     180ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  319297ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  319529ms] [LOG] [Fast Refresh] done in 199ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  343023ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  343050ms] [LOG] [Fast Refresh] done in 29ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  383481ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  383509ms] [LOG] [Fast Refresh] done in 34ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  438024ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  438052ms] [LOG] [Fast Refresh] done in 46ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  467023ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  467051ms] [LOG] [Fast Refresh] done in 30ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  495925ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  495950ms] [LOG] [Fast Refresh] done in 31ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  525835ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441
+[  525862ms] [LOG] [Fast Refresh] done in 29ms @ http://localhost:3000/_next/static/chunks/0z2._next_dist_0edbgmh._.js:2441

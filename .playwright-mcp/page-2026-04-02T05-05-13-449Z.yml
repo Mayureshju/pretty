@@ -1,0 +1,622 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Flower Aura" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e6]
+          - generic [ref=e17]: Flower Aura
+        - generic [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]: 🇮🇳
+          - generic [ref=e20]: Delhi...
+          - img [ref=e21]
+        - generic [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]: Search for
+          - generic [ref=e26]: flowers
+          - img [ref=e27]
+        - generic [ref=e30]:
+          - link "Track Order" [ref=e31] [cursor=pointer]:
+            - /url: /trackorder
+            - img [ref=e32]
+            - generic [ref=e36]: Track Order
+          - link "0 Cart" [ref=e37] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e42]: "0"
+            - generic [ref=e43]: Cart
+          - generic [ref=e44] [cursor=pointer]:
+            - img [ref=e45]
+            - generic [ref=e48]: INR
+          - generic [ref=e49] [cursor=pointer]:
+            - img [ref=e50]
+            - generic [ref=e53]: Sign In
+          - generic [ref=e54] [cursor=pointer]:
+            - img [ref=e55]
+            - generic [ref=e57]: More
+    - navigation [ref=e58]:
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - link "Flowers" [ref=e62] [cursor=pointer]:
+            - /url: /all-flowers
+        - listitem [ref=e63]:
+          - link "Cakes" [ref=e64] [cursor=pointer]:
+            - /url: /all-cakes
+        - listitem [ref=e65]:
+          - link "Combos" [ref=e66] [cursor=pointer]:
+            - /url: /gift-hampers
+        - listitem [ref=e67]:
+          - link "Birthday" [ref=e68] [cursor=pointer]:
+            - /url: /birthday
+        - listitem [ref=e69]:
+          - link "Anniversary" [ref=e70] [cursor=pointer]:
+            - /url: /anniversary
+        - listitem [ref=e71]:
+          - link "Gifts" [ref=e72] [cursor=pointer]:
+            - /url: /gifts
+        - listitem [ref=e73]:
+          - link "Personalised" [ref=e74] [cursor=pointer]:
+            - /url: /personalised-gifts
+        - listitem [ref=e75]:
+          - link "Plants" [ref=e76] [cursor=pointer]:
+            - /url: /plants
+        - listitem [ref=e77]:
+          - link "Chocolates" [ref=e78] [cursor=pointer]:
+            - /url: /chocolates
+        - listitem [ref=e79]:
+          - link "Occasions" [ref=e80] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e81]:
+          - link "International" [ref=e82] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]:
+          - img "A Hamper" [ref=e87]
+          - img "Birthday" [ref=e90]
+          - img "Fresh Flowers" [ref=e93]
+          - img "Delicious Cakes" [ref=e96]
+          - img "Green Plants" [ref=e99]
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - heading "A Hamper" [level=2] [ref=e103]
+              - paragraph [ref=e104]: full of love and surprises
+            - generic [ref=e106]:
+              - generic [ref=e107]: Enter delivery location
+              - generic [ref=e108]:
+                - generic [ref=e109]: 🇮🇳
+                - generic [ref=e110]:
+                  - img [ref=e111]
+                  - textbox "Search for area / landmark..." [ref=e114]
+                - button "Use current location" [ref=e115] [cursor=pointer]:
+                  - img [ref=e116]
+          - button [ref=e119] [cursor=pointer]:
+            - img [ref=e120]
+          - button [ref=e122] [cursor=pointer]:
+            - img [ref=e123]
+        - generic [ref=e125]:
+          - button [ref=e126] [cursor=pointer]
+          - button [ref=e127] [cursor=pointer]
+          - button [ref=e128] [cursor=pointer]
+          - button [ref=e129] [cursor=pointer]
+          - button [ref=e130] [cursor=pointer]
+      - generic [ref=e132]:
+        - link "Flowers Flowers" [ref=e133] [cursor=pointer]:
+          - /url: /all-flowers
+          - img "Flowers" [ref=e135]
+          - generic [ref=e136]: Flowers
+        - link "Cakes Cakes" [ref=e137] [cursor=pointer]:
+          - /url: /cakes
+          - img "Cakes" [ref=e139]
+          - generic [ref=e140]: Cakes
+        - link "Combos Combos" [ref=e141] [cursor=pointer]:
+          - /url: /gift-hampers
+          - img "Combos" [ref=e143]
+          - generic [ref=e144]: Combos
+        - link "Balloon Decor Balloon Decor" [ref=e145] [cursor=pointer]:
+          - /url: /gifts/balloon-decorations
+          - img "Balloon Decor" [ref=e147]
+          - generic [ref=e148]: Balloon Decor
+        - link "Plants Plants" [ref=e149] [cursor=pointer]:
+          - /url: /plants
+          - img "Plants" [ref=e151]
+          - generic [ref=e152]: Plants
+        - link "Hampers Hampers" [ref=e153] [cursor=pointer]:
+          - /url: /hampers/same-day-delivery
+          - img "Hampers" [ref=e155]
+          - generic [ref=e156]: Hampers
+        - link "Same Day Same Day" [ref=e157] [cursor=pointer]:
+          - /url: /same-day-delivery-gifts
+          - img "Same Day" [ref=e159]
+          - generic [ref=e160]: Same Day
+        - link "International International" [ref=e161] [cursor=pointer]:
+          - /url: /delivery-countries
+          - img "International" [ref=e163]
+          - generic [ref=e164]: International
+      - generic [ref=e165]:
+        - generic [ref=e166]:
+          - heading "Shop By Occasions & Relations" [level=2] [ref=e167]
+          - paragraph [ref=e168]: Surprise Your Loved Ones
+        - generic [ref=e169]:
+          - link "Birthday Gifts Birthday Gifts" [ref=e170] [cursor=pointer]:
+            - /url: /birthday
+            - img "Birthday Gifts" [ref=e172]
+            - generic [ref=e173]: Birthday Gifts
+          - link "Anniversary Gifts Anniversary Gifts" [ref=e174] [cursor=pointer]:
+            - /url: /anniversary
+            - img "Anniversary Gifts" [ref=e176]
+            - generic [ref=e177]: Anniversary Gifts
+          - link "Gifts for Him Gifts for Him" [ref=e178] [cursor=pointer]:
+            - /url: /gifts/for-him
+            - img "Gifts for Him" [ref=e180]
+            - generic [ref=e181]: Gifts for Him
+          - link "Gifts for Her Gifts for Her" [ref=e182] [cursor=pointer]:
+            - /url: /gifts/for-her
+            - img "Gifts for Her" [ref=e184]
+            - generic [ref=e185]: Gifts for Her
+      - generic [ref=e186]:
+        - generic [ref=e187]:
+          - heading "Best Selling Flowers & Gifts" [level=2] [ref=e188]
+          - link "View All" [ref=e189] [cursor=pointer]:
+            - /url: /best-seller
+        - paragraph [ref=e190]: Surprise Your Loved Ones
+        - generic [ref=e191]:
+          - generic [ref=e192]:
+            - button [ref=e193] [cursor=pointer]:
+              - img [ref=e194]
+            - link "10 Red Roses Bouquet" [ref=e196] [cursor=pointer]:
+              - /url: /p/flower/red-roses-bouquet
+              - img "10 Red Roses Bouquet" [ref=e198]
+            - generic [ref=e199]:
+              - link "10 Red Roses Bouquet" [ref=e200] [cursor=pointer]:
+                - /url: /p/flower/red-roses-bouquet
+                - heading "10 Red Roses Bouquet" [level=3] [ref=e201]
+              - generic [ref=e202]:
+                - generic [ref=e203]: ₹ 695
+                - generic [ref=e204]: ₹ 770
+                - generic [ref=e205]: 10% OFF
+              - generic [ref=e206]:
+                - generic [ref=e207]: ★ 4.9
+                - generic [ref=e208]: (1,645 Reviews)
+              - paragraph [ref=e209]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e210]:
+            - button [ref=e211] [cursor=pointer]:
+              - img [ref=e212]
+            - link "Profuse Jade Terrarium" [ref=e214] [cursor=pointer]:
+              - /url: /p/plant/profuse-jade-terrarium
+              - img "Profuse Jade Terrarium" [ref=e216]
+            - generic [ref=e217]:
+              - link "Profuse Jade Terrarium" [ref=e218] [cursor=pointer]:
+                - /url: /p/plant/profuse-jade-terrarium
+                - heading "Profuse Jade Terrarium" [level=3] [ref=e219]
+              - generic [ref=e220]:
+                - generic [ref=e221]: ₹ 695
+                - generic [ref=e222]: ₹ 999
+                - generic [ref=e223]: 31% OFF
+              - generic [ref=e224]:
+                - generic [ref=e225]: ★ 4.9
+                - generic [ref=e226]: (68 Reviews)
+              - paragraph [ref=e227]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e228]:
+            - button [ref=e229] [cursor=pointer]:
+              - img [ref=e230]
+            - link "Chocolate Truffle Cake" [ref=e232] [cursor=pointer]:
+              - /url: /p/cake/chocolate-truffle-cake
+              - img "Chocolate Truffle Cake" [ref=e234]
+            - generic [ref=e235]:
+              - link "Chocolate Truffle Cake" [ref=e236] [cursor=pointer]:
+                - /url: /p/cake/chocolate-truffle-cake
+                - heading "Chocolate Truffle Cake" [level=3] [ref=e237]
+              - generic [ref=e238]:
+                - generic [ref=e239]: ₹ 595
+                - generic [ref=e240]: ₹ 745
+                - generic [ref=e241]: 21% OFF
+              - generic [ref=e242]:
+                - generic [ref=e243]: ★ 4.9
+                - generic [ref=e244]: (829 Reviews)
+              - paragraph [ref=e245]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e246]:
+            - button [ref=e247] [cursor=pointer]:
+              - img [ref=e248]
+            - link "Bellina Purple Orchid Bouquet" [ref=e250] [cursor=pointer]:
+              - /url: /p/flower/purple-orchid-bouquet
+              - img "Bellina Purple Orchid Bouquet" [ref=e252]
+            - generic [ref=e253]:
+              - link "Bellina Purple Orchid Bouquet" [ref=e254] [cursor=pointer]:
+                - /url: /p/flower/purple-orchid-bouquet
+                - heading "Bellina Purple Orchid Bouquet" [level=3] [ref=e255]
+              - generic [ref=e256]:
+                - generic [ref=e257]: ₹ 795
+                - generic [ref=e258]: ₹ 999
+                - generic [ref=e259]: 21% OFF
+              - generic [ref=e260]:
+                - generic [ref=e261]: ★ 4.9
+                - generic [ref=e262]: (676 Reviews)
+              - paragraph [ref=e263]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e264]:
+            - button [ref=e265] [cursor=pointer]:
+              - img [ref=e266]
+            - link "Pastel Blooms Of Serenity" [ref=e268] [cursor=pointer]:
+              - /url: /p/flower/pastel-blooms
+              - img "Pastel Blooms Of Serenity" [ref=e270]
+            - generic [ref=e271]:
+              - link "Pastel Blooms Of Serenity" [ref=e272] [cursor=pointer]:
+                - /url: /p/flower/pastel-blooms
+                - heading "Pastel Blooms Of Serenity" [level=3] [ref=e273]
+              - generic [ref=e274]:
+                - generic [ref=e275]: ₹ 595
+                - generic [ref=e276]: ₹ 795
+                - generic [ref=e277]: 26% OFF
+              - generic [ref=e278]:
+                - generic [ref=e279]: ★ 5
+                - generic [ref=e280]: (2 Reviews)
+              - paragraph [ref=e281]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e282]:
+            - button [ref=e283] [cursor=pointer]:
+              - img [ref=e284]
+            - link "Red Roses Wrapped In Heartfelt Devotion" [ref=e286] [cursor=pointer]:
+              - /url: /p/flower/red-roses-wrapped
+              - img "Red Roses Wrapped In Heartfelt Devotion" [ref=e288]
+            - generic [ref=e289]:
+              - link "Red Roses Wrapped In Heartfelt Devotion" [ref=e290] [cursor=pointer]:
+                - /url: /p/flower/red-roses-wrapped
+                - heading "Red Roses Wrapped In Heartfelt Devotion" [level=3] [ref=e291]
+              - generic [ref=e292]:
+                - generic [ref=e293]: ₹ 545
+                - generic [ref=e294]: ₹ 795
+                - generic [ref=e295]: 32% OFF
+              - generic [ref=e296]:
+                - generic [ref=e297]: ★ 4.8
+                - generic [ref=e298]: (4 Reviews)
+              - paragraph [ref=e299]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e300]:
+            - button [ref=e301] [cursor=pointer]:
+              - img [ref=e302]
+            - link "Decadent Red Velvet Cake" [ref=e304] [cursor=pointer]:
+              - /url: /p/cake/red-velvet-cake
+              - img "Decadent Red Velvet Cake" [ref=e306]
+            - generic [ref=e307]:
+              - link "Decadent Red Velvet Cake" [ref=e308] [cursor=pointer]:
+                - /url: /p/cake/red-velvet-cake
+                - heading "Decadent Red Velvet Cake" [level=3] [ref=e309]
+              - generic [ref=e310]:
+                - generic [ref=e311]: ₹ 685
+                - generic [ref=e312]: ₹ 895
+                - generic [ref=e313]: 24% OFF
+              - generic [ref=e314]:
+                - generic [ref=e315]: ★ 4.9
+                - generic [ref=e316]: (320 Reviews)
+              - paragraph [ref=e317]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e318]:
+            - button [ref=e319] [cursor=pointer]:
+              - img [ref=e320]
+            - link "Twin Hearts Floral Balloon" [ref=e322] [cursor=pointer]:
+              - /url: /p/gift/twin-hearts-balloon
+              - img "Twin Hearts Floral Balloon" [ref=e324]
+            - generic [ref=e325]:
+              - link "Twin Hearts Floral Balloon" [ref=e326] [cursor=pointer]:
+                - /url: /p/gift/twin-hearts-balloon
+                - heading "Twin Hearts Floral Balloon" [level=3] [ref=e327]
+              - generic [ref=e328]:
+                - generic [ref=e329]: ₹ 895
+                - generic [ref=e330]: ₹ 1295
+                - generic [ref=e331]: 31% OFF
+              - generic [ref=e332]:
+                - generic [ref=e333]: ★ 4.6
+                - generic [ref=e334]: (8 Reviews)
+              - paragraph [ref=e335]: "Earliest Delivery : Tomorrow"
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - img "Delicious Cakes" [ref=e341]
+          - generic [ref=e342]:
+            - heading "Delicious Cakes" [level=3] [ref=e343]
+            - list [ref=e344]:
+              - listitem [ref=e345]:
+                - link "Birthday Cakes" [ref=e346] [cursor=pointer]:
+                  - /url: /birthday/cakes
+                  - img [ref=e347]
+                  - text: Birthday Cakes
+              - listitem [ref=e349]:
+                - link "Anniversary Cakes" [ref=e350] [cursor=pointer]:
+                  - /url: /anniversary/cakes
+                  - img [ref=e351]
+                  - text: Anniversary Cakes
+              - listitem [ref=e353]:
+                - link "Designer Cakes" [ref=e354] [cursor=pointer]:
+                  - /url: /cakes/designer
+                  - img [ref=e355]
+                  - text: Designer Cakes
+              - listitem [ref=e357]:
+                - link "Photo Cakes" [ref=e358] [cursor=pointer]:
+                  - /url: /cakes/photo
+                  - img [ref=e359]
+                  - text: Photo Cakes
+              - listitem [ref=e361]:
+                - link "Chocolate Cakes" [ref=e362] [cursor=pointer]:
+                  - /url: /cakes/chocolate
+                  - img [ref=e363]
+                  - text: Chocolate Cakes
+        - generic [ref=e365]:
+          - img "Gifting Gallery" [ref=e367]
+          - generic [ref=e368]:
+            - heading "Gifting Gallery" [level=3] [ref=e369]
+            - list [ref=e370]:
+              - listitem [ref=e371]:
+                - link "Photo Gifts" [ref=e372] [cursor=pointer]:
+                  - /url: /gifts/photo-gifts
+                  - img [ref=e373]
+                  - text: Photo Gifts
+              - listitem [ref=e375]:
+                - link "Mugs" [ref=e376] [cursor=pointer]:
+                  - /url: /gifts/mugs
+                  - img [ref=e377]
+                  - text: Mugs
+              - listitem [ref=e379]:
+                - link "Cushions" [ref=e380] [cursor=pointer]:
+                  - /url: /gifts/cushions
+                  - img [ref=e381]
+                  - text: Cushions
+              - listitem [ref=e383]:
+                - link "Name Gifts" [ref=e384] [cursor=pointer]:
+                  - /url: /personalised-gifts/name-gifts
+                  - img [ref=e385]
+                  - text: Name Gifts
+              - listitem [ref=e387]:
+                - link "Caricatures" [ref=e388] [cursor=pointer]:
+                  - /url: /personalised-gifts/caricatures
+                  - img [ref=e389]
+                  - text: Caricatures
+        - generic [ref=e391]:
+          - img "Floral Delights" [ref=e393]
+          - generic [ref=e394]:
+            - heading "Floral Delights" [level=3] [ref=e395]
+            - list [ref=e396]:
+              - listitem [ref=e397]:
+                - link "Red Roses" [ref=e398] [cursor=pointer]:
+                  - /url: /flowers/roses
+                  - img [ref=e399]
+                  - text: Red Roses
+              - listitem [ref=e401]:
+                - link "Birthday Flowers" [ref=e402] [cursor=pointer]:
+                  - /url: /birthday/flowers
+                  - img [ref=e403]
+                  - text: Birthday Flowers
+              - listitem [ref=e405]:
+                - link "Anniversary Flowers" [ref=e406] [cursor=pointer]:
+                  - /url: /anniversary/flowers
+                  - img [ref=e407]
+                  - text: Anniversary Flowers
+              - listitem [ref=e409]:
+                - link "Exotic Flowers" [ref=e410] [cursor=pointer]:
+                  - /url: /flowers/exotic
+                  - img [ref=e411]
+                  - text: Exotic Flowers
+              - listitem [ref=e413]:
+                - link "Flower Boxes" [ref=e414] [cursor=pointer]:
+                  - /url: /flowers/in-box
+                  - img [ref=e415]
+                  - text: Flower Boxes
+        - generic [ref=e417]:
+          - img "Plant Paradise" [ref=e419]
+          - generic [ref=e420]:
+            - heading "Plant Paradise" [level=3] [ref=e421]
+            - list [ref=e422]:
+              - listitem [ref=e423]:
+                - link "Bonsai" [ref=e424] [cursor=pointer]:
+                  - /url: /plants/bonsai
+                  - img [ref=e425]
+                  - text: Bonsai
+              - listitem [ref=e427]:
+                - link "Indoor" [ref=e428] [cursor=pointer]:
+                  - /url: /plants/indoor
+                  - img [ref=e429]
+                  - text: Indoor
+              - listitem [ref=e431]:
+                - link "Air Purifying" [ref=e432] [cursor=pointer]:
+                  - /url: /plants/air-purifying
+                  - img [ref=e433]
+                  - text: Air Purifying
+              - listitem [ref=e435]:
+                - link "Lucky Bamboo" [ref=e436] [cursor=pointer]:
+                  - /url: /plants/lucky-bamboo
+                  - img [ref=e437]
+                  - text: Lucky Bamboo
+              - listitem [ref=e439]:
+                - link "Flowering" [ref=e440] [cursor=pointer]:
+                  - /url: /plants/flowering
+                  - img [ref=e441]
+                  - text: Flowering
+      - link "Refer & Earn Invite friends and earn exciting rewards on every successful referral! Refer Now" [ref=e444] [cursor=pointer]:
+        - /url: /refer-and-earn
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - heading "Refer & Earn" [level=3] [ref=e447]
+            - paragraph [ref=e448]: Invite friends and earn exciting rewards on every successful referral!
+            - generic [ref=e449]: Refer Now
+          - img [ref=e451]:
+            - generic [ref=e456]: "%"
+      - generic [ref=e457]:
+        - generic [ref=e458]:
+          - heading "Customer Testimonial" [level=2] [ref=e459]
+          - link "View All" [ref=e460] [cursor=pointer]:
+            - /url: /reviews
+        - generic [ref=e461]:
+          - generic [ref=e462]:
+            - generic [ref=e463]: “
+            - paragraph [ref=e464]: Awesome flowers and beautifully arranged. Had ordered for my Gurumaa and she appreciated the thoughtful collection. God bless each of you in sourcing, putting all together and delivering it. Thank you
+            - generic [ref=e465]:
+              - img [ref=e466]
+              - img [ref=e468]
+              - img [ref=e470]
+              - img [ref=e472]
+              - img [ref=e474]
+            - generic [ref=e476]:
+              - generic [ref=e477]:
+                - generic [ref=e478]: S
+                - generic [ref=e479]: Sanjay Diwan
+              - generic [ref=e480]: 24/01/2026
+          - generic [ref=e481]:
+            - generic [ref=e482]: “
+            - paragraph [ref=e483]: Thanks a lot to FlowerAura for making my moms birthday special she was very happy thanks a lot
+            - generic [ref=e484]:
+              - img [ref=e485]
+              - img [ref=e487]
+              - img [ref=e489]
+              - img [ref=e491]
+              - img [ref=e493]
+            - generic [ref=e495]:
+              - generic [ref=e496]:
+                - generic [ref=e497]: A
+                - generic [ref=e498]: Aaditya Singhal
+              - generic [ref=e499]: 14/01/2026
+          - generic [ref=e500]:
+            - generic [ref=e501]: “
+            - paragraph [ref=e502]: This cake was much better than I had imagined. It was very fresh and tasted great. Thank you Flower Aura.
+            - generic [ref=e503]:
+              - img [ref=e504]
+              - img [ref=e506]
+              - img [ref=e508]
+              - img [ref=e510]
+              - img [ref=e512]
+            - generic [ref=e514]:
+              - generic [ref=e515]:
+                - generic [ref=e516]: S
+                - generic [ref=e517]: Samiksha
+              - generic [ref=e518]: 09/01/2026
+      - generic [ref=e519]:
+        - 'heading "FlowerAura: Send Flowers, Cakes, Gifts & Plants Online Across India" [level=1] [ref=e520]'
+        - paragraph [ref=e522]: At FlowerAura, we take pride in delivering the highest quality flowers, cakes, plants, and gifts to your loved ones. Our diverse range ensures there's something perfect for every occasion. From romantic roses to delightful chocolate cakes and vibrant indoor plants, we have it all. As India's most trusted gifting brand, we guarantee fresh and beautiful flowers, delicious cakes, vibrant plants, and unique gifts that bring joy and smiles. Enjoy the convenience of doorstep delivery with our safe and secure packaging, ensuring your order arrives in pristine condition.
+        - button "Read More" [ref=e523] [cursor=pointer]
+      - generic [ref=e524]:
+        - heading "Related Blog" [level=2] [ref=e525]
+        - generic [ref=e526]:
+          - 'link "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips Mumbai moves fast. People are always on the go, plans change quickly, and celebrations often happen in the middle of a packed schedule. Yet, one thing never feels rushed here: Read More..." [ref=e527] [cursor=pointer]':
+            - /url: "#"
+            - 'img "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips" [ref=e529]'
+            - generic [ref=e530]:
+              - 'heading "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips" [level=3] [ref=e531]'
+              - paragraph [ref=e532]: "Mumbai moves fast. People are always on the go, plans change quickly, and celebrations often happen in the middle of a packed schedule. Yet, one thing never feels rushed here:"
+              - text: Read More...
+          - 'link "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning Flowers have always been a symbol of beauty, nature, and love, but did you know that the meaning behind different flower colors is just as important? Each hue carries its Read More..." [ref=e533] [cursor=pointer]':
+            - /url: "#"
+            - 'img "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning" [ref=e535]'
+            - generic [ref=e536]:
+              - 'heading "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning" [level=3] [ref=e537]'
+              - paragraph [ref=e538]: Flowers have always been a symbol of beauty, nature, and love, but did you know that the meaning behind different flower colors is just as important? Each hue carries its
+              - text: Read More...
+          - link "Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science The first thing you notice during Diwali is the glow. Diyas flicker. Rangoli colours burst across the floor. And everywhere you look, strings of bright orange and yellow marigolds frame Read More..." [ref=e539] [cursor=pointer]:
+            - /url: "#"
+            - img "Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science" [ref=e541]
+            - generic [ref=e542]:
+              - heading "Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science" [level=3] [ref=e543]
+              - paragraph [ref=e544]: The first thing you notice during Diwali is the glow. Diyas flicker. Rangoli colours burst across the floor. And everywhere you look, strings of bright orange and yellow marigolds frame
+              - text: Read More...
+    - contentinfo [ref=e545]:
+      - generic [ref=e547]:
+        - list [ref=e548]:
+          - listitem [ref=e549]:
+            - link "About Us" [ref=e550] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e551]:
+            - link "Sell With Us" [ref=e552] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e553]:
+            - link "Coupons & Deals" [ref=e554] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e555]:
+            - link "Cancellation & Refund" [ref=e556] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e557]:
+            - link "Terms and Conditions" [ref=e558] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e559]:
+            - link "Retail Stores" [ref=e560] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e561]:
+            - link "Career" [ref=e562] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e563]:
+          - listitem [ref=e564]:
+            - link "Media" [ref=e565] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e566]:
+            - link "Privacy Policy" [ref=e567] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e568]:
+            - link "Reviews" [ref=e569] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e570]:
+            - link "Blog" [ref=e571] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e572]:
+            - link "Sitemap" [ref=e573] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e574]:
+            - link "Quotes" [ref=e575] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e576]:
+          - listitem [ref=e577]:
+            - link "Corporate Gifts" [ref=e578] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e579]:
+            - link "Franchise" [ref=e580] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e581]:
+            - link "FAQ" [ref=e582] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e583]:
+            - link "Contact Us" [ref=e584] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e585]:
+            - link "Download App" [ref=e586] [cursor=pointer]:
+              - /url: /download-app
+        - generic [ref=e587]:
+          - paragraph [ref=e588]: Simplify your gifting experience with our app.
+          - generic [ref=e589]:
+            - generic [ref=e590] [cursor=pointer]:
+              - img [ref=e591]
+              - generic [ref=e593]:
+                - generic [ref=e594]: Get it on
+                - generic [ref=e595]: Google Play
+            - generic [ref=e596] [cursor=pointer]:
+              - img [ref=e597]
+              - generic [ref=e599]:
+                - generic [ref=e600]: Download on the
+                - generic [ref=e601]: App Store
+          - heading "Spread The Love On Social Media" [level=3] [ref=e602]
+          - generic [ref=e603]:
+            - link "Facebook" [ref=e604] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e605]
+            - link "Twitter" [ref=e607] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e608]
+            - link "YouTube" [ref=e610] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e611]
+            - link "Pinterest" [ref=e613] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e614]
+            - link "Instagram" [ref=e616] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e617]
+            - link "LinkedIn" [ref=e619] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e620]
+      - generic [ref=e623]:
+        - generic [ref=e624]:
+          - generic [ref=e625]: FLOWER AURA
+          - generic [ref=e626]: Copyright. 2026. FA GIFTS PVT. LTD
+        - generic [ref=e627]:
+          - generic [ref=e628]: "We Accept:"
+          - generic [ref=e629]: Visa
+          - generic [ref=e630]: MC
+          - generic [ref=e631]: Amex
+          - generic [ref=e632]: UPI
+          - generic [ref=e633]: PayPal
+          - generic [ref=e634]: Paytm
+    - link [ref=e635] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e636]
+  - button "Open Next.js Dev Tools" [ref=e643] [cursor=pointer]:
+    - img [ref=e644]

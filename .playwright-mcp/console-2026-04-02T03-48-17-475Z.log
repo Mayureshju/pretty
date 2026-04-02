@@ -1,0 +1,4 @@
+[     540ms] [WARNING] Manifest: property 'start_url' ignored, should be same origin as document. @ https://imgcdn.floweraura.com/ssr-build/manifest.json:0
+[   36066ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:80
+[   36074ms] [ERROR] Not signed in with the identity provider. @ https://www.floweraura.com/all-flowers?ref=home_cat1_pos1_desk:0
+[   39436ms] [ERROR] [GSI_LOGGER]: FedCM get() rejects with NetworkError: Error retrieving a token. @ https://accounts.google.com/gsi/client:81

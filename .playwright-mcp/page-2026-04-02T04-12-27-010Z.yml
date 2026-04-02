@@ -1,0 +1,786 @@
+- generic [ref=e2]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link "Floweraura.com - Online Flower Delivery" [ref=e12] [cursor=pointer]:
+          - /url: /
+          - img "Floweraura.com - Online Flower Delivery" [ref=e13]
+        - strong [ref=e15]:
+          - link "FlowerAura" [ref=e16] [cursor=pointer]:
+            - /url: /
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e24] [cursor=pointer]:
+            - generic [ref=e25]:
+              - img "country-flag" [ref=e26]
+              - generic "Deliver to ?" [ref=e27]
+            - img "dropdown-img" [ref=e28]
+          - generic [ref=e31]:
+            - paragraph [ref=e32]:
+              - text: Search for
+              - text: "|"
+            - emphasis [ref=e33]
+        - list [ref=e35]:
+          - listitem [ref=e36]:
+            - link "Track Order" [ref=e37] [cursor=pointer]:
+              - /url: /trackorder
+              - emphasis [ref=e38]
+              - generic [ref=e39]: Track Order
+          - listitem [ref=e40]:
+            - link "0 Cart" [ref=e41] [cursor=pointer]:
+              - /url: /cart
+              - paragraph [ref=e42]: "0"
+              - emphasis [ref=e43]
+              - generic [ref=e44]: Cart
+          - listitem [ref=e45] [cursor=pointer]:
+            - generic [ref=e48]: INR
+          - listitem [ref=e49] [cursor=pointer]:
+            - emphasis [ref=e50]
+            - generic [ref=e51]: Sign In
+          - listitem [ref=e52]:
+            - link "More" [ref=e53] [cursor=pointer]:
+              - /url: "#"
+              - emphasis [ref=e54]
+              - generic [ref=e55]: More
+    - navigation [ref=e56]:
+      - list [ref=e59]:
+        - listitem [ref=e60]:
+          - link "Flowers" [ref=e61] [cursor=pointer]:
+            - /url: /all-flowers?ref=menu_flowers_desk
+        - listitem [ref=e62]:
+          - link "Cakes" [ref=e63] [cursor=pointer]:
+            - /url: /all-cakes?ref=menu_cakes_desk
+        - listitem [ref=e64]:
+          - link "Combos" [ref=e65] [cursor=pointer]:
+            - /url: /gift-hampers?ref=menu_combos_desk
+        - listitem [ref=e66]:
+          - link "Birthday" [ref=e67] [cursor=pointer]:
+            - /url: /birthday?ref=menu_birthday_desk
+        - listitem [ref=e68]:
+          - link "Anniversary" [ref=e69] [cursor=pointer]:
+            - /url: /anniversary?ref=menu_anniversary_desk
+        - listitem [ref=e70]:
+          - link "Gifts" [ref=e71] [cursor=pointer]:
+            - /url: /gifts?ref=menu_gifts_desk
+        - listitem [ref=e72]:
+          - link "Personalised" [ref=e73] [cursor=pointer]:
+            - /url: /personalised-gifts?ref=menu_personalised_desk
+        - listitem [ref=e74]:
+          - link "Plants" [ref=e75] [cursor=pointer]:
+            - /url: /plants?ref=menu_plants_desk
+        - listitem [ref=e76]:
+          - link "Chocolates" [ref=e77] [cursor=pointer]:
+            - /url: /chocolates?ref=menu_chocolates_desk
+        - listitem [ref=e78]:
+          - link "Occasions" [ref=e79]:
+            - /url: "#"
+        - listitem [ref=e80]:
+          - link "International" [ref=e81]:
+            - /url: "#"
+  - generic [ref=e82]:
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - link "Home" [ref=e88] [cursor=pointer]:
+            - /url: /
+          - generic [ref=e89]: ">"
+        - generic [ref=e90]:
+          - link "Flowers" [ref=e92] [cursor=pointer]:
+            - /url: /flowers
+          - generic [ref=e93]: ">"
+        - generic [ref=e95]: Pastel Blooms Of Serenity
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic "Thumbnail Navigation" [ref=e101] [cursor=pointer]:
+            - button "Go to Slide 1" [pressed] [ref=e102]:
+              - img "Pastel Blooms Of Serenity" [ref=e104]
+            - button "Go to Slide 2" [ref=e105]
+            - button "Go to Slide 3" [ref=e107]
+            - button "Go to Slide 4" [ref=e109]
+            - button "Go to Slide 5" [ref=e111]
+            - button "Go to Slide 6" [ref=e113]
+            - button "Go to Slide 7" [ref=e115]:
+              - img "flowers-grown-across-india.jpg" [ref=e117]
+          - img [ref=e120]
+          - list [ref=e122]:
+            - listitem [ref=e123]:
+              - img "Delivered" [ref=e124]
+              - strong [ref=e125]: 20+ Mn Smiles
+              - generic [ref=e126]: Delivered
+            - listitem [ref=e127]:
+              - img "Delivered" [ref=e128]
+              - strong [ref=e129]: 20000+
+              - generic [ref=e130]: Pincodes Covered
+            - listitem [ref=e131]:
+              - img "Delivered" [ref=e132]
+              - strong [ref=e133]: 620+ Cities Enjoying
+              - generic [ref=e134]: same-day delivery
+        - generic [ref=e135]:
+          - generic [ref=e136]:
+            - heading "Pastel Blooms Of Serenity" [level=1] [ref=e137]
+            - img "whiteHeart" [ref=e139] [cursor=pointer]
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - generic [ref=e145]: ★
+                - generic [ref=e146]: "5"
+              - generic [ref=e148] [cursor=pointer]: 2 Reviews
+            - generic [ref=e149]:
+              - generic [ref=e151]:
+                - generic [ref=e152]: ₹
+                - generic [ref=e153]: "595"
+              - generic [ref=e154]:
+                - generic [ref=e155]: ₹ 795
+                - generic [ref=e156]: 26% OFF
+          - generic [ref=e157]:
+            - heading "Make this gift extra special" [level=2] [ref=e158]
+            - list [ref=e160]:
+              - listitem [ref=e161]:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Pastel Blooms Of Serenity"
+                    - generic:
+                      - generic: Basic
+                      - generic: ₹ 595
+              - listitem [ref=e162]:
+                - generic [ref=e164] [cursor=pointer]:
+                  - img "Pink & White Rose Hand-Tied Bouquet" [ref=e166]
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: Large
+                    - generic [ref=e169]: ₹ 995
+              - listitem [ref=e170]:
+                - generic [ref=e172] [cursor=pointer]:
+                  - img "Mixed Blooms Bouquet N Cake Combo" [ref=e174]
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: With Cake
+                    - generic [ref=e177]: ₹ 1245
+          - generic [ref=e179]:
+            - generic [ref=e180]: Recommended Addon Products
+            - generic [ref=e181]:
+              - generic [ref=e182]:
+                - generic [ref=e183]:
+                  - img "Love Greeting Card" [ref=e185]
+                  - generic [ref=e186]:
+                    - generic "Love Greeting Card" [ref=e187]
+                    - generic [ref=e188]: ₹ 129
+                - generic [ref=e190] [cursor=pointer]: ADD
+              - generic [ref=e191]:
+                - generic [ref=e192]:
+                  - img "1/2 kg Heart Shaped Chocolate Cake" [ref=e194]
+                  - generic [ref=e195]:
+                    - generic "1/2 kg Heart Shaped Chocolate Cake" [ref=e196]
+                    - generic [ref=e197]: ₹ 595
+                - generic [ref=e199] [cursor=pointer]: ADD
+              - generic [ref=e200]:
+                - generic [ref=e201]:
+                  - img "2 Cadbury Dairy Milk Silk (60 gram each)" [ref=e203]
+                  - generic [ref=e204]:
+                    - generic "2 Cadbury Dairy Milk Silk (60 gram each)" [ref=e205]
+                    - generic [ref=e206]: ₹ 395
+                - generic [ref=e208] [cursor=pointer]: ADD
+              - generic [ref=e209]:
+                - generic [ref=e210]:
+                  - img "Large Teddy Bear (12\")" [ref=e212]
+                  - generic [ref=e213]:
+                    - generic "Large Teddy Bear (12\")" [ref=e214]
+                    - generic [ref=e215]: ₹ 445
+                - generic [ref=e217] [cursor=pointer]: ADD
+          - generic [ref=e220]:
+            - generic [ref=e221]:
+              - generic [ref=e222]: Select Area / Location
+              - generic [ref=e223] [cursor=pointer]: Use My Location
+            - textbox "Select Area / Location" [ref=e225]
+            - generic [ref=e226] [cursor=pointer]:
+              - generic [ref=e227]: Saved Addresses
+              - img "down-arrow-img" [ref=e228]
+          - heading "Offers Available" [level=2] [ref=e231] [cursor=pointer]
+          - generic [ref=e232]:
+            - generic [ref=e233]:
+              - generic [ref=e234]: Product Contains
+              - list [ref=e235]:
+                - listitem [ref=e236]: 2 Pink Roses
+                - listitem [ref=e237]: 2 White Carnation
+                - listitem [ref=e238]: 1 Purple Daisy
+                - listitem [ref=e239]: Pink Non Woven Paper
+            - generic [ref=e240]:
+              - generic [ref=e241]: Description
+              - generic [ref=e242]: A charming bouquet crafted to bring a smile at first sight. This arrangement features two pink roses, two white carnations, and delicate purple daisies, all gathered with lush greens for a balanced and graceful look. Wrapped in pink paper and finished with pastel ribbons, the bouquet carries a gentle, heartfelt feel that works beautifully for birthdays, anniversaries, congratulations, or simple gestures of care. Its mix of colours offers freshness without being overwhelming, making it a lovely choice for surprising your loved ones.
+          - generic [ref=e244]:
+            - heading "SKU Number" [level=3] [ref=e245]
+            - generic [ref=e246]: 9721530FL
+          - generic [ref=e251]:
+            - link "ADD TO CART" [ref=e254] [cursor=pointer]:
+              - /url: "#/"
+            - link "BUY NOW | ₹ 595" [ref=e256] [cursor=pointer]:
+              - /url: "#/"
+              - text: BUY NOW |
+              - generic [ref=e257]: ₹ 595
+          - generic [ref=e260]:
+            - heading "Product Reviews" [level=2] [ref=e262]
+            - paragraph [ref=e266]: "5"
+            - paragraph [ref=e268]: Customer Images
+            - generic [ref=e277]:
+              - generic [ref=e278]:
+                - generic [ref=e279]:
+                  - generic [ref=e280]: Nidhal
+                  - generic [ref=e281]: Verified
+                  - generic [ref=e283]:
+                    - generic [ref=e284]: ★
+                    - generic [ref=e285]: "5"
+                - generic [ref=e286]:
+                  - generic [ref=e287]: 1st Jan 2026
+                  - emphasis [ref=e288]
+                  - generic [ref=e289]: Bengaluru
+                  - emphasis [ref=e290]
+                  - generic [ref=e291]: "Occasion : New Year"
+                - paragraph [ref=e292]: appreciate the quality and timely deliver. Kudos keep up spreading smiles and happiness through your work !!
+              - generic [ref=e293]:
+                - generic [ref=e294]:
+                  - generic [ref=e295]: Jasbir Kaur
+                  - generic [ref=e296]: Verified
+                  - generic [ref=e298]:
+                    - generic [ref=e299]: ★
+                    - generic [ref=e300]: "5"
+                - generic [ref=e301]:
+                  - generic [ref=e302]: 2nd Jan 2026
+                  - emphasis [ref=e303]
+                  - generic [ref=e304]: Kapurthala
+                  - emphasis [ref=e305]
+                  - generic [ref=e306]: "Occasion : ,"
+                - paragraph [ref=e307]: So beautiful
+      - generic [ref=e309]:
+        - heading "Similar Products" [level=3] [ref=e310]
+        - generic [ref=e313]:
+          - list [ref=e314]:
+            - listitem [ref=e315]:
+              - link [ref=e317] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/heartfelt-sentiments-in-white-roses-9722000fl?Similar_Products
+                - generic [ref=e319]:
+                  - generic [ref=e320]: Heartfelt Sentiments In White Roses
+                  - generic [ref=e321]: ₹ 545
+                  - generic [ref=e322]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e324]:
+              - link [ref=e326] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/charming-rose-bouquet-9830830fl?Similar_Products
+                - generic [ref=e328]:
+                  - generic [ref=e329]: Triumphant Radiant Rose Trio
+                  - generic [ref=e330]: ₹ 545
+                  - generic [ref=e331]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e333]:
+              - link [ref=e335] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/untouched-beauty-fab0002?Similar_Products
+                - generic [ref=e337]:
+                  - generic [ref=e338]: Luxuriant Floral Grandeur
+                  - generic [ref=e339]: ₹ 645
+                  - generic [ref=e340]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e342]:
+              - link [ref=e344] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/gerberas-writing-a-sunny-tale-9721190fl?Similar_Products
+                - generic [ref=e346]:
+                  - generic [ref=e347]: Gerberas Writing A Sunny Tale
+                  - generic [ref=e348]: ₹ 545
+                  - generic [ref=e349]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e351]:
+              - link [ref=e353] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/red-roses-bouquet-flo05170001md?Similar_Products
+                - generic [ref=e355]:
+                  - generic [ref=e356]: 10 Red Roses Bouquet
+                  - generic [ref=e357]: ₹ 695
+                  - generic [ref=e358]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e360]:
+              - link [ref=e362] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/a-sweet-love-confessions-9717620fl?Similar_Products
+                - generic [ref=e364]:
+                  - generic [ref=e365]: A Sweet Love Confessions
+                  - generic [ref=e366]: ₹ 695
+                  - generic [ref=e367]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e369]:
+              - link [ref=e371] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/red-rose-trio-n-glass-vase-fa3rr?Similar_Products
+                - generic [ref=e373]:
+                  - generic [ref=e374]: Red Rose Trio N Glass Vase
+                  - generic [ref=e375]: ₹ 495
+                  - generic [ref=e376]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e378]:
+              - link [ref=e380] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/majestic-bouquet-of-roses-9830820fl?Similar_Products
+                - generic [ref=e382]:
+                  - generic [ref=e383]: Majestic Bouquet Of Roses
+                  - generic [ref=e384]: ₹ 495
+                  - generic [ref=e385]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e387]:
+              - link [ref=e389] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/blushing-pink-roses-of-affection-9728490fl?Similar_Products
+                - generic [ref=e391]:
+                  - generic [ref=e392]: Blushing Pink Roses Of Affection
+                  - generic [ref=e393]: ₹ 695
+                  - generic [ref=e394]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e396]:
+              - link [ref=e398] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/timeless-pink-carnations-9719730fl?Similar_Products
+                - generic [ref=e400]:
+                  - generic [ref=e401]: Timeless Pink Carnations
+                  - generic [ref=e402]: ₹ 695
+                  - generic [ref=e403]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e405]:
+              - generic [ref=e406]:
+                - 'link "Confession Of Scarlet Roses Confession Of Scarlet Roses ₹ 595 Earliest Delivery : In 3 hours" [ref=e407] [cursor=pointer]':
+                  - /url: https://www.floweraura.com/p/flower/confession-of-scarlet-roses-9721520fl?Similar_Products
+                  - generic [ref=e408]:
+                    - img "Confession Of Scarlet Roses"
+                  - generic [ref=e409]:
+                    - generic [ref=e410]: Confession Of Scarlet Roses
+                    - generic [ref=e411]: ₹ 595
+                    - generic [ref=e412]: "Earliest Delivery : In 3 hours"
+                - generic [ref=e413] [cursor=pointer]:
+                  - img "whiteHeart"
+            - listitem [ref=e414]:
+              - generic [ref=e415]:
+                - 'link "Snowy Roses Cuddled In Sky Snowy Roses Cuddled In Sky ₹ 595 Earliest Delivery : In 3 hours" [ref=e416] [cursor=pointer]':
+                  - /url: https://www.floweraura.com/p/flower/snowy-roses-cuddled-in-sky-9721510fl?Similar_Products
+                  - generic [ref=e417]:
+                    - img "Snowy Roses Cuddled In Sky"
+                  - generic [ref=e418]:
+                    - generic [ref=e419]: Snowy Roses Cuddled In Sky
+                    - generic [ref=e420]: ₹ 595
+                    - generic [ref=e421]: "Earliest Delivery : In 3 hours"
+                - generic [ref=e422] [cursor=pointer]:
+                  - img "whiteHeart"
+            - listitem [ref=e423]:
+              - generic [ref=e424]:
+                - 'link "Blushing Dreams Of Love Carnations Blushing Dreams Of Love Carnations ₹ 645 Earliest Delivery : In 3 hours" [ref=e425] [cursor=pointer]':
+                  - /url: https://www.floweraura.com/p/flower/blushing-dreams-of-love-carnations-9717650fl?Similar_Products
+                  - generic [ref=e426]:
+                    - img "Blushing Dreams Of Love Carnations"
+                  - generic [ref=e427]:
+                    - generic [ref=e428]: Blushing Dreams Of Love Carnations
+                    - generic [ref=e429]: ₹ 645
+                    - generic [ref=e430]: "Earliest Delivery : In 3 hours"
+                - generic [ref=e431] [cursor=pointer]:
+                  - img "whiteHeart"
+            - listitem [ref=e432]:
+              - generic [ref=e433]:
+                - 'link "Pink Rose In A Blushing Embrace Pink Rose In A Blushing Embrace ₹ 545 Earliest Delivery : In 3 hours" [ref=e434] [cursor=pointer]':
+                  - /url: https://www.floweraura.com/p/flower/pink-rose-in-a-blushing-embrace-9721970fl?Similar_Products
+                  - generic [ref=e435]:
+                    - img "Pink Rose In A Blushing Embrace"
+                  - generic [ref=e436]:
+                    - generic [ref=e437]: Pink Rose In A Blushing Embrace
+                    - generic [ref=e438]: ₹ 545
+                    - generic [ref=e439]: "Earliest Delivery : In 3 hours"
+                - generic [ref=e440] [cursor=pointer]:
+                  - img "whiteHeart"
+            - listitem [ref=e441]:
+              - generic [ref=e442]:
+                - 'link "Peach Roses In A Sky Blue Moment Peach Roses In A Sky Blue Moment ₹ 545 Earliest Delivery : In 3 hours" [ref=e443] [cursor=pointer]':
+                  - /url: https://www.floweraura.com/p/flower/peach-roses-in-a-sky-blue-moment-9721990fl?Similar_Products
+                  - generic [ref=e444]:
+                    - img "Peach Roses In A Sky Blue Moment"
+                  - generic [ref=e445]:
+                    - generic [ref=e446]: Peach Roses In A Sky Blue Moment
+                    - generic [ref=e447]: ₹ 545
+                    - generic [ref=e448]: "Earliest Delivery : In 3 hours"
+                - generic [ref=e449] [cursor=pointer]:
+                  - img "whiteHeart"
+            - listitem [ref=e450]:
+              - link [ref=e452] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/heartfelt-sentiments-in-white-roses-9722000fl?Similar_Products
+                - generic [ref=e454]:
+                  - generic [ref=e455]: Heartfelt Sentiments In White Roses
+                  - generic [ref=e456]: ₹ 545
+                  - generic [ref=e457]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e459]:
+              - link [ref=e461] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/charming-rose-bouquet-9830830fl?Similar_Products
+                - generic [ref=e463]:
+                  - generic [ref=e464]: Triumphant Radiant Rose Trio
+                  - generic [ref=e465]: ₹ 545
+                  - generic [ref=e466]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e468]:
+              - link [ref=e470] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/untouched-beauty-fab0002?Similar_Products
+                - generic [ref=e472]:
+                  - generic [ref=e473]: Luxuriant Floral Grandeur
+                  - generic [ref=e474]: ₹ 645
+                  - generic [ref=e475]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e477]:
+              - link [ref=e479] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/gerberas-writing-a-sunny-tale-9721190fl?Similar_Products
+                - generic [ref=e481]:
+                  - generic [ref=e482]: Gerberas Writing A Sunny Tale
+                  - generic [ref=e483]: ₹ 545
+                  - generic [ref=e484]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e486]:
+              - link [ref=e488] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/red-roses-bouquet-flo05170001md?Similar_Products
+                - generic [ref=e490]:
+                  - generic [ref=e491]: 10 Red Roses Bouquet
+                  - generic [ref=e492]: ₹ 695
+                  - generic [ref=e493]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e495]:
+              - link [ref=e497] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/a-sweet-love-confessions-9717620fl?Similar_Products
+                - generic [ref=e499]:
+                  - generic [ref=e500]: A Sweet Love Confessions
+                  - generic [ref=e501]: ₹ 695
+                  - generic [ref=e502]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e504]:
+              - link [ref=e506] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/red-rose-trio-n-glass-vase-fa3rr?Similar_Products
+                - generic [ref=e508]:
+                  - generic [ref=e509]: Red Rose Trio N Glass Vase
+                  - generic [ref=e510]: ₹ 495
+                  - generic [ref=e511]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e513]:
+              - link [ref=e515] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/majestic-bouquet-of-roses-9830820fl?Similar_Products
+                - generic [ref=e517]:
+                  - generic [ref=e518]: Majestic Bouquet Of Roses
+                  - generic [ref=e519]: ₹ 495
+                  - generic [ref=e520]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e522]:
+              - link [ref=e524] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/blushing-pink-roses-of-affection-9728490fl?Similar_Products
+                - generic [ref=e526]:
+                  - generic [ref=e527]: Blushing Pink Roses Of Affection
+                  - generic [ref=e528]: ₹ 695
+                  - generic [ref=e529]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e531]:
+              - link [ref=e533] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/timeless-pink-carnations-9719730fl?Similar_Products
+                - generic [ref=e535]:
+                  - generic [ref=e536]: Timeless Pink Carnations
+                  - generic [ref=e537]: ₹ 695
+                  - generic [ref=e538]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e540]:
+              - link [ref=e542] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/confession-of-scarlet-roses-9721520fl?Similar_Products
+                - generic [ref=e544]:
+                  - generic [ref=e545]: Confession Of Scarlet Roses
+                  - generic [ref=e546]: ₹ 595
+                  - generic [ref=e547]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e549]:
+              - link [ref=e551] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/snowy-roses-cuddled-in-sky-9721510fl?Similar_Products
+                - generic [ref=e553]:
+                  - generic [ref=e554]: Snowy Roses Cuddled In Sky
+                  - generic [ref=e555]: ₹ 595
+                  - generic [ref=e556]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e558]:
+              - link [ref=e560] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/blushing-dreams-of-love-carnations-9717650fl?Similar_Products
+                - generic [ref=e562]:
+                  - generic [ref=e563]: Blushing Dreams Of Love Carnations
+                  - generic [ref=e564]: ₹ 645
+                  - generic [ref=e565]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e567]:
+              - link [ref=e569] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/pink-rose-in-a-blushing-embrace-9721970fl?Similar_Products
+                - generic [ref=e571]:
+                  - generic [ref=e572]: Pink Rose In A Blushing Embrace
+                  - generic [ref=e573]: ₹ 545
+                  - generic [ref=e574]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e576]:
+              - link [ref=e578] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/peach-roses-in-a-sky-blue-moment-9721990fl?Similar_Products
+                - generic [ref=e580]:
+                  - generic [ref=e581]: Peach Roses In A Sky Blue Moment
+                  - generic [ref=e582]: ₹ 545
+                  - generic [ref=e583]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e585]:
+              - link [ref=e587] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/heartfelt-sentiments-in-white-roses-9722000fl?Similar_Products
+                - generic [ref=e589]:
+                  - generic [ref=e590]: Heartfelt Sentiments In White Roses
+                  - generic [ref=e591]: ₹ 545
+                  - generic [ref=e592]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e594]:
+              - link [ref=e596] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/charming-rose-bouquet-9830830fl?Similar_Products
+                - generic [ref=e598]:
+                  - generic [ref=e599]: Triumphant Radiant Rose Trio
+                  - generic [ref=e600]: ₹ 545
+                  - generic [ref=e601]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e603]:
+              - link [ref=e605] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/untouched-beauty-fab0002?Similar_Products
+                - generic [ref=e607]:
+                  - generic [ref=e608]: Luxuriant Floral Grandeur
+                  - generic [ref=e609]: ₹ 645
+                  - generic [ref=e610]: "Earliest Delivery : In 3 hours"
+            - listitem [ref=e612]:
+              - link [ref=e614] [cursor=pointer]:
+                - /url: https://www.floweraura.com/p/flower/gerberas-writing-a-sunny-tale-9721190fl?Similar_Products
+                - generic [ref=e616]:
+                  - generic [ref=e617]: Gerberas Writing A Sunny Tale
+                  - generic [ref=e618]: ₹ 545
+                  - generic [ref=e619]: "Earliest Delivery : In 3 hours"
+          - button "Go to previous slide" [ref=e621] [cursor=pointer]
+          - button "Go to next slide" [ref=e622] [cursor=pointer]
+      - generic [ref=e624]:
+        - heading "Quick Links" [level=3] [ref=e625]
+        - list [ref=e626]:
+          - listitem [ref=e627]:
+            - generic [ref=e628]: Flowers By Type
+            - list [ref=e629]:
+              - listitem [ref=e630]:
+                - link "Flowers Bouquet" [ref=e631] [cursor=pointer]:
+                  - /url: /flowers/bouquet
+                - generic [ref=e632]: "|"
+              - listitem [ref=e633]:
+                - link "Flowers Basket" [ref=e634] [cursor=pointer]:
+                  - /url: /flowers/basket
+                - generic [ref=e635]: "|"
+              - listitem [ref=e636]:
+                - link "Roses" [ref=e637] [cursor=pointer]:
+                  - /url: /flowers/roses
+                - generic [ref=e638]: "|"
+              - listitem [ref=e639]:
+                - link "Carnations" [ref=e640] [cursor=pointer]:
+                  - /url: /flowers/carnations
+                - generic [ref=e641]: "|"
+              - listitem [ref=e642]:
+                - link "Gerberas" [ref=e643] [cursor=pointer]:
+                  - /url: /flowers/gerberas
+                - generic [ref=e644]: "|"
+              - listitem [ref=e645]:
+                - link "Lilies" [ref=e646] [cursor=pointer]:
+                  - /url: /flowers/lilies
+                - generic [ref=e647]: "|"
+              - listitem [ref=e648]:
+                - link "Orchids" [ref=e649] [cursor=pointer]:
+                  - /url: /flowers/orchids
+          - listitem [ref=e650]:
+            - generic [ref=e651]: Flowers By Colors
+            - list [ref=e652]:
+              - listitem [ref=e653]:
+                - link "Pink Flowers" [ref=e654] [cursor=pointer]:
+                  - /url: /flowers/colour/pink
+                - generic [ref=e655]: "|"
+              - listitem [ref=e656]:
+                - link "Red Flowers" [ref=e657] [cursor=pointer]:
+                  - /url: /flowers/colour/red
+                - generic [ref=e658]: "|"
+              - listitem [ref=e659]:
+                - link "White Flowers" [ref=e660] [cursor=pointer]:
+                  - /url: /flowers/colour/white
+                - generic [ref=e661]: "|"
+              - listitem [ref=e662]:
+                - link "Yellow Flowers" [ref=e663] [cursor=pointer]:
+                  - /url: /flowers/colour/yellow
+                - generic [ref=e664]: "|"
+              - listitem [ref=e665]:
+                - link "Mixed Flowers" [ref=e666] [cursor=pointer]:
+                  - /url: /flowers/mixed-type
+          - listitem [ref=e667]:
+            - generic [ref=e668]: Flowers Combos
+            - list [ref=e669]:
+              - listitem [ref=e670]:
+                - link "Flowers & Cake" [ref=e671] [cursor=pointer]:
+                  - /url: /combos/flowers-and-cakes
+                - generic [ref=e672]: "|"
+              - listitem [ref=e673]:
+                - link "Flowers & Chocolates" [ref=e674] [cursor=pointer]:
+                  - /url: /combos/flowers-and-chocolates
+                - generic [ref=e675]: "|"
+              - listitem [ref=e676]:
+                - link "Flowers & Teddy" [ref=e677] [cursor=pointer]:
+                  - /url: /combos/flowers-and-soft-toys
+                - generic [ref=e678]: "|"
+              - listitem [ref=e679]:
+                - link "All Flowers Combos" [ref=e680] [cursor=pointer]:
+                  - /url: /flowers/combos
+          - listitem [ref=e681]:
+            - generic [ref=e682]: Flowers By Occasion
+            - list [ref=e683]:
+              - listitem [ref=e684]:
+                - link "Anniversary Flowers" [ref=e685] [cursor=pointer]:
+                  - /url: /anniversary/flowers
+                - generic [ref=e686]: "|"
+              - listitem [ref=e687]:
+                - link "Birthday Flowers" [ref=e688] [cursor=pointer]:
+                  - /url: /birthday/flowers
+                - generic [ref=e689]: "|"
+              - listitem [ref=e690]:
+                - link "Womens Day Flowers" [ref=e691] [cursor=pointer]:
+                  - /url: /womens-day/flowers
+                - generic [ref=e692]: "|"
+              - listitem [ref=e693]:
+                - link "Mothers Day Flowers" [ref=e694] [cursor=pointer]:
+                  - /url: /mothers-day/flowers
+                - generic [ref=e695]: "|"
+              - listitem [ref=e696]:
+                - link "Fathers Day Flowers" [ref=e697] [cursor=pointer]:
+                  - /url: /fathers-day/flowers
+          - listitem [ref=e698]:
+            - generic [ref=e699]: Flowers Top Cities
+            - list [ref=e700]:
+              - listitem [ref=e701]:
+                - link "Flowers to Delhi" [ref=e702] [cursor=pointer]:
+                  - /url: /sendflowers/delhi
+                - generic [ref=e703]: "|"
+              - listitem [ref=e704]:
+                - link "Flowers to Gurgaon" [ref=e705] [cursor=pointer]:
+                  - /url: /sendflowers/gurgaon
+                - generic [ref=e706]: "|"
+              - listitem [ref=e707]:
+                - link "Flowers to Bangalore" [ref=e708] [cursor=pointer]:
+                  - /url: /sendflowers/bangalore
+                - generic [ref=e709]: "|"
+              - listitem [ref=e710]:
+                - link "Flowers to Mumbai" [ref=e711] [cursor=pointer]:
+                  - /url: /sendflowers/mumbai
+                - generic [ref=e712]: "|"
+              - listitem [ref=e713]:
+                - link "Flowers to Pune" [ref=e714] [cursor=pointer]:
+                  - /url: /sendflowers/pune
+                - generic [ref=e715]: "|"
+              - listitem [ref=e716]:
+                - link "Flowers to Chennai" [ref=e717] [cursor=pointer]:
+                  - /url: /sendflowers/chennai
+                - generic [ref=e718]: "|"
+              - listitem [ref=e719]:
+                - link "Flowers to Kolkata" [ref=e720] [cursor=pointer]:
+                  - /url: /sendflowers/kolkata
+                - generic [ref=e721]: "|"
+              - listitem [ref=e722]:
+                - link "Flowers to Hyderabad" [ref=e723] [cursor=pointer]:
+                  - /url: /sendflowers/hyderabad
+          - listitem [ref=e724]:
+            - generic [ref=e725]: International Flowers Delivery
+            - list [ref=e726]:
+              - listitem [ref=e727]:
+                - link "USA" [ref=e728] [cursor=pointer]:
+                  - /url: /usa/flowers
+                - generic [ref=e729]: "|"
+              - listitem [ref=e730]:
+                - link "UK" [ref=e731] [cursor=pointer]:
+                  - /url: /uk/flowers
+                - generic [ref=e732]: "|"
+              - listitem [ref=e733]:
+                - link "Australia" [ref=e734] [cursor=pointer]:
+                  - /url: /australia/flowers
+                - generic [ref=e735]: "|"
+              - listitem [ref=e736]:
+                - link "Canada" [ref=e737] [cursor=pointer]:
+                  - /url: /canada/flowers
+                - generic [ref=e738]: "|"
+              - listitem [ref=e739]:
+                - link "Germany" [ref=e740] [cursor=pointer]:
+                  - /url: /germany/flowers
+                - generic [ref=e741]: "|"
+              - listitem [ref=e742]:
+                - link "UAE" [ref=e743] [cursor=pointer]:
+                  - /url: /uae/flowers
+                - generic [ref=e744]: "|"
+              - listitem [ref=e745]:
+                - link "Italy" [ref=e746] [cursor=pointer]:
+                  - /url: /italy/flowers
+                - generic [ref=e747]: "|"
+              - listitem [ref=e748]:
+                - link "Spain" [ref=e749] [cursor=pointer]:
+                  - /url: /spain/flowers
+    - generic [ref=e750]:
+      - generic [ref=e751]:
+        - list [ref=e752]:
+          - listitem [ref=e753]:
+            - link "About Us" [ref=e754] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e755]:
+            - link "Sell With Us" [ref=e756] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e757]:
+            - link "Coupons & Deals" [ref=e758] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e759]:
+            - link "Cancellation & Refund" [ref=e760] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e761]:
+            - link "Terms and Conditions" [ref=e762] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e763]:
+            - link "Retails Stores" [ref=e764] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e765]:
+            - link "Career" [ref=e766] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e767]:
+          - listitem [ref=e768]:
+            - link "Media" [ref=e769] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e770]:
+            - link "Privacy Policy" [ref=e771] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e772]:
+            - link "Reviews" [ref=e773] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e774]:
+            - link "Blog" [ref=e775] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e776]:
+            - link "Sitemap" [ref=e777] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e778]:
+            - link "Quotes" [ref=e779] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e780]:
+          - listitem [ref=e781]:
+            - link "Corporate Gifts" [ref=e782] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e783]:
+            - link "Franchise" [ref=e784] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e785]:
+            - link "FAQ" [ref=e786] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e787]:
+            - link "Contact Us" [ref=e788] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e789]:
+            - link "Download App" [ref=e790] [cursor=pointer]:
+              - /url: /download-app
+        - generic [ref=e791]:
+          - generic [ref=e792]: Simplify your gifting experience with our app.
+          - generic [ref=e793]:
+            - img "scanQr" [ref=e794]
+            - list [ref=e795]:
+              - listitem [ref=e796]:
+                - link "Download App From Play Store" [ref=e797] [cursor=pointer]:
+                  - /url: https://play.google.com/store/apps/details?id=com.floweraura&referrer=utm_source%3Dfooter_web%26utm_medium%3Dweb%26utm_campaign%3Dapp_download_web_footer
+                  - generic [ref=e798]:
+                    - img "Download App From Play Store"
+              - listitem [ref=e799]:
+                - link "Download App From App Store" [ref=e800] [cursor=pointer]:
+                  - /url: https://apps.apple.com/in/app/floweraura/id1490812119
+                  - generic [ref=e801]:
+                    - img "Download App From App Store"
+          - generic [ref=e802]:
+            - heading "Spread The Love On Social Media" [level=3] [ref=e803]
+            - list [ref=e804]:
+              - listitem [ref=e805]:
+                - link "facebook" [ref=e806] [cursor=pointer]:
+                  - /url: https://www.facebook.com/floweraura
+              - listitem [ref=e807]:
+                - link "twitter" [ref=e808] [cursor=pointer]:
+                  - /url: https://twitter.com/floweraura
+              - listitem [ref=e809]:
+                - link "youtube" [ref=e810] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UCKHMl8G_5dkJFUvORqQBHTA/featured
+              - listitem [ref=e811]:
+                - link "pinterest" [ref=e812] [cursor=pointer]:
+                  - /url: https://in.pinterest.com/FlowerAuraOfficial
+              - listitem [ref=e813]:
+                - link "instagram" [ref=e814] [cursor=pointer]:
+                  - /url: https://www.instagram.com/flowerauraofficial
+              - listitem [ref=e815]:
+                - link "linkedin" [ref=e816] [cursor=pointer]:
+                  - /url: https://in.linkedin.com/company/floweraura
+      - generic [ref=e817]:
+        - generic [ref=e818]:
+          - generic [ref=e819]:
+            - img "fa_logo"
+          - generic [ref=e820]: Copyright. 2026. FA GIFTS PVT. LTD
+        - generic [ref=e821]:
+          - generic [ref=e822]: "We Accept:"
+          - generic:
+            - img "visa"
