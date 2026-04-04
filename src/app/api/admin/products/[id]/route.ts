@@ -7,6 +7,7 @@ import {
   errorResponse,
 } from "@/lib/auth";
 import Product from "@/models/Product";
+import "@/models/Category"; // Register Category model for populate
 import { updateProductSchema } from "@/lib/validators/product";
 import mongoose from "mongoose";
 
@@ -30,7 +31,7 @@ export async function GET(
     }
 
     const product = await Product.findById(id)
-      .populate("category", "name slug")
+      .populate("categories", "name slug")
       .lean();
 
     if (!product) {
@@ -97,15 +98,15 @@ export async function PUT(
       };
     }
 
-    // Remove empty category
-    if (data.category === "") {
-      (data as Record<string, unknown>).category = null;
+    // Handle empty categories
+    if (data.categories && (data.categories as string[]).length === 0) {
+      (data as Record<string, unknown>).categories = [];
     }
 
     const product = await Product.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
-    }).populate("category", "name slug");
+    }).populate("categories", "name slug");
 
     if (!product) {
       return notFoundResponse("Product not found");

@@ -56,7 +56,7 @@ interface ProductData {
     currentPrice: number;
   };
   images: ProductImage[];
-  category?: ProductCategory | null;
+  categories: ProductCategory[];
   variants: ProductVariant[];
   addons: ProductAddon[];
   metrics: {
@@ -162,24 +162,24 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
           <nav className="flex items-center text-xs md:text-sm text-[#888] flex-wrap gap-1">
             <Link href="/" className="text-[#0E4D65] hover:underline">Home</Link>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
-            {product.category?.parent && (
+            {product.categories?.[0]?.parent && (
               <>
-                <Link href={`/${product.category.parent.slug}/`} className="text-[#0E4D65] hover:underline">
-                  {product.category.parent.name}
+                <Link href={`/${product.categories[0].parent.slug}/`} className="text-[#0E4D65] hover:underline">
+                  {product.categories[0].parent.name}
                 </Link>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
               </>
             )}
-            {product.category && (
+            {product.categories?.[0] && (
               <>
                 <Link
-                  href={product.category.parent
-                    ? `/${product.category.parent.slug}/${product.category.slug}/`
-                    : `/${product.category.slug}/`
+                  href={product.categories[0].parent
+                    ? `/${product.categories[0].parent.slug}/${product.categories[0].slug}/`
+                    : `/${product.categories[0].slug}/`
                   }
                   className="text-[#0E4D65] hover:underline"
                 >
-                  {product.category.name}
+                  {product.categories[0].name}
                 </Link>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
               </>

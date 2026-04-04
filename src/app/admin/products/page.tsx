@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  type DropResult,
+} from "@hello-pangea/dnd";
 import Link from "next/link";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -32,8 +38,9 @@ interface ProductItem {
     stockStatus: string;
   };
   images: { url: string; alt?: string; order: number }[];
-  category?: ProductCategory;
+  categories: ProductCategory[];
   variants: { label: string; price: number }[];
+  order: number;
   isActive: boolean;
   isFeatured: boolean;
   isAddon: boolean;
@@ -53,6 +60,10 @@ export default function AdminProductsPage() {
   const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [deleteTarget, setDeleteTarget] = useState<ProductItem | null>(null);
+  const [reorderMode, setReorderMode] = useState(false);
+  const [reorderList, setReorderList] = useState<ProductItem[]>([]);
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">("idle");
+  const saveTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fetch categories for the filter dropdown
   useEffect(() => {
@@ -125,6 +136,59 @@ export default function AdminProductsPage() {
     }
   }
 
+  // Reorder functions
+  function enterReorderMode() {
+    const sorted = [...products].sort((a, b) => (a.order || 0) - (b.order || 0));
+    setReorderList(sorted);
+    setReorderMode(true);
+  }
+
+  async function saveReorder(list: ProductItem[]) {
+    setSaveStatus("saving");
+    try {
+      const orderedIds = list.map((p) => p._id);
+      const res = await fetch("/api/admin/products/reorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderedIds }),
+      });
+      if (!res.ok) throw new Error("Failed to save order");
+      setSaveStatus("saved");
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+      saveTimerRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
+    } catch {
+      toast.error("Failed to save order");
+      setSaveStatus("idle");
+    }
+  }
+
+  function handleDragEnd(result: DropResult) {
+    if (!result.destination) return;
+    const src = result.source.index;
+    const dest = result.destination.index;
+    if (src === dest) return;
+
+    const updated = Array.from(reorderList);
+    const [moved] = updated.splice(src, 1);
+    updated.splice(dest, 0, moved);
+    const withOrder = updated.map((p, i) => ({ ...p, order: i }));
+    setReorderList(withOrder);
+    saveReorder(withOrder);
+  }
+
+  function handleOrderNumberChange(index: number, newPos: number) {
+    const clamped = Math.max(1, Math.min(newPos, reorderList.length));
+    const targetIndex = clamped - 1;
+    if (targetIndex === index) return;
+
+    const updated = Array.from(reorderList);
+    const [moved] = updated.splice(index, 1);
+    updated.splice(targetIndex, 0, moved);
+    const withOrder = updated.map((p, i) => ({ ...p, order: i }));
+    setReorderList(withOrder);
+    saveReorder(withOrder);
+  }
+
   // Handle select all on current page
   function handleSelectAll(checked: boolean) {
     if (checked) {
@@ -189,6 +253,28 @@ export default function AdminProductsPage() {
           </svg>
           Add Product
         </Link>
+        {categoryFilter && !reorderMode && (
+          <button
+            onClick={enterReorderMode}
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gray-200 text-[#1C2120] bg-white rounded-lg hover:border-[#0E4D65] hover:text-[#0E4D65] transition-colors"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+            Reorder
+          </button>
+        )}
+        {reorderMode && (
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-500">
+              {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "Saved" : ""}
+            </span>
+            <button
+              onClick={() => { setReorderMode(false); fetchProducts(); }}
+              className="px-4 py-2.5 text-sm font-medium bg-[#0E4D65] text-white rounded-lg hover:bg-[#0a3d52] transition-colors"
+            >
+              Done
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Filters */}
@@ -227,7 +313,59 @@ export default function AdminProductsPage() {
       </div>
 
       {/* Products Table */}
-      <div className="bg-white rounded-xl border border-gray-100">
+      {/* Reorder DnD List */}
+      {reorderMode && (
+        <div className="bg-white rounded-xl border border-gray-100 p-4">
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId="products-reorder">
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps} className="space-y-1">
+                  {reorderList.map((product, index) => (
+                    <Draggable key={product._id} draggableId={product._id} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-colors ${
+                            snapshot.isDragging ? "bg-[#0E4D65]/5 border-[#0E4D65]/20 shadow-lg" : "bg-white border-gray-100 hover:bg-gray-50"
+                          }`}
+                        >
+                          <div {...provided.dragHandleProps} className="shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="6" r="1.5" /><circle cx="15" cy="6" r="1.5" /><circle cx="9" cy="12" r="1.5" /><circle cx="15" cy="12" r="1.5" /><circle cx="9" cy="18" r="1.5" /><circle cx="15" cy="18" r="1.5" /></svg>
+                          </div>
+                          {product.images?.[0]?.url ? (
+                            <Image src={product.images[0].url} alt="" width={36} height={36} className="w-9 h-9 rounded object-cover shrink-0" />
+                          ) : (
+                            <div className="w-9 h-9 rounded bg-gray-100 shrink-0" />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-[#1C2120] truncate">{product.name}</p>
+                            <p className="text-xs text-gray-500">&#8377; {product.pricing.currentPrice.toLocaleString()}</p>
+                          </div>
+                          <input
+                            type="number"
+                            value={index + 1}
+                            min={1}
+                            max={reorderList.length}
+                            onChange={() => {}}
+                            onBlur={(e) => handleOrderNumberChange(index, parseInt(e.target.value) || index + 1)}
+                            onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
+                            className="w-14 text-center text-sm border border-gray-200 rounded-lg py-1.5 focus:border-[#0E4D65] outline-none"
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+      )}
+
+      {/* Product Table */}
+      <div className={`bg-white rounded-xl border border-gray-100 ${reorderMode ? "hidden" : ""}`}>
         {loading ? (
           <div className="p-6">
             <LoadingSkeleton rows={pageSize} type="table" />
@@ -360,7 +498,7 @@ export default function AdminProductsPage() {
                       {/* Category */}
                       <td className="p-4">
                         <span className="text-sm text-gray-600">
-                          {product.category?.name || "-"}
+                          {product.categories?.map(c => c.name).join(", ") || "-"}
                         </span>
                       </td>
 

@@ -150,7 +150,7 @@ export default async function SlugPage({ params }: Props) {
 
     await connectDB();
     const [products, childCategories, totalProducts] = await Promise.all([
-      Product.find({ category: category!._id, isActive: true })
+      Product.find({ categories: category!._id, isActive: true })
         .select("name slug pricing images metrics isFeatured")
         .sort({ "metrics.totalSales": -1 })
         .limit(24)
@@ -159,7 +159,7 @@ export default async function SlugPage({ params }: Props) {
         .select("name slug image productCount")
         .sort({ order: 1 })
         .lean(),
-      Product.countDocuments({ category: category!._id, isActive: true }),
+      Product.countDocuments({ categories: category!._id, isActive: true }),
     ]);
 
     return (
@@ -182,7 +182,7 @@ export default async function SlugPage({ params }: Props) {
 
   if (category) {
     const [products, childCategories, totalProducts] = await Promise.all([
-      Product.find({ category: category._id, isActive: true })
+      Product.find({ categories: category._id, isActive: true })
         .select("name slug pricing images metrics isFeatured")
         .sort({ "metrics.totalSales": -1 })
         .limit(24)
@@ -191,7 +191,7 @@ export default async function SlugPage({ params }: Props) {
         .select("name slug image productCount")
         .sort({ order: 1 })
         .lean(),
-      Product.countDocuments({ category: category._id, isActive: true }),
+      Product.countDocuments({ categories: category._id, isActive: true }),
     ]);
 
     return (

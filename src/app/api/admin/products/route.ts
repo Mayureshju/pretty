@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
 import Product from "@/models/Product";
+import "@/models/Category"; // Register Category model for populate
 import { createProductSchema } from "@/lib/validators/product";
 
 export async function GET(request: NextRequest) {
@@ -37,7 +38,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (category) {
-      filter.category = category;
+      filter.categories = category;
     }
 
     if (status === "active") {
@@ -59,7 +60,7 @@ export async function GET(request: NextRequest) {
 
     const [products, total] = await Promise.all([
       Product.find(filter)
-        .populate("category", "name slug")
+        .populate("categories", "name slug")
         .sort({ [sort]: order })
         .skip(skip)
         .limit(limit)
@@ -109,16 +110,16 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // Remove empty category
-    if (!productData.category) {
-      delete productData.category;
+    // Remove empty categories
+    if (!productData.categories || (productData.categories as unknown[]).length === 0) {
+      delete productData.categories;
     }
 
     const product = new Product(productData);
     await product.save();
 
     // Populate category for response
-    await product.populate("category", "name slug");
+    await product.populate("categories", "name slug");
 
     return Response.json(product, { status: 201 });
   } catch (err) {

@@ -19,7 +19,7 @@ export async function resolveSlug(slug: string): Promise<SlugResult> {
   const [product, category, blog] = await Promise.all([
     Product.findOne({ slug, isActive: true })
       .populate({
-        path: "category",
+        path: "categories",
         select: "name slug parent",
         populate: { path: "parent", select: "name slug" },
       })

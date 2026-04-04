@@ -20,16 +20,16 @@ export async function getActiveSales(): Promise<ISale[]> {
  * Returns the sale with the highest effective discount.
  */
 export function findMatchingSale(
-  categoryId: string | undefined | null,
+  categoryIds: string[],
   activeSales: ISale[]
 ): ISale | null {
   if (activeSales.length === 0) return null;
 
   const matching = activeSales.filter((sale) => {
     if (sale.applyTo === "all") return true;
-    if (!categoryId) return false;
-    return sale.categories.some(
-      (catId) => catId.toString() === categoryId.toString()
+    if (categoryIds.length === 0) return false;
+    return sale.categories.some((catId) =>
+      categoryIds.some((cid) => cid === catId.toString())
     );
   });
 
@@ -64,7 +64,7 @@ export function computeSalePrice(
 export function applyActiveSale(
   product: {
     pricing: { regularPrice: number; salePrice?: number | null; currentPrice: number };
-    category?: { _id?: string } | string | null;
+    categories?: ({ _id?: string } | string)[];
   },
   activeSales: ISale[]
 ): {
@@ -74,12 +74,14 @@ export function applyActiveSale(
   hasSale: boolean;
   discountPercent: number;
 } {
-  const categoryId =
-    typeof product.category === "object" && product.category
-      ? product.category._id?.toString()
-      : product.category?.toString();
+  const categoryIds = (product.categories ?? [])
+    .map((cat) => {
+      if (typeof cat === "object" && cat) return cat._id?.toString();
+      return cat?.toString();
+    })
+    .filter((id): id is string => !!id);
 
-  const sale = findMatchingSale(categoryId, activeSales);
+  const sale = findMatchingSale(categoryIds, activeSales);
 
   if (!sale) {
     const effectivePrice = product.pricing.currentPrice;

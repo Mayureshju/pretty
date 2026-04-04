@@ -4,6 +4,7 @@ import React, { use, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
+import RichTextEditor from "@/components/admin/shared/RichTextEditor";
 
 interface BlogData {
   _id: string;
@@ -205,11 +206,11 @@ export default function EditBlogPage({
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Content</label>
-                <textarea
+                <RichTextEditor
                   value={form.content}
-                  onChange={(e) => updateField("content", e.target.value)}
-                  className={`${inputClass} min-h-[400px] resize-y`}
+                  onChange={(v) => updateField("content", v)}
                   placeholder="Write your blog content here..."
+                  minHeight="400px"
                 />
               </div>
             </div>
@@ -218,11 +219,11 @@ export default function EditBlogPage({
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Excerpt</label>
-                <textarea
+                <RichTextEditor
                   value={form.excerpt}
-                  onChange={(e) => updateField("excerpt", e.target.value)}
-                  className={`${inputClass} min-h-[100px] resize-y`}
+                  onChange={(v) => updateField("excerpt", v)}
                   placeholder="A short summary of the blog post..."
+                  minHeight="100px"
                 />
               </div>
             </div>

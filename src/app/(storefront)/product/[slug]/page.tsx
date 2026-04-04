@@ -24,7 +24,7 @@ async function getProduct(slug: string) {
   await connectDB();
   return Product.findOne({ slug, isActive: true })
     .populate({
-      path: "category",
+      path: "categories",
       select: "name slug parent",
       populate: { path: "parent", select: "name slug" },
     })
@@ -67,11 +67,11 @@ export default async function ProductPage({ params }: Props) {
   }
 
   await connectDB();
-  const similarProducts = product.category
+  const primaryCategory = (product.categories as unknown as { _id: string }[])?.[0];
+  const similarProducts = primaryCategory
     ? await Product.find({
-        category:
-          (product.category as unknown as { _id: string })?._id ??
-          product.category,
+        categories:
+          primaryCategory._id ?? primaryCategory,
         isActive: true,
         _id: { $ne: product._id },
       })

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
+import RichTextEditor from "@/components/admin/shared/RichTextEditor";
 
 interface CategoryOption {
   _id: string;
@@ -57,7 +58,7 @@ export default function EditProductPage({
   const [isActive, setIsActive] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
   const [isAddon, setIsAddon] = useState(false);
-  const [category, setCategory] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [tags, setTags] = useState("");
   const [deliveryInfo, setDeliveryInfo] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
@@ -96,9 +97,9 @@ export default function EditProductPage({
         setIsActive(product.isActive ?? true);
         setIsFeatured(product.isFeatured ?? false);
         setIsAddon(product.isAddon ?? false);
-        setCategory(
-          product.category?._id || product.category || ""
-        );
+        // Handle both old single category and new array
+        const cats = product.categories || (product.category ? [product.category] : []);
+        setSelectedCategories(cats.map((c: any) => c._id || c));
         setTags((product.tags || []).join(", "));
         setDeliveryInfo(product.deliveryInfo || "");
         setMetaTitle(product.seo?.metaTitle || "");
@@ -244,7 +245,7 @@ export default function EditProductPage({
         isActive,
         isFeatured,
         isAddon,
-        category: category || "",
+        categories: selectedCategories.length > 0 ? selectedCategories : [],
         deliveryInfo: deliveryInfo.trim() || undefined,
       };
 
@@ -413,26 +414,22 @@ export default function EditProductPage({
                   <label htmlFor="description" className={labelClass}>
                     Description
                   </label>
-                  <textarea
-                    id="description"
+                  <RichTextEditor
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={setDescription}
                     placeholder="Full product description..."
-                    rows={4}
-                    className={inputClass}
+                    minHeight="200px"
                   />
                 </div>
                 <div>
                   <label htmlFor="shortDescription" className={labelClass}>
                     Short Description
                   </label>
-                  <textarea
-                    id="shortDescription"
+                  <RichTextEditor
                     value={shortDescription}
-                    onChange={(e) => setShortDescription(e.target.value)}
+                    onChange={setShortDescription}
                     placeholder="Brief summary for product listings..."
-                    rows={2}
-                    className={inputClass}
+                    minHeight="100px"
                   />
                 </div>
                 <div>
@@ -827,23 +824,30 @@ export default function EditProductPage({
               </div>
             </div>
 
-            {/* Category */}
+            {/* Categories */}
             <div className={cardClass}>
               <h2 className="text-base font-semibold text-[#1C2120] mb-4">
-                Category
+                Categories
               </h2>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className={inputClass}
-              >
-                <option value="">Select a category</option>
+              <div className="max-h-48 overflow-y-auto space-y-2">
                 {categories.map((cat) => (
-                  <option key={cat._id} value={cat._id}>
-                    {cat.name}
-                  </option>
+                  <label key={cat._id} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={selectedCategories.includes(cat._id)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedCategories([...selectedCategories, cat._id]);
+                        } else {
+                          setSelectedCategories(selectedCategories.filter(id => id !== cat._id));
+                        }
+                      }}
+                      className="w-4 h-4 rounded border-gray-300 text-[#0E4D65] focus:ring-[#0E4D65]"
+                    />
+                    <span className="text-sm text-[#464646]">{cat.name}</span>
+                  </label>
                 ))}
-              </select>
+              </div>
             </div>
 
             {/* Tags */}

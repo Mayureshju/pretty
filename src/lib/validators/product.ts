@@ -28,7 +28,7 @@ export const createProductSchema = z.object({
       })
     )
     .optional(),
-  category: z.string().optional(), // ObjectId as string
+  categories: z.array(z.string()).optional(), // ObjectId strings
   tags: z.array(z.string()).optional(),
   variants: z
     .array(

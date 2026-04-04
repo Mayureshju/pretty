@@ -39,7 +39,8 @@ export interface IProduct extends Document {
     trackStock: boolean;
   };
   images: IProductImage[];
-  category?: mongoose.Types.ObjectId;
+  categories: mongoose.Types.ObjectId[];
+  order: number;
   tags: string[];
   variants: IProductVariant[];
   addons: IProductAddon[];
@@ -118,7 +119,8 @@ const ProductSchema = new Schema<IProduct>(
       trackStock: { type: Boolean, default: false },
     },
     images: [ProductImageSchema],
-    category: { type: Schema.Types.ObjectId, ref: "Category" },
+    categories: [{ type: Schema.Types.ObjectId, ref: "Category" }],
+    order: { type: Number, default: 0 },
     tags: [{ type: String }],
     variants: [ProductVariantSchema],
     addons: [ProductAddonSchema],
@@ -141,7 +143,8 @@ const ProductSchema = new Schema<IProduct>(
 );
 
 // Indexes
-ProductSchema.index({ category: 1 });
+ProductSchema.index({ categories: 1 });
+ProductSchema.index({ order: 1 });
 ProductSchema.index({ isActive: 1, isFeatured: -1 });
 ProductSchema.index({ sku: 1 }, { sparse: true });
 ProductSchema.index({ name: "text", description: "text" });
