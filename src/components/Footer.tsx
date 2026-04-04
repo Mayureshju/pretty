@@ -25,6 +25,11 @@ const footerLinks = {
     { label: "Contact Us", href: "/contact-us" },
     { label: "Download App", href: "/download-app" },
   ],
+  deliveryCities: [
+    { label: "Flowers in Mumbai", href: "/flowers/" },
+    { label: "Flowers in Thane", href: "/send-flowers-thane/" },
+    { label: "Flowers in Navi Mumbai", href: "/send-flowers-navi-mumbai/" },
+  ],
 };
 
 export default function Footer() {
@@ -63,6 +68,19 @@ export default function Footer() {
                 </a>
               </li>
             ))}
+            {/* Delivery Cities */}
+            <li className="pt-3">
+              <p className="text-xs font-semibold text-[#1C2120] uppercase tracking-wider mb-2">Delivery Cities</p>
+              <ul className="space-y-2">
+                {footerLinks.deliveryCities.map((link) => (
+                  <li key={link.label}>
+                    <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
           </ul>
 
           {/* App Download & Social */}

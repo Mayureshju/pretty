@@ -8,76 +8,64 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const cakeItems = [
-  { title: "Chocolate", href: "/cakes/chocolate", image: "/images/products/chocolate-cake.jpg" },
-  { title: "Butterscotch", href: "/cakes/butterscotch", image: "/images/products/butterscotch-cake.jpg" },
-  { title: "Red Velvet", href: "/cakes/red-velvet", image: "/images/products/red-velvet-cake.jpg" },
-  { title: "Fruit", href: "/cakes/fruit", image: "/images/products/fruit-cake.jpg" },
-  { title: "Designer", href: "/cakes/designer", image: "/images/products/designer-cake.jpg" },
+  { title: "Chocolate", href: "/cakes/premium-cakes/", image: "/images/cakes/chocolate.jpg" },
+  { title: "Butterscotch", href: "/cakes/premium-cakes/", image: "/images/cakes/butterscotch.jpg" },
+  { title: "LUXE", href: "/cakes/premium-cakes/", image: "/images/cakes/luxe.jpg" },
+  { title: "Fresh Fruits", href: "/cakes/premium-cakes/", image: "/images/cakes/fresh-fruits.jpg" },
+  { title: "Cakes With Flowers", href: "/cakes/premium-cakes/", image: "/images/cakes/cakes-with-flowers.jpg" },
 ];
 
 const giftItems = [
-  { title: "Photo Gifts", href: "/gifts/photo-gifts", image: "/images/products/photo-gifts.jpg" },
-  { title: "Soft Toys", href: "/gifts/soft-toys", image: "/images/products/soft-toys.jpg" },
-  { title: "Chocolates", href: "/gifts/chocolates", image: "/images/products/chocolates.jpg" },
-  { title: "Mugs", href: "/gifts/mugs", image: "/images/products/mugs.jpg" },
-  { title: "Cushions", href: "/gifts/cushions", image: "/images/products/cushions.jpg" },
+  { title: "Photo Gifts", href: "/gifts/", image: "/images/gifts/photo-gifts.jpg" },
+  { title: "Soft Toys", href: "/gifts/", image: "/images/gifts/soft-toys.jpg" },
+  { title: "Chocolates", href: "/gifts/", image: "/images/gifts/chocolates.jpg" },
+  { title: "Mugs", href: "/gifts/", image: "/images/gifts/mugs.jpg" },
+  { title: "Cushions", href: "/gifts/", image: "/images/gifts/cushions.jpg" },
 ];
 
-function CategoryRow({
+function LargeCardRow({
   title,
   items,
-  sectionRef,
 }: {
   title: string;
   items: typeof cakeItems;
-  sectionRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const rowRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
-
-    const els = rowRef.current.filter(Boolean);
-    gsap.fromTo(
-      els,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.07,
-        ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, [sectionRef]);
+    const ctx = gsap.context(() => {
+      const cards = sectionRef.current!.querySelectorAll(".lg-card");
+      gsap.fromTo(cards,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: "power2.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 82%" } }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div ref={sectionRef}>
-      <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-4 md:mb-5">
+      <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-3 md:mb-4">
         {title}
       </h2>
-      <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2 scrollbar-hide">
-        {items.map((item, i) => (
+      <div className="flex gap-3 md:gap-4 overflow-x-auto scroll-container pb-2 md:pb-0">
+        {items.map((item) => (
           <Link
             key={item.title}
             href={item.href}
-            ref={(el) => { rowRef.current[i] = el; }}
-            className="group flex-shrink-0 w-[130px] md:w-[160px]"
+            className="lg-card shrink-0 w-[160px] md:w-[200px] lg:flex-1 group"
           >
-            <div className="aspect-square rounded-xl overflow-hidden bg-[#F5F5F5]">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#F5F0EB] transition-shadow duration-300 group-hover:shadow-lg">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
-            <p className="mt-2 text-[13px] font-medium text-[#1C2120] text-center group-hover:text-[#737530] transition-colors">
+            <p className="text-[13px] md:text-sm font-medium text-[#1C2120] text-center mt-2.5 transition-colors group-hover:text-[#737530]">
               {item.title}
             </p>
           </Link>
@@ -88,13 +76,10 @@ function CategoryRow({
 }
 
 export default function CategoryCards() {
-  const section1Ref = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
-
   return (
-    <section className="max-w-[1440px] mx-auto px-4 py-8 md:py-12 space-y-10">
-      <CategoryRow title="Fresh Cakes & More" items={cakeItems} sectionRef={section1Ref} />
-      <CategoryRow title="Gift Something Special" items={giftItems} sectionRef={section2Ref} />
+    <section className="max-w-[1440px] mx-auto px-4 py-6 md:py-10 space-y-8 md:space-y-10">
+      <LargeCardRow title="Bakery-Fresh Cakes" items={cakeItems} />
+      <LargeCardRow title="Personalise Your Moments" items={giftItems} />
     </section>
   );
 }
