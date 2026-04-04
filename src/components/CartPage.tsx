@@ -26,7 +26,7 @@ const addons = [
 ];
 
 const browseCategories = [
-  { name: "Flowers", image: "/images/categories/flowers.jpg", href: "/all-flowers" },
+  { name: "Flowers", image: "/images/categories/flowers.jpg", href: "/flowers/" },
   { name: "Cakes", image: "/images/categories/cakes.jpg", href: "/cakes" },
   { name: "Gifts", image: "/images/products/gifts-category.jpg", href: "/gifts" },
   { name: "Combos", image: "/images/categories/combos.jpg", href: "/gift-hampers" },

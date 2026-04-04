@@ -164,7 +164,7 @@ export default function Header() {
               {[
                 { label: "Track Order", href: "/trackorder" },
                 { label: "Sign In", href: "#" },
-                { label: "Flowers", href: "/all-flowers" },
+                { label: "Flowers", href: "/flowers/" },
                 { label: "Cakes", href: "/all-cakes" },
                 { label: "Combos", href: "/gift-hampers" },
                 { label: "Birthday", href: "/birthday" },

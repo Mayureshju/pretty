@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
-  { name: "Flowers", href: "/all-flowers", image: "/images/categories/flowers.jpg" },
+  { name: "Flowers", href: "/flowers/", image: "/images/categories/flowers.jpg" },
   { name: "Cakes", href: "/cakes", image: "/images/categories/cakes.jpg" },
   { name: "Combos", href: "/gift-hampers", image: "/images/categories/combos.jpg" },
   { name: "Balloon\nDecor", href: "/gifts/balloon-decorations", image: "/images/categories/balloons.jpg" },

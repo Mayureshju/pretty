@@ -9,10 +9,23 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.0.8",
+    "@hello-pangea/dnd": "^18.0.1",
+    "@tiptap/extension-image": "^3.22.1",
+    "@tiptap/extension-link": "^3.22.1",
+    "@tiptap/react": "^3.22.1",
+    "@tiptap/starter-kit": "^3.22.1",
+    "@uploadthing/react": "^7.3.3",
+    "date-fns": "^4.1.0",
     "gsap": "^3.14.2",
+    "mongoose": "^9.3.3",
     "next": "16.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hot-toast": "^2.6.0",
+    "recharts": "^3.8.1",
+    "uploadthing": "^7.7.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

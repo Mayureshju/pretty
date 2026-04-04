@@ -10,6 +10,8 @@
 !.yarn/releases
 !.yarn/versions
 
+u458533161_tcw1k.sql
+u458533161_tcw1k.csv
 # testing
 /coverage
 

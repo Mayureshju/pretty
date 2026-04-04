@@ -11,7 +11,7 @@ const megaMenus: Record<string, MegaColumn[]> = {
     {
       title: "Collection",
       links: [
-        { label: "Best Sellers", href: "/all-flowers?sort=best-seller" },
+        { label: "Best Sellers", href: "/flowers/?sort=best-seller" },
         { label: "Birthday Flowers", href: "/birthday/flowers" },
         { label: "Love & Affection", href: "/flowers/love" },
         { label: "Anniversary Flowers", href: "/anniversary/flowers" },
@@ -21,7 +21,7 @@ const megaMenus: Record<string, MegaColumn[]> = {
         { label: "Flowers in Vase", href: "/flowers/in-vase" },
         { label: "Flowers in Gift Box", href: "/flowers/in-box" },
         { label: "Luxury Flowers", href: "/flowers/luxury" },
-        { label: "All Flowers", href: "/all-flowers" },
+        { label: "All Flowers", href: "/flowers/" },
       ],
     },
     {
@@ -198,7 +198,7 @@ const megaMenus: Record<string, MegaColumn[]> = {
 };
 
 const navItems = [
-  { label: "Flowers", href: "/all-flowers" },
+  { label: "Flowers", href: "/flowers/" },
   { label: "Cakes", href: "/all-cakes" },
   { label: "Combos", href: "/gift-hampers" },
   { label: "Birthday", href: "/birthday" },
