@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary - Soft Orchid Rose (from logo) */
-  --primary: #B5748A;
-  --primary-hover: #9E6377;
-  --primary-light: #F8EDF1;
+  /* Primary - Refined Rose */
+  --primary: #C48B9F;
+  --primary-hover: #A87389;
+  --primary-light: #FAF0F3;
 
-  /* Text - Warm Browns (from logo calligraphy) */
-  --text-dark: #3C2A20;
-  --text-body: #6B574F;
-  --text-gray: #A0938D;
-  --text-light: #C4B8B3;
+  /* Text - Warm Neutrals */
+  --text-dark: #2C2424;
+  --text-body: #5E5252;
+  --text-gray: #9A8F8F;
+  --text-light: #C2B8B8;
 
   /* Accent Colors */
-  --accent-gold: #C9A96E;
-  --accent-sage: #8BA888;
+  --accent-gold: #C6A869;
+  --accent-sage: #8DA58B;
   --accent-rose: #D4A0AD;
   --accent-green: #49A066;
   --accent-orange: #E8A04C;
   --accent-red: #D9586B;
   --rating-green: #4CAF50;
 
-  /* Backgrounds - Barely Warm White */
-  --bg-white: #FFFAF8;
-  --bg-light: #FDF7F4;
-  --bg-lighter: #FAF4F0;
-  --bg-section: #F5EDEA;
+  /* Backgrounds */
+  --bg-white: #FEFCFB;
+  --bg-light: #FAF7F5;
+  --bg-lighter: #F7F3F1;
+  --bg-section: #F3EEEB;
 
   /* Border */
-  --border-light: #EBE1DC;
-  --border-card: #F2EAE5;
+  --border-light: #E8E0DC;
+  --border-card: #F0E8E4;
 
   /* Shadows */
-  --shadow-card: 0 2px 8px rgba(60, 42, 32, 0.06);
-  --shadow-hover: 0 8px 24px rgba(181, 116, 138, 0.12);
-  --shadow-header: 0 1px 3px rgba(60, 42, 32, 0.04);
+  --shadow-card: 0 2px 8px rgba(44, 36, 36, 0.05);
+  --shadow-hover: 0 8px 24px rgba(196, 139, 159, 0.12);
+  --shadow-header: 0 1px 3px rgba(44, 36, 36, 0.04);
 }
 
 @theme inline {
@@ -56,7 +56,7 @@
   --color-bg-section: var(--bg-section);
   --color-border-light: var(--border-light);
   --color-border-card: var(--border-card);
-  --font-sans: var(--font-poppins), 'Poppins', sans-serif;
+  --font-sans: var(--font-raleway), 'Raleway', sans-serif;
   --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 }
 
@@ -66,7 +66,7 @@
   }
 
   body {
-    font-family: var(--font-poppins), 'Poppins', sans-serif;
+    font-family: var(--font-raleway), 'Raleway', sans-serif;
     color: var(--text-body);
     background: var(--bg-white);
     -webkit-font-smoothing: antialiased;

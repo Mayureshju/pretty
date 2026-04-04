@@ -33,7 +33,7 @@ interface ImageRow {
 }
 
 const inputClass =
-  "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 outline-none transition-colors";
+  "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 outline-none transition-colors";
 const labelClass = "text-sm font-medium text-[#464646] mb-1.5 block";
 const cardClass = "bg-white rounded-xl border border-gray-100 p-6";
 
@@ -328,7 +328,7 @@ export default function EditProductPage({
         <div>
           <Link
             href="/admin/products"
-            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#B5748A] transition-colors mb-2"
+            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#C48B9F] transition-colors mb-2"
           >
             <svg
               width="16"
@@ -363,7 +363,7 @@ export default function EditProductPage({
         <div>
           <Link
             href="/admin/products"
-            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#B5748A] transition-colors mb-2"
+            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#C48B9F] transition-colors mb-2"
           >
             <svg
               width="16"
@@ -497,7 +497,7 @@ export default function EditProductPage({
                 <button
                   type="button"
                   onClick={addImage}
-                  className="inline-flex items-center gap-1 text-sm text-[#B5748A] hover:text-[#9E6377] font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-[#C48B9F] hover:text-[#A87389] font-medium transition-colors"
                 >
                   <svg
                     width="16"
@@ -582,7 +582,7 @@ export default function EditProductPage({
                 <button
                   type="button"
                   onClick={addVariant}
-                  className="inline-flex items-center gap-1 text-sm text-[#B5748A] hover:text-[#9E6377] font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-[#C48B9F] hover:text-[#A87389] font-medium transition-colors"
                 >
                   <svg
                     width="16"
@@ -772,7 +772,7 @@ export default function EditProductPage({
                     aria-checked={isActive}
                     onClick={() => setIsActive(!isActive)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      isActive ? "bg-[#B5748A]" : "bg-gray-200"
+                      isActive ? "bg-[#C48B9F]" : "bg-gray-200"
                     }`}
                   >
                     <span
@@ -790,7 +790,7 @@ export default function EditProductPage({
                     aria-checked={isFeatured}
                     onClick={() => setIsFeatured(!isFeatured)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      isFeatured ? "bg-[#B5748A]" : "bg-gray-200"
+                      isFeatured ? "bg-[#C48B9F]" : "bg-gray-200"
                     }`}
                   >
                     <span
@@ -842,7 +842,7 @@ export default function EditProductPage({
                           setSelectedCategories(selectedCategories.filter(id => id !== cat._id));
                         }
                       }}
-                      className="w-4 h-4 rounded border-gray-300 text-[#B5748A] focus:ring-[#B5748A]"
+                      className="w-4 h-4 rounded border-gray-300 text-[#C48B9F] focus:ring-[#C48B9F]"
                     />
                     <span className="text-sm text-[#464646]">{cat.name}</span>
                   </label>
@@ -895,7 +895,7 @@ export default function EditProductPage({
             <button
               type="submit"
               disabled={saving}
-              className="bg-[#B5748A] hover:bg-[#9E6377] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-[#C48B9F] hover:bg-[#A87389] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {saving ? "Saving..." : "Update Product"}
             </button>

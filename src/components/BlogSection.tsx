@@ -102,13 +102,13 @@ export default function BlogSection() {
 
             {/* Blog Content */}
             <div className="p-4">
-              <h3 className="text-sm font-semibold text-[#1C2120] leading-snug mb-2 line-clamp-2 group-hover:text-[#B5748A] transition-colors">
+              <h3 className="text-sm font-semibold text-[#1C2120] leading-snug mb-2 line-clamp-2 group-hover:text-[#C48B9F] transition-colors">
                 {blog.title}
               </h3>
               <p className="text-xs text-[#888] leading-relaxed mb-3 line-clamp-3">
                 {blog.excerpt}
               </p>
-              <span className="text-xs font-medium text-[#B5748A]">
+              <span className="text-xs font-medium text-[#C48B9F]">
                 Read More...
               </span>
             </div>

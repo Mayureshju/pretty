@@ -131,7 +131,7 @@ export default function CategoryCards() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-[13px] md:text-sm text-[#464646] hover:text-[#B5748A] transition-colors flex items-center gap-1.5"
+                        className="text-[13px] md:text-sm text-[#464646] hover:text-[#C48B9F] transition-colors flex items-center gap-1.5"
                       >
                         <svg width="6" height="6" viewBox="0 0 6 6" className="shrink-0 opacity-40">
                           <circle cx="3" cy="3" r="3" fill="currentColor" />

@@ -143,7 +143,7 @@ export default function OccasionsSection() {
                 loading="lazy"
               />
             </div>
-            <span className="text-sm md:text-[15px] font-medium text-[#1C2120] text-center transition-colors hover:text-[#B5748A]">
+            <span className="text-sm md:text-[15px] font-medium text-[#1C2120] text-center transition-colors hover:text-[#C48B9F]">
               {occ.name}
             </span>
           </a>

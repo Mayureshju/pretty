@@ -197,7 +197,7 @@ export default function CouponsPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#B5748A] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+          className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
         >
           <svg
             width="18"
@@ -309,7 +309,7 @@ export default function CouponsPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(coupon)}
-                          className="text-xs font-medium text-[#B5748A] hover:text-[#0A3A4D] transition-colors"
+                          className="text-xs font-medium text-[#C48B9F] hover:text-[#0A3A4D] transition-colors"
                         >
                           Edit
                         </button>
@@ -365,7 +365,7 @@ export default function CouponsPage() {
                   )
               }
               disabled={saving}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#B5748A] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#C48B9F] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : editingId ? "Update" : "Create"}
             </button>
@@ -386,7 +386,7 @@ export default function CouponsPage() {
               }
               placeholder="e.g. SAVE20"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors font-mono uppercase"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors font-mono uppercase"
             />
           </div>
 
@@ -404,7 +404,7 @@ export default function CouponsPage() {
                     value="percentage"
                     checked={form.type === "percentage"}
                     onChange={() => setForm({ ...form, type: "percentage" })}
-                    className="accent-[#B5748A]"
+                    className="accent-[#C48B9F]"
                   />
                   <span className="text-sm text-gray-700">Percentage</span>
                 </label>
@@ -415,7 +415,7 @@ export default function CouponsPage() {
                     value="fixed"
                     checked={form.type === "fixed"}
                     onChange={() => setForm({ ...form, type: "fixed" })}
-                    className="accent-[#B5748A]"
+                    className="accent-[#C48B9F]"
                   />
                   <span className="text-sm text-gray-700">Fixed</span>
                 </label>
@@ -436,7 +436,7 @@ export default function CouponsPage() {
                 }
                 min={0}
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -457,7 +457,7 @@ export default function CouponsPage() {
                   })
                 }
                 min={0}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -472,7 +472,7 @@ export default function CouponsPage() {
                 }
                 min={0}
                 placeholder="Optional"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -491,7 +491,7 @@ export default function CouponsPage() {
                 }
                 min={1}
                 placeholder="Unlimited"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -508,7 +508,7 @@ export default function CouponsPage() {
                   })
                 }
                 min={1}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -526,7 +526,7 @@ export default function CouponsPage() {
                   setForm({ ...form, validFrom: e.target.value })
                 }
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -540,7 +540,7 @@ export default function CouponsPage() {
                   setForm({ ...form, validTo: e.target.value })
                 }
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>

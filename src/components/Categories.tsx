@@ -7,62 +7,68 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
-  { name: "Flowers", href: "/flowers/", image: "/images/categories/flowers.jpg" },
-  { name: "Cakes", href: "/cakes", image: "/images/categories/cakes.jpg" },
-  { name: "Combos", href: "/gift-hampers", image: "/images/categories/combos.jpg" },
-  { name: "Balloon\nDecor", href: "/gifts/balloon-decorations", image: "/images/categories/balloons.jpg" },
-  { name: "Plants", href: "/plants", image: "/images/categories/plants.jpg" },
-  { name: "Hampers", href: "/hampers/same-day-delivery", image: "/images/categories/hampers.jpg" },
-  { name: "Same Day", href: "/same-day-delivery-gifts", image: "/images/categories/sameday.jpg" },
-  { name: "International", href: "/delivery-countries", image: "/images/categories/international.jpg" },
+  { name: "Flowers", href: "/flowers/", image: "/images/products/pink-bouquet.jpg", mobileImage: "/images/categories/flowers.jpg" },
+  { name: "Birthday", href: "/birthday", image: "/images/occasions/birthday.jpg", mobileImage: "/images/products/red-roses.jpg" },
+  { name: "Anniversary", href: "/anniversary", image: "/images/occasions/anniversary.jpg", mobileImage: "/images/products/lily-bouquet.jpg" },
+  { name: "Combos", href: "/gift-hampers", image: "/images/categories/combos.jpg", mobileImage: "/images/categories/hampers.jpg" },
+  { name: "Cakes", href: "/cakes", image: "/images/products/chocolate-cake.jpg", mobileImage: "/images/products/red-velvet.jpg" },
+  { name: "Bouquets", href: "/flowers/bouquets", image: "/images/products/purple-orchid.jpg", mobileImage: "/images/products/red-wrapped.jpg" },
+  { name: "Plants", href: "/plants", image: "/images/products/jade-plant.jpg", mobileImage: "/images/categories/plants.jpg" },
+  { name: "Hampers", href: "/hampers/same-day-delivery", image: "/images/categories/hampers.jpg", mobileImage: "/images/categories/sameday.jpg" },
 ];
 
 export default function Categories() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const itemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!sectionRef.current) return;
+
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 88%",
+          },
+        }
+      );
+    }
 
     const items = itemsRef.current.filter(Boolean);
+    gsap.fromTo(
+      items,
+      { opacity: 0, y: 25 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.06,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 82%",
+        },
+      }
+    );
 
-    gsap.set(items, { opacity: 0, y: 30, scale: 0.85 });
-
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: "back.out(1.4)",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    // Hover ripple effect
     items.forEach((item) => {
       if (!item) return;
-      const circle = item.querySelector(".cat-circle") as HTMLElement;
-      if (!circle) return;
+      const img = item.querySelector("picture");
+      if (!img) return;
 
       item.addEventListener("mouseenter", () => {
-        gsap.to(circle, {
-          scale: 1.12,
-          boxShadow: "0 8px 25px rgba(139,34,82,0.18)",
-          duration: 0.35,
-          ease: "power2.out",
-        });
+        gsap.to(img, { scale: 1.06, duration: 0.4, ease: "power2.out" });
       });
       item.addEventListener("mouseleave", () => {
-        gsap.to(circle, {
-          scale: 1,
-          boxShadow: "0 3px 12px rgba(0,0,0,0.08)",
-          duration: 0.35,
-          ease: "power2.inOut",
-        });
+        gsap.to(img, { scale: 1, duration: 0.4, ease: "power2.inOut" });
       });
     });
 
@@ -72,27 +78,34 @@ export default function Categories() {
   }, []);
 
   return (
-    <section className="max-w-[1320px] mx-auto px-4 py-6 md:py-8" ref={containerRef}>
-      <div className="flex items-start justify-between overflow-x-auto scroll-container gap-2 sm:gap-0 pb-2">
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
+      <h2
+        ref={headingRef}
+        className="font-serif text-[22px] md:text-[28px] font-semibold text-center tracking-wide text-text-dark mb-6 md:mb-8"
+      >
+        Categories
+      </h2>
+
+      <div className="grid grid-cols-4 md:grid-cols-8 gap-3 md:gap-6">
         {categories.map((cat, i) => (
           <a
             key={cat.name}
             href={cat.href}
             ref={(el) => { itemsRef.current[i] = el; }}
-            className="flex flex-col items-center gap-2.5 cursor-pointer shrink-0 px-1 sm:px-0"
+            className="flex flex-col items-center gap-2 md:gap-2.5 group"
           >
-            <div
-              className="cat-circle w-[72px] h-[72px] sm:w-[82px] sm:h-[82px] md:w-[96px] md:h-[96px] rounded-full overflow-hidden border-[3px] border-white"
-              style={{ boxShadow: "0 3px 12px rgba(0,0,0,0.08)" }}
-            >
-              <img
-                src={cat.image}
-                alt={cat.name}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+            <div className="w-full aspect-square overflow-hidden rounded-lg md:rounded-xl bg-bg-light">
+              <picture className="block w-full h-full transition-transform duration-300">
+                <source media="(min-width: 768px)" srcSet={cat.image} />
+                <img
+                  src={cat.mobileImage}
+                  alt={cat.name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
             </div>
-            <span className="text-[11px] sm:text-xs md:text-[13px] font-medium text-[var(--text-dark)] text-center leading-tight whitespace-pre-line">
+            <span className="font-sans text-[13px] md:text-[14px] font-medium tracking-[0.01em] text-text-dark text-center leading-tight transition-colors duration-200 group-hover:text-primary">
               {cat.name}
             </span>
           </a>

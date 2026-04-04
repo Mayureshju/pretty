@@ -174,7 +174,7 @@ const allProducts = [
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? "#B5748A" : "none"} stroke={filled ? "#B5748A" : "#fff"} strokeWidth="2">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? "#C48B9F" : "none"} stroke={filled ? "#C48B9F" : "#fff"} strokeWidth="2">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
   );
@@ -253,7 +253,7 @@ export default function FlowerListing() {
         {/* Breadcrumb + Count */}
         <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
           <nav className="flex items-center text-xs md:text-sm text-[#888]">
-            <a href="/" className="text-[#B5748A] hover:underline">Home</a>
+            <a href="/" className="text-[#C48B9F] hover:underline">Home</a>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
               <path d="M9 18l6-6-6-6" />
             </svg>
@@ -275,8 +275,8 @@ export default function FlowerListing() {
               onClick={() => setActiveFilter(activeFilter === chip ? null : chip)}
               className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer ${
                 activeFilter === chip
-                  ? "bg-[#B5748A] text-white border-[#B5748A]"
-                  : "bg-white text-[#1C2120] border-gray-200 hover:border-[#B5748A] hover:text-[#B5748A]"
+                  ? "bg-[#C48B9F] text-white border-[#C48B9F]"
+                  : "bg-white text-[#1C2120] border-gray-200 hover:border-[#C48B9F] hover:text-[#C48B9F]"
               }`}
             >
               {chip}
@@ -318,7 +318,7 @@ export default function FlowerListing() {
                     }}
                     className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
                       sortBy === option
-                        ? "bg-[#B5748A]/5 text-[#B5748A] font-medium"
+                        ? "bg-[#C48B9F]/5 text-[#C48B9F] font-medium"
                         : "text-[#464646] hover:bg-gray-50"
                     }`}
                   >
@@ -345,7 +345,7 @@ export default function FlowerListing() {
           >
             {/* Badge */}
             {product.badge && (
-              <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#B5748A] text-white text-[11px] font-semibold rounded-md shadow-sm">
+              <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#C48B9F] text-white text-[11px] font-semibold rounded-md shadow-sm">
                 {product.badge}
               </span>
             )}
@@ -369,7 +369,7 @@ export default function FlowerListing() {
                 />
                 {/* Image dots indicator */}
                 <div className="absolute bottom-2.5 left-3 flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-[#B5748A]" />
+                  <span className="w-2 h-2 rounded-full bg-[#C48B9F]" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
@@ -406,7 +406,7 @@ export default function FlowerListing() {
                 <span className="text-[11px] text-[#888]">
                   &bull;
                 </span>
-                <span className="text-[11px] md:text-xs text-[#B5748A]">
+                <span className="text-[11px] md:text-xs text-[#C48B9F]">
                   ({product.reviews.toLocaleString()} Reviews)
                 </span>
               </div>
@@ -414,9 +414,9 @@ export default function FlowerListing() {
               {/* Delivery */}
               <div className="flex items-center justify-between mt-2.5">
                 <p className="text-[11px] md:text-xs text-[#999]">
-                  Earliest Delivery : <span className="text-[#B5748A] font-semibold">{product.delivery}</span>
+                  Earliest Delivery : <span className="text-[#C48B9F] font-semibold">{product.delivery}</span>
                 </p>
-                <button className="text-[#888] hover:text-[#B5748A] transition-colors cursor-pointer" title="More info">
+                <button className="text-[#888] hover:text-[#C48B9F] transition-colors cursor-pointer" title="More info">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M12 16v-4M12 8h.01" strokeLinecap="round" />
@@ -430,7 +430,7 @@ export default function FlowerListing() {
 
       {/* Load More */}
       <div className="flex justify-center py-8">
-        <button className="px-10 py-3 text-sm font-semibold border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-all duration-300 hover:bg-[#B5748A] hover:text-white hover:shadow-lg cursor-pointer">
+        <button className="px-10 py-3 text-sm font-semibold border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-all duration-300 hover:bg-[#C48B9F] hover:text-white hover:shadow-lg cursor-pointer">
           Load More Flowers
         </button>
       </div>

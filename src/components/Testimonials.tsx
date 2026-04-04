@@ -16,14 +16,14 @@ const testimonials = [
   },
   {
     id: 2,
-    text: "Thanks a lot to FlowerAura for making my moms birthday special she was very happy thanks a lot",
+    text: "Thanks a lot to Pretty Petals for making my moms birthday special she was very happy thanks a lot",
     name: "Aaditya Singhal",
     rating: 5,
     date: "14/01/2026",
   },
   {
     id: 3,
-    text: "This cake was much better than I had imagined. It was very fresh and tasted great. Thank you Flower Aura.",
+    text: "This cake was much better than I had imagined. It was very fresh and tasted great. Thank you Pretty Petals.",
     name: "Samiksha",
     rating: 5,
     date: "09/01/2026",
@@ -108,7 +108,7 @@ export default function Testimonials() {
         </h2>
         <a
           href="/reviews"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white"
+          className="px-5 py-2 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white"
         >
           View All
         </a>
@@ -123,7 +123,7 @@ export default function Testimonials() {
             className="relative bg-white rounded-xl border border-[#eee] p-5 md:p-6 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
           >
             {/* Quote mark */}
-            <div className="quote-mark text-4xl text-[#B5748A]/15 leading-none mb-2 font-serif">&ldquo;</div>
+            <div className="quote-mark text-4xl text-[#C48B9F]/15 leading-none mb-2 font-serif">&ldquo;</div>
 
             {/* Review text */}
             <p className="text-[13px] md:text-sm text-[#464646] leading-relaxed mb-4 line-clamp-4">
@@ -136,7 +136,7 @@ export default function Testimonials() {
             {/* Author */}
             <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#B5748A]/10 flex items-center justify-center text-xs font-bold text-[#B5748A]">
+                <div className="w-8 h-8 rounded-full bg-[#C48B9F]/10 flex items-center justify-center text-xs font-bold text-[#C48B9F]">
                   {testimonial.name.charAt(0)}
                 </div>
                 <span className="text-sm font-semibold text-[#1C2120]">

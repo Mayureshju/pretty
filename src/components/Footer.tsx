@@ -29,14 +29,14 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="mt-6 md:mt-8 bg-[#f8f8f8]">
+    <footer className="mt-6 md:mt-8" style={{ backgroundColor: "var(--bg-section)" }}>
       <div className="max-w-[1320px] mx-auto px-4 py-8 md:py-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8">
           {/* Column 1 */}
           <ul className="space-y-2.5">
             {footerLinks.column1.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#B5748A] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -47,7 +47,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {footerLinks.column2.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#B5748A] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -58,7 +58,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {footerLinks.column3.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#B5748A] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -127,11 +127,11 @@ export default function Footer() {
       <div className="border-t border-[#e5e7eb]">
         <div className="max-w-[1320px] mx-auto px-4 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-bold text-[#B5748A] tracking-wider">
-              FLOWER AURA
+            <span className="text-sm font-bold text-[#C48B9F] tracking-wider">
+              PRETTY PETALS
             </span>
             <span className="text-xs text-[#999]">
-              Copyright. 2026. FA GIFTS PVT. LTD
+              Copyright. 2026. Pretty Petals Pvt. Ltd.
             </span>
           </div>
           <div className="flex items-center gap-1.5 flex-wrap justify-center">

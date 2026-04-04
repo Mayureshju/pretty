@@ -229,12 +229,12 @@ export default function AdminDashboardPage() {
                   >
                     <stop
                       offset="5%"
-                      stopColor="#B5748A"
+                      stopColor="#C48B9F"
                       stopOpacity={0.3}
                     />
                     <stop
                       offset="95%"
-                      stopColor="#B5748A"
+                      stopColor="#C48B9F"
                       stopOpacity={0}
                     />
                   </linearGradient>
@@ -270,7 +270,7 @@ export default function AdminDashboardPage() {
                 <Area
                   type="monotone"
                   dataKey="revenue"
-                  stroke="#B5748A"
+                  stroke="#C48B9F"
                   strokeWidth={2}
                   fill="url(#revenueGradient)"
                 />
@@ -442,7 +442,7 @@ export default function AdminDashboardPage() {
                   key={product._id}
                   className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#B5748A]/10 text-[#B5748A] text-sm font-bold shrink-0">
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#C48B9F]/10 text-[#C48B9F] text-sm font-bold shrink-0">
                     {index + 1}
                   </span>
                   <div className="min-w-0 flex-1">

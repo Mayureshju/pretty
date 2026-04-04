@@ -173,7 +173,7 @@ export default function ReportsPage() {
         <button
           onClick={exportCSV}
           disabled={!data || loading}
-          className="px-4 py-2.5 bg-[#B5748A] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50 flex items-center gap-2"
+          className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50 flex items-center gap-2"
         >
           <svg
             width="18"
@@ -204,7 +204,7 @@ export default function ReportsPage() {
                 onClick={() => selectPreset(preset.days)}
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                   activePreset === preset.days
-                    ? "bg-[#B5748A] text-white"
+                    ? "bg-[#C48B9F] text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -217,14 +217,14 @@ export default function ReportsPage() {
               type="date"
               value={dateFrom}
               onChange={(e) => handleCustomDate("from", e.target.value)}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+              className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
             />
             <span className="text-gray-400 text-sm">to</span>
             <input
               type="date"
               value={dateTo}
               onChange={(e) => handleCustomDate("to", e.target.value)}
-              className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+              className="border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
             />
           </div>
         </div>
@@ -279,12 +279,12 @@ export default function ReportsPage() {
                       >
                         <stop
                           offset="5%"
-                          stopColor="#B5748A"
+                          stopColor="#C48B9F"
                           stopOpacity={0.2}
                         />
                         <stop
                           offset="95%"
-                          stopColor="#B5748A"
+                          stopColor="#C48B9F"
                           stopOpacity={0}
                         />
                       </linearGradient>
@@ -326,7 +326,7 @@ export default function ReportsPage() {
                     <Area
                       type="monotone"
                       dataKey="revenue"
-                      stroke="#B5748A"
+                      stroke="#C48B9F"
                       strokeWidth={2}
                       fillOpacity={1}
                       fill="url(#colorRevenue)"
@@ -370,7 +370,7 @@ export default function ReportsPage() {
                     <Tooltip />
                     <Bar
                       dataKey="count"
-                      fill="#B5748A"
+                      fill="#C48B9F"
                       radius={[4, 4, 0, 0]}
                     />
                   </BarChart>

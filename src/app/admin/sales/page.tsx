@@ -228,7 +228,7 @@ export default function SalesPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#B5748A] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+          className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
         >
           <svg
             width="18"
@@ -269,7 +269,7 @@ export default function SalesPage() {
               >
                 {/* Discount badge icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-[60px] h-[60px] rounded-lg bg-[#E3F2FD] flex items-center justify-center text-[#B5748A]">
+                  <div className="w-[60px] h-[60px] rounded-lg bg-[#E3F2FD] flex items-center justify-center text-[#C48B9F]">
                     <svg
                       width="28"
                       height="28"
@@ -294,7 +294,7 @@ export default function SalesPage() {
                       <h3 className="font-semibold text-[#1C2120] truncate">
                         {sale.name}
                       </h3>
-                      <p className="text-sm font-medium text-[#B5748A] mt-0.5">
+                      <p className="text-sm font-medium text-[#C48B9F] mt-0.5">
                         {getDiscountLabel(sale)}
                       </p>
                     </div>
@@ -317,7 +317,7 @@ export default function SalesPage() {
                   <div className="flex items-center gap-2 mt-3">
                     <button
                       onClick={() => openEditModal(sale)}
-                      className="text-xs font-medium text-[#B5748A] hover:text-[#0A3A4D] transition-colors"
+                      className="text-xs font-medium text-[#C48B9F] hover:text-[#0A3A4D] transition-colors"
                     >
                       Edit
                     </button>
@@ -359,7 +359,7 @@ export default function SalesPage() {
                   )
               }
               disabled={saving}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#B5748A] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#C48B9F] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : editingId ? "Update" : "Create"}
             </button>
@@ -378,7 +378,7 @@ export default function SalesPage() {
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Summer Sale"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -397,7 +397,7 @@ export default function SalesPage() {
                   onChange={() =>
                     setForm({ ...form, discountType: "percentage" })
                   }
-                  className="w-4 h-4 text-[#B5748A] border-gray-300 focus:ring-[#B5748A]/20"
+                  className="w-4 h-4 text-[#C48B9F] border-gray-300 focus:ring-[#C48B9F]/20"
                 />
                 <span className="text-sm text-gray-700">Percentage (%)</span>
               </label>
@@ -408,7 +408,7 @@ export default function SalesPage() {
                   value="fixed"
                   checked={form.discountType === "fixed"}
                   onChange={() => setForm({ ...form, discountType: "fixed" })}
-                  className="w-4 h-4 text-[#B5748A] border-gray-300 focus:ring-[#B5748A]/20"
+                  className="w-4 h-4 text-[#C48B9F] border-gray-300 focus:ring-[#C48B9F]/20"
                 />
                 <span className="text-sm text-gray-700">
                   Fixed Amount (&#8377;)
@@ -436,7 +436,7 @@ export default function SalesPage() {
               placeholder={
                 form.discountType === "percentage" ? "e.g. 20" : "e.g. 100"
               }
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -453,7 +453,7 @@ export default function SalesPage() {
                   setForm({ ...form, startDate: e.target.value })
                 }
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -465,7 +465,7 @@ export default function SalesPage() {
                 value={form.endDate}
                 onChange={(e) => setForm({ ...form, endDate: e.target.value })}
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -489,7 +489,7 @@ export default function SalesPage() {
                       selectedCategories: [],
                     })
                   }
-                  className="w-4 h-4 text-[#B5748A] border-gray-300 focus:ring-[#B5748A]/20"
+                  className="w-4 h-4 text-[#C48B9F] border-gray-300 focus:ring-[#C48B9F]/20"
                 />
                 <span className="text-sm text-gray-700">All Categories</span>
               </label>
@@ -500,7 +500,7 @@ export default function SalesPage() {
                   value="specific"
                   checked={form.applyTo === "specific"}
                   onChange={() => setForm({ ...form, applyTo: "specific" })}
-                  className="w-4 h-4 text-[#B5748A] border-gray-300 focus:ring-[#B5748A]/20"
+                  className="w-4 h-4 text-[#C48B9F] border-gray-300 focus:ring-[#C48B9F]/20"
                 />
                 <span className="text-sm text-gray-700">
                   Specific Categories
@@ -530,7 +530,7 @@ export default function SalesPage() {
                         type="checkbox"
                         checked={form.selectedCategories.includes(cat._id)}
                         onChange={() => handleCategoryToggle(cat._id)}
-                        className="w-4 h-4 rounded border-gray-300 text-[#B5748A] focus:ring-[#B5748A]/20"
+                        className="w-4 h-4 rounded border-gray-300 text-[#C48B9F] focus:ring-[#C48B9F]/20"
                       />
                       <span className="text-sm text-gray-700">{cat.name}</span>
                     </label>

@@ -31,8 +31,8 @@ const variantStyles: Record<
   },
   info: {
     iconBg: "bg-[#E3F2FD]",
-    iconColor: "text-[#B5748A]",
-    buttonBg: "bg-[#B5748A]",
+    iconColor: "text-[#C48B9F]",
+    buttonBg: "bg-[#C48B9F]",
     buttonHoverBg: "hover:bg-[#0A3A4D]",
   },
 };

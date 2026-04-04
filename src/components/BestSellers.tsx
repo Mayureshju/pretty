@@ -108,7 +108,7 @@ const products = [
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#B5748A" : "none"} stroke={filled ? "#B5748A" : "#666"} strokeWidth="1.8">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#C48B9F" : "none"} stroke={filled ? "#C48B9F" : "#666"} strokeWidth="1.8">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
   );
@@ -202,7 +202,7 @@ export default function BestSellers() {
         </h2>
         <a
           href="/best-seller"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white hidden sm:block"
+          className="px-5 py-2 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white hidden sm:block"
         >
           View All
         </a>
@@ -264,7 +264,7 @@ export default function BestSellers() {
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[11px] font-bold text-white bg-[#4CAF50]">
                   &#9733; {product.rating}
                 </span>
-                <span className="text-[11px] md:text-xs text-[#B5748A]">
+                <span className="text-[11px] md:text-xs text-[#C48B9F]">
                   ({product.reviews.toLocaleString()} Reviews)
                 </span>
               </div>
@@ -282,7 +282,7 @@ export default function BestSellers() {
       <div className="flex justify-center mt-5 sm:hidden">
         <a
           href="/best-seller"
-          className="px-8 py-2.5 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white"
+          className="px-8 py-2.5 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white"
         >
           View All
         </a>

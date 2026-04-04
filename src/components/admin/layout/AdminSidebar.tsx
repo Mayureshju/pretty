@@ -223,7 +223,7 @@ export default function AdminSidebar({ collapsed, onToggleCollapse, mobileOpen, 
   // ---- Sidebar content (shared between desktop and mobile) ----
   const sidebarContent = (
     <div
-      className={`flex flex-col h-full bg-[#B5748A] text-white transition-all duration-300 ${
+      className={`flex flex-col h-full bg-[#C48B9F] text-white transition-all duration-300 ${
         collapsed ? "w-[72px]" : "w-[260px]"
       }`}
     >

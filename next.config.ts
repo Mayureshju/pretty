@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.prettypetals.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.floristaindia.com",
+      },
+      {
+        protocol: "http",
+        hostname: "**.floristaindia.com",
+      },
     ],
   },
   async redirects() {
