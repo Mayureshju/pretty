@@ -54,6 +54,7 @@ export interface IProduct extends Document {
   };
   isActive: boolean;
   isFeatured: boolean;
+  isAddon: boolean;
   deliveryInfo?: string;
   wpPostId?: number;
   createdAt: Date;
@@ -132,6 +133,7 @@ const ProductSchema = new Schema<IProduct>(
     },
     isActive: { type: Boolean, default: true },
     isFeatured: { type: Boolean, default: false },
+    isAddon: { type: Boolean, default: false },
     deliveryInfo: { type: String },
     wpPostId: { type: Number },
   },

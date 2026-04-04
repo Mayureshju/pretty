@@ -33,8 +33,10 @@ interface ProductItem {
   };
   images: { url: string; alt?: string; order: number }[];
   category?: ProductCategory;
+  variants: { label: string; price: number }[];
   isActive: boolean;
   isFeatured: boolean;
+  isAddon: boolean;
   createdAt: string;
 }
 
@@ -330,11 +332,27 @@ export default function AdminProductsPage() {
                             >
                               {product.name}
                             </Link>
-                            {product.sku && (
-                              <p className="text-xs text-gray-400 mt-0.5">
-                                SKU: {product.sku}
-                              </p>
-                            )}
+                            <div className="flex items-center gap-1.5 mt-1">
+                              {product.variants?.length > 0 ? (
+                                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#0E4D65]/10 text-[#0E4D65]">
+                                  {product.variants.length} Variant{product.variants.length !== 1 ? "s" : ""}
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-gray-100 text-gray-500">
+                                  Simple
+                                </span>
+                              )}
+                              {product.isAddon && (
+                                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-amber-50 text-amber-600">
+                                  Addon
+                                </span>
+                              )}
+                              {product.sku && (
+                                <span className="text-[10px] text-gray-400">
+                                  SKU: {product.sku}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </td>

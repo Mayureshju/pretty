@@ -50,6 +50,11 @@ export async function GET(request: NextRequest) {
       filter["inventory.stockStatus"] = "outofstock";
     }
 
+    const isAddon = searchParams.get("isAddon");
+    if (isAddon === "true") {
+      filter.isAddon = true;
+    }
+
     const skip = (page - 1) * limit;
 
     const [products, total] = await Promise.all([

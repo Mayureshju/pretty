@@ -83,9 +83,18 @@ interface SimilarProduct {
   };
 }
 
+interface SaleInfo {
+  effectivePrice: number;
+  originalPrice: number;
+  saleLabel: string | null;
+  hasSale: boolean;
+  discountPercent: number;
+}
+
 interface ProductDetailProps {
   product: ProductData;
   similarProducts: SimilarProduct[];
+  saleInfo?: SaleInfo;
 }
 
 const trustBadges = [
@@ -94,7 +103,7 @@ const trustBadges = [
   { icon: "truck", label: "620+ Cities Enjoying", sub: "same-day delivery" },
 ];
 
-export default function ProductDetail({ product, similarProducts }: ProductDetailProps) {
+export default function ProductDetail({ product, similarProducts, saleInfo }: ProductDetailProps) {
   const [activeImg, setActiveImg] = useState(0);
   const [activeVariant, setActiveVariant] = useState(0);
   const [wishlisted, setWishlisted] = useState(false);
@@ -108,18 +117,25 @@ export default function ProductDetail({ product, similarProducts }: ProductDetai
     ? product.images.sort((a, b) => a.order - b.order)
     : [{ url: "/images/placeholder.jpg", alt: product.name, order: 0 }];
 
+  // Use saleInfo for active campaign sales, fallback to product pricing
   const currentPrice =
     product.variants.length > 0
       ? (product.variants[activeVariant].salePrice || product.variants[activeVariant].price)
-      : product.pricing.currentPrice;
+      : saleInfo?.hasSale
+        ? saleInfo.effectivePrice
+        : product.pricing.currentPrice;
 
-  const discount = product.pricing.salePrice
-    ? Math.round(
-        ((product.pricing.regularPrice - product.pricing.salePrice) /
-          product.pricing.regularPrice) *
-          100
-      )
-    : 0;
+  const discount = saleInfo?.hasSale
+    ? saleInfo.discountPercent
+    : product.pricing.salePrice
+      ? Math.round(
+          ((product.pricing.regularPrice - product.pricing.salePrice) /
+            product.pricing.regularPrice) *
+            100
+        )
+      : 0;
+
+  const saleLabel = saleInfo?.saleLabel;
 
   useEffect(() => {
     if (galleryRef.current) {
@@ -237,8 +253,16 @@ export default function ProductDetail({ product, similarProducts }: ProductDetai
               </div>
             )}
 
+            {/* Sale Badge */}
+            {saleLabel && (
+              <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-50 border border-red-100">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#DC2626" /></svg>
+                <span className="text-sm font-semibold text-red-600">{saleLabel}</span>
+              </div>
+            )}
+
             {/* Price */}
-            <div className="flex items-baseline gap-3 mt-5">
+            <div className="flex items-baseline gap-3 mt-3">
               <span className="text-2xl md:text-3xl font-bold text-[#1C2120]">&#8377; {currentPrice.toLocaleString()}</span>
               {discount > 0 && (
                 <>

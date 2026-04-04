@@ -59,6 +59,7 @@ export const createProductSchema = z.object({
     .optional(),
   isActive: z.boolean().default(true),
   isFeatured: z.boolean().default(false),
+  isAddon: z.boolean().default(false),
   deliveryInfo: z.string().optional(),
 });
 

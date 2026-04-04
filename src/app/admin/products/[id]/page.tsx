@@ -15,11 +15,15 @@ interface VariantRow {
   label: string;
   price: number | string;
   salePrice: number | string;
+  image: string;
+  stock: number | string;
+  sku: string;
 }
 
 interface AddonRow {
   name: string;
   price: number | string;
+  image: string;
 }
 
 interface ImageRow {
@@ -52,6 +56,7 @@ export default function EditProductPage({
   const [salePrice, setSalePrice] = useState<number | string>("");
   const [isActive, setIsActive] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
+  const [isAddon, setIsAddon] = useState(false);
   const [category, setCategory] = useState("");
   const [tags, setTags] = useState("");
   const [deliveryInfo, setDeliveryInfo] = useState("");
@@ -60,6 +65,9 @@ export default function EditProductPage({
   const [images, setImages] = useState<ImageRow[]>([]);
   const [variants, setVariants] = useState<VariantRow[]>([]);
   const [addons, setAddons] = useState<AddonRow[]>([]);
+  const [addonSearch, setAddonSearch] = useState("");
+  const [addonResults, setAddonResults] = useState<{ _id: string; name: string; pricing: { currentPrice: number }; images: { url: string }[] }[]>([]);
+  const [showAddonDropdown, setShowAddonDropdown] = useState(false);
 
   // Fetch categories and product data
   useEffect(() => {
@@ -87,6 +95,7 @@ export default function EditProductPage({
         setSalePrice(product.pricing?.salePrice ?? "");
         setIsActive(product.isActive ?? true);
         setIsFeatured(product.isFeatured ?? false);
+        setIsAddon(product.isAddon ?? false);
         setCategory(
           product.category?._id || product.category || ""
         );
@@ -111,10 +120,13 @@ export default function EditProductPage({
         if (product.variants?.length > 0) {
           setVariants(
             product.variants.map(
-              (v: { label: string; price: number; salePrice?: number }) => ({
+              (v: { label: string; price: number; salePrice?: number; image?: string; stock?: number; sku?: string }) => ({
                 label: v.label || "",
                 price: v.price ?? "",
                 salePrice: v.salePrice ?? "",
+                image: v.image || "",
+                stock: v.stock ?? 0,
+                sku: v.sku || "",
               })
             )
           );
@@ -124,9 +136,10 @@ export default function EditProductPage({
         if (product.addons?.length > 0) {
           setAddons(
             product.addons.map(
-              (a: { name: string; price: number }) => ({
+              (a: { name: string; price: number; image?: string }) => ({
                 name: a.name || "",
                 price: a.price ?? "",
+                image: a.image || "",
               })
             )
           );
@@ -162,7 +175,7 @@ export default function EditProductPage({
 
   // Variant rows
   function addVariant() {
-    setVariants([...variants, { label: "", price: "", salePrice: "" }]);
+    setVariants([...variants, { label: "", price: "", salePrice: "", image: "", stock: 0, sku: "" }]);
   }
   function removeVariant(index: number) {
     setVariants(variants.filter((_, i) => i !== index));
@@ -177,17 +190,31 @@ export default function EditProductPage({
     setVariants(updated);
   }
 
-  // Addon rows
-  function addAddon() {
-    setAddons([...addons, { name: "", price: "" }]);
-  }
+  // Addon search + picker
   function removeAddon(index: number) {
     setAddons(addons.filter((_, i) => i !== index));
   }
-  function updateAddon(index: number, field: keyof AddonRow, value: string) {
-    const updated = [...addons];
-    updated[index] = { ...updated[index], [field]: value };
-    setAddons(updated);
+  async function searchAddonProducts(query: string) {
+    setAddonSearch(query);
+    if (query.length < 2) { setAddonResults([]); setShowAddonDropdown(false); return; }
+    try {
+      const res = await fetch(`/api/admin/products?isAddon=true&search=${encodeURIComponent(query)}&limit=10`);
+      if (res.ok) {
+        const data = await res.json();
+        setAddonResults(data.products || []);
+        setShowAddonDropdown(true);
+      }
+    } catch { /* ignore */ }
+  }
+  function selectAddonProduct(product: { name: string; pricing: { currentPrice: number }; images: { url: string }[] }) {
+    setAddons([...addons, {
+      name: product.name,
+      price: product.pricing.currentPrice,
+      image: product.images?.[0]?.url || "",
+    }]);
+    setAddonSearch("");
+    setAddonResults([]);
+    setShowAddonDropdown(false);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -216,6 +243,7 @@ export default function EditProductPage({
         },
         isActive,
         isFeatured,
+        isAddon,
         category: category || "",
         deliveryInfo: deliveryInfo.trim() || undefined,
       };
@@ -250,7 +278,9 @@ export default function EditProductPage({
           label: v.label.trim(),
           price: Number(v.price),
           salePrice: v.salePrice ? Number(v.salePrice) : null,
-          stock: 0,
+          image: v.image.trim() || undefined,
+          sku: v.sku.trim() || undefined,
+          stock: v.stock ? Number(v.stock) : 0,
         }));
       body.variants = validVariants;
       if (validVariants.length > 0) {
@@ -265,6 +295,7 @@ export default function EditProductPage({
         .map((a) => ({
           name: a.name.trim(),
           price: Number(a.price),
+          image: a.image || undefined,
         }));
       body.addons = validAddons;
 
@@ -579,61 +610,42 @@ export default function EditProductPage({
                   No variants. Add variants for different sizes or styles.
                 </p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {variants.map((v, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <input
-                        type="text"
-                        value={v.label}
-                        onChange={(e) =>
-                          updateVariant(index, "label", e.target.value)
-                        }
-                        placeholder="Label (e.g., Small)"
-                        className={`${inputClass} flex-1`}
-                      />
-                      <input
-                        type="number"
-                        value={v.price}
-                        onChange={(e) =>
-                          updateVariant(index, "price", e.target.value)
-                        }
-                        placeholder="Price"
-                        min="0"
-                        step="0.01"
-                        className={`${inputClass} w-28`}
-                      />
-                      <input
-                        type="number"
-                        value={v.salePrice}
-                        onChange={(e) =>
-                          updateVariant(index, "salePrice", e.target.value)
-                        }
-                        placeholder="Sale Price"
-                        min="0"
-                        step="0.01"
-                        className={`${inputClass} w-28`}
-                      />
+                    <div key={index} className="border border-gray-100 rounded-lg p-4 relative">
                       <button
                         type="button"
                         onClick={() => removeVariant(index)}
-                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4 4L12 12M4 12L12 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       </button>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Label *</label>
+                          <input type="text" value={v.label} onChange={(e) => updateVariant(index, "label", e.target.value)} placeholder="e.g., Small" className={inputClass} />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Price *</label>
+                          <input type="number" value={v.price} onChange={(e) => updateVariant(index, "price", e.target.value)} placeholder="0" min="0" step="0.01" className={inputClass} />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Sale Price</label>
+                          <input type="number" value={v.salePrice} onChange={(e) => updateVariant(index, "salePrice", e.target.value)} placeholder="Optional" min="0" step="0.01" className={inputClass} />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">SKU</label>
+                          <input type="text" value={v.sku} onChange={(e) => updateVariant(index, "sku", e.target.value)} placeholder="Optional" className={inputClass} />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Stock</label>
+                          <input type="number" value={v.stock} onChange={(e) => updateVariant(index, "stock", e.target.value)} placeholder="0" min="0" className={inputClass} />
+                        </div>
+                        <div>
+                          <label className="text-xs text-gray-500 mb-1 block">Image URL</label>
+                          <input type="url" value={v.image} onChange={(e) => updateVariant(index, "image", e.target.value)} placeholder="Optional" className={inputClass} />
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -642,81 +654,68 @@ export default function EditProductPage({
 
             {/* Addons */}
             <div className={cardClass}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-base font-semibold text-[#1C2120]">
-                  Add-ons
-                </h2>
-                <button
-                  type="button"
-                  onClick={addAddon}
-                  className="inline-flex items-center gap-1 text-sm text-[#0E4D65] hover:text-[#0a3d52] font-medium transition-colors"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 3.33334V12.6667M3.33334 8H12.6667"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  Add Add-on
-                </button>
+              <h2 className="text-base font-semibold text-[#1C2120] mb-4">
+                Add-ons
+              </h2>
+              <p className="text-xs text-gray-400 mb-3">
+                Search for products marked as add-ons to attach them.
+              </p>
+              {/* Search picker */}
+              <div className="relative mb-4">
+                <input
+                  type="text"
+                  value={addonSearch}
+                  onChange={(e) => searchAddonProducts(e.target.value)}
+                  onFocus={() => addonResults.length > 0 && setShowAddonDropdown(true)}
+                  placeholder="Search addon products..."
+                  className={inputClass}
+                />
+                {showAddonDropdown && addonResults.length > 0 && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setShowAddonDropdown(false)} />
+                    <div className="absolute left-0 right-0 top-full mt-1 z-20 bg-white rounded-lg shadow-xl border border-gray-100 max-h-48 overflow-y-auto">
+                      {addonResults.map((p) => (
+                        <button
+                          key={p._id}
+                          type="button"
+                          onClick={() => selectAddonProduct(p)}
+                          className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-50 flex items-center gap-3 transition-colors"
+                        >
+                          {p.images?.[0]?.url && (
+                            <img src={p.images[0].url} alt="" className="w-8 h-8 rounded object-cover" />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-[#1C2120] truncate">{p.name}</p>
+                            <p className="text-xs text-gray-500">&#8377; {p.pricing.currentPrice}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
+              {/* Selected addons */}
               {addons.length === 0 ? (
                 <p className="text-sm text-gray-400">
-                  No add-ons. Add extras like chocolates, greeting cards, etc.
+                  No add-ons selected. Search and pick addon products above.
                 </p>
               ) : (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {addons.map((a, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <input
-                        type="text"
-                        value={a.name}
-                        onChange={(e) =>
-                          updateAddon(index, "name", e.target.value)
-                        }
-                        placeholder="Add-on name"
-                        className={`${inputClass} flex-1`}
-                      />
-                      <input
-                        type="number"
-                        value={a.price}
-                        onChange={(e) =>
-                          updateAddon(index, "price", e.target.value)
-                        }
-                        placeholder="Price"
-                        min="0"
-                        step="0.01"
-                        className={`${inputClass} w-28`}
-                      />
+                    <div key={index} className="flex items-center gap-3 bg-gray-50 rounded-lg px-3 py-2">
+                      {a.image && (
+                        <img src={a.image} alt="" className="w-8 h-8 rounded object-cover shrink-0" />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-[#1C2120] truncate">{a.name}</p>
+                        <p className="text-xs text-gray-500">&#8377; {Number(a.price).toLocaleString()}</p>
+                      </div>
                       <button
                         type="button"
                         onClick={() => removeAddon(index)}
-                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors shrink-0"
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4 4L12 12M4 12L12 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       </button>
                     </div>
                   ))}
@@ -800,6 +799,27 @@ export default function EditProductPage({
                     <span
                       className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
                         isFeatured ? "translate-x-6" : "translate-x-1"
+                      }`}
+                    />
+                  </button>
+                </label>
+                <label className="flex items-center justify-between cursor-pointer">
+                  <div>
+                    <span className="text-sm text-[#464646]">Addon Product</span>
+                    <p className="text-[10px] text-gray-400">Can be selected as add-on for other products</p>
+                  </div>
+                  <button
+                    type="button"
+                    role="switch"
+                    aria-checked={isAddon}
+                    onClick={() => setIsAddon(!isAddon)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      isAddon ? "bg-amber-500" : "bg-gray-200"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        isAddon ? "translate-x-6" : "translate-x-1"
                       }`}
                     />
                   </button>

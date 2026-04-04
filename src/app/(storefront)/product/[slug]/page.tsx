@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { connectDB } from "@/lib/db";
 import Product, { IProduct } from "@/models/Product";
 import "@/models/Category"; // Ensure Category schema is registered for populate
+import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import ProductDetail from "@/components/ProductDetail";
 
 type Props = {
@@ -79,10 +80,15 @@ export default async function ProductPage({ params }: Props) {
         .lean()
     : [];
 
+  // Apply active sales
+  const activeSales = await getActiveSales();
+  const saleInfo = applyActiveSale(product as unknown as Parameters<typeof applyActiveSale>[0], activeSales);
+
   return (
     <ProductDetail
       product={JSON.parse(JSON.stringify(product))}
       similarProducts={JSON.parse(JSON.stringify(similarProducts))}
+      saleInfo={saleInfo}
     />
   );
 }

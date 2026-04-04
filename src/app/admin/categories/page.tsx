@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  type DropResult,
+} from "@hello-pangea/dnd";
 import Modal from "@/components/admin/shared/Modal";
 import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
@@ -37,6 +43,12 @@ export default function CategoriesPage() {
   const [form, setForm] = useState(defaultForm);
   const [saving, setSaving] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<CategoryItem | null>(null);
+  const [reorderMode, setReorderMode] = useState(false);
+  const [reorderList, setReorderList] = useState<CategoryItem[]>([]);
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">(
+    "idle"
+  );
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fetchCategories = useCallback(async () => {
     try {
@@ -54,6 +66,13 @@ export default function CategoriesPage() {
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
+
+  // Sync reorderList when entering reorder mode or when categories change while in reorder mode
+  useEffect(() => {
+    if (reorderMode) {
+      setReorderList([...categories].sort((a, b) => a.order - b.order));
+    }
+  }, [reorderMode, categories]);
 
   function openAddModal() {
     setEditingId(null);
@@ -136,8 +155,84 @@ export default function CategoriesPage() {
     }
   }
 
+  // --- Reorder helpers ---
+
+  async function saveReorder(list: CategoryItem[]) {
+    setSaveStatus("saving");
+    try {
+      const orderedIds = list.map((c) => c._id);
+      const res = await fetch("/api/admin/categories/reorder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderedIds }),
+      });
+
+      if (!res.ok) {
+        toast.error("Failed to save order");
+        setSaveStatus("idle");
+        return;
+      }
+
+      setSaveStatus("saved");
+
+      // Clear "Saved" after 2 seconds
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+      saveTimerRef.current = setTimeout(() => setSaveStatus("idle"), 2000);
+    } catch {
+      toast.error("Failed to save order");
+      setSaveStatus("idle");
+    }
+  }
+
+  function handleDragEnd(result: DropResult) {
+    if (!result.destination) return;
+
+    const srcIndex = result.source.index;
+    const destIndex = result.destination.index;
+    if (srcIndex === destIndex) return;
+
+    const updated = Array.from(reorderList);
+    const [moved] = updated.splice(srcIndex, 1);
+    updated.splice(destIndex, 0, moved);
+
+    // Update order values
+    const withOrder = updated.map((cat, i) => ({ ...cat, order: i }));
+    setReorderList(withOrder);
+    saveReorder(withOrder);
+  }
+
+  function handleOrderNumberChange(catId: string, newPosition: number) {
+    const currentIndex = reorderList.findIndex((c) => c._id === catId);
+    if (currentIndex === -1) return;
+
+    // Clamp position to valid range (1-based input, 0-based internal)
+    const targetIndex = Math.max(
+      0,
+      Math.min(reorderList.length - 1, newPosition - 1)
+    );
+    if (targetIndex === currentIndex) return;
+
+    const updated = Array.from(reorderList);
+    const [moved] = updated.splice(currentIndex, 1);
+    updated.splice(targetIndex, 0, moved);
+
+    const withOrder = updated.map((cat, i) => ({ ...cat, order: i }));
+    setReorderList(withOrder);
+    saveReorder(withOrder);
+  }
+
+  function exitReorderMode() {
+    setReorderMode(false);
+    setSaveStatus("idle");
+    // Refresh categories from server to get the saved order
+    fetchCategories();
+  }
+
   // Categories available as parent options (exclude self when editing)
   const parentOptions = categories.filter((c) => c._id !== editingId);
+
+  // Sort categories by order for the grid view
+  const sortedCategories = [...categories].sort((a, b) => a.order - b.order);
 
   return (
     <div className="space-y-6">
@@ -149,27 +244,74 @@ export default function CategoriesPage() {
             Manage your product categories
           </p>
         </div>
-        <button
-          onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#0E4D65] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9 3.75V14.25M3.75 9H14.25"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Add Category
-        </button>
+        <div className="flex items-center gap-3">
+          {!reorderMode ? (
+            <>
+              <button
+                onClick={() => setReorderMode(true)}
+                disabled={categories.length < 2}
+                className="px-4 py-2.5 bg-white text-[#0E4D65] text-sm font-medium rounded-lg border border-[#0E4D65] hover:bg-[#0E4D65]/5 transition-colors flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 4.5H15M6 9H15M6 13.5H15M3 4.5H3.0075M3 9H3.0075M3 13.5H3.0075"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Reorder
+              </button>
+              <button
+                onClick={openAddModal}
+                className="px-4 py-2.5 bg-[#0E4D65] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 3.75V14.25M3.75 9H14.25"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Add Category
+              </button>
+            </>
+          ) : (
+            <div className="flex items-center gap-3">
+              {saveStatus === "saving" && (
+                <span className="text-xs text-gray-500 animate-pulse">
+                  Saving...
+                </span>
+              )}
+              {saveStatus === "saved" && (
+                <span className="text-xs text-green-600 font-medium">
+                  Saved
+                </span>
+              )}
+              <button
+                onClick={exitReorderMode}
+                className="px-4 py-2.5 bg-[#0E4D65] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors"
+              >
+                Done
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Content */}
@@ -181,9 +323,146 @@ export default function CategoriesPage() {
           description="Create your first category to organize your products."
           action={{ label: "Add Category", onClick: openAddModal }}
         />
+      ) : reorderMode ? (
+        /* ---- Reorder List View ---- */
+        <div className="bg-white rounded-xl border border-gray-100">
+          <div className="px-5 py-3 border-b border-gray-100">
+            <p className="text-xs text-gray-500">
+              Drag categories to reorder, or type a position number. Changes are
+              saved automatically.
+            </p>
+          </div>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId="categories-list">
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  className="divide-y divide-gray-50"
+                >
+                  {reorderList.map((cat, index) => (
+                    <Draggable
+                      key={cat._id}
+                      draggableId={cat._id}
+                      index={index}
+                    >
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          className={`flex items-center gap-4 px-5 py-3 transition-colors ${
+                            snapshot.isDragging
+                              ? "bg-[#0E4D65]/5 shadow-lg rounded-lg"
+                              : "bg-white hover:bg-gray-50/50"
+                          }`}
+                        >
+                          {/* Drag handle */}
+                          <div
+                            {...provided.dragHandleProps}
+                            className="flex-shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 transition-colors"
+                          >
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle cx="7.5" cy="4.5" r="1.5" />
+                              <circle cx="12.5" cy="4.5" r="1.5" />
+                              <circle cx="7.5" cy="10" r="1.5" />
+                              <circle cx="12.5" cy="10" r="1.5" />
+                              <circle cx="7.5" cy="15.5" r="1.5" />
+                              <circle cx="12.5" cy="15.5" r="1.5" />
+                            </svg>
+                          </div>
+
+                          {/* Thumbnail */}
+                          <div className="flex-shrink-0">
+                            {cat.image ? (
+                              <img
+                                src={cat.image}
+                                alt={cat.name}
+                                className="w-10 h-10 rounded-lg object-cover"
+                              />
+                            ) : (
+                              <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
+                                <svg
+                                  width="18"
+                                  height="18"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M4 16L8.586 11.414C9.367 10.633 10.633 10.633 11.414 11.414L16 16M14 14L15.586 12.414C16.367 11.633 17.633 11.633 18.414 12.414L20 14M14 8H14.01M6 20H18C19.105 20 20 19.105 20 18V6C20 4.895 19.105 4 18 4H6C4.895 4 4 4.895 4 6V18C4 19.105 4.895 20 6 20Z"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Name and parent */}
+                          <div className="flex-1 min-w-0">
+                            <span className="font-medium text-sm text-[#1C2120] truncate block">
+                              {cat.name}
+                            </span>
+                            {cat.parent && (
+                              <span className="text-xs text-gray-400">
+                                in {cat.parent.name}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Product count */}
+                          <span className="text-xs text-gray-500 flex-shrink-0">
+                            {cat.productCount} products
+                          </span>
+
+                          {/* Order number input */}
+                          <input
+                            type="number"
+                            min={1}
+                            max={reorderList.length}
+                            defaultValue={index + 1}
+                            key={`${cat._id}-${index}`}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                const val = parseInt(
+                                  (e.target as HTMLInputElement).value,
+                                  10
+                                );
+                                if (!isNaN(val)) {
+                                  handleOrderNumberChange(cat._id, val);
+                                }
+                              }
+                            }}
+                            onBlur={(e) => {
+                              const val = parseInt(e.target.value, 10);
+                              if (!isNaN(val)) {
+                                handleOrderNumberChange(cat._id, val);
+                              }
+                            }}
+                            className="w-[60px] flex-shrink-0 border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-center text-gray-700 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
       ) : (
+        /* ---- Grid View (existing) ---- */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((cat) => (
+          {sortedCategories.map((cat) => (
             <div
               key={cat._id}
               className="bg-white rounded-xl border border-gray-100 p-5 flex gap-4 hover:shadow-sm transition-shadow"
