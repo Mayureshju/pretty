@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "floristaindia.com",
+      },
+      {
+        protocol: "http",
+        hostname: "floristaindia.com",
+      },
+      {
+        protocol: "https",
         hostname: "**.floristaindia.com",
       },
       {
