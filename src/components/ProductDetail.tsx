@@ -158,7 +158,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     <>
       {/* Breadcrumb */}
       <div className="bg-[#f5f7fa] border-b border-gray-100">
-        <div className="max-w-[1320px] mx-auto px-4 py-3">
+        <div className="max-w-[1440px] mx-auto px-4 py-3">
           <nav className="flex items-center text-xs md:text-sm text-[#888] flex-wrap gap-1">
             <Link href="/" className="text-[#737530] hover:underline">Home</Link>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
@@ -190,7 +190,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
       </div>
 
       {/* Main Product Section */}
-      <div className="max-w-[1320px] mx-auto px-4 py-6 md:py-8">
+      <div className="max-w-[1440px] mx-auto px-4 py-6 md:py-8">
         <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
 
           {/* LEFT: Image Gallery */}
@@ -464,7 +464,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
 
       {/* Sticky Bottom Bar */}
       <div className="sticky bottom-0 z-40 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-        <div className="max-w-[1320px] mx-auto px-4 py-3 flex items-center gap-3">
+        <div className="max-w-[1440px] mx-auto px-4 py-3 flex items-center gap-3">
           <button className="flex-1 py-3 rounded-lg border-2 border-[#737530] text-[#737530] text-sm md:text-base font-semibold transition-colors hover:bg-[#737530]/5 cursor-pointer">
             ADD TO CART
           </button>

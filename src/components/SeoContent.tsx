@@ -6,7 +6,7 @@ export default function SeoContent() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="max-w-[1320px] mx-auto px-4 py-6 md:py-8">
+    <section className="max-w-[1440px] mx-auto px-4 py-6 md:py-8">
       <h1 className="text-base md:text-lg font-semibold text-[#1C2120] mb-3">
         Pretty Petals: Send Flowers, Cakes, Gifts &amp; Plants Online Across India
       </h1>

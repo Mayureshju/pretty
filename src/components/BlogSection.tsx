@@ -61,7 +61,7 @@ export default function BlogSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-14">
+    <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-14">
       <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-5">
         From Our Blog
       </h2>

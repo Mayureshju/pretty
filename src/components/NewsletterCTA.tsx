@@ -39,7 +39,7 @@ export default function NewsletterCTA() {
   }
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-14">
+    <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-14">
       <div className="bg-[#F7F8F1] rounded-xl px-4 py-10 md:py-14">
         <div className="max-w-md mx-auto text-center" ref={contentRef}>
           <h2 className="text-lg md:text-xl font-semibold text-[#1C2120]">

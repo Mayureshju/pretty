@@ -155,7 +155,7 @@ export default function BestSellers() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-16">
+    <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-16">
       {/* Header */}
       <div ref={headerRef} className="flex items-start justify-between mb-6 md:mb-8">
         <div>

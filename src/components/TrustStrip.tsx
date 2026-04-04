@@ -34,7 +34,7 @@ export default function TrustStrip() {
       ref={stripRef}
       className="border-y border-[#E5E5E5]"
     >
-      <div className="max-w-[1320px] mx-auto px-4 py-3 flex items-center justify-center gap-1.5">
+      <div className="max-w-[1440px] mx-auto px-4 py-3 flex items-center justify-center gap-1.5">
         <svg
           width="14"
           height="14"

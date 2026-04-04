@@ -243,7 +243,7 @@ export default function FlowerListing() {
   };
 
   return (
-    <div className="max-w-[1320px] mx-auto px-4">
+    <div className="max-w-[1440px] mx-auto px-4">
       {/* Page Header */}
       <div ref={headerRef} className="py-5 md:py-6">
         <h1 className="text-xl md:text-2xl font-semibold text-[#1C2120]">

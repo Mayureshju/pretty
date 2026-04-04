@@ -92,7 +92,7 @@ export default function CategoryCards() {
   const section2Ref = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="max-w-[1320px] mx-auto px-4 py-8 md:py-12 space-y-10">
+    <section className="max-w-[1440px] mx-auto px-4 py-8 md:py-12 space-y-10">
       <CategoryRow title="Fresh Cakes & More" items={cakeItems} sectionRef={section1Ref} />
       <CategoryRow title="Gift Something Special" items={giftItems} sectionRef={section2Ref} />
     </section>

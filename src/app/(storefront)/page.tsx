@@ -1,5 +1,6 @@
 import HeroBanner from "@/components/HeroBanner";
 import Categories from "@/components/Categories";
+import FlowerTypes from "@/components/FlowerTypes";
 import TrustStrip from "@/components/TrustStrip";
 import OccasionsSection from "@/components/OccasionsSection";
 import BestSellers from "@/components/BestSellers";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <HeroBanner />
       <Categories />
+      <FlowerTypes />
       <TrustStrip />
       <OccasionsSection />
       <BestSellers />

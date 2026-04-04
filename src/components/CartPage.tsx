@@ -85,7 +85,7 @@ export default function CartPage() {
   /* ── Empty Cart ── */
   if (cartItems.length === 0) {
     return (
-      <div className="max-w-[1320px] mx-auto px-4 py-10">
+      <div className="max-w-[1440px] mx-auto px-4 py-10">
         <div ref={emptyRef} className="flex flex-col items-center text-center py-10">
           {/* Illustration */}
           <div className="w-[260px] h-[260px] md:w-[320px] md:h-[320px] mb-6">
@@ -156,7 +156,7 @@ export default function CartPage() {
 
   /* ── Cart with Items ── */
   return (
-    <div className="max-w-[1320px] mx-auto px-4 py-6 md:py-8" ref={containerRef}>
+    <div className="max-w-[1440px] mx-auto px-4 py-6 md:py-8" ref={containerRef}>
       {/* Savings banner */}
       {totalSaved > 0 && (
         <div className="bg-[#E8F5E9] border border-[#A5D6A7] rounded-lg px-4 py-2.5 mb-5 text-center">

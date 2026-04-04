@@ -112,7 +112,7 @@ export default function CategoryPage({
   };
 
   return (
-    <div className="max-w-[1320px] mx-auto px-4">
+    <div className="max-w-[1440px] mx-auto px-4">
       {/* Page Header */}
       <div ref={headerRef} className="py-5 md:py-6">
         {/* Breadcrumb */}

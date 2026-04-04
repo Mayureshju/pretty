@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white border-b border-gray-100" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-4 h-[60px] md:h-[66px]">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 h-[60px] md:h-[66px]">
           {/* Logo */}
           <a href="/" className="shrink-0">
             <Image

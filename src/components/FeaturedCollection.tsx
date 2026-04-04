@@ -77,7 +77,7 @@ export default function FeaturedCollection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-16">
+    <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-16">
       <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-4 md:mb-6">
         Explore Our Collections
       </h2>

@@ -342,7 +342,7 @@ export default function HeroBanner() {
       <FloatingPetals />
 
       {/* Content Layer */}
-      <div className="relative z-20 h-full max-w-[1320px] mx-auto px-6 sm:px-10 flex items-center">
+      <div className="relative z-20 h-full max-w-[1440px] mx-auto px-6 sm:px-10 flex items-center">
         {banners.map((b, idx) => (
           <div
             key={b.id}

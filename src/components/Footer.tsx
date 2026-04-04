@@ -30,7 +30,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="mt-6 md:mt-8" style={{ backgroundColor: "var(--bg-section)" }}>
-      <div className="max-w-[1320px] mx-auto px-4 py-8 md:py-10">
+      <div className="max-w-[1440px] mx-auto px-4 py-8 md:py-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8">
           {/* Column 1 */}
           <ul className="space-y-2.5">
@@ -125,7 +125,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[#e5e7eb]">
-        <div className="max-w-[1320px] mx-auto px-4 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[1440px] mx-auto px-4 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <span className="text-sm font-bold text-[#737530] tracking-wider">
               PRETTY PETALS

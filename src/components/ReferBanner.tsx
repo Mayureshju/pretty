@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ReferBanner() {
   return (
-    <section className="max-w-[1320px] mx-auto px-4 py-4 md:py-6">
+    <section className="max-w-[1440px] mx-auto px-4 py-4 md:py-6">
       <div className="w-full rounded-xl bg-[#F2F3E8] px-6 sm:px-8 py-6 md:py-8 flex items-center justify-between">
         <div>
           <h3 className="text-xl font-semibold text-[#1C2120]">

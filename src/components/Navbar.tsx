@@ -255,7 +255,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-[#e5e7eb] sticky top-[60px] md:top-[66px] z-40 hidden md:block">
-      <div className="max-w-[1320px] mx-auto px-4">
+      <div className="max-w-[1440px] mx-auto px-4">
         <ul className="flex items-center justify-start overflow-x-auto scroll-container">
           {navItems.map((item) => {
             const hasMenu = !!megaMenus[item.label];
@@ -291,7 +291,7 @@ export default function Navbar() {
           className="absolute left-0 right-0 z-50 bg-white border-b border-gray-200"
           style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.1)" }}
         >
-          <div className="max-w-[1320px] mx-auto px-4 py-5">
+          <div className="max-w-[1440px] mx-auto px-4 py-5">
             <div
               className="grid gap-6"
               style={{
