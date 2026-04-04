@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -43,33 +44,16 @@ export default function BlogSection() {
     const cards = cardsRef.current.filter(Boolean);
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 40 },
+      { opacity: 0, y: 24 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.55,
+        duration: 0.5,
         stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
+        ease: "power2.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
       }
     );
-
-    // Image zoom on hover
-    cards.forEach((card) => {
-      if (!card) return;
-      const img = card.querySelector("img");
-      if (!img) return;
-
-      card.addEventListener("mouseenter", () => {
-        gsap.to(img, { scale: 1.06, duration: 0.5, ease: "power2.out" });
-      });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(img, { scale: 1, duration: 0.5, ease: "power2.inOut" });
-      });
-    });
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -77,42 +61,40 @@ export default function BlogSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
-      <h2 className="text-xl md:text-2xl font-semibold text-[#1C2120] mb-5 md:mb-6">
-        Related Blog
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-14">
+      <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-5">
+        From Our Blog
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
         {blogs.map((blog, i) => (
-          <a
+          <Link
             key={blog.id}
             href={blog.href}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="bg-white rounded-xl border border-[#eee] overflow-hidden transition-shadow hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] group block"
+            className="group rounded-xl border border-[#E8E8E8] overflow-hidden block"
           >
-            {/* Blog Image */}
-            <div className="w-full h-[180px] md:h-[200px] overflow-hidden">
+            <div className="aspect-[16/9] overflow-hidden">
               <img
                 src={blog.image}
                 alt={blog.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
 
-            {/* Blog Content */}
             <div className="p-4">
-              <h3 className="text-sm font-semibold text-[#1C2120] leading-snug mb-2 line-clamp-2 group-hover:text-[#C48B9F] transition-colors">
+              <h3 className="text-[14px] font-semibold text-[#1C2120] leading-snug line-clamp-2 group-hover:text-[#737530] transition-colors">
                 {blog.title}
               </h3>
-              <p className="text-xs text-[#888] leading-relaxed mb-3 line-clamp-3">
+              <p className="mt-1.5 text-[12px] text-[#939393] leading-relaxed line-clamp-2">
                 {blog.excerpt}
               </p>
-              <span className="text-xs font-medium text-[#C48B9F]">
-                Read More...
+              <span className="inline-block mt-3 text-[13px] font-medium text-[#737530]">
+                Read More &rarr;
               </span>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </section>

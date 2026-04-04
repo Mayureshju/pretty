@@ -25,87 +25,74 @@ export default function Categories() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    if (headingRef.current) {
+    const ctx = gsap.context(() => {
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 12 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 88%",
+            },
+          }
+        );
+      }
+
+      const items = itemsRef.current.filter(Boolean);
       gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 15 },
+        items,
+        { opacity: 0, y: 16 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.5,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 88%",
+            start: "top 82%",
           },
         }
       );
-    }
+    }, sectionRef);
 
-    const items = itemsRef.current.filter(Boolean);
-    gsap.fromTo(
-      items,
-      { opacity: 0, y: 25 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.06,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-        },
-      }
-    );
-
-    items.forEach((item) => {
-      if (!item) return;
-      const img = item.querySelector("picture");
-      if (!img) return;
-
-      item.addEventListener("mouseenter", () => {
-        gsap.to(img, { scale: 1.06, duration: 0.4, ease: "power2.out" });
-      });
-      item.addEventListener("mouseleave", () => {
-        gsap.to(img, { scale: 1, duration: 0.4, ease: "power2.inOut" });
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-8 md:py-12">
       <h2
         ref={headingRef}
-        className="font-serif text-[22px] md:text-[28px] font-semibold text-center tracking-wide text-text-dark mb-6 md:mb-8"
+        className="text-lg md:text-xl font-semibold text-[#1C2120] mb-4 md:mb-5"
       >
-        Categories
+        Shop by Category
       </h2>
 
-      <div className="grid grid-cols-4 md:grid-cols-8 gap-3 md:gap-6">
+      <div className="flex gap-4 overflow-x-auto pb-2 scroll-container md:grid md:grid-cols-8 md:gap-6 md:overflow-visible md:pb-0">
         {categories.map((cat, i) => (
           <a
             key={cat.name}
             href={cat.href}
             ref={(el) => { itemsRef.current[i] = el; }}
-            className="flex flex-col items-center gap-2 md:gap-2.5 group"
+            className="flex flex-col items-center gap-2 group shrink-0"
           >
-            <div className="w-full aspect-square overflow-hidden rounded-lg md:rounded-xl bg-bg-light">
-              <picture className="block w-full h-full transition-transform duration-300">
+            <div className="w-[80px] h-[80px] md:w-[90px] md:h-[90px] overflow-hidden rounded-full bg-[#F5F5F5]">
+              <picture className="block w-full h-full">
                 <source media="(min-width: 768px)" srcSet={cat.image} />
                 <img
                   src={cat.mobileImage}
                   alt={cat.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
               </picture>
             </div>
-            <span className="font-sans text-[13px] md:text-[14px] font-medium tracking-[0.01em] text-text-dark text-center leading-tight transition-colors duration-200 group-hover:text-primary">
+            <span className="text-[13px] font-medium text-[#1C2120] text-center leading-tight transition-colors duration-200 group-hover:text-[#737530]">
               {cat.name}
             </span>
           </a>

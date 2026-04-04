@@ -36,7 +36,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {footerLinks.column1.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -47,7 +47,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {footerLinks.column2.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -58,7 +58,7 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {footerLinks.column3.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors">
+                <a href={link.href} className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -127,7 +127,7 @@ export default function Footer() {
       <div className="border-t border-[#e5e7eb]">
         <div className="max-w-[1320px] mx-auto px-4 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-bold text-[#C48B9F] tracking-wider">
+            <span className="text-sm font-bold text-[#737530] tracking-wider">
               PRETTY PETALS
             </span>
             <span className="text-xs text-[#999]">

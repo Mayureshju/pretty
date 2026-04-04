@@ -200,7 +200,7 @@ export default function DeliveryCitiesPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+          className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
         >
           <svg
             width="18"
@@ -306,7 +306,7 @@ export default function DeliveryCitiesPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(city)}
-                          className="text-xs font-medium text-[#C48B9F] hover:text-[#0A3A4D] transition-colors"
+                          className="text-xs font-medium text-[#737530] hover:text-[#0A3A4D] transition-colors"
                         >
                           Edit
                         </button>
@@ -350,7 +350,7 @@ export default function DeliveryCitiesPage() {
                   )
               }
               disabled={saving}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#C48B9F] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#737530] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : editingId ? "Update" : "Create"}
             </button>
@@ -373,7 +373,7 @@ export default function DeliveryCitiesPage() {
               onChange={(e) => setForm({ ...form, city: e.target.value })}
               placeholder="e.g. Mumbai"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -387,7 +387,7 @@ export default function DeliveryCitiesPage() {
               value={form.state}
               onChange={(e) => setForm({ ...form, state: e.target.value })}
               placeholder="e.g. Maharashtra"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -407,7 +407,7 @@ export default function DeliveryCitiesPage() {
                   })
                 }
                 min={0}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -422,7 +422,7 @@ export default function DeliveryCitiesPage() {
                 }
                 min={0}
                 placeholder="Optional"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -439,7 +439,7 @@ export default function DeliveryCitiesPage() {
                 setForm({ ...form, estimatedTime: e.target.value })
               }
               placeholder="e.g. 2-4 hours"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -454,7 +454,7 @@ export default function DeliveryCitiesPage() {
               onChange={(e) =>
                 setForm({ ...form, cutoffTime: e.target.value })
               }
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
             <p className="text-xs text-gray-400 mt-1">
               Orders after this time cannot select today for delivery
@@ -473,7 +473,7 @@ export default function DeliveryCitiesPage() {
                 onChange={(e) =>
                   setForm({ ...form, newBlockedDate: e.target.value })
                 }
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors flex-1"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors flex-1"
               />
               <button
                 type="button"
@@ -492,7 +492,7 @@ export default function DeliveryCitiesPage() {
                     });
                   }
                 }}
-                className="px-3 py-2.5 text-sm font-medium bg-[#C48B9F] text-white rounded-lg hover:bg-[#A87389] transition-colors"
+                className="px-3 py-2.5 text-sm font-medium bg-[#737530] text-white rounded-lg hover:bg-[#4C4D27] transition-colors"
               >
                 Add
               </button>
@@ -582,7 +582,7 @@ export default function DeliveryCitiesPage() {
               }
               rows={4}
               placeholder={"400001\n400002\n400003"}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors resize-none font-mono"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none font-mono"
             />
           </div>
         </form>

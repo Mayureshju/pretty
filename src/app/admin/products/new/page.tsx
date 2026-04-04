@@ -32,7 +32,7 @@ interface ImageRow {
 }
 
 const inputClass =
-  "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 outline-none transition-colors";
+  "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 outline-none transition-colors";
 const labelClass = "text-sm font-medium text-[#464646] mb-1.5 block";
 const cardClass = "bg-white rounded-xl border border-gray-100 p-6";
 
@@ -251,7 +251,7 @@ export default function NewProductPage() {
         <div>
           <Link
             href="/admin/products"
-            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#C48B9F] transition-colors mb-2"
+            className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#737530] transition-colors mb-2"
           >
             <svg
               width="16"
@@ -387,7 +387,7 @@ export default function NewProductPage() {
                 <button
                   type="button"
                   onClick={addImage}
-                  className="inline-flex items-center gap-1 text-sm text-[#C48B9F] hover:text-[#A87389] font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-[#737530] hover:text-[#4C4D27] font-medium transition-colors"
                 >
                   <svg
                     width="16"
@@ -472,7 +472,7 @@ export default function NewProductPage() {
                 <button
                   type="button"
                   onClick={addVariant}
-                  className="inline-flex items-center gap-1 text-sm text-[#C48B9F] hover:text-[#A87389] font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-sm text-[#737530] hover:text-[#4C4D27] font-medium transition-colors"
                 >
                   <svg
                     width="16"
@@ -662,7 +662,7 @@ export default function NewProductPage() {
                     aria-checked={isActive}
                     onClick={() => setIsActive(!isActive)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      isActive ? "bg-[#C48B9F]" : "bg-gray-200"
+                      isActive ? "bg-[#737530]" : "bg-gray-200"
                     }`}
                   >
                     <span
@@ -680,7 +680,7 @@ export default function NewProductPage() {
                     aria-checked={isFeatured}
                     onClick={() => setIsFeatured(!isFeatured)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      isFeatured ? "bg-[#C48B9F]" : "bg-gray-200"
+                      isFeatured ? "bg-[#737530]" : "bg-gray-200"
                     }`}
                   >
                     <span
@@ -732,7 +732,7 @@ export default function NewProductPage() {
                           setSelectedCategories(selectedCategories.filter(id => id !== cat._id));
                         }
                       }}
-                      className="w-4 h-4 rounded border-gray-300 text-[#C48B9F] focus:ring-[#C48B9F]"
+                      className="w-4 h-4 rounded border-gray-300 text-[#737530] focus:ring-[#737530]"
                     />
                     <span className="text-sm text-[#464646]">{cat.name}</span>
                   </label>
@@ -785,7 +785,7 @@ export default function NewProductPage() {
             <button
               type="submit"
               disabled={saving}
-              className="bg-[#C48B9F] hover:bg-[#A87389] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-[#737530] hover:bg-[#4C4D27] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {saving ? "Saving..." : "Save Product"}
             </button>

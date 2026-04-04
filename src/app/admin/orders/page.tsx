@@ -134,7 +134,7 @@ export default function OrdersPage() {
           <select
             value={statusFilter}
             onChange={(e) => handleStatusChange(e.target.value)}
-            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
           >
             {ORDER_STATUSES.map((s) => (
               <option key={s.value} value={s.value}>
@@ -150,7 +150,7 @@ export default function OrdersPage() {
                 setDateFrom(e.target.value);
                 setPage(1);
               }}
-              className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
             <span className="text-gray-400 text-sm">to</span>
             <input
@@ -160,7 +160,7 @@ export default function OrdersPage() {
                 setDateTo(e.target.value);
                 setPage(1);
               }}
-              className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function OrdersPage() {
                     <td className="px-4 py-3">
                       <Link
                         href={`/admin/orders/${order._id}`}
-                        className="font-medium text-[#C48B9F] hover:underline"
+                        className="font-medium text-[#737530] hover:underline"
                       >
                         {order.orderNumber}
                       </Link>

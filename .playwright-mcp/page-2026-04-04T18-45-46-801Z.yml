@@ -1,0 +1,1693 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - main [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e11] [cursor=pointer]:
+          - img "location-icon" [ref=e12]
+          - generic [ref=e13]:
+            - generic [ref=e15]: Where to deliver?
+            - generic [ref=e17]:
+              - generic [ref=e18]: Location missing
+              - img "down_red_arrow" [ref=e19]
+        - generic [ref=e20]:
+          - link "desktop icons Same Day" [ref=e21] [cursor=pointer]:
+            - /url: /same-day-delivery-gifts-lp
+            - generic [ref=e22]:
+              - img "desktop icons" [ref=e23]
+              - generic [ref=e24]: Same Day
+          - button "INR" [ref=e27] [cursor=pointer]:
+            - img "INR" [ref=e29]
+            - generic [ref=e30]: INR
+          - link "desktop icons Corporate" [ref=e31] [cursor=pointer]:
+            - /url: /corporate/?promo=corporate_enquiry
+            - generic [ref=e32]:
+              - img "desktop icons" [ref=e33]
+              - generic [ref=e34]: Corporate
+          - button "Cart" [ref=e37] [cursor=pointer]:
+            - img "Cart" [ref=e39]
+            - generic [ref=e40]: Cart
+          - button "Hi Guest" [ref=e43] [cursor=pointer]:
+            - img "Hi Guest" [ref=e45]
+            - generic [ref=e46]: Hi Guest
+          - button "More" [ref=e49] [cursor=pointer]:
+            - img "More" [ref=e51]
+            - generic [ref=e52]: More
+      - generic [ref=e53]:
+        - generic [ref=e58]:
+          - generic:
+            - generic:
+              - img "search-bar-icon"
+          - textbox "search_bar" [ref=e59]:
+            - /placeholder: Birthday Gifts
+          - img "search icons" [ref=e62] [cursor=pointer]
+        - generic [ref=e64]:
+          - generic [ref=e66]:
+            - link "Birthday" [ref=e69] [cursor=pointer]:
+              - /url: /gifts/birthday-lp?promo=desk_top_banner_pos_1a
+              - img "Birthday" [ref=e70]
+            - link "Back to School" [ref=e73] [cursor=pointer]:
+              - /url: /back-to-school-lp?promo=desk_top_banner_pos_1
+              - img "Back to School" [ref=e74]
+            - link "Easter" [ref=e77] [cursor=pointer]:
+              - /url: /gifts/easter-lp?promo=desk_top_banner_pos_1i
+              - img "Easter" [ref=e78]
+            - link [ref=e81] [cursor=pointer]:
+              - /url: /gifts/anniversary-lp?promo=desk_top_banner_pos_1f
+              - img [ref=e82]
+            - link [ref=e85] [cursor=pointer]:
+              - /url: /cakes-lp?promo=desk_top_banner_pos_1d
+              - img [ref=e86]
+            - link [ref=e89] [cursor=pointer]:
+              - /url: /all-flowers-lp?promo=desk_top_banner_pos_1c_micro
+              - img [ref=e90]
+            - link [ref=e93] [cursor=pointer]:
+              - /url: /gifts/congratulations-lp?promo=desk_top_banner_pos_1b
+              - img [ref=e94]
+          - img "right arrow" [ref=e96] [cursor=pointer]
+        - list [ref=e98]:
+          - listitem [ref=e99]:
+            - link "Birthday Birthday" [ref=e100] [cursor=pointer]:
+              - /url: /gifts/birthday-lp?promo=desk_top_icon_pos_3
+              - generic [ref=e101]:
+                - img "Birthday" [ref=e103]
+                - generic [ref=e104]: Birthday
+          - listitem [ref=e105]:
+            - link "Anniversary Anniversary" [ref=e106] [cursor=pointer]:
+              - /url: /gifts/anniversary-lp?promo=desk_top_icon_pos_1
+              - generic [ref=e107]:
+                - img "Anniversary" [ref=e109]
+                - generic [ref=e110]: Anniversary
+          - listitem [ref=e111]:
+            - link "Easter Easter" [ref=e112] [cursor=pointer]:
+              - /url: /gifts/easter-lp?promo=desk_top_icon_pos_7
+              - generic [ref=e113]:
+                - img "Easter" [ref=e115]
+                - generic [ref=e116]: Easter
+          - listitem [ref=e117]:
+            - link "Get Same Day Get Same Day" [ref=e118] [cursor=pointer]:
+              - /url: /same-day-delivery-gifts-lp?promo=desk_top_icon_pos_4
+              - generic [ref=e119]:
+                - img "Get Same Day" [ref=e121]
+                - generic [ref=e122]: Get Same Day
+          - listitem [ref=e123]:
+            - link "FNP Luxe FNP Luxe" [ref=e124] [cursor=pointer]:
+              - /url: /fnpluxe-lp?promo=desk_top_icon_pos_2_micro
+              - generic [ref=e125]:
+                - img "FNP Luxe" [ref=e127]
+                - generic [ref=e128]: FNP Luxe
+          - listitem [ref=e129]:
+            - link "Flowers Flowers" [ref=e130] [cursor=pointer]:
+              - /url: /flowers-lp?promo=desk_top_icon_pos_5
+              - generic [ref=e131]:
+                - img "Flowers" [ref=e133]
+                - generic [ref=e134]: Flowers
+          - listitem [ref=e135]:
+            - link "Back to School Back to School" [ref=e136] [cursor=pointer]:
+              - /url: /back-to-school-lp?promo=desk_top_icon_pos_0
+              - generic [ref=e137]:
+                - img "Back to School" [ref=e139]
+                - generic [ref=e140]: Back to School
+          - listitem [ref=e141]:
+            - link "Cakes Cakes" [ref=e142] [cursor=pointer]:
+              - /url: /cakes-lp?promo=desk_top_icon_pos_6
+              - generic [ref=e143]:
+                - img "Cakes" [ref=e145]
+                - generic [ref=e146]: Cakes
+          - listitem [ref=e147]:
+            - link "Personalised Personalised" [ref=e148] [cursor=pointer]:
+              - /url: /all-personalised-gifts-lp?promo=desk_top_icon_pos_8
+              - generic [ref=e149]:
+                - img "Personalised" [ref=e151]
+                - generic [ref=e152]: Personalised
+        - generic [ref=e153]:
+          - paragraph [ref=e154]: Pick Their Fav Flowers
+          - list [ref=e156]:
+            - listitem [ref=e157]:
+              - link "roses Roses" [ref=e158] [cursor=pointer]:
+                - /url: /roses-lp?promo=desk_hp_row3_pos_3
+                - generic [ref=e159]:
+                  - img "roses" [ref=e161]
+                  - generic [ref=e162]: Roses
+            - listitem [ref=e163]:
+              - link "Carnations Carnations" [ref=e164] [cursor=pointer]:
+                - /url: /carnations-lp?promo=desk_hp_row3_pos_5
+                - generic [ref=e165]:
+                  - img "Carnations" [ref=e167]
+                  - generic [ref=e168]: Carnations
+            - listitem [ref=e169]:
+              - link "orchids Orchids" [ref=e170] [cursor=pointer]:
+                - /url: /orchids-lp?promo=desk_hp_row3_pos_2
+                - generic [ref=e171]:
+                  - img "orchids" [ref=e173]
+                  - generic [ref=e174]: Orchids
+            - listitem [ref=e175]:
+              - link "Sunflowers Sunflowers" [ref=e176] [cursor=pointer]:
+                - /url: /sunflowers-lp?promo=desk_hp_row3_pos_4
+                - generic [ref=e177]:
+                  - img "Sunflowers" [ref=e179]
+                  - generic [ref=e180]: Sunflowers
+            - listitem [ref=e181]:
+              - link "gerberas Gerberas" [ref=e182] [cursor=pointer]:
+                - /url: /gerberas-lp?promo=desk_hp_row3_pos_1
+                - generic [ref=e183]:
+                  - img "gerberas" [ref=e185]
+                  - generic [ref=e186]: Gerberas
+            - listitem [ref=e187]:
+              - link "luxe Luxe" [ref=e188] [cursor=pointer]:
+                - /url: /fnpluxe-flowers-lp?promo=desk_hp_row3_pos_6
+                - generic [ref=e189]:
+                  - img "luxe" [ref=e191]
+                  - generic [ref=e192]: Luxe
+        - generic [ref=e194]:
+          - link [ref=e196] [cursor=pointer]:
+            - /url: /gifts/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_pos_0
+          - list [ref=e198]:
+            - listitem [ref=e199]:
+              - link "Flowers Flowers" [ref=e200] [cursor=pointer]:
+                - /url: /flowers/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_flowers_pos_1
+                - generic [ref=e201]:
+                  - img "Flowers" [ref=e203]
+                  - generic [ref=e204]: Flowers
+              - link "Gift Sets Gift Sets" [ref=e205] [cursor=pointer]:
+                - /url: /flowers-n-cakes/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_combos_pos_5
+                - generic [ref=e206]:
+                  - img "Gift Sets" [ref=e208]
+                  - generic [ref=e209]: Gift Sets
+            - listitem [ref=e210]:
+              - link "Cakes Cakes" [ref=e211] [cursor=pointer]:
+                - /url: /cakes/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_cakes_pos_2
+                - generic [ref=e212]:
+                  - img "Cakes" [ref=e214]
+                  - generic [ref=e215]: Cakes
+              - link "Hampers Hampers" [ref=e216] [cursor=pointer]:
+                - /url: /gift-hampers/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_hampers_pos_6
+                - generic [ref=e217]:
+                  - img "Hampers" [ref=e219]
+                  - generic [ref=e220]: Hampers
+            - listitem [ref=e221]:
+              - link "Personalised Personalised" [ref=e222] [cursor=pointer]:
+                - /url: /personalised-gifts/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_personalised_pos_3
+                - generic [ref=e223]:
+                  - img "Personalised" [ref=e225]
+                  - generic [ref=e226]: Personalised
+              - link "Balloon Decor Balloon Decor" [ref=e227] [cursor=pointer]:
+                - /url: /decoration-services/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_balloon-decor_pos_7
+                - generic [ref=e228]:
+                  - img "Balloon Decor" [ref=e230]
+                  - generic [ref=e231]: Balloon Decor
+            - listitem [ref=e232]:
+              - link "Plants Plants" [ref=e233] [cursor=pointer]:
+                - /url: /plants/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_plants_pos_4
+                - generic [ref=e234]:
+                  - img "Plants" [ref=e236]
+                  - generic [ref=e237]: Plants
+              - link "Bestsellers Bestsellers" [ref=e238] [cursor=pointer]:
+                - /url: /gifts-bestsellers/birthday-lp?promo=desk_fgc_hp_row101_birthday_fgc_bestsellers_pos_8
+                - generic [ref=e239]:
+                  - img "Bestsellers" [ref=e241]
+                  - generic [ref=e242]: Bestsellers
+        - generic [ref=e243]:
+          - paragraph [ref=e245]: Tailored For Your Occasions
+          - generic [ref=e246]:
+            - tablist [ref=e248]:
+              - tab "Birthday Birthday" [selected] [ref=e249] [cursor=pointer]:
+                - generic [ref=e250]:
+                  - img "Birthday" [ref=e251]
+                  - paragraph [ref=e252]: Birthday
+              - tab "Anniversary Anniversary" [ref=e253] [cursor=pointer]:
+                - generic [ref=e254]:
+                  - img "Anniversary" [ref=e255]
+                  - paragraph [ref=e256]: Anniversary
+              - tab "Love N Romance Love N Romance" [ref=e257] [cursor=pointer]:
+                - generic [ref=e258]:
+                  - img "Love N Romance" [ref=e259]
+                  - paragraph [ref=e260]: Love N Romance
+              - tab "Wedding Wedding" [ref=e261] [cursor=pointer]:
+                - generic [ref=e262]:
+                  - img "Wedding" [ref=e263]
+                  - paragraph [ref=e264]: Wedding
+              - tab "Congratulations Congratulations" [ref=e265] [cursor=pointer]:
+                - generic [ref=e266]:
+                  - img "Congratulations" [ref=e267]
+                  - paragraph [ref=e268]: Congratulations
+              - tab "Thank You Thank You" [ref=e269] [cursor=pointer]:
+                - generic [ref=e270]:
+                  - img "Thank You" [ref=e271]
+                  - paragraph [ref=e272]: Thank You
+            - generic [ref=e273]:
+              - region "Product carousel" [ref=e274]:
+                - generic [ref=e275]:
+                  - generic [ref=e277]:
+                    - link "Angelic Rose Bouquet N Black Forest Birthday Bliss 1 2 3 4 5 Angelic Rose Bouquet N Black Forest Birthday Bliss ₹ 899 ₹ 749 rating star 5 380" [ref=e282] [cursor=pointer]:
+                      - /url: /gift/angelic-rose-bouquet-n-black-forest-birthday-bliss?promo=desk_tfyo_birthday_pos_0
+                      - generic [ref=e283]:
+                        - generic [ref=e285]:
+                          - generic [ref=e287]:
+                            - img "Angelic Rose Bouquet N Black Forest Birthday Bliss" [ref=e290]
+                            - img [ref=e293]
+                            - img [ref=e296]
+                            - img [ref=e299]
+                            - img [ref=e302]
+                          - list [ref=e304]:
+                            - listitem [ref=e305]:
+                              - button "1" [ref=e306]
+                            - listitem [ref=e307]:
+                              - button "2" [ref=e308]
+                            - listitem [ref=e309]:
+                              - button "3" [ref=e310]
+                            - listitem [ref=e311]:
+                              - button "4" [ref=e312]
+                            - listitem [ref=e313]:
+                              - button "5" [ref=e314]
+                        - generic [ref=e315]:
+                          - generic [ref=e316]: Angelic Rose Bouquet N Black Forest Birthday Bliss
+                          - generic [ref=e317]:
+                            - generic [ref=e318]: ₹ 899
+                            - generic [ref=e319]: ₹ 749
+                          - generic [ref=e321]:
+                            - img "rating star" [ref=e322]
+                            - generic [ref=e323]: "5"
+                            - generic [ref=e325]: "380"
+                    - link "Golden Glow Sansevieria Birthday Planter 1 2 Golden Glow Sansevieria Birthday Planter ₹ 1,499 ₹ 849 PRICE DROP" [ref=e330] [cursor=pointer]:
+                      - /url: /gift/golden-glow-sansevieria-birthday-planter?promo=desk_tfyo_birthday_pos_1
+                      - generic [ref=e331]:
+                        - generic [ref=e333]:
+                          - generic [ref=e335]:
+                            - img "Golden Glow Sansevieria Birthday Planter" [ref=e338]
+                            - img [ref=e341]
+                          - list [ref=e343]:
+                            - listitem [ref=e344]:
+                              - button "1" [ref=e345]
+                            - listitem [ref=e346]:
+                              - button "2" [ref=e347]
+                        - generic [ref=e348]:
+                          - generic [ref=e349]: Golden Glow Sansevieria Birthday Planter
+                          - generic [ref=e350]:
+                            - generic [ref=e351]: ₹ 1,499
+                            - generic [ref=e352]: ₹ 849
+                          - status "PRICE DROP" [ref=e355]
+                    - link "Butterscotch Crunch Cake Half Kg 1 2 3 4 Butterscotch Crunch Cake Half Kg ₹ 775 ₹ 625" [ref=e360] [cursor=pointer]:
+                      - /url: /gift/butterscotch-crunch-cake-half-kg?promo=desk_tfyo_birthday_pos_2
+                      - generic [ref=e361]:
+                        - generic [ref=e363]:
+                          - generic [ref=e365]:
+                            - img "Butterscotch Crunch Cake Half Kg" [ref=e368]
+                            - img [ref=e371]
+                            - img [ref=e374]
+                            - img [ref=e377]
+                          - list [ref=e379]:
+                            - listitem [ref=e380]:
+                              - button "1" [ref=e381]
+                            - listitem [ref=e382]:
+                              - button "2" [ref=e383]
+                            - listitem [ref=e384]:
+                              - button "3" [ref=e385]
+                            - listitem [ref=e386]:
+                              - button "4" [ref=e387]
+                        - generic [ref=e388]:
+                          - generic [ref=e389]: Butterscotch Crunch Cake Half Kg
+                          - generic [ref=e390]:
+                            - generic [ref=e391]: ₹ 775
+                            - generic [ref=e392]: ₹ 625
+                    - link "syngonium plant online 1 2 3 4 5 6 Birthday Special Syngonium Plant ₹ 829 ₹ 529 Best Seller" [ref=e397] [cursor=pointer]:
+                      - /url: /gift/birthday-special-syngonium-plant?promo=desk_tfyo_birthday_pos_3
+                      - generic [ref=e398]:
+                        - generic [ref=e400]:
+                          - generic [ref=e402]:
+                            - img "syngonium plant online" [ref=e405]
+                            - img [ref=e408]
+                            - img [ref=e411]
+                            - img [ref=e414]
+                            - img [ref=e417]
+                            - img [ref=e420]
+                          - list [ref=e422]:
+                            - listitem [ref=e423]:
+                              - button "1" [ref=e424]
+                            - listitem [ref=e425]:
+                              - button "2" [ref=e426]
+                            - listitem [ref=e427]:
+                              - button "3" [ref=e428]
+                            - listitem [ref=e429]:
+                              - button "4" [ref=e430]
+                            - listitem [ref=e431]:
+                              - button "5" [ref=e432]
+                            - listitem [ref=e433]:
+                              - button "6" [ref=e434]
+                        - generic [ref=e435]:
+                          - generic [ref=e436]: Birthday Special Syngonium Plant
+                          - generic [ref=e437]:
+                            - generic [ref=e438]: ₹ 829
+                            - generic [ref=e439]: ₹ 529
+                          - status "Best Seller" [ref=e442]
+                    - link [ref=e447] [cursor=pointer]:
+                      - /url: /gift/bedazzled-orchids-n-roses-vase-arrangement?promo=desk_tfyo_birthday_pos_4
+                      - generic [ref=e448]:
+                        - generic [ref=e450]:
+                          - generic [ref=e452]:
+                            - img [ref=e455]
+                            - img [ref=e458]
+                            - img [ref=e461]
+                            - img [ref=e464]
+                            - img [ref=e467]
+                            - img [ref=e470]
+                            - img [ref=e473]
+                          - list [ref=e475]:
+                            - listitem [ref=e476]:
+                              - button [ref=e477]: "1"
+                            - listitem [ref=e478]:
+                              - button [ref=e479]: "2"
+                            - listitem [ref=e480]:
+                              - button [ref=e481]: "3"
+                            - listitem [ref=e482]:
+                              - button [ref=e483]: "4"
+                            - listitem [ref=e484]:
+                              - button [ref=e485]: "5"
+                            - listitem [ref=e486]:
+                              - button [ref=e487]: "6"
+                            - listitem [ref=e488]:
+                              - button [ref=e489]: "7"
+                        - generic [ref=e490]:
+                          - generic [ref=e491]: Bedazzled Orchids N Roses Vase Arrangement
+                          - generic [ref=e492]:
+                            - generic [ref=e493]: ₹ 1,849
+                            - generic [ref=e494]: ₹ 1,449
+                          - status [ref=e497]: Limited Stock
+                    - link [ref=e502] [cursor=pointer]:
+                      - /url: /gift/birthday-celebration-mugs?promo=desk_tfyo_birthday_pos_5
+                      - generic [ref=e503]:
+                        - generic [ref=e505]:
+                          - generic [ref=e507]:
+                            - img [ref=e510]
+                            - img [ref=e513]
+                            - img [ref=e516]
+                            - img [ref=e519]
+                          - list [ref=e521]:
+                            - listitem [ref=e522]:
+                              - button [ref=e523]: "1"
+                            - listitem [ref=e524]:
+                              - button [ref=e525]: "2"
+                            - listitem [ref=e526]:
+                              - button [ref=e527]: "3"
+                            - listitem [ref=e528]:
+                              - button [ref=e529]: "4"
+                        - generic [ref=e530]:
+                          - generic [ref=e531]: Birthday Celebration Mugs
+                          - generic [ref=e532]:
+                            - generic [ref=e533]: ₹ 599
+                            - generic [ref=e534]: ₹ 279
+                    - link [ref=e539] [cursor=pointer]:
+                      - /url: /gift/joyful-personalised-rose-bouquet?promo=desk_tfyo_birthday_pos_6
+                      - generic [ref=e540]:
+                        - generic [ref=e542]:
+                          - generic [ref=e544]:
+                            - img [ref=e547]
+                            - img [ref=e550]
+                          - list [ref=e552]:
+                            - listitem [ref=e553]:
+                              - button [ref=e554]: "1"
+                            - listitem [ref=e555]:
+                              - button [ref=e556]: "2"
+                        - generic [ref=e557]:
+                          - generic [ref=e558]: Joyful Personalised Rose Bouquet
+                          - generic [ref=e559]:
+                            - generic [ref=e560]: ₹ 1,349
+                            - generic [ref=e561]: ₹ 1,049
+                          - generic [ref=e563]:
+                            - img [ref=e564]
+                            - generic [ref=e565]: "4.9"
+                            - generic [ref=e567]: "718"
+                    - link [ref=e572] [cursor=pointer]:
+                      - /url: /gift/syngonium-plant-in-birthday-antiquity-bottle-planters?promo=desk_tfyo_birthday_pos_7
+                      - generic [ref=e573]:
+                        - generic [ref=e575]:
+                          - generic [ref=e577]:
+                            - img [ref=e580]
+                            - img [ref=e583]
+                            - img [ref=e586]
+                            - img [ref=e589]
+                            - img [ref=e592]
+                            - img [ref=e595]
+                          - list [ref=e597]:
+                            - listitem [ref=e598]:
+                              - button [ref=e599]: "1"
+                            - listitem [ref=e600]:
+                              - button [ref=e601]: "2"
+                            - listitem [ref=e602]:
+                              - button [ref=e603]: "3"
+                            - listitem [ref=e604]:
+                              - button [ref=e605]: "4"
+                            - listitem [ref=e606]:
+                              - button [ref=e607]: "5"
+                            - listitem [ref=e608]:
+                              - button [ref=e609]: "6"
+                        - generic [ref=e610]:
+                          - generic [ref=e611]: Syngonium Plant In Birthday Antiquity Bottle Planters
+                          - generic [ref=e612]:
+                            - generic [ref=e613]: ₹ 1,199
+                            - generic [ref=e614]: ₹ 849
+                    - link [ref=e619] [cursor=pointer]:
+                      - /url: /gift/sweet-birthday-wishes-personalised-mug?promo=desk_tfyo_birthday_pos_8
+                      - generic [ref=e620]:
+                        - generic [ref=e622]:
+                          - generic [ref=e624]:
+                            - img [ref=e627]
+                            - img [ref=e630]
+                            - img [ref=e633]
+                          - list [ref=e635]:
+                            - listitem [ref=e636]:
+                              - button [ref=e637]: "1"
+                            - listitem [ref=e638]:
+                              - button [ref=e639]: "2"
+                            - listitem [ref=e640]:
+                              - button [ref=e641]: "3"
+                        - generic [ref=e642]:
+                          - generic [ref=e643]: Sweet Birthday Wishes Personalised Mug
+                          - generic [ref=e644]:
+                            - generic [ref=e645]: ₹ 599
+                            - generic [ref=e646]: ₹ 249
+                    - link [ref=e651] [cursor=pointer]:
+                      - /url: /gift/rainbow-surprise-chocolate-cake-15kg?promo=desk_tfyo_birthday_pos_9
+                      - generic [ref=e652]:
+                        - generic [ref=e654]:
+                          - generic [ref=e656]:
+                            - img [ref=e659]
+                            - img [ref=e662]
+                            - img [ref=e665]
+                            - img [ref=e668]
+                            - img [ref=e671]
+                          - list [ref=e673]:
+                            - listitem [ref=e674]:
+                              - button [ref=e675]: "1"
+                            - listitem [ref=e676]:
+                              - button [ref=e677]: "2"
+                            - listitem [ref=e678]:
+                              - button [ref=e679]: "3"
+                            - listitem [ref=e680]:
+                              - button [ref=e681]: "4"
+                            - listitem [ref=e682]:
+                              - button [ref=e683]: "5"
+                        - generic [ref=e684]:
+                          - generic [ref=e685]: Rainbow Surprise Chocolate Cake 15Kg
+                          - generic [ref=e686]:
+                            - generic [ref=e687]: ₹ 1,849
+                            - generic [ref=e688]: ₹ 1,599
+                    - link [ref=e693] [cursor=pointer]:
+                      - /url: /gift/chocolaty-orchid-affair?promo=desk_tfyo_birthday_pos_10
+                      - generic [ref=e694]:
+                        - generic [ref=e696]:
+                          - generic [ref=e698]:
+                            - img [ref=e701]
+                            - img [ref=e704]
+                            - img [ref=e707]
+                            - img [ref=e710]
+                          - list [ref=e712]:
+                            - listitem [ref=e713]:
+                              - button [ref=e714]: "1"
+                            - listitem [ref=e715]:
+                              - button [ref=e716]: "2"
+                            - listitem [ref=e717]:
+                              - button [ref=e718]: "3"
+                            - listitem [ref=e719]:
+                              - button [ref=e720]: "4"
+                        - generic [ref=e721]:
+                          - generic [ref=e722]: Chocolaty Orchid Affair
+                          - generic [ref=e723]:
+                            - generic [ref=e724]: ₹ 1,449
+                            - generic [ref=e725]: ₹ 899
+                    - link [ref=e730] [cursor=pointer]:
+                      - /url: /gift/happy-birthday-jade-plant-terrarium?promo=desk_tfyo_birthday_pos_11
+                      - generic [ref=e731]:
+                        - generic [ref=e733]:
+                          - generic [ref=e735]:
+                            - img [ref=e738]
+                            - img [ref=e741]
+                            - img [ref=e744]
+                            - img [ref=e747]
+                            - img [ref=e750]
+                          - list [ref=e752]:
+                            - listitem [ref=e753]:
+                              - button [ref=e754]: "1"
+                            - listitem [ref=e755]:
+                              - button [ref=e756]: "2"
+                            - listitem [ref=e757]:
+                              - button [ref=e758]: "3"
+                            - listitem [ref=e759]:
+                              - button [ref=e760]: "4"
+                            - listitem [ref=e761]:
+                              - button [ref=e762]: "5"
+                        - generic [ref=e763]:
+                          - generic [ref=e764]: Happy Birthday Jade Plant Terrarium
+                          - generic [ref=e765]:
+                            - generic [ref=e766]: ₹ 749
+                            - generic [ref=e767]: ₹ 449
+                          - generic [ref=e769]:
+                            - img [ref=e770]
+                            - generic [ref=e771]: "4.9"
+                            - generic [ref=e773]: "355"
+                    - link [ref=e778] [cursor=pointer]:
+                      - /url: /gift/personalised-keepsake-photo-frame?promo=desk_tfyo_birthday_pos_12
+                      - generic [ref=e779]:
+                        - img [ref=e786]
+                        - generic [ref=e787]:
+                          - generic [ref=e788]: Personalised Keepsake Photo Frame
+                          - generic [ref=e789]:
+                            - generic [ref=e790]: ₹ 799
+                            - generic [ref=e791]: ₹ 599
+                    - link [ref=e796] [cursor=pointer]:
+                      - /url: /gift/personalised-delight-birthday-hamper?promo=desk_tfyo_birthday_pos_13
+                      - generic [ref=e797]:
+                        - generic [ref=e799]:
+                          - generic [ref=e801]:
+                            - img [ref=e804]
+                            - img [ref=e807]
+                            - img [ref=e810]
+                            - img [ref=e813]
+                            - img [ref=e816]
+                            - img [ref=e819]
+                            - img [ref=e822]
+                          - list [ref=e824]:
+                            - listitem [ref=e825]:
+                              - button [ref=e826]: "1"
+                            - listitem [ref=e827]:
+                              - button [ref=e828]: "2"
+                            - listitem [ref=e829]:
+                              - button [ref=e830]: "3"
+                            - listitem [ref=e831]:
+                              - button [ref=e832]: "4"
+                            - listitem [ref=e833]:
+                              - button [ref=e834]: "5"
+                            - listitem [ref=e835]:
+                              - button [ref=e836]: "6"
+                            - listitem [ref=e837]:
+                              - button [ref=e838]: "7"
+                        - generic [ref=e839]:
+                          - generic [ref=e840]: Personalised Delight Birthday Hamper
+                          - generic [ref=e841]:
+                            - generic [ref=e842]: ₹ 1,699
+                            - generic [ref=e843]: ₹ 1,099
+                          - status [ref=e846]: PERSONALISE IT!
+                    - link [ref=e851] [cursor=pointer]:
+                      - /url: /gift/aura-orchid-birthday-charm?promo=desk_tfyo_birthday_pos_14
+                      - generic [ref=e852]:
+                        - generic [ref=e854]:
+                          - generic [ref=e856]:
+                            - img [ref=e859]
+                            - img [ref=e862]
+                            - img [ref=e865]
+                          - list [ref=e867]:
+                            - listitem [ref=e868]:
+                              - button [ref=e869]: "1"
+                            - listitem [ref=e870]:
+                              - button [ref=e871]: "2"
+                            - listitem [ref=e872]:
+                              - button [ref=e873]: "3"
+                        - generic [ref=e874]:
+                          - generic [ref=e875]: Aura Orchid Birthday Charm
+                          - generic [ref=e876]:
+                            - generic [ref=e877]: ₹ 1,539
+                            - generic [ref=e878]: ₹ 1,419
+                    - link [ref=e883] [cursor=pointer]:
+                      - /url: /gift/personalised-blue-notebook-and-pen-combo?promo=desk_tfyo_birthday_pos_15
+                      - generic [ref=e884]:
+                        - generic [ref=e886]:
+                          - generic [ref=e888]:
+                            - img [ref=e891]
+                            - img [ref=e894]
+                            - img [ref=e897]
+                            - img [ref=e900]
+                            - img [ref=e903]
+                          - list [ref=e905]:
+                            - listitem [ref=e906]:
+                              - button [ref=e907]: "1"
+                            - listitem [ref=e908]:
+                              - button [ref=e909]: "2"
+                            - listitem [ref=e910]:
+                              - button [ref=e911]: "3"
+                            - listitem [ref=e912]:
+                              - button [ref=e913]: "4"
+                            - listitem [ref=e914]:
+                              - button [ref=e915]: "5"
+                        - generic [ref=e916]:
+                          - generic [ref=e917]: Personalised Blue Notebook and Pen Combo
+                          - generic [ref=e918]:
+                            - generic [ref=e919]: ₹ 749
+                            - generic [ref=e920]: ₹ 599
+                          - generic [ref=e922]:
+                            - img [ref=e923]
+                            - generic [ref=e924]: "4.9"
+                            - generic [ref=e926]: "120"
+                    - link [ref=e931] [cursor=pointer]:
+                      - /url: /gift/chocolate-birthday-bouquet?promo=desk_tfyo_birthday_pos_16
+                      - generic [ref=e932]:
+                        - generic [ref=e934]:
+                          - generic [ref=e936]:
+                            - img [ref=e939]
+                            - img [ref=e942]
+                            - img [ref=e945]
+                            - img [ref=e948]
+                          - list [ref=e950]:
+                            - listitem [ref=e951]:
+                              - button [ref=e952]: "1"
+                            - listitem [ref=e953]:
+                              - button [ref=e954]: "2"
+                            - listitem [ref=e955]:
+                              - button [ref=e956]: "3"
+                            - listitem [ref=e957]:
+                              - button [ref=e958]: "4"
+                        - generic [ref=e959]:
+                          - generic [ref=e960]: Chocolate Birthday Bouquet
+                          - generic [ref=e961]:
+                            - generic [ref=e962]: ₹ 1,499
+                            - generic [ref=e963]: ₹ 949
+                  - img "right arrow" [ref=e965] [cursor=pointer]
+              - link "View All Birthday Gifts right arrow" [ref=e967] [cursor=pointer]:
+                - /url: /gifts/birthday-lp?promo=desk_tfyo_birthday_pos_va
+                - text: View All Birthday Gifts
+                - img "right arrow" [ref=e968]
+        - generic [ref=e970]:
+          - img "homePage_start_icon" [ref=e971]
+          - text: Rated 4.8 / 5
+          - generic [ref=e972]: "| Trusted by 4,62,543 Happy Customers"
+        - generic [ref=e973]:
+          - paragraph [ref=e974]: Get Exclusive Offers from
+          - generic [ref=e975]:
+            - generic [ref=e977]:
+              - link "Yatra Offer" [ref=e980] [cursor=pointer]:
+                - /url: /info/yatra-offer?promo=desk_banner_yatra_offer_7
+                - img "Yatra Offer" [ref=e982]
+              - link [ref=e985] [cursor=pointer]:
+                - /url: /info/paytm-offer?promo=desk_banner_paytm_offer_1
+                - img [ref=e987]
+              - link [ref=e990] [cursor=pointer]:
+                - /url: /info/airtel-offers?promo=desk_banner_airtel_offer_4
+                - img [ref=e992]
+              - link [ref=e995] [cursor=pointer]:
+                - /url: /info/nykaa-offers?promo=desk_banner_nykaa_offer_6
+                - img [ref=e997]
+              - link [ref=e1000] [cursor=pointer]:
+                - /url: /info/amazon-offer?promo=desk_banner_amazon_offer_5
+                - img [ref=e1002]
+              - link [ref=e1005] [cursor=pointer]:
+                - /url: /info/mobikwik-offer?promo=desk_banner_mobikwik_offer_2
+                - img [ref=e1007]
+              - link [ref=e1010] [cursor=pointer]:
+                - /url: /info/firstorder?promo=desk_banner_fnp_offer_3
+                - img [ref=e1012]
+            - list [ref=e1014]:
+              - listitem [ref=e1015] [cursor=pointer]:
+                - generic [ref=e1016]: 1 / 7
+              - listitem [ref=e1017] [cursor=pointer]
+              - listitem [ref=e1019] [cursor=pointer]
+              - listitem [ref=e1021] [cursor=pointer]
+              - listitem [ref=e1023] [cursor=pointer]
+              - listitem [ref=e1025] [cursor=pointer]
+              - listitem [ref=e1027] [cursor=pointer]
+        - generic [ref=e1030]:
+          - link [ref=e1032] [cursor=pointer]:
+            - /url: /summer-special-gifts-lp?promo=desk_fgc_hp_row101_summer-fgc_pos_0
+          - list [ref=e1034]:
+            - listitem [ref=e1035]:
+              - link "Spring Flowers Spring Flowers" [ref=e1036] [cursor=pointer]:
+                - /url: /summer-flowers-lp?promo=desk_fgc_hp_row101_summer-fgc_flowers_pos_1
+                - generic [ref=e1037]:
+                  - img "Spring Flowers" [ref=e1039]
+                  - generic [ref=e1040]: Spring Flowers
+              - link "Fragrances Fragrances" [ref=e1041] [cursor=pointer]:
+                - /url: /perfumes-lp?promo=desk_fgc_hp_row101_summer_fgc_perfumes_pos_5
+                - generic [ref=e1042]:
+                  - img "Fragrances" [ref=e1044]
+                  - generic [ref=e1045]: Fragrances
+            - listitem [ref=e1046]:
+              - link "Mango Cakes Mango Cakes" [ref=e1047] [cursor=pointer]:
+                - /url: /mango-cakes-lp?promo=desk_fgc_hp_row101_summer_fgc_mango_cakes_pos_2
+                - generic [ref=e1048]:
+                  - img "Mango Cakes" [ref=e1050]
+                  - generic [ref=e1051]: Mango Cakes
+              - link "Wedding Gifts Wedding Gifts" [ref=e1052] [cursor=pointer]:
+                - /url: /gifts/wedding-lp?promo=desk_fgc_hp_row101_summer_fgc_wedding_gifts_pos_6
+                - generic [ref=e1053]:
+                  - img "Wedding Gifts" [ref=e1055]
+                  - generic [ref=e1056]: Wedding Gifts
+            - listitem [ref=e1057]:
+              - link "Sippers Sippers" [ref=e1058] [cursor=pointer]:
+                - /url: /personalised-water-bottles-lp?=desk_fgc_hp_row101_summer_fgc_sippers_pos_3
+                - generic [ref=e1059]:
+                  - img "Sippers" [ref=e1061]
+                  - generic [ref=e1062]: Sippers
+              - link "Nature’s Picks Nature’s Picks" [ref=e1063] [cursor=pointer]:
+                - /url: /indoor-plants-lp?promo=desk_fgc_hp_row101_summer_fgc_plants_pos_7
+                - generic [ref=e1064]:
+                  - img "Nature’s Picks" [ref=e1066]
+                  - generic [ref=e1067]: Nature’s Picks
+            - listitem [ref=e1068]:
+              - link "Summer Gift Sets Summer Gift Sets" [ref=e1069] [cursor=pointer]:
+                - /url: /summer-combos-lp?promo=desk_fgc_hp_row101_summer_fgc_summer_combos_pos_4
+                - generic [ref=e1070]:
+                  - img "Summer Gift Sets" [ref=e1072]
+                  - generic [ref=e1073]: Summer Gift Sets
+              - link "Summer Jewellery Summer Jewellery" [ref=e1074] [cursor=pointer]:
+                - /url: /jewellery-lp?promo=desk_fgc_hp_row101_summer_fgc_jewellery_pos_8
+                - generic [ref=e1075]:
+                  - img "Summer Jewellery" [ref=e1077]
+                  - generic [ref=e1078]: Summer Jewellery
+        - generic [ref=e1079]:
+          - paragraph [ref=e1080]: Bakery-Fresh Cakes
+          - list [ref=e1082]:
+            - listitem [ref=e1083]:
+              - link "Chocolate Chocolate" [ref=e1084] [cursor=pointer]:
+                - /url: /chocolate-cakes-lp?promo=desk_hp_row4_pos_1
+                - generic [ref=e1085]:
+                  - img "Chocolate" [ref=e1087]
+                  - generic [ref=e1088]: Chocolate
+            - listitem [ref=e1089]:
+              - link "Butterscotch Butterscotch" [ref=e1090] [cursor=pointer]:
+                - /url: /butterscotch-cakes-lp?promo=desk_hp_row4_pos_2
+                - generic [ref=e1091]:
+                  - img "Butterscotch" [ref=e1093]
+                  - generic [ref=e1094]: Butterscotch
+            - listitem [ref=e1095]:
+              - link "Luxe LUXE" [ref=e1096] [cursor=pointer]:
+                - /url: /fnpluxe-cakes-lp?promo=desk_hp_row4_pos_3
+                - generic [ref=e1097]:
+                  - img "Luxe" [ref=e1099]
+                  - generic [ref=e1100]: LUXE
+            - listitem [ref=e1101]:
+              - link "Fresh Fruits Fresh Fruits" [ref=e1102] [cursor=pointer]:
+                - /url: /fresh-fruit-cakes-lp?promo=desk_hp_row4_pos_5
+                - generic [ref=e1103]:
+                  - img "Fresh Fruits" [ref=e1105]
+                  - generic [ref=e1106]: Fresh Fruits
+            - listitem [ref=e1107]:
+              - link "Cakes with Flowers Cakes with Flowers" [ref=e1108] [cursor=pointer]:
+                - /url: /flowers-n-cakes-lp?promo=desk_hp_row4_pos_4
+                - generic [ref=e1109]:
+                  - img "Cakes with Flowers" [ref=e1111]
+                  - generic [ref=e1112]: Cakes with Flowers
+        - generic [ref=e1113]:
+          - paragraph [ref=e1114]: For Every Relationship
+          - list [ref=e1116]:
+            - listitem [ref=e1117]:
+              - link "Him Him" [ref=e1118] [cursor=pointer]:
+                - /url: /gifts/for-him-lp?promo=desk_hp_row_12_micro_relation_him
+                - generic [ref=e1119]:
+                  - img "Him" [ref=e1121]
+                  - generic [ref=e1122]: Him
+            - listitem [ref=e1123]:
+              - link "Her Her" [ref=e1124] [cursor=pointer]:
+                - /url: /gifts/for-her-lp?promo=desk_hp_row_12_micro_relation_her
+                - generic [ref=e1125]:
+                  - img "Her" [ref=e1127]
+                  - generic [ref=e1128]: Her
+            - listitem [ref=e1129]:
+              - link "Kids Kids" [ref=e1130] [cursor=pointer]:
+                - /url: /gifts/for-kids-lp?promo=desk_hp_row_12_relation_kids
+                - generic [ref=e1131]:
+                  - img "Kids" [ref=e1133]
+                  - generic [ref=e1134]: Kids
+            - listitem [ref=e1135]:
+              - link "Friend Friend" [ref=e1136] [cursor=pointer]:
+                - /url: /gifts/for-friend-lp?promo=desk_hp_row_12_relation_friends
+                - generic [ref=e1137]:
+                  - img "Friend" [ref=e1139]
+                  - generic [ref=e1140]: Friend
+            - listitem [ref=e1141]:
+              - link "Girlfriend Girlfriend" [ref=e1142] [cursor=pointer]:
+                - /url: /gifts/for-girlfriend-lp?promo=desk_hp_row_12_relation_girlfriend
+                - generic [ref=e1143]:
+                  - img "Girlfriend" [ref=e1145]
+                  - generic [ref=e1146]: Girlfriend
+            - listitem [ref=e1147]:
+              - link "Boyfriend Boyfriend" [ref=e1148] [cursor=pointer]:
+                - /url: /gifts/for-boyfriend-lp?promo=desk_hp_row_12_relation_boyfriend
+                - generic [ref=e1149]:
+                  - img "Boyfriend" [ref=e1151]
+                  - generic [ref=e1152]: Boyfriend
+            - listitem [ref=e1153]:
+              - link "Wife Wife" [ref=e1154] [cursor=pointer]:
+                - /url: /gifts/for-wife-lp?promo=desk_hp_row_12_relation_wife
+                - generic [ref=e1155]:
+                  - img "Wife" [ref=e1157]
+                  - generic [ref=e1158]: Wife
+            - listitem [ref=e1159]:
+              - link "Husband Husband" [ref=e1160] [cursor=pointer]:
+                - /url: /gifts/for-husband-lp?promo=desk_hp_row_12_relation_husband
+                - generic [ref=e1161]:
+                  - img "Husband" [ref=e1163]
+                  - generic [ref=e1164]: Husband
+        - generic [ref=e1165]:
+          - paragraph [ref=e1166]: Popular in Gifting
+          - list [ref=e1168]:
+            - listitem [ref=e1169]:
+              - link "Send In Bulk Corporate Gifts" [ref=e1170] [cursor=pointer]:
+                - /url: /corporate?promo=desk_hp_featured_pos_5
+                - generic [ref=e1171]:
+                  - img "Send In Bulk" [ref=e1173]
+                  - generic [ref=e1174]: Corporate Gifts
+            - listitem [ref=e1175]:
+              - link "Get Today Get Today" [ref=e1176] [cursor=pointer]:
+                - /url: /same-day-delivery-gifts-lp?promo=desk_hp_featured_pos_1
+                - generic [ref=e1177]:
+                  - img "Get Today" [ref=e1179]
+                  - generic [ref=e1180]: Get Today
+            - listitem [ref=e1181]:
+              - link "Midnight Delivery Midnight Delivery" [ref=e1182] [cursor=pointer]:
+                - /url: /midnight-delivery-gifts-lp?promo=desk_hp_featured_pos_2
+                - generic [ref=e1183]:
+                  - img "Midnight Delivery" [ref=e1185]
+                  - generic [ref=e1186]: Midnight Delivery
+            - listitem [ref=e1187]:
+              - link "Just Launched Just Launched" [ref=e1188] [cursor=pointer]:
+                - /url: /new-arrival-gifts-lp?promo=desk_hp_featured_pos_3
+                - generic [ref=e1189]:
+                  - img "Just Launched" [ref=e1191]
+                  - generic [ref=e1192]: Just Launched
+            - listitem [ref=e1193]:
+              - link "Send Abroad Send Abroad" [ref=e1194] [cursor=pointer]:
+                - /url: /info/international?promo=desk_hp_featured_pos_4
+                - generic [ref=e1195]:
+                  - img "Send Abroad" [ref=e1197]
+                  - generic [ref=e1198]: Send Abroad
+        - generic [ref=e1199]:
+          - paragraph [ref=e1200]: Explore Luxury
+          - list [ref=e1202]:
+            - listitem [ref=e1203]:
+              - link "Luxe Vibe Luxe Vibe" [ref=e1204] [cursor=pointer]:
+                - /url: /fnpluxe-all-gifts-lp?promo=desk_hp_row18_pos_1
+                - generic [ref=e1205]:
+                  - img "Luxe Vibe" [ref=e1207]
+                  - generic [ref=e1208]: Luxe Vibe
+            - listitem [ref=e1209]:
+              - link "flowers flowers" [ref=e1210] [cursor=pointer]:
+                - /url: /fnpluxe-flowers-lp?promo=desk_hp_row18_pos_2
+                - generic [ref=e1211]:
+                  - img "flowers" [ref=e1213]
+                  - generic [ref=e1214]: flowers
+            - listitem [ref=e1215]:
+              - link "cakes cakes" [ref=e1216] [cursor=pointer]:
+                - /url: /fnpluxe-cakes-lp?promo=desk_hp_row18_pos_3
+                - generic [ref=e1217]:
+                  - img "cakes" [ref=e1219]
+                  - generic [ref=e1220]: cakes
+            - listitem [ref=e1221]:
+              - link "hampers hampers" [ref=e1222] [cursor=pointer]:
+                - /url: /fnpluxe-hampers-lp?promo=desk_hp_row18_pos_4
+                - generic [ref=e1223]:
+                  - img "hampers" [ref=e1225]
+                  - generic [ref=e1226]: hampers
+            - listitem [ref=e1227]:
+              - link "plants plants" [ref=e1228] [cursor=pointer]:
+                - /url: /fnpluxe-plants-lp?promo=desk_hp_row18_pos_5
+                - generic [ref=e1229]:
+                  - img "plants" [ref=e1231]
+                  - generic [ref=e1232]: plants
+        - generic [ref=e1233]:
+          - paragraph [ref=e1234]: Same Day Surprises
+          - list [ref=e1236]:
+            - listitem [ref=e1237]:
+              - link "Flowers Flowers" [ref=e1238] [cursor=pointer]:
+                - /url: /same-day-delivery-flowers-lp?promo=desk_hp_row11_flowers_samedaydelivery
+                - generic [ref=e1239]:
+                  - img "Flowers" [ref=e1241]
+                  - generic [ref=e1242]: Flowers
+            - listitem [ref=e1243]:
+              - link "cakes cakes" [ref=e1244] [cursor=pointer]:
+                - /url: /cakes-same-day-delivery-lp?promo=desk_hp_row11_cakes_samedaydelivery
+                - generic [ref=e1245]:
+                  - img "cakes" [ref=e1247]
+                  - generic [ref=e1248]: cakes
+            - listitem [ref=e1249]:
+              - link "plants plants" [ref=e1250] [cursor=pointer]:
+                - /url: /plants-same-day-delivery-lp?promo=desk_hp_row11_plants_samedaydelivery
+                - generic [ref=e1251]:
+                  - img "plants" [ref=e1253]
+                  - generic [ref=e1254]: plants
+            - listitem [ref=e1255]:
+              - link "chocolates chocolates" [ref=e1256] [cursor=pointer]:
+                - /url: /chocolates-same-day-delivery-lp?promo=desk_hp_row11_chocolates_samedaydelivery
+                - generic [ref=e1257]:
+                  - img "chocolates" [ref=e1259]
+                  - generic [ref=e1260]: chocolates
+            - listitem [ref=e1261]:
+              - link "personalised personalised" [ref=e1262] [cursor=pointer]:
+                - /url: /same-day-delivery-personalised-gifts-lp?promo=desk_hp_row11_personalised_samedaydelivery
+                - generic [ref=e1263]:
+                  - img "personalised" [ref=e1265]
+                  - generic [ref=e1266]: personalised
+        - generic [ref=e1267]:
+          - paragraph [ref=e1268]: Personalise your moments
+          - list [ref=e1270]:
+            - listitem [ref=e1271]:
+              - link "Jewellery Jewellery" [ref=e1272] [cursor=pointer]:
+                - /url: /personalised-jewellery-lp?promo=desk_hp_row6_pos_1
+                - generic [ref=e1273]:
+                  - img "Jewellery" [ref=e1275]
+                  - generic [ref=e1276]: Jewellery
+            - listitem [ref=e1277]:
+              - link "New Arrivals New Arrivals" [ref=e1278] [cursor=pointer]:
+                - /url: /new-arrival-personalised-gifts-lp?promo=desk_hp_row6_pos_3
+                - generic [ref=e1279]:
+                  - img "New Arrivals" [ref=e1281]
+                  - generic [ref=e1282]: New Arrivals
+            - listitem [ref=e1283]:
+              - link "Mugs Mugs" [ref=e1284] [cursor=pointer]:
+                - /url: /personalised-mugs-lp?promo=desk_hp_row6_pos_4
+                - generic [ref=e1285]:
+                  - img "Mugs" [ref=e1287]
+                  - generic [ref=e1288]: Mugs
+            - listitem [ref=e1289]:
+              - link "Cushions Cushions" [ref=e1290] [cursor=pointer]:
+                - /url: /personalised-cushions-lp?promo=desk_hp_row6_pos_2
+                - generic [ref=e1291]:
+                  - img "Cushions" [ref=e1293]
+                  - generic [ref=e1294]: Cushions
+            - listitem [ref=e1295]:
+              - link "flowers flowers" [ref=e1296] [cursor=pointer]:
+                - /url: /personalised-flowers-lp?promo=desk_hp_row6_pos_5
+                - generic [ref=e1297]:
+                  - img "flowers" [ref=e1299]
+                  - generic [ref=e1300]: flowers
+            - listitem [ref=e1301]:
+              - link "Sippers Sippers" [ref=e1302] [cursor=pointer]:
+                - /url: /personalised-water-bottles-lp?promo=desk_hp_row6_pos_6
+                - generic [ref=e1303]:
+                  - img "Sippers" [ref=e1305]
+                  - generic [ref=e1306]: Sippers
+        - generic [ref=e1307]:
+          - paragraph [ref=e1308]: Gifts that Go together
+          - list [ref=e1310]:
+            - listitem [ref=e1311]:
+              - link "Flowers N Chocolates Flowers N Chocolates" [ref=e1312] [cursor=pointer]:
+                - /url: /flowers-n-chocolates-lp?promo=desk_hp_row5_pos_1
+                - generic [ref=e1313]:
+                  - img "Flowers N Chocolates" [ref=e1315]
+                  - generic [ref=e1316]: Flowers N Chocolates
+            - listitem [ref=e1317]:
+              - link "Flowers n Cakes Flowers n Cakes" [ref=e1318] [cursor=pointer]:
+                - /url: /flowers-n-cakes-lp?promo=desk_hp_row5_pos_2
+                - generic [ref=e1319]:
+                  - img "Flowers n Cakes" [ref=e1321]
+                  - generic [ref=e1322]: Flowers n Cakes
+            - listitem [ref=e1323]:
+              - link "Plant Gift Sets Plant Gift Sets" [ref=e1324] [cursor=pointer]:
+                - /url: /plant-combos-lp?promo=desk_hp_row5_pos_3
+                - generic [ref=e1325]:
+                  - img "Plant Gift Sets" [ref=e1327]
+                  - generic [ref=e1328]: Plant Gift Sets
+            - listitem [ref=e1329]:
+              - link "Gift Hampers Gift Hampers" [ref=e1330] [cursor=pointer]:
+                - /url: /gift-hampers-lp?promo=desk_hp_row5_pos_4
+                - generic [ref=e1331]:
+                  - img "Gift Hampers" [ref=e1333]
+                  - generic [ref=e1334]: Gift Hampers
+            - listitem [ref=e1335]:
+              - link "flowers-n-guitarist flowers n guitarist" [ref=e1336] [cursor=pointer]:
+                - /url: /flowers-n-guitarist-service-lp?promo=desk_hp_row5_pos_5
+                - generic [ref=e1337]:
+                  - img "flowers-n-guitarist" [ref=e1339]
+                  - generic [ref=e1340]: flowers n guitarist
+        - generic [ref=e1341]:
+          - paragraph [ref=e1342]: Plants For Every Vibe
+          - list [ref=e1344]:
+            - listitem [ref=e1345]:
+              - link "new-arrivals new arrivals" [ref=e1346] [cursor=pointer]:
+                - /url: /new-arrival-plants-lp?promo=desk_hp_row7_pos_2
+                - generic [ref=e1347]:
+                  - img "new-arrivals" [ref=e1349]
+                  - generic [ref=e1350]: new arrivals
+            - listitem [ref=e1351]:
+              - link "indoor plants indoor plants" [ref=e1352] [cursor=pointer]:
+                - /url: /indoor-plants-lp?promo=desk_hp_row7_pos_1
+                - generic [ref=e1353]:
+                  - img "indoor plants" [ref=e1355]
+                  - generic [ref=e1356]: indoor plants
+            - listitem [ref=e1357]:
+              - link "money-plants money plants" [ref=e1358] [cursor=pointer]:
+                - /url: /money-plants-lp?promo=desk_hp_row7_pos_4
+                - generic [ref=e1359]:
+                  - img "money-plants" [ref=e1361]
+                  - generic [ref=e1362]: money plants
+            - listitem [ref=e1363]:
+              - link "lucky-bamboo lucky bamboo" [ref=e1364] [cursor=pointer]:
+                - /url: /lucky-bamboo-lp?promo=desk_hp_row7_pos_3
+                - generic [ref=e1365]:
+                  - img "lucky-bamboo" [ref=e1367]
+                  - generic [ref=e1368]: lucky bamboo
+            - listitem [ref=e1369]:
+              - link "peace lily peace lily" [ref=e1370] [cursor=pointer]:
+                - /url: /peace-lily-lp?promo=desk_hp_row7_pos_5
+                - generic [ref=e1371]:
+                  - img "peace lily" [ref=e1373]
+                  - generic [ref=e1374]: peace lily
+        - generic [ref=e1375]:
+          - paragraph [ref=e1376]: Home & Living Gifts
+          - list [ref=e1378]:
+            - listitem [ref=e1379]:
+              - link "home decor home decor" [ref=e1380] [cursor=pointer]:
+                - /url: /home-decor-lp?promo=desk_hp_row17_pos_1
+                - generic [ref=e1381]:
+                  - img "home decor" [ref=e1383]
+                  - generic [ref=e1384]: home decor
+            - listitem [ref=e1385]:
+              - link "photo frames photo frames" [ref=e1386] [cursor=pointer]:
+                - /url: /personalised-photo-frames-lp?promo=desk_hp_row17_pos_2
+                - generic [ref=e1387]:
+                  - img "photo frames" [ref=e1389]
+                  - generic [ref=e1390]: photo frames
+            - listitem [ref=e1391]:
+              - link "kitchen & dining kitchen & dining" [ref=e1392] [cursor=pointer]:
+                - /url: /kitchen-n-dining-gifts-lp?promo=desk_hp_row17_pos_3
+                - generic [ref=e1393]:
+                  - img "kitchen & dining" [ref=e1395]
+                  - generic [ref=e1396]: kitchen & dining
+            - listitem [ref=e1397]:
+              - link "neon-light gifts neon light gifts" [ref=e1398] [cursor=pointer]:
+                - /url: /neon-light-gifts-lp?promo=desk_hp_row17_pos_4
+                - generic [ref=e1399]:
+                  - img "neon-light gifts" [ref=e1401]
+                  - generic [ref=e1402]: neon light gifts
+            - listitem [ref=e1403]:
+              - link "home fragnances home fragnances" [ref=e1404] [cursor=pointer]:
+                - /url: /home-fragrances-lp?promo=desk_hp_row17_pos_5
+                - generic [ref=e1405]:
+                  - img "home fragnances" [ref=e1407]
+                  - generic [ref=e1408]: home fragnances
+            - listitem [ref=e1409]:
+              - link "forever-flowers forever flowers" [ref=e1410] [cursor=pointer]:
+                - /url: /forever-flowers-lp?promo=desk_hp_row17_pos_6
+                - generic [ref=e1411]:
+                  - img "forever-flowers" [ref=e1413]
+                  - generic [ref=e1414]: forever flowers
+        - generic [ref=e1415]:
+          - paragraph [ref=e1416]: Quirky Celebrations
+          - list [ref=e1418]:
+            - listitem [ref=e1419]:
+              - link "Birthday Gifts Birthday Gifts" [ref=e1420] [cursor=pointer]:
+                - /url: /hatke-gifts/birthday-lp?promo=desk_hp_row15_wday_pos_1
+                - generic [ref=e1421]:
+                  - img "Birthday Gifts" [ref=e1423]
+                  - generic [ref=e1424]: Birthday Gifts
+            - listitem [ref=e1425]:
+              - link "For Friends For Friends" [ref=e1426] [cursor=pointer]:
+                - /url: /hatke-gifts/for-friends-lp?promo=desk_hp_row15_wday_pos_2
+                - generic [ref=e1427]:
+                  - img "For Friends" [ref=e1429]
+                  - generic [ref=e1430]: For Friends
+            - listitem [ref=e1431]:
+              - link "Pop Culture Pop Culture" [ref=e1432] [cursor=pointer]:
+                - /url: /pop-culture-hatke-gifts-lp?promo=desk_hp_row15_wday_pos_3
+                - generic [ref=e1433]:
+                  - img "Pop Culture" [ref=e1435]
+                  - generic [ref=e1436]: Pop Culture
+            - listitem [ref=e1437]:
+              - link "Hatke Gifts Hatke Gifts" [ref=e1438] [cursor=pointer]:
+                - /url: /all-hatke-gifts-lp?promo=desk_hp_row15_wday_pos_4
+                - generic [ref=e1439]:
+                  - img "Hatke Gifts" [ref=e1441]
+                  - generic [ref=e1442]: Hatke Gifts
+        - generic [ref=e1445]:
+          - paragraph [ref=e1446]: Gift Finder
+          - generic [ref=e1447]:
+            - paragraph [ref=e1448]: Search Gifts Quicker⚡
+            - list [ref=e1450]:
+              - listitem [ref=e1451] [cursor=pointer]:
+                - img "Occasion" [ref=e1453]
+                - paragraph [ref=e1454]: Occasion
+              - listitem [ref=e1455] [cursor=pointer]:
+                - img "Gift Type" [ref=e1457]
+                - paragraph [ref=e1458]: Gift Type
+        - generic [ref=e1459]:
+          - paragraph [ref=e1461]: Joyful Gifting Stories
+          - generic [ref=e1463]:
+            - generic [ref=e1464]:
+              - group "1 / 7" [ref=e1465] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1467]
+                - generic [ref=e1469]:
+                  - img [ref=e1470]
+                  - paragraph [ref=e1472]: 1.3K
+                - img [ref=e1474]
+                - img [ref=e1477]
+                - group "1 / 1" [ref=e1483]:
+                  - link "PERSONALISED MUGS":
+                    - /url: https://www.fnp.com/personalised-mugs-lp?promo=hp_video_personalised_mugs
+                    - generic [ref=e1484]: PERSONALISED MUGS
+              - group "2 / 7" [ref=e1485] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1487]
+                - generic [ref=e1489]:
+                  - img [ref=e1490]
+                  - paragraph [ref=e1492]: 1.4K
+                - img [ref=e1494]
+                - img [ref=e1497]
+                - group "1 / 1" [ref=e1503]:
+                  - link "GIFT JEWELLERY":
+                    - /url: https://www.fnp.com/personalised-jewellery-lp?promo=hp_video_jewellery
+                    - generic [ref=e1504]: GIFT JEWELLERY
+              - group "3 / 7" [ref=e1505] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1507]
+                - generic [ref=e1509]:
+                  - img [ref=e1510]
+                  - paragraph [ref=e1512]: 1.1K
+                - img [ref=e1514]
+                - img [ref=e1517]
+                - group "1 / 1" [ref=e1523]:
+                  - link "GIFT LOVE":
+                    - /url: https://www.fnp.com/gifts/love-n-romance-lp?promo=hp_videos_love
+                    - generic [ref=e1524]: GIFT LOVE
+              - group "4 / 7" [ref=e1525] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1527]
+                - generic [ref=e1529]:
+                  - img [ref=e1530]
+                  - paragraph [ref=e1532]: 1.1K
+                - img [ref=e1534]
+                - img [ref=e1537]
+                - group "1 / 1" [ref=e1543]:
+                  - link "BIRTHDAY GIFTS":
+                    - /url: https://www.fnp.com/gifts-bestsellers/birthday-lp?promo=hp_video_birthday
+                    - generic [ref=e1544]: BIRTHDAY GIFTS
+              - group "5 / 7" [ref=e1545] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1547]
+                - generic [ref=e1549]:
+                  - img [ref=e1550]
+                  - paragraph [ref=e1552]: "856"
+                - img [ref=e1554]
+                - img [ref=e1557]
+                - group "1 / 1" [ref=e1563]:
+                  - link "ANNIVERSARY GIFTS":
+                    - /url: https://www.fnp.com/flowers/anniversary-lp?promo=hp_video_anniversary
+                    - generic [ref=e1564]: ANNIVERSARY GIFTS
+              - group "6 / 7" [ref=e1565] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1567]
+                - generic [ref=e1569]:
+                  - img [ref=e1570]
+                  - paragraph [ref=e1572]: "751"
+                - img [ref=e1574]
+                - img [ref=e1577]
+                - group "1 / 1" [ref=e1583]:
+                  - link "SEND FLOWERS":
+                    - /url: https://www.fnp.com/all-flowers-lp?promo=hp_video_flowers
+                    - generic [ref=e1584]: SEND FLOWERS
+              - group "7 / 7" [ref=e1585] [cursor=pointer]:
+                - img "video thumbnail" [ref=e1587]
+                - generic [ref=e1589]:
+                  - img [ref=e1590]
+                  - paragraph [ref=e1592]: "587"
+                - img [ref=e1594]
+                - img [ref=e1597]
+                - group "1 / 1" [ref=e1603]:
+                  - link "SEND CAKES":
+                    - /url: https://www.fnp.com/cakes/birthday-lp?promo=hp_video_cakes
+                    - generic [ref=e1604]: SEND CAKES
+            - button "Previous slide" [disabled] [ref=e1605] [cursor=pointer]:
+              - img [ref=e1606]
+            - button "Next slide" [ref=e1608] [cursor=pointer]:
+              - img [ref=e1609]
+        - generic [ref=e1611]:
+          - paragraph [ref=e1612]: Celebrations Calendar
+          - list [ref=e1614]:
+            - listitem [ref=e1615]:
+              - link "Easter Easter" [ref=e1616] [cursor=pointer]:
+                - /url: /gifts/easter-lp?promo=desk_hp_row13_occasions_pos_2
+                - generic [ref=e1617]:
+                  - img "Easter" [ref=e1619]
+                  - generic [ref=e1620]: Easter
+            - listitem [ref=e1621]:
+              - link "World Health Day World Health Day" [ref=e1622] [cursor=pointer]:
+                - /url: /gifts/world-health-day-lp?promo=desk_hp_row13_occasions_pos_4
+                - generic [ref=e1623]:
+                  - img "World Health Day" [ref=e1625]
+                  - generic [ref=e1626]: World Health Day
+            - listitem [ref=e1627]:
+              - link "Pet Day Pet Day" [ref=e1628] [cursor=pointer]:
+                - /url: /gifts/for-pets-lp?promo=desk_hp_row13_occasions_pos_5
+                - generic [ref=e1629]:
+                  - img "Pet Day" [ref=e1631]
+                  - generic [ref=e1632]: Pet Day
+            - listitem [ref=e1633]:
+              - link "Husband Appreciation Day Husband Appreciation Day" [ref=e1634] [cursor=pointer]:
+                - /url: /gifts/husband-appreciation-day-lp?promo=desk_hp_row13_occasions_pos_3
+                - generic [ref=e1635]:
+                  - img "Husband Appreciation Day" [ref=e1637]
+                  - generic [ref=e1638]: Husband Appreciation Day
+            - listitem [ref=e1639]:
+              - link "Earth Day Earth Day" [ref=e1640] [cursor=pointer]:
+                - /url: /gifts/earth-day-lp?promo=desk_hp_row13_occasions_pos_1
+                - generic [ref=e1641]:
+                  - img "Earth Day" [ref=e1643]
+                  - generic [ref=e1644]: Earth Day
+        - paragraph [ref=e1646]: Best Sellers
+        - generic [ref=e1647]:
+          - paragraph [ref=e1648]: Shop By Brands
+          - generic [ref=e1651]:
+            - link "Nuyug" [ref=e1654] [cursor=pointer]:
+              - /url: /nuyug-gifts-lp?promo=desk_hp_row19_brand_pos_1
+              - img "Nuyug" [ref=e1657]
+            - link "Ritualistic" [ref=e1660] [cursor=pointer]:
+              - /url: /ritualistic-gifts-lp?promo=desk_hp_row19_brand_pos_2
+              - img "Ritualistic" [ref=e1663]
+            - link "carlton" [ref=e1666] [cursor=pointer]:
+              - /url: /carlton-london-gifts-lp?promo=desk_hp_row19_brand_pos_4
+              - img "carlton" [ref=e1669]
+            - link "ellementry" [ref=e1672] [cursor=pointer]:
+              - /url: /ellementry-gifts-lp?promo=desk_hp_row19_brand_pos_3
+              - img "ellementry" [ref=e1675]
+            - link "Kimirica" [ref=e1678] [cursor=pointer]:
+              - /url: /kimirica-gifts-lp?promo=desk_hp_row19_brand_pos_5
+              - img "Kimirica" [ref=e1681]
+            - link "Titan" [ref=e1684] [cursor=pointer]:
+              - /url: /titan-gifts-lp?promo=desk_hp_row19_brand_pos_6
+              - img "Titan" [ref=e1687]
+        - generic [ref=e1688]:
+          - paragraph [ref=e1689]: gifts worth waiting for
+          - list [ref=e1691]:
+            - listitem [ref=e1692]:
+              - link "toys Toys" [ref=e1693] [cursor=pointer]:
+                - /url: /toys-n-games-lp?promo=desk_hp_row10_pos_1
+                - generic [ref=e1694]:
+                  - img "toys" [ref=e1696]
+                  - generic [ref=e1697]: Toys
+            - listitem [ref=e1698]:
+              - link "electronics Electronics" [ref=e1699] [cursor=pointer]:
+                - /url: /electronics-lp?promo=desk_hp_row10_pos_2
+                - generic [ref=e1700]:
+                  - img "electronics" [ref=e1702]
+                  - generic [ref=e1703]: Electronics
+            - listitem [ref=e1704]:
+              - link "linen Linen" [ref=e1705] [cursor=pointer]:
+                - /url: /all-linen-gifts-lp?promo=desk_hp_row10_pos_3
+                - generic [ref=e1706]:
+                  - img "linen" [ref=e1708]
+                  - generic [ref=e1709]: Linen
+            - listitem [ref=e1710]:
+              - link "Bar Accessories Bar Accessories" [ref=e1711] [cursor=pointer]:
+                - /url: /bar-accessories-lp?promo=desk_hp_row10_pos_4
+                - generic [ref=e1712]:
+                  - img "Bar Accessories" [ref=e1714]
+                  - generic [ref=e1715]: Bar Accessories
+            - listitem [ref=e1716]:
+              - link "Experiences Experiences" [ref=e1717] [cursor=pointer]:
+                - /url: /experiential-gifts-lp?promo=desk_hp_row10_pos_5
+                - generic [ref=e1718]:
+                  - img "Experiences" [ref=e1720]
+                  - generic [ref=e1721]: Experiences
+        - generic [ref=e1722]:
+          - paragraph [ref=e1723]: Gift Elegance
+          - list [ref=e1725]:
+            - listitem [ref=e1726]:
+              - link "Jewellery Jewellery" [ref=e1727] [cursor=pointer]:
+                - /url: /jewellery-lp?promo=desk_hp_row20_pos_1
+                - generic [ref=e1728]:
+                  - img "Jewellery" [ref=e1730]
+                  - generic [ref=e1731]: Jewellery
+            - listitem [ref=e1732]:
+              - link "Perfumes Perfumes" [ref=e1733] [cursor=pointer]:
+                - /url: /perfumes-lp?promo=desk_hp_row20_pos_2
+                - generic [ref=e1734]:
+                  - img "Perfumes" [ref=e1736]
+                  - generic [ref=e1737]: Perfumes
+            - listitem [ref=e1738]:
+              - link "cosmetics cosmetics" [ref=e1739] [cursor=pointer]:
+                - /url: /cosmetics-n-spa-hampers-lp?promo=desk_hp_row20_pos_3
+                - generic [ref=e1740]:
+                  - img "cosmetics" [ref=e1742]
+                  - generic [ref=e1743]: cosmetics
+            - listitem [ref=e1744]:
+              - link "Handbags Handbags" [ref=e1745] [cursor=pointer]:
+                - /url: /handbag-gifts-lp?promo=desk_hp_row20_pos_4
+                - generic [ref=e1746]:
+                  - img "Handbags" [ref=e1748]
+                  - generic [ref=e1749]: Handbags
+            - listitem [ref=e1750]:
+              - link "Watches Watches" [ref=e1751] [cursor=pointer]:
+                - /url: /watches-lp?promo=desk_hp_row20_pos_5
+                - generic [ref=e1752]:
+                  - img "Watches" [ref=e1754]
+                  - generic [ref=e1755]: Watches
+        - generic [ref=e1756]:
+          - paragraph [ref=e1757]: Gourmet Delights
+          - list [ref=e1759]:
+            - listitem [ref=e1760]:
+              - link "Chocolate Chocolates" [ref=e1761] [cursor=pointer]:
+                - /url: /chocolates-lp?promo=desk_hp_row21_pos_1
+                - generic [ref=e1762]:
+                  - img "Chocolate" [ref=e1764]
+                  - generic [ref=e1765]: Chocolates
+            - listitem [ref=e1766]:
+              - link "dry fruits dry fruits" [ref=e1767] [cursor=pointer]:
+                - /url: /dry-fruits-lp?promo=desk_hp_row21_pos_2
+                - generic [ref=e1768]:
+                  - img "dry fruits" [ref=e1770]
+                  - generic [ref=e1771]: dry fruits
+            - listitem [ref=e1772]:
+              - link "sweets sweets" [ref=e1773] [cursor=pointer]:
+                - /url: /sweets-lp?promo=desk_hp_row21_pos_3
+                - generic [ref=e1774]:
+                  - img "sweets" [ref=e1776]
+                  - generic [ref=e1777]: sweets
+            - listitem [ref=e1778]:
+              - link "gourmet hampers gourmet hampers" [ref=e1779] [cursor=pointer]:
+                - /url: /gourmet-hampers-lp?promo=desk_hp_row21_pos_4
+                - generic [ref=e1780]:
+                  - img "gourmet hampers" [ref=e1782]
+                  - generic [ref=e1783]: gourmet hampers
+            - listitem [ref=e1784]:
+              - link "snacks snacks" [ref=e1785] [cursor=pointer]:
+                - /url: /snacks-hampers-lp?promo=desk_hp_row21_pos_5
+                - generic [ref=e1786]:
+                  - img "snacks" [ref=e1788]
+                  - generic [ref=e1789]: snacks
+        - paragraph [ref=e1791]: Recently Viewed By You
+        - generic [ref=e1792]:
+          - paragraph [ref=e1793]: Send Gifts Abroad
+          - list [ref=e1795]:
+            - listitem [ref=e1796]:
+              - link "USA USA" [ref=e1797] [cursor=pointer]:
+                - /url: /usa/gifts-lp?promo=desk_hp_row8_pos_1
+                - generic [ref=e1798]:
+                  - img "USA" [ref=e1800]
+                  - generic [ref=e1801]: USA
+            - listitem [ref=e1802]:
+              - link "Canada Canada" [ref=e1803] [cursor=pointer]:
+                - /url: /canada/gifts-lp?promo=desk_hp_row8_pos_4
+                - generic [ref=e1804]:
+                  - img "Canada" [ref=e1806]
+                  - generic [ref=e1807]: Canada
+            - listitem [ref=e1808]:
+              - link "UAE UAE" [ref=e1809] [cursor=pointer]:
+                - /url: /uae/gifts-lp?promo=desk_hp_row8_pos_5
+                - generic [ref=e1810]:
+                  - img "UAE" [ref=e1812]
+                  - generic [ref=e1813]: UAE
+            - listitem [ref=e1814]:
+              - link "Singapore Singapore" [ref=e1815] [cursor=pointer]:
+                - /url: https://www.fnp.sg/?promo=desk_hp_row8_pos_8
+                - generic [ref=e1816]:
+                  - img "Singapore" [ref=e1818]
+                  - generic [ref=e1819]: Singapore
+            - listitem [ref=e1820]:
+              - link "Australia Australia" [ref=e1821] [cursor=pointer]:
+                - /url: /australia/gifts-lp?promo=desk_hp_row8_pos_3
+                - generic [ref=e1822]:
+                  - img "Australia" [ref=e1824]
+                  - generic [ref=e1825]: Australia
+            - listitem [ref=e1826]:
+              - link "Germany Germany" [ref=e1827] [cursor=pointer]:
+                - /url: /germany/gifts-lp?promo=desk_hp_row8_pos_7
+                - generic [ref=e1828]:
+                  - img "Germany" [ref=e1830]
+                  - generic [ref=e1831]: Germany
+            - listitem [ref=e1832]:
+              - link "UK UK" [ref=e1833] [cursor=pointer]:
+                - /url: /uk/gifts-lp?promo=desk_hp_row8_pos_2
+                - generic [ref=e1834]:
+                  - img "UK" [ref=e1836]
+                  - generic [ref=e1837]: UK
+            - listitem [ref=e1838]:
+              - link "Worldwide Worldwide" [ref=e1839] [cursor=pointer]:
+                - /url: /info/international?promo=desk_hp_row8_pos_6_micro
+                - generic [ref=e1840]:
+                  - img "Worldwide" [ref=e1842]
+                  - generic [ref=e1843]: Worldwide
+        - generic [ref=e1845]:
+          - 'heading "Celebrate Occasions with India #1 Online Gift Store" [level=1] [ref=e1846]'
+          - paragraph [ref=e1847]: Thoughtfully curated 139,821 Gift Ideas. Get 2-hour Delivery & Free Shipping in India
+      - article [ref=e1850]:
+        - 'heading "FNP: No. 1 Online Gift Shop" [level=2] [ref=e1851]'
+        - paragraph [ref=e1852]:
+          - text: FNP (Ferns N Petals) is India’s top gifting brand that helps you celebrate special moments by delivering fabulous gifts to your loved ones. You can find thoughtful gifts for all special days like Birthdays, Anniversaries, Valentine's Day, and festivals like Rakshabandhan (Rakhi), Diwali, Christmas, etc. Our online gift shop offers a wide range of gifts including
+          - link "flower bouquets" [ref=e1853] [cursor=pointer]:
+            - /url: /flower-bouquets-lp
+          - text: and yummy cakes, which we deliver to all major cities in under 2 hours. We can also provide personalised gifts, potted plants, chocolates, gift hampers, digital gifts, and festive treats to make the occasion even more joyous. Our distribution network and strong physical and online presence make us the best choice to send gifts to 19,000+ PIN codes across India. Our remarkable distribution network and over 400 retail stores ensure your gift arrives on time and in excellent condition! We take pride in bringing smiles to our 8 million happy customers with high-quality gifts and consistent delivery service.
+        - heading "FNP’s Growing International Presence" [level=2] [ref=e1854]
+        - paragraph [ref=e1855]:
+          - text: "After establishing ourselves as a market leader in India, we have successfully expanded our global footprint across Southeast Asia and the Middle East. We now have physical stores in key international locations, including two in the UAE, one in Doha, Qatar, and one in Singapore. We have separate websites for the Qatar and Saudi Arabia regions. Check out our websites catering to different areas:"
+          - link "www.fnp.ae" [ref=e1856] [cursor=pointer]:
+            - /url: https://www.fnp.ae/
+          - text: for UAE and
+          - link "www.fnp.sg" [ref=e1857] [cursor=pointer]:
+            - /url: https://www.fnp.sg
+          - text: for Singapore. Also, check out
+          - link "www.fnp.qa" [ref=e1858] [cursor=pointer]:
+            - /url: https://www.fnp.qa
+          - text: for Qatar and
+          - link "www.fnp.sa/en/" [ref=e1859] [cursor=pointer]:
+            - /url: https://www.fnp.sa/en/
+          - text: for Saudi Arabia. Wherever your loved ones are, FNP ensures that your heartfelt gifts are delivered with love and care.
+        - heading "Send Gifts Internationally Online - FNP" [level=2] [ref=e1860]
+        - paragraph [ref=e1861]:
+          - text: FNP helps you deliver gifts to 70+ countries worldwide, ensuring your thoughtful presents reach your loved ones no matter where they are. We offer seamless delivery services to major countries like the USA, UK,
+          - link "Canada" [ref=e1862] [cursor=pointer]:
+            - /url: /canada/gifts-lp
+          - text: ", Australia, New Zealand, UAE, Germany, Philippines, Singapore, and more. Often, your loved ones can't be with you during special moments or festivals, but with our excellent international delivery services, distance won’t be a barrier anymore. Whether you want to"
+          - link "send gifts to the USA" [ref=e1863] [cursor=pointer]:
+            - /url: /usa/gifts-lp
+          - text: ", or"
+          - link "gifts to the UK" [ref=e1864] [cursor=pointer]:
+            - /url: /uk/gifts-lp
+          - text: ", or any other country, our strong logistics network ensures timely and hassle-free delivery. You can send gifts internationally to your friends and family in New York, London, or even Dubai. Choose from flowers, cakes, festive treats, and more to surprise them on occasions like Eid, Diwali, or Christmas."
+        - heading "Add More Joy to Your Holi Celebrations With Gifts From FNP" [level=2] [ref=e1865]
+        - paragraph [ref=e1866]:
+          - text: Holi is all about colour, laughter, and bringing people together. It’s one of those festivals where even a small gesture can brighten someone’s day. From sweets and festive hampers to flowers and personalised surprises, there are plenty of ways to make the celebration feel extra special. Choosing meaningful
+          - link "Holi gifts" [ref=e1867] [cursor=pointer]:
+            - /url: /gifts/holi-lp
+          - text: is a simple way to stay connected with friends, family, and loved ones, whether you’re celebrating together or sending your wishes from afar. Thoughtfully curated options make it easy to find something that suits every relationship and every kind of celebration. With reliable delivery and carefully packed products, your festive surprise arrives ready to spread joy, colour, and positivity, just the way Holi should.
+        - heading "Women’s Day Gifting Made Special With Thoughtful Gift" [level=2] [ref=e1868]
+        - paragraph [ref=e1869]:
+          - text: Women’s Day is a moment to pause and appreciate the strength, resilience, and everyday contributions of the women around us. Whether it’s your mother, partner, colleague, sister, or friend, even a small gesture can make the occasion feel meaningful. From fresh flowers and cakes to personalised keepsakes and curated hampers, there are plenty of ways to celebrate thoughtfully. Choosing the right
+          - link "Women’s Day gifts" [ref=e1870] [cursor=pointer]:
+            - /url: /gifts/womens-day-lp
+          - text: doesn’t have to be complicated. It’s about picking something that reflects her personality and the role she plays in your life. With reliable delivery and carefully packaged gifts, your appreciation reaches her just as intended, making the celebration warm, effortless, and genuinely special.
+        - heading "Choose from a Variety of Options via FNP" [level=2] [ref=e1871]
+        - paragraph [ref=e1872]: "Gifts help strengthen bonds with your loved ones. So, let’s take a closer look at the extensive gift collection from our online gift shop:"
+        - paragraph [ref=e1873]:
+          - strong [ref=e1874]: Fresh Flowers -
+          - text: Whenever one thinks about flowers, most people imagine roses in an adorable floral arrangement. And rightly so, as roses are the top-selling flowers in India and abroad because of their sheer popularity. However, apart from roses, we also deliver other
+          - link "flowers online" [ref=e1875] [cursor=pointer]:
+            - /url: /flowers-lp
+          - text: ", including lilies, carnations, orchids, gerberas, daisies, and more."
+        - paragraph [ref=e1876]:
+          - strong [ref=e1877]: Yummy Cakes -
+          - text: As they say, a party without a cake is just a meeting. So, explore a world of delicious cream cakes, fondant cakes, semi-fondant cakes, tier cakes, designer cakes, and photo
+          - link "cakes online" [ref=e1878] [cursor=pointer]:
+            - /url: /cakes-lp
+          - text: with us. Our cakes are available in mouth-watering flavours like chocolate, vanilla, butterscotch, mango, red velvet, tiramisu, etc. We also have a unique selection crafted for festivities, including Diwali, Christmas, Eid cakes, Rakhi and Holi Cakes, etc.
+        - paragraph [ref=e1879]:
+          - strong [ref=e1880]: Gifts -
+          - text: Life is about creating memories with your loved ones. We resonate with this and have curated some fantastic gifts that perfectly express your feelings. Whenever you think about sending gifts, look at our
+          - link "online gift shop" [ref=e1881] [cursor=pointer]:
+            - /url: /gifts-lp
+          - text: and surprise your loved ones with the best presents, like cakes, flowers, hampers, etc.
+        - paragraph [ref=e1882]:
+          - strong [ref=e1883]: Green Plants -
+          - text: "Plants are the perfect gift to convey love and heartwarming regards for your loved ones. We have various air-purifying plants, succulents, and foliage plants. You can place them anywhere: a balcony, terrace, or any other desired place. Spread positivity, greenery, and beauty by sending"
+          - link "plants online" [ref=e1884] [cursor=pointer]:
+            - /url: /plants-lp
+          - text: to your loved ones.
+        - paragraph [ref=e1885]:
+          - strong [ref=e1886]: Personalised Gifts -
+          - text: The best way to create memories is by gifting
+          - link "personalised gifts online" [ref=e1887] [cursor=pointer]:
+            - /url: /personalised-gifts-lp
+          - text: that speak volumes about how special the recipient is to you. The simple fact that you have put a lot of thought into creating these gifts will surely warm their hearts. Explore meaningful, personalised gifts here, such as mugs, printed cushions, LED cushions, photo frames, rotating lamps, and more.
+        - paragraph [ref=e1888]:
+          - strong [ref=e1889]: Combo and Hampers -
+          - text: Multiply the joy of gifting by choosing our thoughtfully curated combos and gift hampers.
+          - link "Flower and Cake" [ref=e1890] [cursor=pointer]:
+            - /url: /flowers-n-cakes-lp
+          - text: combos are the top-selling options that are loved by all. These gifts are filled with thoughtful and valuable goodies. So, look at our
+          - link "gift hampers" [ref=e1891] [cursor=pointer]:
+            - /url: /gift-hampers-lp
+          - text: and take your gifting game to the next level.
+        - paragraph [ref=e1892]:
+          - strong [ref=e1893]: Tempting Chocolates -
+          - text: I don’t like chocolates! Said no one ever! Add sweet surprises to your loved one’s life by gifting chocolates online. At FNP, you can choose from a wide range of chocolatey gifts in the form of baskets, bouquets, and designer boxes. Order gourmet assorted chocolates online and melt the hearts of your dear ones and make them feel loved.
+        - paragraph [ref=e1894]:
+          - strong [ref=e1895]: Gratitude Gifts -
+          - text: Do you want to express your warm regards or thankfulness? Our gratitude gifts are the best bet! If someone has invited you to their housewarming party and you want to express a sweet thank you, explore our housewarming gifts. We have everything, from stylish neon lights and key holders to paintings and home decor. Similarly, to express your gratitude to someone special, discover our thank-you gifts, like charming
+          - link "chocolate bouquets" [ref=e1896] [cursor=pointer]:
+            - /url: /chocolates-lp
+          - text: ", gourmet hampers, personal care gifts, etc."
+        - paragraph [ref=e1897]:
+          - strong [ref=e1898]: Sustainable Gifts -
+          - text: If your loved ones are eco-conscious, why not surprise them with our sustainable gifts? These are becoming hugely popular as environmental awareness is on the rise! Our extensive collection offers multiple options, like eco-friendly coasters, sustainable workspace kits, thoughtful and environment-friendly personal care hampers, etc.
+        - paragraph [ref=e1899]:
+          - text: If you’re looking for the perfect
+          - link "Father's Day gift" [ref=e1900] [cursor=pointer]:
+            - /url: /gifts/fathers-day-lp
+          - text: ", consider something that reflects his personality. Something thoughtful, practical, or just something to make him smile. You could also surprise him with a delicious"
+          - link "fathers day cake" [ref=e1901] [cursor=pointer]:
+            - /url: /cakes/fathers-day-lp
+          - text: in his favorite flavor, because what better way to celebrate than with something sweet? And for those who prefer to keep it simple and heartfelt, a fresh bouquet of
+          - link "father's day flowers" [ref=e1902] [cursor=pointer]:
+            - /url: /flowers/fathers-day-lp
+          - text: can say it all without saying a word. No matter how you choose to celebrate, what matters most is the love behind it. Father’s Day isn’t just about big gestures. It’s about small moments, shared laughs, and memories that last a lifetime. Let this day be a gentle reminder to cherish and celebrate the dads, granddads, and father figures who play such an important role in our lives.
+        - heading "Why Shop at FNP.com via Web or FNP App?" [level=2] [ref=e1903]
+        - paragraph [ref=e1904]:
+          - text: "We provide two easy-to-use options for gifting online: our official website and mobile app. Both are designed to make your experience seamless and enjoyable, ensuring convenience. The FNP website is popular for offering effortless navigation with its intuitive user interface. It showcases high-resolution gift images and detailed catalogues with descriptions for easy decision-making. Similarly, we also bring you a feature-packed mobile app available for"
+          - link "Android" [ref=e1905] [cursor=pointer]:
+            - /url: https://play.google.com/store/apps/details?id=com.Clairvoyant.FernsAndPetals&pli=1
+          - text: and
+          - link "iOS" [ref=e1906] [cursor=pointer]:
+            - /url: https://apps.apple.com/in/app/fnp-gifts-flowers-cakes-app/id1231448529
+          - text: devices. It can help you find a gift in less than 15 seconds with an easy gift-finder search. You can also set reminders for birthdays, anniversaries, etc., and never miss out on special moments. The app also offers multiple payment options, social logins, a PIN code finder, various delivery choices like midnight, same-day, and international delivery, as well as occasion reminders. With the FNP mobile app, you can send fresh flowers, cakes, chocolates, soft toys, personalised gifts, etc., anywhere in India and abroad.
+        - heading "Same Day & Midnight Gift Delivery Online" [level=2] [ref=e1907]
+        - paragraph [ref=e1908]:
+          - text: Our robust delivery network covers approximately 19,000+ pin codes in India so that your wishes reach your loved ones on time. Even if you have impromptu or last-minute gifting plans, we have you covered with our
+          - link "same-day delivery gifts" [ref=e1909] [cursor=pointer]:
+            - /url: /same-day-delivery-gifts-lp
+          - text: . You can easily choose your preferred delivery time while placing the order. For example- if you want same-day cake delivery at a particular time, choose the ‘fixed time delivery’ option and select a time slot. Also, our same-day deliveries cover zero hidden costs, promising you a reliable and stress-free experience. In addition to our same-day delivery, we also offer
+          - link "midnight gift delivery" [ref=e1910] [cursor=pointer]:
+            - /url: /midnight-delivery-gifts-lp
+          - text: . Simply place the order, choose the midnight option, and the order will be delivered between 11 pm and 11:59 pm. We also have an express delivery network that delivers gifts like flowers, cakes, and plants promptly. We use national and international courier services to help you send gifts anywhere in India and 70+ countries.
+        - heading "Shop Premium Products for Your Loved Ones from FNP Luxe - Available in Delhi NCR, Bangalore & Mumbai" [level=2] [ref=e1911]
+        - paragraph [ref=e1912]:
+          - text: Gifting is a beautiful expression of love, appreciation, and celebration, making each moment with your loved ones more memorable. Resonating with this, FNP Luxe offers a grand collection of
+          - link "luxury gifts" [ref=e1913] [cursor=pointer]:
+            - /url: /fnpluxe-lp
+          - text: that elevate every occasion, from birthdays and anniversaries to “just because” moments. Rest assured, our exclusive selection is carefully curated to bring joy and elegance into the lives of your loved ones. Explore our premium selection, which includes gourmet delights ranging from decadent chocolates to fine assortments that are perfect for anyone. Our ravishing flower arrangements also showcase blooms that convey warmth and sophistication, which are ideal for creating a lasting impression. Our sumptuous cakes are available in various flavours and designs for those with a sweet tooth, adding a delicious highlight to every celebration. Currently, FNP Luxe is available only in Delhi NCR, Bangalore, and Mumbai, ensuring that your gifts reflect thoughtfulness and grandeur, turning any occasion into an unforgettable experience.
+        - heading "Best Happy Birthday Gifts Online - Celebrate Special Occasions with Cakes, Flowers & More" [level=2] [ref=e1914]
+        - paragraph [ref=e1915]:
+          - text: When looking forward to shopping for captivating
+          - link "birthday gifts online" [ref=e1916] [cursor=pointer]:
+            - /url: /gifts/birthday-lp
+          - text: ", check out our incredible gift range. To make things easy, we bring you our popular picks below:"
+        - paragraph [ref=e1917]:
+          - strong [ref=e1918]: Birthday Cakes -
+          - text: No birthday celebration is complete without delicious cakes. We offer fresh options in flavourful varieties, like chocolate, vanilla, black forest, etc. The professional bakers make our cakes with high-quality ingredients and use fluffy, creamy frosting. From jar cakes to personalised and designer choices, we have several options for you.
+        - paragraph [ref=e1919]:
+          - strong [ref=e1920]: Birthday Flowers -
+          - text: Fresh blooms never disappoint in making someone’s day special. So, if you want to bring a smile to your loved ones' faces on their birthdays, send them our floral bouquets or arrangements from our portal. These include fresh roses, lilies, carnations, and more blooms arranged beautifully in an alluring bouquet style.
+        - paragraph [ref=e1921]:
+          - strong [ref=e1922]: Birthday Gift Hampers and Combos -
+          - text: Why give just one present when you can bundle up many in one gorgeous arrangement? Our birthday gift hampers and combos make it possible. From elegant cake and flower combos to chocolate and perfume combos, our selection will excite you. At the same time, our hampers also feature treats and goodies, perfect for birthday gifting. From savoury treat hampers to spa kits, we offer brilliant options that make gifting memorable.
+        - paragraph [ref=e1923]:
+          - strong [ref=e1924]: Birthday Accessories -
+          - text: When gifting, give something practical and valuable to the recipient. It will show them how much you care and think about them. For this, check out our birthday-special accessory collection, which includes desk organisers, personalised clocks, wallets, mousepads, cufflinks, bags, etc.
+        - paragraph [ref=e1925]:
+          - strong [ref=e1926]: Birthday Jewellery Sets -
+          - text: When looking for birthday gifts online, jewellery is also one of the most popular options! We have a great selection of jewellery sets for men and women in trendy designs and exceptional quality. We have everything, from customisable pendants and bracelets to sleek rings, earrings, and more.
+        - heading "Wedding Anniversary Gifts Online India" [level=2] [ref=e1927]
+        - paragraph [ref=e1928]:
+          - text: When shopping for wedding
+          - link "anniversary gifts" [ref=e1929] [cursor=pointer]:
+            - /url: /gifts/anniversary-lp
+          - text: ", choose options that reflect the warmth of the relationship! You can explore our unique choices below and surprise your soulmate on the special day:"
+        - paragraph [ref=e1930]:
+          - strong [ref=e1931]: Caricatures -
+          - text: Our couple's caricatures are quite quirky and cute. They make for one of the best customer-favourite
+          - link "wedding gifts" [ref=e1932] [cursor=pointer]:
+            - /url: /gifts/wedding-lp
+          - text: . The fun, colourful design makes for lovely decor that recalls the joy and the excitement in your relationship with your partner. To create the caricature, all you need to do is send in two photographs. We will convert them into trendy and cute caricature gifts.
+        - paragraph [ref=e1933]:
+          - strong [ref=e1934]: Photo Frames -
+          - text: A wedding anniversary is the perfect time to revisit all your great memories with your partner. So, what better way to capture them than with trendy photo frames? Whether you want customised wall-mounting frames or table-top hanging options, we provide a variety of styles to choose from. You just have to upload your cherished photos, and we will convert them into beautiful collages that will stun anyone.
+        - paragraph [ref=e1935]:
+          - strong [ref=e1936]: Home Decor Items -
+          - text: Fill every corner of your living space with gorgeous items that make your house a ‘home.’ Explore our home decor items and choose picks that enhance the beauty of your interiors. We have many gift varieties, from stunning candle sets and decorative showpieces to modern and funky artefacts.
+        - heading "Send Gifts to Your Loved Ones Around the World - Best Gift Ideas from FNP" [level=2] [ref=e1937]
+        - paragraph [ref=e1938]: "Let your loved ones be anywhere in the world. Reach out to them and express your feelings of love effortlessly with our gifting portal. However, if you are confused about what options you must explore, get brilliant ideas from our best-selling choices below:"
+        - table [ref=e1939]:
+          - rowgroup [ref=e1940]:
+            - row "Recipient Best-Selling Gift Ideas" [ref=e1941]:
+              - columnheader "Recipient" [ref=e1942]
+              - columnheader "Best-Selling Gift Ideas" [ref=e1943]
+          - rowgroup [ref=e1944]:
+            - row "For Her Handbags, Chocolates, Perfumes" [ref=e1945]:
+              - cell "For Her" [ref=e1946]
+              - cell "Handbags, Chocolates, Perfumes" [ref=e1947]
+            - row "For Him Watches, Grooming Kits, Fashion Accessories" [ref=e1948]:
+              - cell "For Him" [ref=e1949]
+              - cell "Watches, Grooming Kits, Fashion Accessories" [ref=e1950]
+            - row "For Father Snack Hampers, Indoor Plants, Wall Hangings" [ref=e1951]:
+              - cell "For Father" [ref=e1952]
+              - cell "Snack Hampers, Indoor Plants, Wall Hangings" [ref=e1953]:
+                - text: Snack Hampers,
+                - link "Indoor Plants" [ref=e1954] [cursor=pointer]:
+                  - /url: /indoor-plants-lp
+                - text: ", Wall Hangings"
+            - row "For Mother Personalised Cushions, Necklaces, Bouquets" [ref=e1955]:
+              - cell "For Mother" [ref=e1956]
+              - cell "Personalised Cushions, Necklaces, Bouquets" [ref=e1957]
+            - row "For Girlfriend Personalised Bottles, Teddy-Mug Combos, Red Rose Arrangement" [ref=e1958]:
+              - cell "For Girlfriend" [ref=e1959]
+              - cell "Personalised Bottles, Teddy-Mug Combos, Red Rose Arrangement" [ref=e1960]
+            - row "For Boyfriend Customised Mugs, Electronics and Gadgets, Custom Stationery" [ref=e1961]:
+              - cell "For Boyfriend" [ref=e1962]
+              - cell "Customised Mugs, Electronics and Gadgets, Custom Stationery" [ref=e1963]
+            - row "For Husband Men’s Perfume-wallet Combo, Portable Speaker, Whisky Glass Set" [ref=e1964]:
+              - cell "For Husband" [ref=e1965]
+              - cell "Men’s Perfume-wallet Combo, Portable Speaker, Whisky Glass Set" [ref=e1966]
+            - row "For Wife Custom Clutch, Cosmetics, Custom LED Lamps" [ref=e1967]:
+              - cell "For Wife" [ref=e1968]
+              - cell "Custom Clutch, Cosmetics, Custom LED Lamps" [ref=e1969]
+        - heading "Shop Best Corporate Gifts in Bulk via FNP" [level=2] [ref=e1970]
+        - paragraph [ref=e1971]:
+          - text: Are you searching for unique
+          - link "corporate gifts" [ref=e1972] [cursor=pointer]:
+            - /url: /corporate
+          - text: perfect for expressing gratitude and appreciation towards employees, clients, and partners? You’ve landed at the right place! A corporate gift is a great reward when a new employee joins the office or your company has closed a huge deal. You can order corporate gifts with us to make your employees feel valued and appreciated. Whether you want to order a handful of gift hampers or corporate gifts in bulk, we offer various options. For instance, you can order our personalised water bottles and mugs in bulk with the name of your company printed on them. You can also order other items like flasks, notebooks, pens, planters, and more. We also offer personalised chocolates as corporate gifts, a great way to build stronger relationships with clients and other stakeholders. Furthermore, you can order cakes, cupcakes, or gourmet treat baskets to celebrate corporate occasions with a blast. So, don’t hesitate to order corporate gifts in bulk from FNP!
+        - heading "Hatke Gifts – Unique & Quirky Surprises from FNP" [level=2] [ref=e1973]
+        - paragraph [ref=e1974]:
+          - text: Looking for something beyond the usual? FNP’s
+          - link "Hatke Gifts" [ref=e1975] [cursor=pointer]:
+            - /url: /hatke-gifts-lp
+          - text: collection brings you a range of fun, quirky, and out-of-the-box gifting options that are perfect for making any occasion extra special. Whether it’s a personalized caricature, funky cushions, or surprise gift boxes, these unconventional gifts add a playful and memorable touch. Explore Hatke Gifts to break away from the ordinary and delight your loved ones with something truly unexpected!
+        - heading "FNP Retail, Bakery, and Florist Franchise Opportunities" [level=2] [ref=e1976]
+        - paragraph [ref=e1977]:
+          - text: Are you a budding entrepreneur looking to start your own business under an established company's brand and business model? You’ve landed at the right place! FNP is one of India's most popular brands that promise profitable
+          - link "retail franchises" [ref=e1978] [cursor=pointer]:
+            - /url: /info/franchise-programme
+          - text: . Given our large customer base in India and internationally, the store owners can make a competent profit in the long run. We offer both a cake franchise and a florist franchise, making it easier for aspiring business owners to step into the booming food and floral industry. FNP cake franchise cost in India can vary greatly depending on the brand, location, and other factors. If you have decided upon a flower, cake, or gift business but want to strengthen your business acumen first, purchase a retail franchise via FNP. Before you start, check out the details of our franchise program and consider all the costs and benefits before investing.
+        - heading "Explore Gifting at Reasonable Prices with FNP Coupons" [level=2] [ref=e1979]
+        - paragraph [ref=e1980]:
+          - text: Every time you order a gift on FNP, you can save big using various deals and offers on the website. If you place an order for the first time, you can get up to 15% off using the code FNPONE. You can pay using Mobikwik and get an extra cashback of up to Rs. 750. You can get a flat off of Rs. 100 when you pay using Airtel Payments Bank. Similarly, if you are using the FNP mobile app to place an order for the first time, use the code NEWAPP and get a chance to save up to 20% on your gifts. We also run a lot of fun social contests wherein you can win
+          - link "FNP coupons" [ref=e1981] [cursor=pointer]:
+            - /url: /offers/coupons-and-deals
+          - text: and vouchers and use them to order gifts on our website and app. Look at our Facebook and Instagram pages for some fun content.
+    - contentinfo [ref=e1983]:
+      - generic [ref=e1984]:
+        - generic [ref=e1985]:
+          - generic [ref=e1986]:
+            - img "Worldwide Delivery" [ref=e1988]
+            - generic [ref=e1989]:
+              - paragraph [ref=e1990]: Worldwide Delivery
+              - paragraph [ref=e1991]: We deliver gifts to over 70 countries
+          - generic [ref=e1992]:
+            - img "100% Safe & Secure Payments" [ref=e1994]
+            - generic [ref=e1995]:
+              - paragraph [ref=e1996]: 100% Safe & Secure Payments
+              - paragraph [ref=e1997]: Pay using secure payment methods
+        - generic [ref=e1998]:
+          - paragraph [ref=e1999]: "Company Name: FNP E Retail Private Limited | CIN: U52100HR2021PTC118882 | Regd. Office: Plot No. 75P, Sector-44, Gurugram, Haryana - 122003"
+          - paragraph [ref=e2000]: "Telephone No.: +91-11-26802680 | Grievance Resolution Officer Name: Mr. Sagarjit Karmakar | Contact No.: +91 9212422000 / 9755-248-248 | Email ID - grievance@fnp.com"
+          - link "Corporate Social Responsibility (CSR) Policy" [ref=e2001] [cursor=pointer]:
+            - /url: /info/csr-policy
+        - generic [ref=e2002]:
+          - list [ref=e2004]:
+            - listitem [ref=e2005]:
+              - link "facebook" [ref=e2006] [cursor=pointer]:
+                - /url: https://www.facebook.com/fnpind
+                - img "facebook" [ref=e2007]
+            - listitem [ref=e2008]:
+              - link "twitter" [ref=e2009] [cursor=pointer]:
+                - /url: https://twitter.com/fnp_ind
+                - img "twitter" [ref=e2010]
+            - listitem [ref=e2011]:
+              - link "instagram" [ref=e2012] [cursor=pointer]:
+                - /url: https://www.instagram.com/fernsnpetalsindia/?hl=en
+                - img "instagram" [ref=e2013]
+            - listitem [ref=e2014]:
+              - link "linkedin" [ref=e2015] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/fnp-world
+                - img "linkedin" [ref=e2016]
+          - paragraph [ref=e2018]: © 1994-2026 fnp.com.All rights reserved.
+          - list [ref=e2020]:
+            - listitem [ref=e2021]:
+              - img "visa" [ref=e2022]
+            - listitem [ref=e2023]:
+              - img "mastercard" [ref=e2024]
+            - listitem [ref=e2025]:
+              - img "rupay" [ref=e2026]
+            - listitem [ref=e2027]:
+              - img "diners-club" [ref=e2028]
+            - listitem [ref=e2029]:
+              - img "american-express" [ref=e2030]
+  - alert [ref=e2031]

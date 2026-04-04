@@ -160,11 +160,11 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
       <div className="bg-[#f5f7fa] border-b border-gray-100">
         <div className="max-w-[1320px] mx-auto px-4 py-3">
           <nav className="flex items-center text-xs md:text-sm text-[#888] flex-wrap gap-1">
-            <Link href="/" className="text-[#C48B9F] hover:underline">Home</Link>
+            <Link href="/" className="text-[#737530] hover:underline">Home</Link>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
             {product.categories?.[0]?.parent && (
               <>
-                <Link href={`/${product.categories[0].parent.slug}/`} className="text-[#C48B9F] hover:underline">
+                <Link href={`/${product.categories[0].parent.slug}/`} className="text-[#737530] hover:underline">
                   {product.categories[0].parent.name}
                 </Link>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
@@ -177,7 +177,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                     ? `/${product.categories[0].parent.slug}/${product.categories[0].slug}/`
                     : `/${product.categories[0].slug}/`
                   }
-                  className="text-[#C48B9F] hover:underline"
+                  className="text-[#737530] hover:underline"
                 >
                   {product.categories[0].name}
                 </Link>
@@ -202,7 +202,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                   key={i}
                   onClick={() => setActiveImg(i)}
                   className={`shrink-0 w-[60px] h-[72px] md:w-[72px] md:h-[86px] rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ${
-                    activeImg === i ? "ring-2 ring-[#C48B9F] opacity-100" : "opacity-50 hover:opacity-80"
+                    activeImg === i ? "ring-2 ring-[#737530] opacity-100" : "opacity-50 hover:opacity-80"
                   }`}
                 >
                   <Image src={img.url} alt={img.alt || ""} width={72} height={86} className="w-full h-full object-cover" />
@@ -234,9 +234,9 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               </h1>
               <button
                 onClick={() => setWishlisted(!wishlisted)}
-                className="shrink-0 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#C48B9F] transition-colors cursor-pointer"
+                className="shrink-0 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#737530] transition-colors cursor-pointer"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill={wishlisted ? "#C48B9F" : "none"} stroke={wishlisted ? "#C48B9F" : "#888"} strokeWidth="1.8">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill={wishlisted ? "#737530" : "none"} stroke={wishlisted ? "#737530" : "#888"} strokeWidth="1.8">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                 </svg>
               </button>
@@ -249,7 +249,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                   &#9733; {product.metrics.averageRating}
                 </span>
                 <span className="text-sm text-[#888]">&bull;</span>
-                <span className="text-sm text-[#C48B9F]">{product.metrics.ratingCount} Reviews</span>
+                <span className="text-sm text-[#737530]">{product.metrics.ratingCount} Reviews</span>
               </div>
             )}
 
@@ -282,7 +282,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                       key={v.label}
                       onClick={() => setActiveVariant(i)}
                       className={`flex flex-col rounded-xl border overflow-hidden transition-all duration-200 cursor-pointer w-[110px] ${
-                        activeVariant === i ? "border-[#C48B9F] shadow-md" : "border-gray-200 hover:border-gray-300"
+                        activeVariant === i ? "border-[#737530] shadow-md" : "border-gray-200 hover:border-gray-300"
                       }`}
                     >
                       {v.image && (
@@ -316,7 +316,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                         <p className="text-[11px] text-[#464646] truncate">{addon.name}</p>
                         <div className="flex items-center justify-between mt-1">
                           <span className="text-xs font-bold text-[#1C2120]">&#8377; {addon.price.toLocaleString()}</span>
-                          <button className="text-[10px] font-bold text-[#C48B9F] border border-[#C48B9F] rounded px-2 py-0.5 hover:bg-[#C48B9F] hover:text-white transition-colors cursor-pointer">
+                          <button className="text-[10px] font-bold text-[#737530] border border-[#737530] rounded px-2 py-0.5 hover:bg-[#737530] hover:text-white transition-colors cursor-pointer">
                             ADD
                           </button>
                         </div>
@@ -331,7 +331,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             <div className="mt-5 p-4 rounded-xl border border-gray-200">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-[#1C2120]">Select Area / Location</p>
-                <button className="text-xs font-medium text-[#C48B9F] flex items-center gap-1 cursor-pointer">
+                <button className="text-xs font-medium text-[#737530] flex items-center gap-1 cursor-pointer">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
                   Use My Location
                 </button>
@@ -345,17 +345,17 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             {/* Offers */}
             <button
               onClick={() => setShowOffers(!showOffers)}
-              className="mt-4 w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-[#C48B9F]/30 transition-colors cursor-pointer"
+              className="mt-4 w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-[#737530]/30 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C48B9F" strokeWidth="2" strokeLinecap="round"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#C48B9F" /></svg>
-                <span className="text-sm font-semibold text-[#C48B9F]">Offers Available</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#737530" /></svg>
+                <span className="text-sm font-semibold text-[#737530]">Offers Available</span>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className={`transition-transform duration-200 ${showOffers ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg>
             </button>
             {showOffers && (
               <div className="border border-t-0 border-gray-200 rounded-b-xl p-4 -mt-1 text-sm text-[#464646] space-y-2">
-                <p className="flex items-center gap-2"><span className="text-[#4CAF50] font-bold">10%</span> off on orders above &#8377;999 with code <span className="font-semibold text-[#C48B9F]">BLOOM10</span></p>
+                <p className="flex items-center gap-2"><span className="text-[#4CAF50] font-bold">10%</span> off on orders above &#8377;999 with code <span className="font-semibold text-[#737530]">BLOOM10</span></p>
                 <p className="flex items-center gap-2"><span className="text-[#4CAF50] font-bold">Free</span> delivery on your first order</p>
               </div>
             )}
@@ -392,13 +392,13 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             <div key={badge.label} className="flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-[#f5f7fa] flex items-center justify-center mb-2">
                 {badge.icon === "smile" && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C48B9F" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><circle cx="9" cy="9" r="0.5" fill="#C48B9F" /><circle cx="15" cy="9" r="0.5" fill="#C48B9F" /></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="1.5"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><circle cx="9" cy="9" r="0.5" fill="#737530" /><circle cx="15" cy="9" r="0.5" fill="#737530" /></svg>
                 )}
                 {badge.icon === "pin" && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C48B9F" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
                 )}
                 {badge.icon === "truck" && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C48B9F" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13" rx="1" /><path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="1.5"><rect x="1" y="3" width="15" height="13" rx="1" /><path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
                 )}
               </div>
               <p className="text-sm font-semibold text-[#1C2120]">{badge.label}</p>
@@ -449,7 +449,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                         <div className="flex items-center gap-1.5 mt-1">
                           <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold text-white bg-[#4CAF50]">&#9733; {p.metrics.averageRating}</span>
                           {p.metrics.ratingCount > 0 && (
-                            <span className="text-[10px] text-[#C48B9F]">({p.metrics.ratingCount.toLocaleString()})</span>
+                            <span className="text-[10px] text-[#737530]">({p.metrics.ratingCount.toLocaleString()})</span>
                           )}
                         </div>
                       )}
@@ -465,10 +465,10 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
       {/* Sticky Bottom Bar */}
       <div className="sticky bottom-0 z-40 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <div className="max-w-[1320px] mx-auto px-4 py-3 flex items-center gap-3">
-          <button className="flex-1 py-3 rounded-lg border-2 border-[#C48B9F] text-[#C48B9F] text-sm md:text-base font-semibold transition-colors hover:bg-[#C48B9F]/5 cursor-pointer">
+          <button className="flex-1 py-3 rounded-lg border-2 border-[#737530] text-[#737530] text-sm md:text-base font-semibold transition-colors hover:bg-[#737530]/5 cursor-pointer">
             ADD TO CART
           </button>
-          <button className="flex-1 py-3 rounded-lg bg-[#C48B9F] text-white text-sm md:text-base font-semibold transition-colors hover:bg-[#A87389] cursor-pointer">
+          <button className="flex-1 py-3 rounded-lg bg-[#737530] text-white text-sm md:text-base font-semibold transition-colors hover:bg-[#4C4D27] cursor-pointer">
             BUY NOW | &#8377; {currentPrice.toLocaleString()}
           </button>
         </div>

@@ -250,7 +250,7 @@ export default function CategoriesPage() {
               <button
                 onClick={() => setReorderMode(true)}
                 disabled={categories.length < 2}
-                className="px-4 py-2.5 bg-white text-[#C48B9F] text-sm font-medium rounded-lg border border-[#C48B9F] hover:bg-[#C48B9F]/5 transition-colors flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="px-4 py-2.5 bg-white text-[#737530] text-sm font-medium rounded-lg border border-[#737530] hover:bg-[#737530]/5 transition-colors flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <svg
                   width="18"
@@ -271,7 +271,7 @@ export default function CategoriesPage() {
               </button>
               <button
                 onClick={openAddModal}
-                className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+                className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
               >
                 <svg
                   width="18"
@@ -305,7 +305,7 @@ export default function CategoriesPage() {
               )}
               <button
                 onClick={exitReorderMode}
-                className="px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors"
+                className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors"
               >
                 Done
               </button>
@@ -352,7 +352,7 @@ export default function CategoriesPage() {
                           {...provided.draggableProps}
                           className={`flex items-center gap-4 px-5 py-3 transition-colors ${
                             snapshot.isDragging
-                              ? "bg-[#C48B9F]/5 shadow-lg rounded-lg"
+                              ? "bg-[#737530]/5 shadow-lg rounded-lg"
                               : "bg-white hover:bg-gray-50/50"
                           }`}
                         >
@@ -447,7 +447,7 @@ export default function CategoriesPage() {
                                 handleOrderNumberChange(cat._id, val);
                               }
                             }}
-                            className="w-[60px] flex-shrink-0 border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-center text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                            className="w-[60px] flex-shrink-0 border border-gray-200 rounded-lg px-2 py-1.5 text-sm text-center text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
                           />
                         </div>
                       )}
@@ -529,7 +529,7 @@ export default function CategoriesPage() {
                 <div className="flex items-center gap-2 mt-3">
                   <button
                     onClick={() => openEditModal(cat)}
-                    className="text-xs font-medium text-[#C48B9F] hover:text-[#0A3A4D] transition-colors"
+                    className="text-xs font-medium text-[#737530] hover:text-[#0A3A4D] transition-colors"
                   >
                     Edit
                   </button>
@@ -570,7 +570,7 @@ export default function CategoriesPage() {
                   )
               }
               disabled={saving}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#C48B9F] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#737530] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : editingId ? "Update" : "Create"}
             </button>
@@ -593,7 +593,7 @@ export default function CategoriesPage() {
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="e.g. Birthday Bouquets"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -609,7 +609,7 @@ export default function CategoriesPage() {
               }
               rows={3}
               placeholder="Brief description of this category"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors resize-none"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
             />
           </div>
 
@@ -623,7 +623,7 @@ export default function CategoriesPage() {
               value={form.image}
               onChange={(e) => setForm({ ...form, image: e.target.value })}
               placeholder="https://example.com/image.jpg"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -635,7 +635,7 @@ export default function CategoriesPage() {
             <select
               value={form.parent}
               onChange={(e) => setForm({ ...form, parent: e.target.value })}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             >
               <option value="">None (top-level)</option>
               {parentOptions.map((opt) => (
@@ -659,7 +659,7 @@ export default function CategoriesPage() {
                   setForm({ ...form, order: parseInt(e.target.value, 10) || 0 })
                 }
                 min={0}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>

@@ -167,7 +167,7 @@ export default function CustomersPage() {
                     <td className="px-4 py-3 text-right">
                       <Link
                         href={`/admin/customers/${customer._id}`}
-                        className="text-xs font-medium text-[#C48B9F] hover:text-[#0A3A4D] transition-colors"
+                        className="text-xs font-medium text-[#737530] hover:text-[#0A3A4D] transition-colors"
                       >
                         View
                       </Link>

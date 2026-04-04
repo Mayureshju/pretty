@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 const products = [
   {
@@ -14,11 +13,11 @@ const products = [
     href: "/product/red-roses-bouquet/",
     price: 695,
     originalPrice: 770,
-    discount: 10,
     rating: 4.9,
     reviews: 1645,
     delivery: "Tomorrow",
     image: "/images/products/red-roses.jpg",
+    badge: "Best Seller",
   },
   {
     id: 2,
@@ -26,11 +25,11 @@ const products = [
     href: "/product/profuse-jade-terrarium/",
     price: 695,
     originalPrice: 999,
-    discount: 31,
     rating: 4.9,
     reviews: 68,
     delivery: "Tomorrow",
     image: "/images/products/jade-plant.jpg",
+    badge: "PRICE DROP",
   },
   {
     id: 3,
@@ -38,11 +37,11 @@ const products = [
     href: "/product/chocolate-truffle-cake/",
     price: 595,
     originalPrice: 745,
-    discount: 21,
     rating: 4.9,
     reviews: 829,
     delivery: "Tomorrow",
     image: "/images/products/chocolate-cake.jpg",
+    badge: "Best Seller",
   },
   {
     id: 4,
@@ -50,11 +49,11 @@ const products = [
     href: "/product/purple-orchid-bouquet/",
     price: 795,
     originalPrice: 999,
-    discount: 21,
     rating: 4.9,
     reviews: 676,
     delivery: "Tomorrow",
     image: "/images/products/purple-orchid.jpg",
+    badge: null,
   },
   {
     id: 5,
@@ -62,11 +61,11 @@ const products = [
     href: "/product/pastel-blooms/",
     price: 595,
     originalPrice: 795,
-    discount: 26,
     rating: 5,
     reviews: 2,
     delivery: "Tomorrow",
     image: "/images/products/pink-bouquet.jpg",
+    badge: "PRICE DROP",
   },
   {
     id: 6,
@@ -74,11 +73,11 @@ const products = [
     href: "/product/red-roses-wrapped/",
     price: 545,
     originalPrice: 795,
-    discount: 32,
     rating: 4.8,
     reviews: 4,
     delivery: "Tomorrow",
     image: "/images/products/red-wrapped.jpg",
+    badge: "PRICE DROP",
   },
   {
     id: 7,
@@ -86,11 +85,11 @@ const products = [
     href: "/product/red-velvet-cake/",
     price: 685,
     originalPrice: 895,
-    discount: 24,
     rating: 4.9,
     reviews: 320,
     delivery: "Tomorrow",
     image: "/images/products/red-velvet.jpg",
+    badge: "Best Seller",
   },
   {
     id: 8,
@@ -98,70 +97,48 @@ const products = [
     href: "/product/twin-hearts-balloon/",
     price: 895,
     originalPrice: 1295,
-    discount: 31,
     rating: 4.6,
     reviews: 8,
     delivery: "Tomorrow",
     image: "/images/products/balloon.jpg",
+    badge: null,
   },
 ];
 
-function HeartIcon({ filled }: { filled: boolean }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#C48B9F" : "none"} stroke={filled ? "#C48B9F" : "#666"} strokeWidth="1.8">
-      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-    </svg>
-  );
-}
-
 export default function BestSellers() {
-  const [wishlist, setWishlist] = useState<number[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const toggleWishlist = (id: number) => {
-    setWishlist((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
-  };
-
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Header with SplitText word reveal
+    // Header fade-in
     if (headerRef.current) {
-      const heading = headerRef.current.querySelector("h2");
-      if (heading) {
-        const split = new SplitText(heading, { type: "words" });
-        gsap.fromTo(
-          split.words,
-          { opacity: 0, y: 30, rotateX: -30 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.6,
-            stagger: 0.04,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 80%",
-            },
-          }
-        );
-      }
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }
 
-    // Product cards stagger with clip-path reveal
+    // Product cards stagger fade-in
     const cards = cardsRef.current.filter(Boolean);
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 30, clipPath: "inset(8% 8% 8% 8% round 12px)" },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
-        clipPath: "inset(0% 0% 0% 0% round 12px)",
         duration: 0.6,
         stagger: 0.06,
         ease: "power3.out",
@@ -172,119 +149,112 @@ export default function BestSellers() {
       }
     );
 
-    // Image zoom on hover
-    cards.forEach((card) => {
-      if (!card) return;
-      const img = card.querySelector(".product-img") as HTMLElement;
-      if (!img) return;
-
-      card.addEventListener("mouseenter", () => {
-        gsap.to(img, { scale: 1.08, duration: 0.45, ease: "power2.out" });
-        gsap.to(card, { y: -4, boxShadow: "0 8px 30px rgba(0,0,0,0.12)", duration: 0.3, ease: "power2.out" });
-      });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(img, { scale: 1, duration: 0.45, ease: "power2.inOut" });
-        gsap.to(card, { y: 0, boxShadow: "0 1px 4px rgba(0,0,0,0.06)", duration: 0.3, ease: "power2.inOut" });
-      });
-    });
-
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-16">
       {/* Header */}
-      <div ref={headerRef} className="flex items-center justify-between mb-1">
-        <h2 className="text-xl md:text-2xl font-semibold text-[#1C2120]">
-          Best Selling Flowers &amp; Gifts
-        </h2>
+      <div ref={headerRef} className="flex items-start justify-between mb-6 md:mb-8">
+        <div>
+          <h2 className="text-lg md:text-xl font-semibold text-[#1C2120]">
+            Best Selling Flowers &amp; Gifts
+          </h2>
+          <p className="text-sm text-[#939393] mt-1">Surprise Your Loved Ones</p>
+        </div>
         <a
           href="/best-seller"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white hidden sm:block"
+          className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium border border-[#737530] text-[#737530] rounded-lg px-4 py-2 transition-colors hover:bg-[#737530] hover:text-white shrink-0"
         >
           View All
         </a>
       </div>
-      <p className="text-sm text-[#888] mb-5">Surprise Your Loved Ones</p>
 
       {/* Product Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {products.map((product, i) => (
           <div
             key={product.id}
-            ref={(el) => { cardsRef.current[i] = el; }}
-            className="relative bg-white rounded-xl border border-[#eee] overflow-hidden"
-            style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
+            ref={(el) => {
+              cardsRef.current[i] = el;
+            }}
+            className="bg-white rounded-lg overflow-hidden"
           >
-            {/* Wishlist */}
-            <button
-              onClick={() => toggleWishlist(product.id)}
-              className="absolute top-2.5 right-2.5 z-10 bg-white rounded-full p-1.5 shadow-sm transition-transform hover:scale-110 cursor-pointer"
-            >
-              <HeartIcon filled={wishlist.includes(product.id)} />
-            </button>
-
             {/* Product Image */}
             <a href={product.href} className="block">
-              <div className="relative w-full aspect-square overflow-hidden bg-[#f8f8f8]">
+              <div className="aspect-square bg-[#F5F5F5] overflow-hidden relative">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="product-img w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
+                {product.badge && (
+                  <span
+                    className={`absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                      product.badge === "PRICE DROP"
+                        ? "bg-red-500 text-white"
+                        : "border border-[#737530] text-[#737530] bg-white"
+                    }`}
+                  >
+                    {product.badge}
+                  </span>
+                )}
+                {/* Carousel dots indicator */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-80" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-30" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-30" />
+                </div>
               </div>
             </a>
 
             {/* Product Info */}
             <div className="p-3">
               <a href={product.href}>
-                <h3 className="text-[13px] md:text-sm font-medium text-[#1C2120] truncate leading-tight">
+                <h3 className="text-sm font-medium text-[#1C2120] truncate">
                   {product.name}
                 </h3>
               </a>
 
               {/* Price */}
-              <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                <span className="text-[15px] font-semibold text-[#1C2120]">
-                  &#8377; {product.price}
+              <div className="flex items-center gap-1.5 mt-1.5">
+                <span className="text-xs text-[#939393] line-through">
+                  &#8377;{product.originalPrice}
                 </span>
-                <span className="text-xs text-[#999] line-through">
-                  &#8377; {product.originalPrice}
-                </span>
-                <span className="text-xs font-medium text-[#FFA500]">
-                  {product.discount}% OFF
+                <span className="text-sm font-bold text-[#1C2120]">
+                  &#8377;{product.price}
                 </span>
               </div>
 
               {/* Rating */}
-              <div className="flex items-center gap-1.5 mt-1.5">
-                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[11px] font-bold text-white bg-[#4CAF50]">
-                  &#9733; {product.rating}
-                </span>
-                <span className="text-[11px] md:text-xs text-[#C48B9F]">
-                  ({product.reviews.toLocaleString()} Reviews)
+              <div className="flex items-center gap-1 mt-1.5">
+                <span className="text-xs text-[#1C2120]">
+                  &#11088; {product.rating} | {product.reviews}
                 </span>
               </div>
 
               {/* Delivery */}
-              <p className="text-[11px] md:text-xs text-[#999] mt-2">
-                Earliest Delivery : <span className="text-[#1C2120] font-medium">{product.delivery}</span>
+              <p className="text-[11px] text-[#939393] mt-1.5">
+                Earliest Delivery :{" "}
+                <span className="text-[#1C2120] font-medium">
+                  {product.delivery}
+                </span>
               </p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Mobile View All */}
-      <div className="flex justify-center mt-5 sm:hidden">
+      {/* View All Button - full width, centered */}
+      <div className="flex justify-center mt-6">
         <a
           href="/best-seller"
-          className="px-8 py-2.5 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white"
+          className="inline-flex items-center gap-1 px-8 py-2.5 text-sm font-medium border border-[#737530] text-[#737530] rounded-lg transition-colors hover:bg-[#737530] hover:text-white"
         >
-          View All
+          View All Best Sellers &gt;
         </a>
       </div>
     </section>

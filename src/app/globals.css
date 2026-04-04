@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary - Refined Rose */
-  --primary: #C48B9F;
-  --primary-hover: #A87389;
-  --primary-light: #FAF0F3;
+  /* Primary - Olive Green (FNP-inspired) */
+  --primary: #737530;
+  --primary-hover: #4C4D27;
+  --primary-light: #F2F3E8;
 
-  /* Text - Warm Neutrals */
-  --text-dark: #2C2424;
-  --text-body: #5E5252;
-  --text-gray: #9A8F8F;
-  --text-light: #C2B8B8;
+  /* Text - Neutral Tones */
+  --text-dark: #1C2120;
+  --text-body: #444444;
+  --text-gray: #939393;
+  --text-light: #B0B0B0;
 
   /* Accent Colors */
   --accent-gold: #C6A869;
-  --accent-sage: #8DA58B;
-  --accent-rose: #D4A0AD;
-  --accent-green: #49A066;
+  --accent-sage: #C0C398;
+  --accent-rose: #EA1E61;
+  --accent-green: #009D43;
   --accent-orange: #E8A04C;
-  --accent-red: #D9586B;
+  --accent-red: #EA1E61;
   --rating-green: #4CAF50;
 
   /* Backgrounds */
-  --bg-white: #FEFCFB;
-  --bg-light: #FAF7F5;
-  --bg-lighter: #F7F3F1;
-  --bg-section: #F3EEEB;
+  --bg-white: #FFFFFF;
+  --bg-light: #F7F8F1;
+  --bg-lighter: #F5F5F5;
+  --bg-section: #F2F3E8;
 
   /* Border */
-  --border-light: #E8E0DC;
-  --border-card: #F0E8E4;
+  --border-light: #E0E0E0;
+  --border-card: #EEEEEE;
 
   /* Shadows */
-  --shadow-card: 0 2px 8px rgba(44, 36, 36, 0.05);
-  --shadow-hover: 0 8px 24px rgba(196, 139, 159, 0.12);
-  --shadow-header: 0 1px 3px rgba(44, 36, 36, 0.04);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 8px 24px rgba(115, 117, 48, 0.12);
+  --shadow-header: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 @theme inline {
@@ -56,8 +56,7 @@
   --color-bg-section: var(--bg-section);
   --color-border-light: var(--border-light);
   --color-border-card: var(--border-card);
-  --font-sans: var(--font-raleway), 'Raleway', sans-serif;
-  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', sans-serif;
 }
 
 @layer base {
@@ -66,16 +65,12 @@
   }
 
   body {
-    font-family: var(--font-raleway), 'Raleway', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     color: var(--text-body);
     background: var(--bg-white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-  }
-
-  h1, h2, h3 {
-    font-family: var(--font-serif);
   }
 
   a {

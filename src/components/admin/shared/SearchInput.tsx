@@ -71,7 +71,7 @@ export default function SearchInput({
         value={internalValue}
         onChange={(e) => setInternalValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full border border-gray-200 rounded-lg pl-10 pr-8 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+        className="w-full border border-gray-200 rounded-lg pl-10 pr-8 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
       />
 
       {/* Clear button */}

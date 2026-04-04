@@ -100,8 +100,8 @@ export default function CartPage() {
               <path d="M140 240 L120 200 L105 200" stroke="#E8C9A8" strokeWidth="3" strokeLinecap="round" />
               {/* Person */}
               <circle cx="100" cy="130" r="28" fill="#F5D5C8" />
-              <rect x="75" y="158" width="50" height="80" rx="10" fill="#C48B9F" />
-              <rect x="58" y="165" width="20" height="55" rx="8" fill="#C48B9F" />
+              <rect x="75" y="158" width="50" height="80" rx="10" fill="#737530" />
+              <rect x="58" y="165" width="20" height="55" rx="8" fill="#737530" />
               <path d="M125 180 Q145 200 135 235" stroke="#F5D5C8" strokeWidth="8" strokeLinecap="round" />
               <rect x="75" y="238" width="16" height="50" rx="6" fill="#FDCB6E" />
               <rect x="105" y="238" width="16" height="50" rx="6" fill="#FDCB6E" />
@@ -115,14 +115,14 @@ export default function CartPage() {
             </svg>
           </div>
 
-          <h2 className="text-xl md:text-2xl font-semibold text-[#C48B9F] leading-snug">
+          <h2 className="text-xl md:text-2xl font-semibold text-[#737530] leading-snug">
             Hey, cart bag seems to be empty,<br />
             Let&apos;s add some items.
           </h2>
 
           <a
             href="/"
-            className="mt-8 px-10 py-3.5 bg-[#C48B9F] text-white text-sm font-semibold rounded-lg hover:bg-[#A87389] transition-colors"
+            className="mt-8 px-10 py-3.5 bg-[#737530] text-white text-sm font-semibold rounded-lg hover:bg-[#4C4D27] transition-colors"
           >
             CONTINUE SHOPPING
           </a>
@@ -142,7 +142,7 @@ export default function CartPage() {
                   <div className="w-[110px] h-[110px] md:w-[130px] md:h-[130px] rounded-2xl overflow-hidden shadow-md transition-transform duration-300 group-hover:scale-105">
                     <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
                   </div>
-                  <span className="text-sm font-medium text-[#1C2120] text-center group-hover:text-[#C48B9F] transition-colors">
+                  <span className="text-sm font-medium text-[#1C2120] text-center group-hover:text-[#737530] transition-colors">
                     {cat.name}
                   </span>
                 </a>
@@ -177,7 +177,7 @@ export default function CartPage() {
             >
               {/* Express badge */}
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-3 py-1 bg-[#C48B9F] text-white text-xs font-semibold rounded-md">
+                <span className="px-3 py-1 bg-[#737530] text-white text-xs font-semibold rounded-md">
                   {item.delivery}
                 </span>
                 <span className="text-xs text-[#888]">&#8377; 30-40 km</span>
@@ -224,7 +224,7 @@ export default function CartPage() {
 
                   {/* Message + Qty */}
                   <div className="flex items-center justify-between mt-3">
-                    <button className="text-xs text-[#C48B9F] flex items-center gap-1 hover:underline cursor-pointer">
+                    <button className="text-xs text-[#737530] flex items-center gap-1 hover:underline cursor-pointer">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                         <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
                         <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -233,19 +233,19 @@ export default function CartPage() {
                     </button>
 
                     {/* Qty selector */}
-                    <div className="flex items-center border border-[#C48B9F] rounded-lg overflow-hidden">
+                    <div className="flex items-center border border-[#737530] rounded-lg overflow-hidden">
                       <button
                         onClick={() => updateQty(item.id, -1)}
-                        className="w-8 h-8 flex items-center justify-center text-[#C48B9F] hover:bg-[#C48B9F]/5 transition-colors cursor-pointer text-lg font-bold"
+                        className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
                       >
                         -
                       </button>
-                      <span className="w-8 h-8 flex items-center justify-center text-sm font-semibold text-[#1C2120] border-x border-[#C48B9F]">
+                      <span className="w-8 h-8 flex items-center justify-center text-sm font-semibold text-[#1C2120] border-x border-[#737530]">
                         {item.qty}
                       </span>
                       <button
                         onClick={() => updateQty(item.id, 1)}
-                        className="w-8 h-8 flex items-center justify-center text-[#C48B9F] hover:bg-[#C48B9F]/5 transition-colors cursor-pointer text-lg font-bold"
+                        className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
                       >
                         +
                       </button>
@@ -274,7 +274,7 @@ export default function CartPage() {
                   <div className="p-2.5">
                     <p className="text-xs text-[#464646] line-clamp-2 min-h-[32px]">{addon.name}</p>
                     <p className="text-sm font-bold text-[#1C2120] mt-1">&#8377; {addon.price}</p>
-                    <button className="w-full mt-2 py-1.5 text-xs font-semibold border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg hover:bg-[#C48B9F] hover:text-white transition-colors cursor-pointer">
+                    <button className="w-full mt-2 py-1.5 text-xs font-semibold border-2 border-[#737530] text-[#737530] rounded-lg hover:bg-[#737530] hover:text-white transition-colors cursor-pointer">
                       Add to Cart
                     </button>
                   </div>
@@ -311,7 +311,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            <button className="w-full mt-5 py-3.5 bg-[#C48B9F] text-white text-sm font-bold rounded-lg hover:bg-[#A87389] transition-colors cursor-pointer tracking-wide">
+            <button className="w-full mt-5 py-3.5 bg-[#737530] text-white text-sm font-bold rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer tracking-wide">
               PLACE ORDER
             </button>
 

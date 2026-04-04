@@ -3,147 +3,93 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 const occasions = [
-  {
-    name: "Birthday Gifts",
-    href: "/birthday",
-    image: "/images/occasions/birthday.jpg",
-  },
-  {
-    name: "Anniversary Gifts",
-    href: "/anniversary",
-    image: "/images/occasions/anniversary.jpg",
-  },
-  {
-    name: "Gifts for Him",
-    href: "/gifts/for-him",
-    image: "/images/occasions/gifts-him.jpg",
-  },
-  {
-    name: "Gifts for Her",
-    href: "/gifts/for-her",
-    image: "/images/occasions/gifts-her.jpg",
-  },
+  { name: "Birthday", href: "/birthday", image: "/images/occasions/birthday.jpg" },
+  { name: "Anniversary", href: "/anniversary", image: "/images/occasions/anniversary.jpg" },
+  { name: "Valentine's Day", href: "/valentines-day", image: "/images/occasions/valentines.jpg" },
+  { name: "Wedding", href: "/wedding", image: "/images/occasions/wedding.jpg" },
+  { name: "Get Well Soon", href: "/get-well-soon", image: "/images/occasions/get-well.jpg" },
+  { name: "Housewarming", href: "/housewarming", image: "/images/occasions/housewarming.jpg" },
+  { name: "Congratulations", href: "/congratulations", image: "/images/occasions/congratulations.jpg" },
+  { name: "Corporate", href: "/corporate", image: "/images/occasions/corporate.jpg" },
 ];
 
 export default function OccasionsSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const itemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Heading with SplitText word reveal
-    if (headingRef.current) {
-      const heading = headingRef.current.querySelector("h2");
-      if (heading) {
-        const split = new SplitText(heading, { type: "words" });
+    const ctx = gsap.context(() => {
+      if (headingRef.current) {
         gsap.fromTo(
-          split.words,
-          { opacity: 0, y: 25, rotateX: -25 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.55,
-            stagger: 0.04,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 80%",
-            },
-          }
-        );
-      }
-      const subtitle = headingRef.current.querySelector("p");
-      if (subtitle) {
-        gsap.fromTo(
-          subtitle,
-          { opacity: 0, y: 15 },
+          headingRef.current,
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
             duration: 0.5,
-            ease: "power3.out",
+            ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 88%",
             },
           }
         );
       }
-    }
 
-    // Cards with clip-path bottom-up reveal
-    const cards = cardsRef.current.filter(Boolean);
-    gsap.fromTo(
-      cards,
-      { opacity: 0, clipPath: "inset(100% 0 0 0 round 16px)" },
-      {
-        opacity: 1,
-        clipPath: "inset(0% 0 0 0 round 16px)",
-        duration: 0.7,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-      }
-    );
+      const items = itemsRef.current.filter(Boolean);
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 16 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.06,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 82%",
+          },
+        }
+      );
+    }, sectionRef);
 
-    // Hover parallax on images
-    cards.forEach((card) => {
-      if (!card) return;
-      const img = card.querySelector("img");
-      if (!img) return;
-
-      card.addEventListener("mouseenter", () => {
-        gsap.to(img, { scale: 1.08, duration: 0.5, ease: "power2.out" });
-      });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(img, { scale: 1, duration: 0.5, ease: "power2.inOut" });
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
-      <div ref={headingRef}>
-        <h2 className="text-xl md:text-2xl font-semibold text-[#1C2120] text-center">
-          Shop By Occasions &amp; Relations
-        </h2>
-        <p className="text-sm text-[#888] text-center mt-1 mb-6 md:mb-8">
-          Surprise Your Loved Ones
-        </p>
-      </div>
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-8 md:py-12">
+      <h2
+        ref={headingRef}
+        className="text-lg md:text-xl font-semibold text-[#1C2120] mb-4 md:mb-5"
+      >
+        Shop by Occasion
+      </h2>
 
-      <div className="flex items-start justify-center gap-4 sm:gap-6 md:gap-8 flex-wrap">
+      <div className="flex gap-5 overflow-x-auto pb-2 scroll-container md:flex-wrap md:overflow-visible md:pb-0">
         {occasions.map((occ, i) => (
           <a
             key={occ.name}
             href={occ.href}
-            ref={(el) => { cardsRef.current[i] = el; }}
-            className="flex flex-col items-center gap-3 cursor-pointer"
+            ref={(el) => { itemsRef.current[i] = el; }}
+            className="flex flex-col items-center gap-2 group shrink-0"
           >
-            <div className="w-[150px] h-[180px] sm:w-[170px] sm:h-[200px] md:w-[200px] md:h-[240px] lg:w-[240px] lg:h-[280px] rounded-2xl overflow-hidden shadow-md">
+            <div className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] overflow-hidden rounded-full bg-[#F5F5F5]">
               <img
                 src={occ.image}
                 alt={occ.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
-            <span className="text-sm md:text-[15px] font-medium text-[#1C2120] text-center transition-colors hover:text-[#C48B9F]">
+            <span className="text-[13px] font-medium text-[#1C2120] text-center leading-tight transition-colors duration-200 group-hover:text-[#737530]">
               {occ.name}
             </span>
           </a>

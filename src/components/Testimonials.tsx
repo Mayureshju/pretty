@@ -56,41 +56,16 @@ export default function Testimonials() {
     if (!sectionRef.current) return;
 
     const cards = cardsRef.current.filter(Boolean);
-
-    // Quote marks scale animation
-    const quotes = cards.map((c) => c?.querySelector(".quote-mark")).filter(Boolean);
-    gsap.fromTo(
-      quotes,
-      { opacity: 0, scale: 2.5, rotation: -15 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      }
-    );
-
-    // Cards stagger with clip-path
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 30, clipPath: "inset(5% 5% 5% 5% round 12px)" },
+      { opacity: 0, y: 24 },
       {
         opacity: 1,
         y: 0,
-        clipPath: "inset(0% 0% 0% 0% round 12px)",
-        duration: 0.65,
+        duration: 0.5,
         stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
+        ease: "power2.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
       }
     );
 
@@ -100,50 +75,29 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-6 md:py-10">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6 md:mb-8">
-        <h2 className="text-xl md:text-2xl font-semibold text-[#1C2120]">
-          Customer Testimonial
-        </h2>
-        <a
-          href="/reviews"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#C48B9F] text-[#C48B9F] rounded-lg transition-colors hover:bg-[#C48B9F] hover:text-white"
-        >
-          View All
-        </a>
-      </div>
+    <section ref={sectionRef} className="max-w-[1320px] mx-auto px-4 py-10 md:py-16">
+      <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-5">
+        What Our Customers Say
+      </h2>
 
-      {/* Testimonials Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6" style={{ perspective: "800px" }}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         {testimonials.map((testimonial, i) => (
           <div
             key={testimonial.id}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="relative bg-white rounded-xl border border-[#eee] p-5 md:p-6 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
+            className="bg-white rounded-xl border border-[#E8E8E8] p-5"
           >
-            {/* Quote mark */}
-            <div className="quote-mark text-4xl text-[#C48B9F]/15 leading-none mb-2 font-serif">&ldquo;</div>
+            <StarRating rating={testimonial.rating} />
 
-            {/* Review text */}
-            <p className="text-[13px] md:text-sm text-[#464646] leading-relaxed mb-4 line-clamp-4">
+            <p className="mt-3 text-[14px] text-[#444] leading-relaxed line-clamp-4">
               {testimonial.text}
             </p>
 
-            {/* Stars */}
-            <StarRating rating={testimonial.rating} />
-
-            {/* Author */}
-            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#C48B9F]/10 flex items-center justify-center text-xs font-bold text-[#C48B9F]">
-                  {testimonial.name.charAt(0)}
-                </div>
-                <span className="text-sm font-semibold text-[#1C2120]">
-                  {testimonial.name}
-                </span>
-              </div>
-              <span className="text-[11px] text-[#999]">
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-[14px] font-semibold text-[#1C2120]">
+                {testimonial.name}
+              </span>
+              <span className="text-[12px] text-[#939393]">
                 {testimonial.date}
               </span>
             </div>

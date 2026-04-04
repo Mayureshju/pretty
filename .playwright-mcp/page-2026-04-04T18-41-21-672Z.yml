@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e3]:
+    - generic [ref=e9] [cursor=pointer]:
+      - img "location-icon" [ref=e10]
+      - generic [ref=e11]:
+        - generic [ref=e13]: Where to deliver?
+        - generic [ref=e15]:
+          - generic [ref=e16]: Location missing
+          - img "down_red_arrow" [ref=e17]
+    - generic [ref=e18]:
+      - link "desktop icons Same Day" [ref=e19] [cursor=pointer]:
+        - /url: /same-day-delivery-gifts-lp
+        - generic [ref=e20]:
+          - img "desktop icons" [ref=e21]
+          - generic [ref=e22]: Same Day
+      - button "INR" [ref=e25] [cursor=pointer]:
+        - img "INR" [ref=e27]
+        - generic [ref=e28]: INR
+      - link "desktop icons Corporate" [ref=e29] [cursor=pointer]:
+        - /url: /corporate/?promo=corporate_enquiry
+        - generic [ref=e30]:
+          - img "desktop icons" [ref=e31]
+          - generic [ref=e32]: Corporate
+      - button "Cart" [ref=e35] [cursor=pointer]:
+        - img "Cart" [ref=e37]
+        - generic [ref=e38]: Cart
+      - button "Hi Guest" [ref=e41] [cursor=pointer]:
+        - img "Hi Guest" [ref=e43]
+        - generic [ref=e44]: Hi Guest
+      - button "More" [ref=e47] [cursor=pointer]:
+        - img "More" [ref=e49]
+        - generic [ref=e50]: More
+  - main [ref=e51]:
+    - generic [ref=e52]:
+      - img "Page Not Found" [ref=e53]
+      - generic [ref=e54]:
+        - heading "Oops! Page not found" [level=2] [ref=e55]
+        - paragraph [ref=e56]:
+          - text: We can't find the page you are looking for.
+          - text: Why not try these popular pages.
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - link "popular-links-chip-0_start_icon Home Page" [ref=e59] [cursor=pointer]:
+            - /url: /?promo=404
+            - generic [ref=e60]:
+              - img "popular-links-chip-0_start_icon" [ref=e61]
+              - text: Home Page
+          - link "popular-links-chip-1_start_icon Flowers" [ref=e62] [cursor=pointer]:
+            - /url: /all-flowers?promo=404
+            - generic [ref=e63]:
+              - img "popular-links-chip-1_start_icon" [ref=e64]
+              - text: Flowers
+          - link "popular-links-chip-2_start_icon Cakes" [ref=e65] [cursor=pointer]:
+            - /url: /all-cakes?promo=404
+            - generic [ref=e66]:
+              - img "popular-links-chip-2_start_icon" [ref=e67]
+              - text: Cakes
+        - generic [ref=e68]:
+          - link "popular-links-chip-0_start_icon Personalized Gifts" [ref=e69] [cursor=pointer]:
+            - /url: /all-personalised-gifts-lp?promo=404
+            - generic [ref=e70]:
+              - img "popular-links-chip-0_start_icon" [ref=e71]
+              - text: Personalized Gifts
+          - link "popular-links-chip-1_start_icon Gifts" [ref=e72] [cursor=pointer]:
+            - /url: /gifts?promo=404
+            - generic [ref=e73]:
+              - img "popular-links-chip-1_start_icon" [ref=e74]
+              - text: Gifts
+          - link "popular-links-chip-2_start_icon Plants" [ref=e75] [cursor=pointer]:
+            - /url: /plants-lp?promo=404
+            - generic [ref=e76]:
+              - img "popular-links-chip-2_start_icon" [ref=e77]
+              - text: Plants
+      - generic [ref=e78]:
+        - generic [ref=e79]: Download our mobile app
+        - generic [ref=e80]:
+          - link "Page Not Found" [ref=e81] [cursor=pointer]:
+            - /url: https://goo.gl/hqAfjL
+            - img "Page Not Found" [ref=e82]
+          - link "Page Not Found" [ref=e83] [cursor=pointer]:
+            - /url: https://apple.co/2IWwV6Y
+            - img "Page Not Found" [ref=e84]
+  - alert [ref=e85]

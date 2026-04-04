@@ -268,10 +268,10 @@ export default function Navbar() {
               >
                 <a
                   href={item.href}
-                  className={`block px-4 lg:px-5 py-2.5 text-[13px] lg:text-[14px] font-normal whitespace-nowrap transition-colors relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:bg-[#C48B9F] after:transition-all ${
+                  className={`block px-4 lg:px-5 py-2.5 text-[13px] lg:text-[14px] font-normal whitespace-nowrap transition-colors relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:bg-[#737530] after:transition-all ${
                     activeMenu === item.label
-                      ? "text-[#C48B9F] after:w-full"
-                      : "text-[#1C2120] hover:text-[#C48B9F] after:w-0 hover:after:w-full"
+                      ? "text-[#737530] after:w-full"
+                      : "text-[#1C2120] hover:text-[#737530] after:w-0 hover:after:w-full"
                   }`}
                 >
                   {item.label}
@@ -300,7 +300,7 @@ export default function Navbar() {
             >
               {currentMenu.map((col) => (
                 <div key={col.title} className="mega-col">
-                  <h4 className="text-[13px] font-semibold text-[#C48B9F] mb-2.5 pb-1.5 border-b border-[#C48B9F]/10">
+                  <h4 className="text-[13px] font-semibold text-[#737530] mb-2.5 pb-1.5 border-b border-[#737530]/10">
                     {col.title}
                   </h4>
                   <ul className="space-y-1.5">
@@ -308,7 +308,7 @@ export default function Navbar() {
                       <li key={link.label}>
                         <a
                           href={link.href}
-                          className="text-[13px] text-[#464646] hover:text-[#C48B9F] transition-colors block py-0.5"
+                          className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors block py-0.5"
                         >
                           {link.label}
                         </a>

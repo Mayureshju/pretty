@@ -365,7 +365,7 @@ export default function HeroBanner() {
             {/* Title */}
             <h1
               data-title
-              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 whitespace-pre-line"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 whitespace-pre-line"
               style={{ perspective: "600px" }}
             >
               {b.title}

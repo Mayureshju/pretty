@@ -186,7 +186,7 @@ export default function OrderDetailPage({
         <p className="text-gray-500">Order not found</p>
         <Link
           href="/admin/orders"
-          className="text-[#C48B9F] hover:underline mt-2 inline-block"
+          className="text-[#737530] hover:underline mt-2 inline-block"
         >
           Back to Orders
         </Link>
@@ -518,7 +518,7 @@ export default function OrderDetailPage({
                 <select
                   value={newStatus}
                   onChange={(e) => setNewStatus(e.target.value)}
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
                 >
                   {ALL_STATUSES.map((s) => (
                     <option key={s} value={s}>
@@ -536,13 +536,13 @@ export default function OrderDetailPage({
                   onChange={(e) => setStatusNote(e.target.value)}
                   rows={3}
                   placeholder="Add a note about this status change..."
-                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors resize-none"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
                 />
               </div>
               <button
                 type="submit"
                 disabled={updating || newStatus === order.status}
-                className="w-full px-4 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {updating ? "Updating..." : "Update Status"}
               </button>

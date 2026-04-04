@@ -33,7 +33,7 @@ export default function SeoContent() {
       </div>
       <button
         onClick={() => setExpanded(!expanded)}
-        className="text-sm font-medium mt-2 cursor-pointer text-[#C48B9F] hover:underline"
+        className="text-sm font-medium mt-2 cursor-pointer text-[#737530] hover:underline"
       >
         {expanded ? "Read Less" : "Read More"}
       </button>

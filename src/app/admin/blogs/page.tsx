@@ -101,7 +101,7 @@ export default function AdminBlogsPage() {
         </div>
         <Link
           href="/admin/blogs/new"
-          className="inline-flex items-center gap-2 bg-[#C48B9F] hover:bg-[#A87389] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-2 bg-[#737530] hover:bg-[#4C4D27] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
         >
           <svg
             width="18"
@@ -134,7 +134,7 @@ export default function AdminBlogsPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 outline-none min-w-[140px]"
+            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 outline-none min-w-[140px]"
           >
             <option value="">All Status</option>
             <option value="published">Published</option>
@@ -196,7 +196,7 @@ export default function AdminBlogsPage() {
                       <td className="p-4">
                         <Link
                           href={`/admin/blogs/${blog._id}`}
-                          className="text-sm font-medium text-[#1C2120] hover:text-[#C48B9F] transition-colors"
+                          className="text-sm font-medium text-[#1C2120] hover:text-[#737530] transition-colors"
                         >
                           {blog.title}
                         </Link>
@@ -236,7 +236,7 @@ export default function AdminBlogsPage() {
                         <div className="flex items-center justify-end gap-1">
                           <Link
                             href={`/admin/blogs/${blog._id}`}
-                            className="p-2 text-gray-400 hover:text-[#C48B9F] hover:bg-gray-100 rounded-lg transition-colors"
+                            className="p-2 text-gray-400 hover:text-[#737530] hover:bg-gray-100 rounded-lg transition-colors"
                             title="Edit"
                           >
                             <svg

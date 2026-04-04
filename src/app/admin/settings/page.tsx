@@ -52,7 +52,7 @@ export default function SettingsPage() {
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
                 activeTab === tab.key
-                  ? "border-[#C48B9F] text-[#C48B9F]"
+                  ? "border-[#737530] text-[#737530]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -137,7 +137,7 @@ export default function SettingsPage() {
                 onChange={(e) => setGstRate(e.target.value)}
                 min={0}
                 max={100}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
                 value={hsnCode}
                 onChange={(e) => setHsnCode(e.target.value)}
                 placeholder="e.g. 0603"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#C48B9F] focus:ring-1 focus:ring-[#C48B9F]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -170,7 +170,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setNotifyOrderPlaced(!notifyOrderPlaced)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifyOrderPlaced ? "bg-[#C48B9F]" : "bg-gray-300"
+                  notifyOrderPlaced ? "bg-[#737530]" : "bg-gray-300"
                 }`}
               >
                 <span
@@ -194,7 +194,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setNotifyOrderShipped(!notifyOrderShipped)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifyOrderShipped ? "bg-[#C48B9F]" : "bg-gray-300"
+                  notifyOrderShipped ? "bg-[#737530]" : "bg-gray-300"
                 }`}
               >
                 <span
@@ -218,7 +218,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setNotifyLowStock(!notifyLowStock)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  notifyLowStock ? "bg-[#C48B9F]" : "bg-gray-300"
+                  notifyLowStock ? "bg-[#737530]" : "bg-gray-300"
                 }`}
               >
                 <span
@@ -235,7 +235,7 @@ export default function SettingsPage() {
         <div className="mt-6 pt-4 border-t border-gray-100">
           <button
             onClick={handleSave}
-            className="px-5 py-2.5 bg-[#C48B9F] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors"
+            className="px-5 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors"
           >
             Save Changes
           </button>

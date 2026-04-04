@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Raleway, Cormorant_Garamond } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-raleway",
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -30,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${raleway.variable} ${cormorant.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
         <ClerkProvider>
           {children}
