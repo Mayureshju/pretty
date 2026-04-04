@@ -60,7 +60,7 @@ const sortOptions = [
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? "#0E4D65" : "none"} stroke={filled ? "#0E4D65" : "#fff"} strokeWidth="2">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? "#B5748A" : "none"} stroke={filled ? "#B5748A" : "#fff"} strokeWidth="2">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
   );
@@ -117,13 +117,13 @@ export default function CategoryPage({
       <div ref={headerRef} className="py-5 md:py-6">
         {/* Breadcrumb */}
         <nav className="flex items-center text-xs md:text-sm text-[#888] mb-3">
-          <Link href="/" className="text-[#0E4D65] hover:underline">Home</Link>
+          <Link href="/" className="text-[#B5748A] hover:underline">Home</Link>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
             <path d="M9 18l6-6-6-6" />
           </svg>
           {category.parent && (
             <>
-              <Link href={`/${category.parent.slug}/`} className="text-[#0E4D65] hover:underline">
+              <Link href={`/${category.parent.slug}/`} className="text-[#B5748A] hover:underline">
                 {category.parent.name}
               </Link>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
@@ -155,7 +155,7 @@ export default function CategoryPage({
             <Link
               key={child._id}
               href={`/${category.slug}/${child.slug}/`}
-              className="shrink-0 px-4 py-2 rounded-full text-sm font-medium border bg-white text-[#1C2120] border-gray-200 hover:border-[#0E4D65] hover:text-[#0E4D65] transition-all duration-200"
+              className="shrink-0 px-4 py-2 rounded-full text-sm font-medium border bg-white text-[#1C2120] border-gray-200 hover:border-[#B5748A] hover:text-[#B5748A] transition-all duration-200"
             >
               {child.name}
               {child.productCount > 0 && (
@@ -191,7 +191,7 @@ export default function CategoryPage({
                     onClick={() => { setSortBy(option); setShowSort(false); }}
                     className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${
                       sortBy === option
-                        ? "bg-[#0E4D65]/5 text-[#0E4D65] font-medium"
+                        ? "bg-[#B5748A]/5 text-[#B5748A] font-medium"
                         : "text-[#464646] hover:bg-gray-50"
                     }`}
                   >
@@ -218,7 +218,7 @@ export default function CategoryPage({
                 style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
               >
                 {product.isFeatured && (
-                  <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#0E4D65] text-white text-[11px] font-semibold rounded-md shadow-sm">
+                  <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-[#B5748A] text-white text-[11px] font-semibold rounded-md shadow-sm">
                     Best Seller
                   </span>
                 )}
@@ -274,7 +274,7 @@ export default function CategoryPage({
                       {product.metrics.ratingCount > 0 && (
                         <>
                           <span className="text-[11px] text-[#888]">&bull;</span>
-                          <span className="text-[11px] md:text-xs text-[#0E4D65]">
+                          <span className="text-[11px] md:text-xs text-[#B5748A]">
                             ({product.metrics.ratingCount.toLocaleString()} Reviews)
                           </span>
                         </>
@@ -289,7 +289,7 @@ export default function CategoryPage({
       ) : (
         <div className="py-16 text-center">
           <p className="text-lg text-[#888]">No products found in this category.</p>
-          <Link href="/" className="inline-block mt-4 text-[#0E4D65] font-medium hover:underline">
+          <Link href="/" className="inline-block mt-4 text-[#B5748A] font-medium hover:underline">
             Browse all products
           </Link>
         </div>

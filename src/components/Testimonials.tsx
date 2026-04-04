@@ -56,15 +56,36 @@ export default function Testimonials() {
     if (!sectionRef.current) return;
 
     const cards = cardsRef.current.filter(Boolean);
+
+    // Quote marks scale animation
+    const quotes = cards.map((c) => c?.querySelector(".quote-mark")).filter(Boolean);
+    gsap.fromTo(
+      quotes,
+      { opacity: 0, scale: 2.5, rotation: -15 },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      }
+    );
+
+    // Cards stagger with clip-path
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 30, rotateX: 8 },
+      { opacity: 0, y: 30, clipPath: "inset(5% 5% 5% 5% round 12px)" },
       {
         opacity: 1,
         y: 0,
-        rotateX: 0,
-        duration: 0.6,
-        stagger: 0.12,
+        clipPath: "inset(0% 0% 0% 0% round 12px)",
+        duration: 0.65,
+        stagger: 0.1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -87,7 +108,7 @@ export default function Testimonials() {
         </h2>
         <a
           href="/reviews"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#0E4D65] text-[#0E4D65] rounded-lg transition-colors hover:bg-[#0E4D65] hover:text-white"
+          className="px-5 py-2 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white"
         >
           View All
         </a>
@@ -102,7 +123,7 @@ export default function Testimonials() {
             className="relative bg-white rounded-xl border border-[#eee] p-5 md:p-6 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
           >
             {/* Quote mark */}
-            <div className="text-4xl text-[#0E4D65]/15 leading-none mb-2 font-serif">&ldquo;</div>
+            <div className="quote-mark text-4xl text-[#B5748A]/15 leading-none mb-2 font-serif">&ldquo;</div>
 
             {/* Review text */}
             <p className="text-[13px] md:text-sm text-[#464646] leading-relaxed mb-4 line-clamp-4">
@@ -115,7 +136,7 @@ export default function Testimonials() {
             {/* Author */}
             <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-50">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-[#0E4D65]/10 flex items-center justify-center text-xs font-bold text-[#0E4D65]">
+                <div className="w-8 h-8 rounded-full bg-[#B5748A]/10 flex items-center justify-center text-xs font-bold text-[#B5748A]">
                   {testimonial.name.charAt(0)}
                 </div>
                 <span className="text-sm font-semibold text-[#1C2120]">

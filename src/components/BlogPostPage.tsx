@@ -43,7 +43,7 @@ export default function BlogPostPage({ blog }: BlogPostPageProps) {
     <div className="max-w-[860px] mx-auto px-4 py-6 md:py-10">
       {/* Breadcrumb */}
       <nav className="flex items-center text-xs md:text-sm text-[#888] mb-6">
-        <Link href="/" className="text-[#0E4D65] hover:underline">Home</Link>
+        <Link href="/" className="text-[#B5748A] hover:underline">Home</Link>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
           <path d="M9 18l6-6-6-6" />
         </svg>
@@ -62,13 +62,13 @@ export default function BlogPostPage({ blog }: BlogPostPageProps) {
           </h1>
 
           <div className="flex items-center gap-3 mt-4 text-sm text-[#888]">
-            {blog.author && <span>By <span className="text-[#0E4D65] font-medium">{blog.author}</span></span>}
+            {blog.author && <span>By <span className="text-[#B5748A] font-medium">{blog.author}</span></span>}
             <span>&bull;</span>
             <time dateTime={blog.createdAt}>{formattedDate}</time>
             {blog.category && (
               <>
                 <span>&bull;</span>
-                <span className="text-[#0E4D65]">{blog.category}</span>
+                <span className="text-[#B5748A]">{blog.category}</span>
               </>
             )}
           </div>
@@ -93,9 +93,9 @@ export default function BlogPostPage({ blog }: BlogPostPageProps) {
           <div
             className="prose prose-lg max-w-none text-[#464646] leading-relaxed
               prose-headings:text-[#1C2120] prose-headings:font-semibold
-              prose-a:text-[#0E4D65] prose-a:no-underline hover:prose-a:underline
+              prose-a:text-[#B5748A] prose-a:no-underline hover:prose-a:underline
               prose-img:rounded-xl prose-img:mx-auto
-              prose-blockquote:border-l-[#0E4D65] prose-blockquote:text-[#464646]"
+              prose-blockquote:border-l-[#B5748A] prose-blockquote:text-[#464646]"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
         )}

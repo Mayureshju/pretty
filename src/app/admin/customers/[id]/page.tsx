@@ -101,7 +101,7 @@ export default function CustomerDetailPage({
       <div className="space-y-6">
         <Link
           href="/admin/customers"
-          className="text-sm text-[#0E4D65] hover:text-[#0A3A4D] transition-colors flex items-center gap-1"
+          className="text-sm text-[#B5748A] hover:text-[#0A3A4D] transition-colors flex items-center gap-1"
         >
           <svg
             width="16"
@@ -132,7 +132,7 @@ export default function CustomerDetailPage({
       {/* Back Link */}
       <Link
         href="/admin/customers"
-        className="text-sm text-[#0E4D65] hover:text-[#0A3A4D] transition-colors flex items-center gap-1"
+        className="text-sm text-[#B5748A] hover:text-[#0A3A4D] transition-colors flex items-center gap-1"
       >
         <svg
           width="16"
@@ -269,7 +269,7 @@ export default function CustomerDetailPage({
                     <div>
                       <Link
                         href={`/admin/orders/${order._id}`}
-                        className="text-sm font-medium text-[#0E4D65] hover:underline"
+                        className="text-sm font-medium text-[#B5748A] hover:underline"
                       >
                         {order.orderNumber}
                       </Link>

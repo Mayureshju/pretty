@@ -1,44 +1,52 @@
 @import "tailwindcss";
 
 :root {
-  /* Primary Colors */
-  --primary: #0E4D65;
-  --primary-hover: #0a3d52;
+  /* Primary - Soft Orchid Rose (from logo) */
+  --primary: #B5748A;
+  --primary-hover: #9E6377;
+  --primary-light: #F8EDF1;
 
-  /* Text Colors */
-  --text-dark: #1C2120;
-  --text-body: #464646;
-  --text-gray: #888888;
-  --text-light: #aaaaaa;
+  /* Text - Warm Browns (from logo calligraphy) */
+  --text-dark: #3C2A20;
+  --text-body: #6B574F;
+  --text-gray: #A0938D;
+  --text-light: #C4B8B3;
 
   /* Accent Colors */
+  --accent-gold: #C9A96E;
+  --accent-sage: #8BA888;
+  --accent-rose: #D4A0AD;
   --accent-green: #49A066;
-  --accent-orange: #FFA500;
-  --accent-red: #EA3761;
+  --accent-orange: #E8A04C;
+  --accent-red: #D9586B;
   --rating-green: #4CAF50;
 
-  /* Background Colors */
-  --bg-white: #FFFFFF;
-  --bg-light: #F8F8F8;
-  --bg-lighter: #F5F5F5;
-  --bg-section: #E8ECF0;
+  /* Backgrounds - Barely Warm White */
+  --bg-white: #FFFAF8;
+  --bg-light: #FDF7F4;
+  --bg-lighter: #FAF4F0;
+  --bg-section: #F5EDEA;
 
   /* Border */
-  --border-light: #E5E7EB;
-  --border-card: #EEEEEE;
+  --border-light: #EBE1DC;
+  --border-card: #F2EAE5;
 
   /* Shadows */
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
-  --shadow-header: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 8px rgba(60, 42, 32, 0.06);
+  --shadow-hover: 0 8px 24px rgba(181, 116, 138, 0.12);
+  --shadow-header: 0 1px 3px rgba(60, 42, 32, 0.04);
 }
 
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
   --color-text-dark: var(--text-dark);
   --color-text-body: var(--text-body);
   --color-text-gray: var(--text-gray);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-sage: var(--accent-sage);
+  --color-accent-rose: var(--accent-rose);
   --color-accent-green: var(--accent-green);
   --color-accent-orange: var(--accent-orange);
   --color-accent-red: var(--accent-red);
@@ -49,6 +57,7 @@
   --color-border-light: var(--border-light);
   --color-border-card: var(--border-card);
   --font-sans: var(--font-poppins), 'Poppins', sans-serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
 }
 
 @layer base {
@@ -63,6 +72,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif);
   }
 
   a {
@@ -136,5 +149,23 @@
   @keyframes scaleIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes petalDrift {
+    0% {
+      transform: translateY(-10%) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% {
+      transform: translateY(110vh) translateX(80px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes petalSway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
   }
 }

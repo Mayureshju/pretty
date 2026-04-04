@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const products = [
   {
@@ -107,7 +108,7 @@ const products = [
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#0E4D65" : "none"} stroke={filled ? "#0E4D65" : "#666"} strokeWidth="1.8">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#B5748A" : "none"} stroke={filled ? "#B5748A" : "#666"} strokeWidth="1.8">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
   );
@@ -128,34 +129,41 @@ export default function BestSellers() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Header slide in
+    // Header with SplitText word reveal
     if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
+      const heading = headerRef.current.querySelector("h2");
+      if (heading) {
+        const split = new SplitText(heading, { type: "words" });
+        gsap.fromTo(
+          split.words,
+          { opacity: 0, y: 30, rotateX: -30 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.6,
+            stagger: 0.04,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          }
+        );
+      }
     }
 
-    // Product cards stagger
+    // Product cards stagger with clip-path reveal
     const cards = cardsRef.current.filter(Boolean);
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 40 },
+      { opacity: 0, y: 30, clipPath: "inset(8% 8% 8% 8% round 12px)" },
       {
         opacity: 1,
         y: 0,
-        duration: 0.5,
-        stagger: 0.07,
+        clipPath: "inset(0% 0% 0% 0% round 12px)",
+        duration: 0.6,
+        stagger: 0.06,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -194,7 +202,7 @@ export default function BestSellers() {
         </h2>
         <a
           href="/best-seller"
-          className="px-5 py-2 text-sm font-medium border-2 border-[#0E4D65] text-[#0E4D65] rounded-lg transition-colors hover:bg-[#0E4D65] hover:text-white hidden sm:block"
+          className="px-5 py-2 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white hidden sm:block"
         >
           View All
         </a>
@@ -256,7 +264,7 @@ export default function BestSellers() {
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[11px] font-bold text-white bg-[#4CAF50]">
                   &#9733; {product.rating}
                 </span>
-                <span className="text-[11px] md:text-xs text-[#0E4D65]">
+                <span className="text-[11px] md:text-xs text-[#B5748A]">
                   ({product.reviews.toLocaleString()} Reviews)
                 </span>
               </div>
@@ -274,7 +282,7 @@ export default function BestSellers() {
       <div className="flex justify-center mt-5 sm:hidden">
         <a
           href="/best-seller"
-          className="px-8 py-2.5 text-sm font-medium border-2 border-[#0E4D65] text-[#0E4D65] rounded-lg transition-colors hover:bg-[#0E4D65] hover:text-white"
+          className="px-8 py-2.5 text-sm font-medium border-2 border-[#B5748A] text-[#B5748A] rounded-lg transition-colors hover:bg-[#B5748A] hover:text-white"
         >
           View All
         </a>

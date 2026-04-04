@@ -101,7 +101,7 @@ export default function CategoryCards() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-10" style={{ backgroundColor: "#EDF1F5" }}>
+    <section ref={sectionRef} className="py-8 md:py-10" style={{ backgroundColor: "var(--bg-section)" }}>
       <div className="max-w-[1320px] mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
           {categoryCards.map((card, i) => (
@@ -131,7 +131,7 @@ export default function CategoryCards() {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-[13px] md:text-sm text-[#464646] hover:text-[#0E4D65] transition-colors flex items-center gap-1.5"
+                        className="text-[13px] md:text-sm text-[#464646] hover:text-[#B5748A] transition-colors flex items-center gap-1.5"
                       >
                         <svg width="6" height="6" viewBox="0 0 6 6" className="shrink-0 opacity-40">
                           <circle cx="3" cy="3" r="3" fill="currentColor" />

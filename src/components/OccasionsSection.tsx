@@ -3,8 +3,9 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const occasions = [
   {
@@ -37,35 +38,57 @@ export default function OccasionsSection() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Heading animation
+    // Heading with SplitText word reveal
     if (headingRef.current) {
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
+      const heading = headingRef.current.querySelector("h2");
+      if (heading) {
+        const split = new SplitText(heading, { type: "words" });
+        gsap.fromTo(
+          split.words,
+          { opacity: 0, y: 25, rotateX: -25 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.55,
+            stagger: 0.04,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          }
+        );
+      }
+      const subtitle = headingRef.current.querySelector("p");
+      if (subtitle) {
+        gsap.fromTo(
+          subtitle,
+          { opacity: 0, y: 15 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+            },
+          }
+        );
+      }
     }
 
-    // Cards stagger
+    // Cards with clip-path bottom-up reveal
     const cards = cardsRef.current.filter(Boolean);
     gsap.fromTo(
       cards,
-      { opacity: 0, y: 50, scale: 0.9 },
+      { opacity: 0, clipPath: "inset(100% 0 0 0 round 16px)" },
       {
         opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.12,
+        clipPath: "inset(0% 0 0 0 round 16px)",
+        duration: 0.7,
+        stagger: 0.1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -120,7 +143,7 @@ export default function OccasionsSection() {
                 loading="lazy"
               />
             </div>
-            <span className="text-sm md:text-[15px] font-medium text-[#1C2120] text-center transition-colors hover:text-[#0E4D65]">
+            <span className="text-sm md:text-[15px] font-medium text-[#1C2120] text-center transition-colors hover:text-[#B5748A]">
               {occ.name}
             </span>
           </a>

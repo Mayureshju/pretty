@@ -86,7 +86,7 @@ export default function NewBlogPage() {
   }
 
   const inputClass =
-    "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 outline-none";
+    "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 outline-none";
   const labelClass = "text-sm font-medium text-[#464646] mb-1.5 block";
 
   return (
@@ -109,7 +109,7 @@ export default function NewBlogPage() {
           <button
             onClick={handleSubmit as unknown as () => void}
             disabled={saving || !form.title.trim()}
-            className="bg-[#0E4D65] hover:bg-[#0a3d52] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-50"
+            className="bg-[#B5748A] hover:bg-[#9E6377] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors disabled:opacity-50"
           >
             {saving ? "Saving..." : "Save Post"}
           </button>
@@ -181,7 +181,7 @@ export default function NewBlogPage() {
                     updateField("isPublished", !form.isPublished)
                   }
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    form.isPublished ? "bg-[#0E4D65]" : "bg-gray-200"
+                    form.isPublished ? "bg-[#B5748A]" : "bg-gray-200"
                   }`}
                 >
                   <span

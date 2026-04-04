@@ -14,6 +14,8 @@ export const deliveryCitySchema = z.object({
   freeDeliveryAbove: z.number().min(0).optional(),
   isActive: z.boolean().default(true),
   estimatedTime: z.string().optional(),
+  cutoffTime: z.string().optional(),
+  blockedDates: z.array(z.string()).optional(),
 });
 
 export type DeliveryCityInput = z.infer<typeof deliveryCitySchema>;

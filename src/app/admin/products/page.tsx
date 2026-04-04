@@ -234,7 +234,7 @@ export default function AdminProductsPage() {
         </div>
         <Link
           href="/admin/products/new"
-          className="inline-flex items-center gap-2 bg-[#0E4D65] hover:bg-[#0a3d52] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-2 bg-[#B5748A] hover:bg-[#9E6377] text-white rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
         >
           <svg
             width="18"
@@ -253,10 +253,13 @@ export default function AdminProductsPage() {
           </svg>
           Add Product
         </Link>
+        {!categoryFilter && !reorderMode && (
+          <span className="text-xs text-gray-400 hidden sm:inline">Select a category to reorder</span>
+        )}
         {categoryFilter && !reorderMode && (
           <button
             onClick={enterReorderMode}
-            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gray-200 text-[#1C2120] bg-white rounded-lg hover:border-[#0E4D65] hover:text-[#0E4D65] transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium border border-gray-200 text-[#1C2120] bg-white rounded-lg hover:border-[#B5748A] hover:text-[#B5748A] transition-colors"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
             Reorder
@@ -269,7 +272,7 @@ export default function AdminProductsPage() {
             </span>
             <button
               onClick={() => { setReorderMode(false); fetchProducts(); }}
-              className="px-4 py-2.5 text-sm font-medium bg-[#0E4D65] text-white rounded-lg hover:bg-[#0a3d52] transition-colors"
+              className="px-4 py-2.5 text-sm font-medium bg-[#B5748A] text-white rounded-lg hover:bg-[#9E6377] transition-colors"
             >
               Done
             </button>
@@ -289,7 +292,7 @@ export default function AdminProductsPage() {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 outline-none min-w-[160px]"
+            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 outline-none min-w-[160px]"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -301,7 +304,7 @@ export default function AdminProductsPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 outline-none min-w-[140px]"
+            className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 outline-none min-w-[140px]"
           >
             <option value="">All Status</option>
             <option value="active">Active</option>
@@ -327,7 +330,7 @@ export default function AdminProductsPage() {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-colors ${
-                            snapshot.isDragging ? "bg-[#0E4D65]/5 border-[#0E4D65]/20 shadow-lg" : "bg-white border-gray-100 hover:bg-gray-50"
+                            snapshot.isDragging ? "bg-[#B5748A]/5 border-[#B5748A]/20 shadow-lg" : "bg-white border-gray-100 hover:bg-gray-50"
                           }`}
                         >
                           <div {...provided.dragHandleProps} className="shrink-0 cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
@@ -350,7 +353,7 @@ export default function AdminProductsPage() {
                             onChange={() => {}}
                             onBlur={(e) => handleOrderNumberChange(index, parseInt(e.target.value) || index + 1)}
                             onKeyDown={(e) => { if (e.key === "Enter") { (e.target as HTMLInputElement).blur(); } }}
-                            className="w-14 text-center text-sm border border-gray-200 rounded-lg py-1.5 focus:border-[#0E4D65] outline-none"
+                            className="w-14 text-center text-sm border border-gray-200 rounded-lg py-1.5 focus:border-[#B5748A] outline-none"
                           />
                         </div>
                       )}
@@ -392,7 +395,7 @@ export default function AdminProductsPage() {
                         type="checkbox"
                         checked={allSelected}
                         onChange={(e) => handleSelectAll(e.target.checked)}
-                        className="rounded border-gray-300 text-[#0E4D65] focus:ring-[#0E4D65]/20"
+                        className="rounded border-gray-300 text-[#B5748A] focus:ring-[#B5748A]/20"
                       />
                     </th>
                     <th className="text-left p-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -427,7 +430,7 @@ export default function AdminProductsPage() {
                           type="checkbox"
                           checked={selectedIds.has(product._id)}
                           onChange={() => toggleSelect(product._id)}
-                          className="rounded border-gray-300 text-[#0E4D65] focus:ring-[#0E4D65]/20"
+                          className="rounded border-gray-300 text-[#B5748A] focus:ring-[#B5748A]/20"
                         />
                       </td>
 
@@ -466,13 +469,13 @@ export default function AdminProductsPage() {
                           <div>
                             <Link
                               href={`/admin/products/${product._id}`}
-                              className="text-sm font-medium text-[#1C2120] hover:text-[#0E4D65] transition-colors"
+                              className="text-sm font-medium text-[#1C2120] hover:text-[#B5748A] transition-colors"
                             >
                               {product.name}
                             </Link>
                             <div className="flex items-center gap-1.5 mt-1">
                               {product.variants?.length > 0 ? (
-                                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#0E4D65]/10 text-[#0E4D65]">
+                                <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded bg-[#B5748A]/10 text-[#B5748A]">
                                   {product.variants.length} Variant{product.variants.length !== 1 ? "s" : ""}
                                 </span>
                               ) : (
@@ -551,7 +554,7 @@ export default function AdminProductsPage() {
                         <div className="flex items-center justify-end gap-1">
                           <Link
                             href={`/admin/products/${product._id}`}
-                            className="p-2 text-gray-400 hover:text-[#0E4D65] hover:bg-gray-100 rounded-lg transition-colors"
+                            className="p-2 text-gray-400 hover:text-[#B5748A] hover:bg-gray-100 rounded-lg transition-colors"
                             title="Edit"
                           >
                             <svg

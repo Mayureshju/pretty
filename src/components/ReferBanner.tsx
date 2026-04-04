@@ -7,7 +7,7 @@ export default function ReferBanner() {
         href="/refer-and-earn"
         className="block w-full rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl"
         style={{
-          background: "linear-gradient(135deg, #0E4D65 0%, #1A6B8A 50%, #2589AE 100%)",
+          background: "linear-gradient(135deg, #B5748A 0%, #9E6377 40%, #C9A96E 100%)",
         }}
       >
         <div className="flex items-center justify-between px-6 sm:px-8 py-6 md:py-8">
@@ -16,7 +16,7 @@ export default function ReferBanner() {
             <p className="text-xs sm:text-sm mt-1 text-white/80 max-w-[400px]">
               Invite friends and earn exciting rewards on every successful referral!
             </p>
-            <span className="inline-block mt-3 px-5 py-2 bg-white text-[#0E4D65] rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors">
+            <span className="inline-block mt-3 px-5 py-2 bg-white text-[#B5748A] rounded-lg text-sm font-semibold hover:bg-gray-50 transition-colors">
               Refer Now
             </span>
           </div>
@@ -26,7 +26,7 @@ export default function ReferBanner() {
               <circle cx="50" cy="50" r="30" fill="white" opacity="0.1" />
               <path d="M35 55 l8 8 20-20" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
               <circle cx="70" cy="30" r="12" fill="#FDCB6E" />
-              <text x="70" y="35" textAnchor="middle" fill="#0E4D65" fontSize="14" fontWeight="bold">%</text>
+              <text x="70" y="35" textAnchor="middle" fill="#B5748A" fontSize="14" fontWeight="bold">%</text>
             </svg>
           </div>
         </div>

@@ -1,236 +1,463 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const banners = [
   {
     id: 1,
-    title: "A Hamper",
-    subtitle: "full of love and surprises",
-    image: "/images/banners/hamper.jpg",
-    overlay: "linear-gradient(90deg, rgba(245,230,240,0.92) 0%, rgba(245,230,240,0.7) 50%, rgba(245,230,240,0.2) 100%)",
+    tag: "Handcrafted With Love",
+    title: "Fresh Blooms\nDelivered Daily",
+    subtitle: "Premium bouquets crafted by Mumbai's finest florists",
+    cta: { text: "Explore Collection", href: "/flowers/" },
+    image: "/images/banners/flowers.jpg",
   },
   {
     id: 2,
-    titleTop: "A Slice of Happiness for",
-    titleAccent: "Their",
-    subtitle: "Birthday",
+    tag: "Celebrate Every Moment",
+    title: "Birthday\nSurprises",
+    subtitle: "Cakes, flowers & gifts that make their day unforgettable",
+    cta: { text: "Shop Birthday", href: "/birthday/" },
     image: "/images/banners/birthday.jpg",
-    overlay: "linear-gradient(90deg, rgba(242,196,196,0.92) 0%, rgba(242,196,196,0.7) 50%, rgba(242,196,196,0.15) 100%)",
   },
   {
     id: 3,
-    title: "Fresh Flowers",
-    subtitle: "Delivered with Love",
-    image: "/images/banners/flowers.jpg",
-    overlay: "linear-gradient(90deg, rgba(196,232,212,0.92) 0%, rgba(196,232,212,0.7) 50%, rgba(196,232,212,0.15) 100%)",
+    tag: "The Perfect Gift",
+    title: "Curated\nHampers",
+    subtitle: "Thoughtfully assembled hampers full of love and surprises",
+    cta: { text: "Browse Hampers", href: "/hampers/" },
+    image: "/images/banners/hamper.jpg",
   },
   {
     id: 4,
-    title: "Delicious Cakes",
-    subtitle: "For Every Celebration",
+    tag: "Baked Fresh Daily",
+    title: "Artisan\nCakes",
+    subtitle: "Delicious handcrafted cakes for every celebration",
+    cta: { text: "Order Cakes", href: "/cakes/" },
     image: "/images/banners/cakes.jpg",
-    overlay: "linear-gradient(90deg, rgba(232,212,196,0.92) 0%, rgba(232,212,196,0.7) 50%, rgba(232,212,196,0.15) 100%)",
   },
   {
     id: 5,
-    title: "Green Plants",
-    subtitle: "To Brighten Your Space",
+    tag: "Breathe Life Into Spaces",
+    title: "Living\nGreens",
+    subtitle: "Lush plants to brighten your home and office",
+    cta: { text: "Shop Plants", href: "/plants/" },
     image: "/images/banners/plants.jpg",
-    overlay: "linear-gradient(90deg, rgba(196,216,232,0.92) 0%, rgba(196,216,232,0.7) 50%, rgba(196,216,232,0.15) 100%)",
   },
 ];
+
+const SLIDE_DURATION = 6;
+
+function FloatingPetals() {
+  const petals = Array.from({ length: 14 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    size: 6 + Math.random() * 10,
+    delay: Math.random() * 12,
+    duration: 14 + Math.random() * 10,
+    swayDuration: 4 + Math.random() * 4,
+    rotation: Math.random() * 360,
+    opacity: 0.08 + Math.random() * 0.1,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {petals.map((p) => (
+        <div
+          key={p.id}
+          className="absolute"
+          style={{
+            left: p.left,
+            top: "-20px",
+            width: p.size,
+            height: p.size * 1.3,
+            opacity: p.opacity,
+            borderRadius: "50% 0 50% 50%",
+            background: `linear-gradient(135deg, var(--accent-rose), var(--primary-light))`,
+            transform: `rotate(${p.rotation}deg)`,
+            animation: `petalDrift ${p.duration}s ${p.delay}s linear infinite, petalSway ${p.swayDuration}s ${p.delay}s ease-in-out infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function HeroBanner() {
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const textRef = useRef<HTMLDivElement>(null);
-  const deliveryRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const progressRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const splitInstanceRef = useRef<SplitText | null>(null);
+  const progressTweenRef = useRef<gsap.core.Tween | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const kenBurnsRef = useRef<gsap.core.Tween | null>(null);
 
-  const animateTextIn = useCallback(() => {
-    if (!textRef.current || !deliveryRef.current) return;
-    const tl = gsap.timeline();
-    tl.fromTo(
-      textRef.current.children,
-      { opacity: 0, y: 25, clipPath: "inset(0 0 100% 0)" },
-      { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: 0.6, stagger: 0.1, ease: "power3.out" }
-    );
-    tl.fromTo(
-      deliveryRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-      "-=0.3"
-    );
+  const cleanupSplit = useCallback(() => {
+    if (splitInstanceRef.current) {
+      splitInstanceRef.current.revert();
+      splitInstanceRef.current = null;
+    }
   }, []);
 
-  const goTo = useCallback((idx: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
+  const animateSlideIn = useCallback((index: number) => {
+    const content = contentRefs.current[index];
+    const slide = slidesRef.current[index];
+    if (!content || !slide) return;
 
-    const currentSlide = slidesRef.current[current];
-    const nextSlide = slidesRef.current[idx];
+    const tag = content.querySelector("[data-tag]");
+    const title = content.querySelector("[data-title]");
+    const subtitle = content.querySelector("[data-subtitle]");
+    const cta = content.querySelector("[data-cta]");
+    const img = slide.querySelector("img");
 
-    if (currentSlide && nextSlide) {
+    const tl = gsap.timeline();
+
+    // Image clip-path reveal
+    tl.fromTo(
+      slide,
+      { clipPath: "inset(0 0 100% 0)" },
+      { clipPath: "inset(0 0 0% 0)", duration: 0.9, ease: "power3.inOut" },
+      0
+    );
+
+    // Ken Burns zoom
+    if (img) {
+      kenBurnsRef.current?.kill();
+      gsap.set(img, { scale: 1 });
+      kenBurnsRef.current = gsap.to(img, {
+        scale: 1.08,
+        duration: 8,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+      });
+    }
+
+    // Tag fade up
+    if (tag) {
+      tl.fromTo(
+        tag,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+        0.4
+      );
+    }
+
+    // Title SplitText reveal
+    if (title) {
+      cleanupSplit();
+      splitInstanceRef.current = new SplitText(title, { type: "words" });
+      tl.fromTo(
+        splitInstanceRef.current.words,
+        { opacity: 0, y: 60, rotateX: -40 },
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          duration: 0.7,
+          stagger: 0.04,
+          ease: "power4.out",
+        },
+        0.5
+      );
+    }
+
+    // Subtitle fade up
+    if (subtitle) {
+      tl.fromTo(
+        subtitle,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+        0.9
+      );
+    }
+
+    // CTA button
+    if (cta) {
+      tl.fromTo(
+        cta,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.7)" },
+        1.1
+      );
+    }
+  }, [cleanupSplit]);
+
+  const animateProgressBar = useCallback((index: number) => {
+    // Reset all segments
+    progressRefs.current.forEach((seg) => {
+      if (seg) gsap.set(seg, { scaleX: 0 });
+    });
+    // Fill completed segments
+    for (let i = 0; i < index; i++) {
+      const seg = progressRefs.current[i];
+      if (seg) gsap.set(seg, { scaleX: 1 });
+    }
+    // Animate current segment
+    const seg = progressRefs.current[index];
+    if (seg) {
+      progressTweenRef.current?.kill();
+      gsap.set(seg, { scaleX: 0 });
+      progressTweenRef.current = gsap.to(seg, {
+        scaleX: 1,
+        duration: SLIDE_DURATION,
+        ease: "none",
+      });
+    }
+  }, []);
+
+  const goTo = useCallback(
+    (idx: number) => {
+      if (isTransitioning || idx === current) return;
+      setIsTransitioning(true);
+
+      const currentSlide = slidesRef.current[current];
+      const currentContent = contentRefs.current[current];
+
       const tl = gsap.timeline({
         onComplete: () => {
           setCurrent(idx);
           setIsTransitioning(false);
-          animateTextIn();
         },
       });
 
-      // Ken Burns - subtle zoom on current image
-      tl.to(currentSlide, { opacity: 0, scale: 1.05, duration: 0.7, ease: "power2.inOut" });
-      tl.fromTo(
-        nextSlide,
-        { opacity: 0, scale: 1.1 },
-        { opacity: 1, scale: 1, duration: 0.7, ease: "power2.inOut" },
-        "-=0.5"
-      );
-    } else {
-      setCurrent(idx);
-      setIsTransitioning(false);
-    }
-  }, [isTransitioning, current, animateTextIn]);
+      // Exit current slide content
+      if (currentContent) {
+        tl.to(currentContent.children, {
+          opacity: 0,
+          y: -30,
+          duration: 0.3,
+          stagger: 0.03,
+          ease: "power2.in",
+        }, 0);
+      }
 
-  // Initial entrance animation
-  useEffect(() => {
-    animateTextIn();
-    // Subtle Ken Burns drift on active slide
-    const currentSlide = slidesRef.current[current];
-    if (currentSlide) {
-      gsap.fromTo(
-        currentSlide.querySelector("img"),
-        { scale: 1 },
-        { scale: 1.06, duration: 8, ease: "none", repeat: -1, yoyo: true }
-      );
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+      // Exit current slide image
+      if (currentSlide) {
+        tl.to(currentSlide, {
+          clipPath: "inset(100% 0 0 0)",
+          duration: 0.6,
+          ease: "power3.inOut",
+        }, 0.15);
+      }
 
+      kenBurnsRef.current?.kill();
+    },
+    [isTransitioning, current]
+  );
+
+  // Entrance animation on slide change
   useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((current + 1) % banners.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    animateSlideIn(current);
+    animateProgressBar(current);
+  }, [current, animateSlideIn, animateProgressBar]);
+
+  // Auto-play timer
+  useEffect(() => {
+    timerRef.current = setTimeout(() => {
+      const next = (current + 1) % banners.length;
+      goTo(next);
+    }, SLIDE_DURATION * 1000);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
   }, [current, goTo]);
 
-  const banner = banners[current];
+  // Parallax on scroll
+  useEffect(() => {
+    if (!heroRef.current) return;
+    const images = heroRef.current.querySelectorAll("[data-parallax-img]");
+    const st = ScrollTrigger.create({
+      trigger: heroRef.current,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      onUpdate: (self) => {
+        const offset = self.progress * 60;
+        images.forEach((img) => {
+          gsap.set(img, { y: offset });
+        });
+      },
+    });
+    return () => st.kill();
+  }, []);
 
   return (
-    <div className="relative w-full">
-      {/* Banner */}
-      <div className="relative w-full h-[200px] sm:h-[280px] md:h-[360px] lg:h-[420px] overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative w-full h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] overflow-hidden bg-[#3C2A20]"
+    >
+      {/* Slides */}
+      {banners.map((b, idx) => (
+        <div
+          key={b.id}
+          ref={(el) => { slidesRef.current[idx] = el; }}
+          className="absolute inset-0"
+          style={{
+            clipPath: idx === 0 ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+            zIndex: idx === current ? 2 : 1,
+          }}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0" data-parallax-img>
+            <Image
+              src={b.image}
+              alt={b.tag}
+              fill
+              className="object-cover"
+              priority={idx === 0}
+              sizes="100vw"
+            />
+          </div>
+
+          {/* Gradient Overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(60,42,32,0.82) 0%, rgba(60,42,32,0.55) 45%, rgba(60,42,32,0.15) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, rgba(60,42,32,0.5) 0%, transparent 40%)",
+            }}
+          />
+        </div>
+      ))}
+
+      {/* Floating Petals */}
+      <FloatingPetals />
+
+      {/* Content Layer */}
+      <div className="relative z-20 h-full max-w-[1320px] mx-auto px-6 sm:px-10 flex items-center">
         {banners.map((b, idx) => (
           <div
             key={b.id}
-            ref={(el) => { slidesRef.current[idx] = el; }}
-            className="absolute inset-0"
-            style={{ opacity: idx === current ? 1 : 0 }}
+            ref={(el) => { contentRefs.current[idx] = el; }}
+            className="absolute max-w-2xl"
+            style={{
+              visibility: idx === current ? "visible" : "hidden",
+              pointerEvents: idx === current ? "auto" : "none",
+            }}
           >
-            <img
-              src={b.image}
-              alt={b.title || b.subtitle}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="absolute inset-0" style={{ background: b.overlay }} />
+            {/* Tag */}
+            <span
+              data-tag
+              className="inline-block text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase mb-3 sm:mb-4"
+              style={{ color: "var(--accent-gold)", opacity: 0 }}
+            >
+              {b.tag}
+            </span>
+
+            {/* Title */}
+            <h1
+              data-title
+              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 whitespace-pre-line"
+              style={{ perspective: "600px" }}
+            >
+              {b.title}
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              data-subtitle
+              className="text-sm sm:text-base md:text-lg text-white/70 font-light max-w-md mb-6 sm:mb-8"
+              style={{ opacity: 0 }}
+            >
+              {b.subtitle}
+            </p>
+
+            {/* CTA Button */}
+            <Link
+              href={b.cta.href}
+              data-cta
+              className="group inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-sm sm:text-base font-medium text-white transition-all duration-300 hover:scale-[1.03] hover:shadow-lg"
+              style={{
+                background: "var(--accent-gold)",
+                opacity: 0,
+                boxShadow: "0 4px 20px rgba(201,169,110,0.3)",
+              }}
+            >
+              {b.cta.text}
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         ))}
-
-        {/* Text Content */}
-        <div className="relative z-10 h-full max-w-[1320px] mx-auto px-4 sm:px-8 flex flex-col justify-center">
-          <div ref={textRef}>
-            {banner.titleTop ? (
-              <>
-                <p className="text-base sm:text-lg md:text-xl text-[#1C2120]/70 font-light">
-                  {banner.titleTop}
-                </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1C2120] leading-tight">
-                  <span className="italic font-light mr-2">{banner.titleAccent}</span>
-                  {banner.subtitle}
-                </h2>
-              </>
-            ) : (
-              <>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1C2120] leading-tight">
-                  {banner.title}
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl text-[#1C2120]/70 font-light italic mt-1">
-                  {banner.subtitle}
-                </p>
-              </>
-            )}
-          </div>
-
-          {/* Delivery Location Input */}
-          <div className="mt-4 sm:mt-6 max-w-[420px]" ref={deliveryRef}>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="px-3 py-2 text-[11px] sm:text-xs font-medium text-[#0E4D65] bg-[#0E4D65]/5 border-b border-[#0E4D65]/10">
-                Enter delivery location
-              </div>
-              <div className="flex items-center gap-2 px-3 py-2">
-                <span className="text-sm">🇮🇳</span>
-                <div className="flex items-center gap-2 flex-1 border border-gray-200 rounded px-2 py-1.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="M21 21l-4.35-4.35" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder="Search for area / landmark..."
-                    className="flex-1 text-xs sm:text-sm text-gray-600 outline-none bg-transparent placeholder:text-gray-400"
-                  />
-                </div>
-                <button
-                  className="shrink-0 p-1.5 rounded transition-colors hover:bg-gray-100 cursor-pointer"
-                  title="Use current location"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E4D65" strokeWidth="2" strokeLinecap="round">
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={() => goTo((current - 1 + banners.length) % banners.length)}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors cursor-pointer"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5" strokeLinecap="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button
-          onClick={() => goTo((current + 1) % banners.length)}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors cursor-pointer"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5" strokeLinecap="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
       </div>
 
-      {/* Dots - animated active indicator */}
-      <div className="flex items-center justify-center gap-2 mt-4">
+      {/* Navigation Arrows */}
+      <button
+        onClick={() => goTo((current - 1 + banners.length) % banners.length)}
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-white/10 hover:border-white/40 cursor-pointer backdrop-blur-sm"
+        aria-label="Previous slide"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <button
+        onClick={() => goTo((current + 1) % banners.length)}
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-white/10 hover:border-white/40 cursor-pointer backdrop-blur-sm"
+        aria-label="Next slide"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      {/* Progress Bar */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 flex h-[3px]">
         {banners.map((_, idx) => (
           <button
             key={idx}
             onClick={() => goTo(idx)}
-            className="rounded-full transition-all duration-500 cursor-pointer"
-            style={{
-              width: current === idx ? 28 : 8,
-              height: 8,
-              backgroundColor: current === idx ? "#0E4D65" : "#D1D5DB",
-              borderRadius: 4,
-            }}
-          />
+            className="relative flex-1 cursor-pointer bg-white/15 group"
+            aria-label={`Go to slide ${idx + 1}`}
+          >
+            <div
+              ref={(el) => { progressRefs.current[idx] = el; }}
+              className="absolute inset-0 origin-left"
+              style={{
+                background: "var(--accent-gold)",
+                transform: "scaleX(0)",
+              }}
+            />
+            {/* Hover expand area */}
+            <div className="absolute -top-3 inset-x-0 h-3 group-hover:bg-white/5 transition-colors" />
+          </button>
         ))}
       </div>
-    </div>
+
+      {/* Slide Counter */}
+      <div className="absolute bottom-6 right-6 sm:right-10 z-30 flex items-center gap-1.5 text-white/50 text-xs font-light tracking-wider">
+        <span className="text-white font-medium text-sm">{String(current + 1).padStart(2, "0")}</span>
+        <span>/</span>
+        <span>{String(banners.length).padStart(2, "0")}</span>
+      </div>
+    </section>
   );
 }

@@ -31,7 +31,7 @@ function ToolbarButton({
       title={title}
       className={`p-1.5 rounded text-xs font-medium transition-colors ${
         active
-          ? "bg-[#0E4D65] text-white"
+          ? "bg-[#B5748A] text-white"
           : "text-gray-600 hover:bg-gray-100"
       }`}
     >
@@ -54,7 +54,7 @@ export default function RichTextEditor({
       }),
       Link.configure({
         openOnClick: false,
-        HTMLAttributes: { class: "text-[#0E4D65] underline" },
+        HTMLAttributes: { class: "text-[#B5748A] underline" },
       }),
       Image.configure({ inline: false }),
     ],
@@ -81,7 +81,7 @@ export default function RichTextEditor({
   if (!editor) return null;
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#0E4D65] focus-within:ring-1 focus-within:ring-[#0E4D65]/20 transition-colors">
+    <div className="border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#B5748A] focus-within:ring-1 focus-within:ring-[#B5748A]/20 transition-colors">
       {/* Toolbar */}
       <div className="flex items-center gap-0.5 flex-wrap px-2 py-1.5 border-b border-gray-100 bg-gray-50/50">
         {/* Headings */}

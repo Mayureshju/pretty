@@ -51,7 +51,7 @@ export default function Categories() {
       item.addEventListener("mouseenter", () => {
         gsap.to(circle, {
           scale: 1.12,
-          boxShadow: "0 8px 25px rgba(14,77,101,0.2)",
+          boxShadow: "0 8px 25px rgba(139,34,82,0.18)",
           duration: 0.35,
           ease: "power2.out",
         });
@@ -92,7 +92,7 @@ export default function Categories() {
                 loading="lazy"
               />
             </div>
-            <span className="text-[11px] sm:text-xs md:text-[13px] font-medium text-[#1C2120] text-center leading-tight whitespace-pre-line">
+            <span className="text-[11px] sm:text-xs md:text-[13px] font-medium text-[var(--text-dark)] text-center leading-tight whitespace-pre-line">
               {cat.name}
             </span>
           </a>

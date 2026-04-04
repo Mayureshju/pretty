@@ -14,6 +14,8 @@ export interface IDeliveryCity extends Document {
   freeDeliveryAbove?: number;
   isActive: boolean;
   estimatedTime?: string;
+  cutoffTime?: string;
+  blockedDates: Date[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -36,6 +38,8 @@ const DeliveryCitySchema = new Schema<IDeliveryCity>(
     freeDeliveryAbove: { type: Number },
     isActive: { type: Boolean, default: true },
     estimatedTime: { type: String },
+    cutoffTime: { type: String },
+    blockedDates: [{ type: Date }],
   },
   { timestamps: true }
 );

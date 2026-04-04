@@ -17,6 +17,8 @@ interface DeliveryCityItem {
   freeDeliveryAbove?: number;
   isActive: boolean;
   estimatedTime?: string;
+  cutoffTime?: string;
+  blockedDates: string[];
 }
 
 const formatCurrency = (amount: number) =>
@@ -26,6 +28,13 @@ const formatCurrency = (amount: number) =>
     maximumFractionDigits: 0,
   }).format(amount);
 
+const formatCutoffTime = (time: string) => {
+  const [hours, minutes] = time.split(":").map(Number);
+  const period = hours >= 12 ? "PM" : "AM";
+  const displayHours = hours % 12 || 12;
+  return `${displayHours}:${minutes.toString().padStart(2, "0")} ${period}`;
+};
+
 const defaultForm = {
   city: "",
   state: "",
@@ -34,6 +43,9 @@ const defaultForm = {
   estimatedTime: "",
   isActive: true,
   pincodesText: "",
+  cutoffTime: "",
+  blockedDates: [] as string[],
+  newBlockedDate: "",
 };
 
 export default function DeliveryCitiesPage() {
@@ -83,6 +95,11 @@ export default function DeliveryCitiesPage() {
       estimatedTime: city.estimatedTime || "",
       isActive: city.isActive,
       pincodesText: city.pincodes.map((p) => p.code).join("\n"),
+      cutoffTime: city.cutoffTime || "",
+      blockedDates: (city.blockedDates || []).map(
+        (d) => new Date(d).toISOString().split("T")[0]
+      ),
+      newBlockedDate: "",
     });
     setModalOpen(true);
   }
@@ -113,6 +130,8 @@ export default function DeliveryCitiesPage() {
         estimatedTime: form.estimatedTime || undefined,
         isActive: form.isActive,
         pincodes,
+        cutoffTime: form.cutoffTime || undefined,
+        blockedDates: form.blockedDates,
       };
 
       const url = editingId
@@ -181,7 +200,7 @@ export default function DeliveryCitiesPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#0E4D65] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+          className="px-4 py-2.5 bg-[#B5748A] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
         >
           <svg
             width="18"
@@ -235,6 +254,9 @@ export default function DeliveryCitiesPage() {
                   <th className="text-left px-4 py-3 font-medium text-gray-500">
                     Est. Time
                   </th>
+                  <th className="text-left px-4 py-3 font-medium text-gray-500">
+                    Cutoff
+                  </th>
                   <th className="text-center px-4 py-3 font-medium text-gray-500">
                     Status
                   </th>
@@ -269,6 +291,11 @@ export default function DeliveryCitiesPage() {
                     <td className="px-4 py-3 text-gray-500">
                       {city.estimatedTime || "-"}
                     </td>
+                    <td className="px-4 py-3 text-gray-500">
+                      {city.cutoffTime
+                        ? formatCutoffTime(city.cutoffTime)
+                        : "-"}
+                    </td>
                     <td className="px-4 py-3 text-center">
                       <StatusBadge
                         status={city.isActive ? "active" : "inactive"}
@@ -279,7 +306,7 @@ export default function DeliveryCitiesPage() {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(city)}
-                          className="text-xs font-medium text-[#0E4D65] hover:text-[#0A3A4D] transition-colors"
+                          className="text-xs font-medium text-[#B5748A] hover:text-[#0A3A4D] transition-colors"
                         >
                           Edit
                         </button>
@@ -323,7 +350,7 @@ export default function DeliveryCitiesPage() {
                   )
               }
               disabled={saving}
-              className="px-4 py-2 text-sm font-medium text-white bg-[#0E4D65] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[#B5748A] rounded-lg hover:bg-[#0A3A4D] transition-colors disabled:opacity-50"
             >
               {saving ? "Saving..." : editingId ? "Update" : "Create"}
             </button>
@@ -346,7 +373,7 @@ export default function DeliveryCitiesPage() {
               onChange={(e) => setForm({ ...form, city: e.target.value })}
               placeholder="e.g. Mumbai"
               required
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -360,7 +387,7 @@ export default function DeliveryCitiesPage() {
               value={form.state}
               onChange={(e) => setForm({ ...form, state: e.target.value })}
               placeholder="e.g. Maharashtra"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
             />
           </div>
 
@@ -380,7 +407,7 @@ export default function DeliveryCitiesPage() {
                   })
                 }
                 min={0}
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -395,7 +422,7 @@ export default function DeliveryCitiesPage() {
                 }
                 min={0}
                 placeholder="Optional"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -412,8 +439,114 @@ export default function DeliveryCitiesPage() {
                 setForm({ ...form, estimatedTime: e.target.value })
               }
               placeholder="e.g. 2-4 hours"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
             />
+          </div>
+
+          {/* Cutoff Time */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Same-Day Delivery Cutoff
+            </label>
+            <input
+              type="time"
+              value={form.cutoffTime}
+              onChange={(e) =>
+                setForm({ ...form, cutoffTime: e.target.value })
+              }
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors"
+            />
+            <p className="text-xs text-gray-400 mt-1">
+              Orders after this time cannot select today for delivery
+            </p>
+          </div>
+
+          {/* Blocked Dates */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Blocked Delivery Dates
+            </label>
+            <div className="flex items-center gap-2 mb-2">
+              <input
+                type="date"
+                value={form.newBlockedDate}
+                onChange={(e) =>
+                  setForm({ ...form, newBlockedDate: e.target.value })
+                }
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors flex-1"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  if (
+                    form.newBlockedDate &&
+                    !form.blockedDates.includes(form.newBlockedDate)
+                  ) {
+                    setForm({
+                      ...form,
+                      blockedDates: [
+                        ...form.blockedDates,
+                        form.newBlockedDate,
+                      ],
+                      newBlockedDate: "",
+                    });
+                  }
+                }}
+                className="px-3 py-2.5 text-sm font-medium bg-[#B5748A] text-white rounded-lg hover:bg-[#9E6377] transition-colors"
+              >
+                Add
+              </button>
+            </div>
+            {form.blockedDates.length > 0 && (
+              <div className="space-y-1">
+                {form.blockedDates.map((date, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2"
+                  >
+                    <span className="text-sm text-[#464646]">
+                      {new Date(date + "T00:00:00").toLocaleDateString(
+                        "en-IN",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        }
+                      )}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setForm({
+                          ...form,
+                          blockedDates: form.blockedDates.filter(
+                            (_, j) => j !== i
+                          ),
+                        })
+                      }
+                      className="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M4 4L12 12M4 12L12 4"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="text-xs text-gray-400 mt-1">
+              Delivery will not be available on these dates
+            </p>
           </div>
 
           {/* Status */}
@@ -449,7 +582,7 @@ export default function DeliveryCitiesPage() {
               }
               rows={4}
               placeholder={"400001\n400002\n400003"}
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#0E4D65] focus:ring-1 focus:ring-[#0E4D65]/20 focus:outline-none transition-colors resize-none font-mono"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#B5748A] focus:ring-1 focus:ring-[#B5748A]/20 focus:outline-none transition-colors resize-none font-mono"
             />
           </div>
         </form>

@@ -58,7 +58,7 @@ export default function Pagination({
             id="page-size"
             value={pageSize}
             onChange={(e) => onPageSizeChange(Number(e.target.value))}
-            className="border border-gray-200 rounded-lg px-2 py-1.5 text-sm bg-white text-gray-700 focus:border-[#0E4D65] focus:outline-none"
+            className="border border-gray-200 rounded-lg px-2 py-1.5 text-sm bg-white text-gray-700 focus:border-[#B5748A] focus:outline-none"
           >
             {PAGE_SIZE_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
@@ -110,7 +110,7 @@ export default function Pagination({
               onClick={() => onPageChange(page)}
               className={`flex items-center justify-center w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                 page === currentPage
-                  ? "bg-[#0E4D65] text-white"
+                  ? "bg-[#B5748A] text-white"
                   : "text-gray-600 hover:bg-gray-100"
               }`}
               aria-current={page === currentPage ? "page" : undefined}

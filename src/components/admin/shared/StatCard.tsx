@@ -23,7 +23,7 @@ export default function StatCard({
     >
       <div className="flex items-start justify-between">
         <div>
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#0E4D65]/10 text-[#0E4D65]">
+          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#B5748A]/10 text-[#B5748A]">
             {icon}
           </div>
           <p className="text-2xl font-bold text-[#1C2120] mt-4">{value}</p>

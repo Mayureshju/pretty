@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Cormorant_Garamond } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -11,10 +11,17 @@ const poppins = Poppins({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "FlowerAura - #1 Florist for Flower Delivery, Cakes & Gifts in India",
+  title: "Pretty Petals - Premium Flower Delivery, Cakes & Gifts in Mumbai",
   description:
-    "Order flowers, cakes, plants & gifts online with same day delivery across India. Best gifting brand for birthdays, anniversaries & all occasions.",
+    "Order premium flowers, cakes, plants & gifts online with same day delivery in Mumbai. Handcrafted bouquets for birthdays, anniversaries & all occasions.",
 };
 
 export default function RootLayout({
@@ -23,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={`${poppins.variable} ${cormorant.variable}`}>
       <body>
         <ClerkProvider>
           {children}
