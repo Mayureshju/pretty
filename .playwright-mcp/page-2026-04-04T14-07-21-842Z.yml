@@ -1,0 +1,431 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - text:            
+    - generic [ref=e8]:
+      - list [ref=e11]:
+        - listitem [ref=e12]:
+          - link "Help" [ref=e13] [cursor=pointer]:
+            - /url: "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExODA5IiwidG9nZ2xlIjpmYWxzZSwiYWxpZ25fd2l0aF9wYXJlbnQiOiIifQ%3D%3D"
+            - generic [ref=e15]: 
+            - generic [ref=e16]: Help
+      - list [ref=e19]:
+        - listitem [ref=e20]:
+          - link "Your account" [ref=e21] [cursor=pointer]:
+            - /url: /my-account
+            - generic [ref=e23]: 
+            - generic [ref=e24]: Your account
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - link "Wishlist" [ref=e29] [cursor=pointer]:
+            - /url: /wishlist
+            - generic [ref=e31]: 
+            - generic [ref=e32]: Wishlist
+    - generic [ref=e34]:
+      - link [ref=e39] [cursor=pointer]:
+        - /url: https://www.prettypetals.com
+      - generic [ref=e41]:
+        - generic [ref=e45]:
+          - text: 
+          - link "0  Cart" [ref=e47] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e48]:
+              - generic [ref=e49]: "0"
+              - generic [ref=e50]: 
+              - generic [ref=e51]: Cart
+        - generic [ref=e53]:
+          - text:   
+          - button "Menu Toggle" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: 
+            - text: 
+            - generic [ref=e56]: Menu
+          - text:   
+    - search [ref=e64]:
+      - generic [ref=e65]:
+        - img [ref=e66]
+        - generic [ref=e68] [cursor=pointer]: Products search
+        - searchbox "Products search" [ref=e69]
+  - generic [ref=e71]:
+    - main [ref=e73]:
+      - generic [ref=e74]:
+        - generic [ref=e81]:
+          - generic [ref=e87]:
+            - generic:
+              - link "Roses and Lilies":
+                - /url: https://www.prettypetals.com/wp-content/uploads/2023/02/30.png
+                - img "Roses and Lilies"
+          - generic [ref=e89]:
+            - heading "Box of Elegance" [level=3] [ref=e92]
+            - paragraph [ref=e95]:
+              - generic [ref=e97]: ₹4,899.00
+            - generic [ref=e101]:
+              - table [ref=e102]:
+                - rowgroup [ref=e103]:
+                  - row "Delivery City * Mumbai" [ref=e104]:
+                    - cell "Delivery City *" [ref=e105]:
+                      - generic [ref=e106] [cursor=pointer]: Delivery City *
+                    - cell "Mumbai" [ref=e107]:
+                      - combobox "Delivery City *" [ref=e108]:
+                        - option "Mumbai" [selected]
+                        - option "Navi Mumbai"
+                        - option "Thane"
+              - generic [ref=e109]:
+                - paragraph [ref=e111]: "Add ons:"
+                - paragraph [ref=e113]:
+                  - generic [ref=e115] [cursor=pointer]:
+                    - checkbox "Birthday Card (₹80.00)" [ref=e116]
+                    - text: Birthday Card (₹80.00)
+                - paragraph [ref=e118]:
+                  - generic [ref=e120] [cursor=pointer]:
+                    - checkbox "Anniversary Card (₹80.00)" [ref=e121]
+                    - text: Anniversary Card (₹80.00)
+                - paragraph [ref=e123]:
+                  - generic [ref=e125] [cursor=pointer]:
+                    - checkbox "Plant (₹690.00)" [ref=e126]
+                    - text: Plant (₹690.00)
+                - paragraph [ref=e128]:
+                  - generic [ref=e130] [cursor=pointer]:
+                    - checkbox "Teddy (₹587.00)" [ref=e131]
+                    - text: Teddy (₹587.00)
+                - paragraph [ref=e133]:
+                  - generic [ref=e135] [cursor=pointer]:
+                    - checkbox "Cookies (₹535.00)" [ref=e136]
+                    - text: Cookies (₹535.00)
+                - paragraph [ref=e138]:
+                  - generic [ref=e140] [cursor=pointer]:
+                    - checkbox "Aroma Candle (₹588.00)" [ref=e141]
+                    - text: Aroma Candle (₹588.00)
+                - paragraph [ref=e143]:
+                  - generic [ref=e145] [cursor=pointer]:
+                    - checkbox "Homemade Chocolates (₹754.00)" [ref=e146]
+                    - text: Homemade Chocolates (₹754.00)
+                - paragraph [ref=e148]:
+                  - generic [ref=e150] [cursor=pointer]:
+                    - checkbox "Chocolate Brownies- 4pcs (₹999.00)" [ref=e151]
+                    - text: Chocolate Brownies- 4pcs (₹999.00)
+                - paragraph [ref=e153]:
+                  - generic [ref=e155] [cursor=pointer]:
+                    - checkbox "Fairy Light (₹180.00)" [ref=e156]
+                    - text: Fairy Light (₹180.00)
+              - generic [ref=e157]:
+                - generic [ref=e158] [cursor=pointer]: Box of Elegance quantity
+                - spinbutton "Product quantity" [ref=e159]: "1"
+              - button "Add to cart" [ref=e160] [cursor=pointer]
+              - button "Buy Now" [ref=e161] [cursor=pointer]
+              - button ""
+            - button "Delivery Information" [ref=e166] [cursor=pointer]:
+              - generic [ref=e167]:
+                - generic [ref=e169]: 
+                - text: 
+              - text: Delivery Information
+            - generic [ref=e172]:
+              - button "Share on facebook" [ref=e174] [cursor=pointer]:
+                - generic [ref=e176]: 
+              - button "Share on whatsapp" [ref=e178] [cursor=pointer]:
+                - generic [ref=e180]: 
+        - generic [ref=e184]:
+          - heading "About this Item" [level=3] [ref=e187]
+          - generic [ref=e190]:
+            - tablist [ref=e191]:
+              - listitem [ref=e192]:
+                - tab "Description" [selected] [ref=e193] [cursor=pointer]
+              - listitem [ref=e194]:
+                - tab "Reviews (0)" [ref=e195] [cursor=pointer]
+            - tabpanel "Description" [ref=e196]:
+              - generic [ref=e197]: Box of Elegance is a stunning box of flowers that combines the timeless beauty of roses with the graceful charm of lilies. The arrangement is carefully curated to create a sense of refinement and sophistication, with the soft and delicate colors of the flowers evoking feelings of romance and admiration. The combination of roses and lilies creates a visually stunning and harmonious arrangement, with the intricate petals of the flowers complementing each other perfectly. The box adds an extra touch of elegance, making it a perfect gift for any occasion that calls for a touch of refinement and style. The name “Box of Elegance” perfectly captures the sense of sophistication and grace that this flower box represents.
+        - list [ref=e205]:
+          - listitem [ref=e206]:
+            - link "Purple shaded carnations white lilies" [ref=e207] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/purple-passion/
+              - img "Purple shaded carnations white lilies" [ref=e208]
+            - generic [ref=e209]:
+              - link "Purple Passion" [ref=e210] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/purple-passion/
+                - heading "Purple Passion" [level=2] [ref=e211]
+              - generic [ref=e214]: ₹2,370.00
+            - 'link "Add to cart: “Purple Passion”" [ref=e215] [cursor=pointer]':
+              - /url: "?add-to-cart=6500"
+              - text: Select Options
+          - listitem [ref=e217]:
+            - link "Pastel Floral Arrangement" [ref=e218] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/pastel-floral-arrangement/
+              - img "Pastel Floral Arrangement" [ref=e219]
+            - generic [ref=e220]:
+              - link "Pastel Blossoming" [ref=e221] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/pastel-floral-arrangement/
+                - heading "Pastel Blossoming" [level=2] [ref=e222]
+              - generic [ref=e225]: ₹3,789.00
+            - 'link "Add to cart: “Pastel Blossoming”" [ref=e226] [cursor=pointer]':
+              - /url: "?add-to-cart=4589"
+              - text: Select Options
+          - listitem [ref=e228]:
+            - link "Bright Yellow Lilies Arrangement" [ref=e229] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/sunshine-lilies/
+              - img "Bright Yellow Lilies Arrangement" [ref=e230]
+            - generic [ref=e231]:
+              - link "Luminous Lilies Rated 5.00 out of 5" [ref=e232] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/sunshine-lilies/
+                - heading "Luminous Lilies" [level=2] [ref=e233]
+                - img "Rated 5.00 out of 5" [ref=e234]:
+                  - text: sssss
+                  - generic [ref=e235]:
+                    - text: SSSSS Rated
+                    - strong [ref=e236]: "5.00"
+                    - text: out of 5
+              - generic [ref=e237]:
+                - text: From
+                - generic [ref=e239]: ₹1,895.00
+            - link "Select options for “Luminous Lilies”" [ref=e240] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/sunshine-lilies/
+              - text: Buy now
+            - generic [ref=e241]: This product has multiple variants. The options may be chosen on the product page
+          - listitem [ref=e242]:
+            - link "Pink and Peach Roses Heart Box" [ref=e243] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/ravishing-roses-heart-box/
+              - img "Pink and Peach Roses Heart Box" [ref=e244]
+            - generic [ref=e245]:
+              - link "Ravishing Roses" [ref=e246] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/ravishing-roses-heart-box/
+                - heading "Ravishing Roses" [level=2] [ref=e247]
+              - generic [ref=e250]: ₹2,499.00
+            - 'link "Add to cart: “Ravishing Roses”" [ref=e251] [cursor=pointer]':
+              - /url: "?add-to-cart=3759"
+              - text: Select Options
+          - listitem [ref=e253]:
+            - link "Mixed Floral Bouquet" [ref=e254] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/beautiful-mix-flowers-box-bouquet/
+              - img "Mixed Floral Bouquet" [ref=e255]
+            - generic [ref=e256]:
+              - link "Red Blooms" [ref=e257] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/beautiful-mix-flowers-box-bouquet/
+                - heading "Red Blooms" [level=2] [ref=e258]
+              - generic [ref=e261]: ₹4,568.00
+            - 'link "Add to cart: “Red Blooms”" [ref=e262] [cursor=pointer]':
+              - /url: "?add-to-cart=3463"
+              - text: Select Options
+        - generic [ref=e267]:
+          - heading "Related Products" [level=3] [ref=e270]
+          - list [ref=e274]:
+            - listitem [ref=e275]:
+              - link "Purple shaded carnations white lilies" [ref=e276] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/purple-passion/
+                - img "Purple shaded carnations white lilies" [ref=e277]
+              - generic [ref=e278]:
+                - link "Purple Passion" [ref=e279] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/purple-passion/
+                  - heading "Purple Passion" [level=2] [ref=e280]
+                - generic [ref=e283]: ₹2,370.00
+              - 'link "Add to cart: “Purple Passion”" [ref=e284] [cursor=pointer]':
+                - /url: "?add-to-cart=6500"
+                - text: Select Options
+            - listitem [ref=e286]:
+              - link "Pink and Peach Roses Heart Box" [ref=e287] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/ravishing-roses-heart-box/
+                - img "Pink and Peach Roses Heart Box" [ref=e288]
+              - generic [ref=e289]:
+                - link "Ravishing Roses" [ref=e290] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/ravishing-roses-heart-box/
+                  - heading "Ravishing Roses" [level=2] [ref=e291]
+                - generic [ref=e294]: ₹2,499.00
+              - 'link "Add to cart: “Ravishing Roses”" [ref=e295] [cursor=pointer]':
+                - /url: "?add-to-cart=3759"
+                - text: Select Options
+            - listitem [ref=e297]:
+              - link "Mixed Pink peonies and White Spring Garden Bouquet" [ref=e298] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/vase-of-cheerfulness/
+                - img "Mixed Pink peonies and White Spring Garden Bouquet" [ref=e299]
+              - generic [ref=e300]:
+                - link "Vase of Cheerfulness" [ref=e301] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/vase-of-cheerfulness/
+                  - heading "Vase of Cheerfulness" [level=2] [ref=e302]
+                - generic [ref=e305]: ₹8,875.00
+              - 'link "Add to cart: “Vase of Cheerfulness”" [ref=e306] [cursor=pointer]':
+                - /url: "?add-to-cart=3610"
+                - text: Select Options
+            - listitem [ref=e308]:
+              - link "Red Roses Hand Bunch" [ref=e309] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/valentine-roses/
+                - img "Red Roses Hand Bunch" [ref=e310]
+              - generic [ref=e311]:
+                - link "Valentine Roses Rated 4.67 out of 5" [ref=e312] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/valentine-roses/
+                  - heading "Valentine Roses" [level=2] [ref=e313]
+                  - img "Rated 4.67 out of 5" [ref=e314]:
+                    - text: sssss
+                    - generic [ref=e315]:
+                      - text: SSSSS Rated
+                      - strong [ref=e316]: "4.67"
+                      - text: out of 5
+                - generic [ref=e319]: ₹1,899.00
+              - 'link "Add to cart: “Valentine Roses”" [ref=e320] [cursor=pointer]':
+                - /url: "?add-to-cart=3591"
+                - text: Select Options
+            - listitem [ref=e322]:
+              - link "Pink Lilies and Roses" [ref=e323] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/pink-lilies-and-roses/
+                - img "Pink Lilies and Roses" [ref=e324]
+              - generic [ref=e325]:
+                - link "Pink Lilies and Roses Rated 4.50 out of 5" [ref=e326] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/pink-lilies-and-roses/
+                  - heading "Pink Lilies and Roses" [level=2] [ref=e327]
+                  - img "Rated 4.50 out of 5" [ref=e328]:
+                    - text: sssss
+                    - generic [ref=e329]:
+                      - text: SSSSS Rated
+                      - strong [ref=e330]: "4.50"
+                      - text: out of 5
+                - generic [ref=e333]: ₹3,490.00
+              - 'link "Add to cart: “Pink Lilies and Roses”" [ref=e334] [cursor=pointer]':
+                - /url: "?add-to-cart=3436"
+                - text: Select Options
+    - contentinfo [ref=e337]:
+      - generic [ref=e338]:
+        - generic [ref=e340]:
+          - generic [ref=e345]:
+            - generic [ref=e348]: 
+            - generic [ref=e349]:
+              - heading "Free Delivery" [level=3] [ref=e350]
+              - paragraph [ref=e351]: Fast & Free Delivery
+          - generic [ref=e356]:
+            - generic [ref=e359]: 
+            - generic [ref=e360]:
+              - heading "Reliable" [level=3] [ref=e361]
+              - paragraph [ref=e362]: 20+ years of experience
+          - generic [ref=e367]:
+            - generic [ref=e370]: 
+            - generic [ref=e371]:
+              - heading "Secure Payment" [level=3] [ref=e372]
+              - paragraph [ref=e373]: 100% secure payments
+          - generic [ref=e378]:
+            - generic [ref=e381]: 
+            - generic [ref=e382]:
+              - heading "Help" [level=3] [ref=e383]
+              - paragraph [ref=e384]: Dedicated support
+        - generic [ref=e386]:
+          - generic [ref=e388]:
+            - generic [ref=e390]: Sign Up To Our Newsletter
+            - generic [ref=e392]: Subscribe to receive updates, access to exclusive deals, and more.
+          - generic [ref=e399]:
+            - textbox "Email Address" [ref=e401]
+            - button "Subscribe" [ref=e402] [cursor=pointer]:
+              - generic [ref=e403]: Subscribe
+          - generic [ref=e408]:
+            - link "Instagram " [ref=e410] [cursor=pointer]:
+              - /url: https://www.instagram.com/prettypetalsmumbai/?igshid=MzRlODBiNWFlZA==&_ga=2.108204546.149711944.1687760035-68977772.1686555231
+              - generic [ref=e411]: Instagram
+              - generic [ref=e412]: 
+            - link "Facebook " [ref=e414] [cursor=pointer]:
+              - /url: https://www.facebook.com/prettypetalsmumbai/
+              - generic [ref=e415]: Facebook
+              - generic [ref=e416]: 
+        - generic [ref=e418]:
+          - generic [ref=e420]:
+            - paragraph [ref=e423]:
+              - text: Shop No. 3, 15A, Bhalerao Bhuvan, 15A,
+              - text: Off Carter Rd Union Park, Khar West, Mumbai,
+              - text: Maharashtra 400052
+            - generic [ref=e425]:
+              - link "+91 98331 00194" [ref=e426] [cursor=pointer]:
+                - /url: tel:+919833100194
+              - link "support@prettypetals.com" [ref=e427] [cursor=pointer]:
+                - /url: mailto:support@prettypetals.com
+          - generic [ref=e429]:
+            - heading "By Occasions" [level=6] [ref=e432]
+            - navigation "Menu" [ref=e435]:
+              - list [ref=e436]:
+                - listitem [ref=e437]:
+                  - link "Anniversary" [ref=e438] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/anniversary/
+                - listitem [ref=e439]:
+                  - link "Birthday" [ref=e440] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/birthday/
+                - listitem [ref=e441]:
+                  - link "Funeral" [ref=e442] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/funeral/
+                - listitem [ref=e443]:
+                  - link "Get Well Soon" [ref=e444] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/get-well-soon/
+                - listitem [ref=e445]:
+                  - link "House Warming" [ref=e446] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/house-warming/
+                - listitem [ref=e447]:
+                  - link "Wedding" [ref=e448] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/wedding/
+          - generic [ref=e450]:
+            - heading "By Flowers" [level=6] [ref=e453]
+            - navigation "Menu" [ref=e456]:
+              - list [ref=e457]:
+                - listitem [ref=e458]:
+                  - link "Roses" [ref=e459] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/roses/
+                - listitem [ref=e460]:
+                  - link "Carnations" [ref=e461] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/carnations/
+                - listitem [ref=e462]:
+                  - link "Orchids" [ref=e463] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/orchids/
+                - listitem [ref=e464]:
+                  - link "Gerberas" [ref=e465] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/gerberas/
+                - listitem [ref=e466]:
+                  - link "Lilies" [ref=e467] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/lilies/
+                - listitem [ref=e468]:
+                  - link "Tulips" [ref=e469] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/tulips-flowers/
+                - listitem [ref=e470]:
+                  - link "Mixed Flowers" [ref=e471] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/mixed-flowers/
+                - listitem [ref=e472]:
+                  - link "Exotic Flowers" [ref=e473] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/exotic-flowers/
+          - generic [ref=e475]:
+            - heading "Policy Info" [level=6] [ref=e478]
+            - navigation "Menu" [ref=e481]:
+              - list [ref=e482]:
+                - listitem [ref=e483]:
+                  - link "Blog" [ref=e484] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/blog/
+                - listitem [ref=e485]:
+                  - link "Privacy Policy" [ref=e486] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/privacy-policy/
+                - listitem [ref=e487]:
+                  - link "Delivery and Refund policy" [ref=e488] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/delivery-and-refund-policy/
+                - listitem [ref=e489]:
+                  - link "Terms and Conditions" [ref=e490] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/terms-and-conditions/
+                - listitem [ref=e491]:
+                  - link "Contact Us" [ref=e492] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/contact-us/
+          - generic [ref=e494]:
+            - heading "Connect with Us" [level=6] [ref=e497]
+            - list [ref=e500]:
+              - listitem [ref=e501]:
+                - link "+919833100194" [ref=e502] [cursor=pointer]:
+                  - /url: tel:+919833100194
+                  - generic [ref=e504]: 
+                  - generic [ref=e505]: "+919833100194"
+              - listitem [ref=e506]:
+                - generic [ref=e508]: 
+                - generic [ref=e509]: support@prettypetals.com
+            - heading "Delivery Cities" [level=6] [ref=e512]
+            - list [ref=e515]:
+              - listitem [ref=e516]:
+                - link "Mumbai" [ref=e517] [cursor=pointer]:
+                  - /url: https://prettypetals.com/
+                  - generic [ref=e519]: 
+                  - generic [ref=e520]: Mumbai
+              - listitem [ref=e521]:
+                - link "Navi Mumbai" [ref=e522] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-navi-mumbai/
+                  - generic [ref=e524]: 
+                  - generic [ref=e525]: Navi Mumbai
+              - listitem [ref=e526]:
+                - link "Thane" [ref=e527] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-thane/
+                  - generic [ref=e529]: 
+                  - generic [ref=e530]: Thane
+        - generic [ref=e536]: © 1999-2026 prettypetals.com. All rights reserved.
+  - generic [ref=e543] [cursor=pointer]: top 
+  - generic [ref=e544]: tablet
+  - status [ref=e545]

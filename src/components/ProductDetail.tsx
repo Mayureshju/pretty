@@ -29,10 +29,17 @@ interface ProductAddon {
   image?: string;
 }
 
+interface ProductCategoryParent {
+  _id: string;
+  name: string;
+  slug: string;
+}
+
 interface ProductCategory {
   _id: string;
   name: string;
   slug: string;
+  parent?: ProductCategoryParent | null;
 }
 
 interface ProductData {
@@ -139,9 +146,23 @@ export default function ProductDetail({ product, similarProducts }: ProductDetai
           <nav className="flex items-center text-xs md:text-sm text-[#888] flex-wrap gap-1">
             <Link href="/" className="text-[#0E4D65] hover:underline">Home</Link>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
+            {product.category?.parent && (
+              <>
+                <Link href={`/${product.category.parent.slug}/`} className="text-[#0E4D65] hover:underline">
+                  {product.category.parent.name}
+                </Link>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
+              </>
+            )}
             {product.category && (
               <>
-                <Link href={`/${product.category.slug}/`} className="text-[#0E4D65] hover:underline">
+                <Link
+                  href={product.category.parent
+                    ? `/${product.category.parent.slug}/${product.category.slug}/`
+                    : `/${product.category.slug}/`
+                  }
+                  className="text-[#0E4D65] hover:underline"
+                >
                   {product.category.name}
                 </Link>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-40"><path d="M9 18l6-6-6-6" /></svg>
@@ -376,7 +397,7 @@ export default function ProductDetail({ product, similarProducts }: ProductDetai
                 return (
                   <Link
                     key={p._id}
-                    href={`/${p.slug}/`}
+                    href={`/product/${p.slug}/`}
                     className="sim-card bg-white rounded-xl border border-[#eee] overflow-hidden group transition-all hover:shadow-lg"
                   >
                     <div className="aspect-square overflow-hidden bg-[#f8f8f8] relative">

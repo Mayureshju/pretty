@@ -359,7 +359,7 @@ export default function FlowerListing() {
             </button>
 
             {/* Product Image */}
-            <a href={`/${product.id}/`} className="block">
+            <a href={`/product/${product.id}/`} className="block">
               <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f5f5f5]">
                 <img
                   src={product.image}
@@ -379,7 +379,7 @@ export default function FlowerListing() {
 
             {/* Product Info */}
             <div className="p-3 md:p-4">
-              <a href={`/${product.id}/`}>
+              <a href={`/product/${product.id}/`}>
                 <h3 className="text-[13px] md:text-sm font-medium text-[#1C2120] leading-snug line-clamp-2 min-h-[36px]">
                   {product.name}
                 </h3>

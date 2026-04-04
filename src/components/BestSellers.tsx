@@ -10,7 +10,7 @@ const products = [
   {
     id: 1,
     name: "10 Red Roses Bouquet",
-    href: "/red-roses-bouquet/",
+    href: "/product/red-roses-bouquet/",
     price: 695,
     originalPrice: 770,
     discount: 10,
@@ -22,7 +22,7 @@ const products = [
   {
     id: 2,
     name: "Profuse Jade Terrarium",
-    href: "/profuse-jade-terrarium/",
+    href: "/product/profuse-jade-terrarium/",
     price: 695,
     originalPrice: 999,
     discount: 31,
@@ -34,7 +34,7 @@ const products = [
   {
     id: 3,
     name: "Chocolate Truffle Cake",
-    href: "/chocolate-truffle-cake/",
+    href: "/product/chocolate-truffle-cake/",
     price: 595,
     originalPrice: 745,
     discount: 21,
@@ -46,7 +46,7 @@ const products = [
   {
     id: 4,
     name: "Bellina Purple Orchid Bouquet",
-    href: "/purple-orchid-bouquet/",
+    href: "/product/purple-orchid-bouquet/",
     price: 795,
     originalPrice: 999,
     discount: 21,
@@ -58,7 +58,7 @@ const products = [
   {
     id: 5,
     name: "Pastel Blooms Of Serenity",
-    href: "/pastel-blooms/",
+    href: "/product/pastel-blooms/",
     price: 595,
     originalPrice: 795,
     discount: 26,
@@ -70,7 +70,7 @@ const products = [
   {
     id: 6,
     name: "Red Roses Wrapped In Heartfelt Devotion",
-    href: "/red-roses-wrapped/",
+    href: "/product/red-roses-wrapped/",
     price: 545,
     originalPrice: 795,
     discount: 32,
@@ -82,7 +82,7 @@ const products = [
   {
     id: 7,
     name: "Decadent Red Velvet Cake",
-    href: "/red-velvet-cake/",
+    href: "/product/red-velvet-cake/",
     price: 685,
     originalPrice: 895,
     discount: 24,
@@ -94,7 +94,7 @@ const products = [
   {
     id: 8,
     name: "Twin Hearts Floral Balloon",
-    href: "/twin-hearts-balloon/",
+    href: "/product/twin-hearts-balloon/",
     price: 895,
     originalPrice: 1295,
     discount: 31,

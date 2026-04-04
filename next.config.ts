@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/p/flower/:slug",
-        destination: "/:slug/",
+        destination: "/product/:slug/",
         permanent: true,
       },
       {

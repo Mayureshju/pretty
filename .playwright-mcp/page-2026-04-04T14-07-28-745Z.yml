@@ -1,0 +1,602 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - text:            
+    - generic [ref=e8]:
+      - list [ref=e11]:
+        - listitem [ref=e12]:
+          - link "Help" [ref=e13] [cursor=pointer]:
+            - /url: "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExODA5IiwidG9nZ2xlIjpmYWxzZSwiYWxpZ25fd2l0aF9wYXJlbnQiOiIifQ%3D%3D"
+            - generic [ref=e15]: 
+            - generic [ref=e16]: Help
+      - list [ref=e19]:
+        - listitem [ref=e20]:
+          - link "Your account" [ref=e21] [cursor=pointer]:
+            - /url: /my-account
+            - generic [ref=e23]: 
+            - generic [ref=e24]: Your account
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - link "Wishlist" [ref=e29] [cursor=pointer]:
+            - /url: /wishlist
+            - generic [ref=e31]: 
+            - generic [ref=e32]: Wishlist
+    - generic [ref=e34]:
+      - link [ref=e39] [cursor=pointer]:
+        - /url: https://www.prettypetals.com
+      - generic [ref=e41]:
+        - generic [ref=e45]:
+          - text: 
+          - link "0  Cart" [ref=e47] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e48]:
+              - generic [ref=e49]: "0"
+              - generic [ref=e50]: 
+              - generic [ref=e51]: Cart
+        - generic [ref=e53]:
+          - text:   
+          - button "Menu Toggle" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: 
+            - text: 
+            - generic [ref=e56]: Menu
+          - text:   
+    - search [ref=e64]:
+      - generic [ref=e65]:
+        - img [ref=e66]
+        - generic [ref=e68] [cursor=pointer]: Products search
+        - searchbox "Products search" [ref=e69]
+  - generic [ref=e72]:
+    - main [ref=e73]:
+      - generic [ref=e77]:
+        - generic [ref=e79]:
+          - navigation "Breadcrumb" [ref=e82]:
+            - link "Home" [ref=e83] [cursor=pointer]:
+              - /url: https://www.prettypetals.com
+            - text: /
+            - link "Cakes" [ref=e84] [cursor=pointer]:
+              - /url: https://www.prettypetals.com/cakes/
+            - text: / Premium
+          - heading "Premium" [level=2] [ref=e87]
+          - generic [ref=e89]:
+            - button "Clear all" [ref=e93] [cursor=pointer]
+            - generic [ref=e95]:
+              - heading "Price range " [level=3] [ref=e97]:
+                - text: Price range
+                - generic [ref=e98] [cursor=pointer]: 
+              - text: "-"
+            - heading "Category " [level=3] [ref=e102]:
+              - text: Category
+              - generic [ref=e103] [cursor=pointer]: 
+            - generic [ref=e105]:
+              - heading "Customer rating " [level=3] [ref=e107]:
+                - text: Customer rating
+                - generic [ref=e108] [cursor=pointer]: 
+              - text:     
+        - generic [ref=e113]:
+          - alert [ref=e114]:
+            - text: Showing 1–15 of 24 results
+            - generic [ref=e115]: Sorted by popularity
+          - generic [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]:
+              - generic [ref=e118]: Default
+              - generic [ref=e119]: 
+            - list:
+              - listitem:
+                - link "Default sorting":
+                  - /url: "?orderby=menu_order"
+              - listitem:
+                - link "Sort by popularity":
+                  - /url: "?orderby=popularity"
+              - listitem:
+                - link "Sort by average rating":
+                  - /url: "?orderby=rating"
+              - listitem:
+                - link "Sort by latest":
+                  - /url: "?orderby=date"
+              - listitem:
+                - 'link "Sort by price: low to high"':
+                  - /url: "?orderby=price"
+              - listitem:
+                - 'link "Sort by price: high to low"':
+                  - /url: "?orderby=price-desc"
+          - list [ref=e120]:
+            - listitem [ref=e121]:
+              - link "Delightful Belgium Chocolate Cake" [ref=e122] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/delightful-birthday-chocolate-cake/
+                - img "Delightful Belgium Chocolate Cake" [ref=e123]
+              - generic [ref=e124]:
+                - link "Delightful Belgium Chocolate Cake" [ref=e125] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/delightful-birthday-chocolate-cake/
+                  - heading "Delightful Belgium Chocolate Cake" [level=2] [ref=e126]
+                - generic [ref=e127]:
+                  - text: From
+                  - generic [ref=e129]: ₹1,689.00
+              - link "Select options for “Delightful Belgium Chocolate Cake”" [ref=e130] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/delightful-birthday-chocolate-cake/
+                - text: Buy now
+              - generic [ref=e131]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e133]:
+                - rowgroup [ref=e134]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e135]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e136]:
+                      - generic [ref=e137]:
+                        - generic [ref=e139] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e141] [cursor=pointer]: 1 kg
+                        - generic [ref=e143] [cursor=pointer]: 2 kg
+            - listitem [ref=e144]:
+              - link "Delicious Chocolate Glaze Cake" [ref=e145] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/delicious-chocolate-cake/
+                - img "Delicious Chocolate Glaze Cake" [ref=e146]
+              - generic [ref=e147]:
+                - link "Delicious Chocolate Glaze Cake" [ref=e148] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/delicious-chocolate-cake/
+                  - heading "Delicious Chocolate Glaze Cake" [level=2] [ref=e149]
+                - generic [ref=e150]:
+                  - text: From
+                  - generic [ref=e152]: ₹1,570.00
+              - link "Select options for “Delicious Chocolate Glaze Cake”" [ref=e153] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/delicious-chocolate-cake/
+                - text: Buy now
+              - generic [ref=e154]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e156]:
+                - rowgroup [ref=e157]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e158]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e159]:
+                      - generic [ref=e160]:
+                        - generic [ref=e162] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e164] [cursor=pointer]: 1 kg
+                        - generic [ref=e166] [cursor=pointer]: 2 kg
+            - listitem [ref=e167]:
+              - link "Fruit cake" [ref=e168] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/fruit-delight-cake/
+                - img "Fruit cake" [ref=e169]
+              - generic [ref=e170]:
+                - link "Fruit Delight Cake Rated 4.50 out of 5" [ref=e171] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/fruit-delight-cake/
+                  - heading "Fruit Delight Cake" [level=2] [ref=e172]
+                  - img "Rated 4.50 out of 5" [ref=e173]:
+                    - text: sssss
+                    - generic [ref=e174]:
+                      - text: SSSSS Rated
+                      - strong [ref=e175]: "4.50"
+                      - text: out of 5
+                - generic [ref=e176]:
+                  - text: From
+                  - generic [ref=e178]: ₹1,999.00
+              - link "Select options for “Fruit Delight Cake”" [ref=e179] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/fruit-delight-cake/
+                - text: Buy now
+              - generic [ref=e180]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e182]:
+                - rowgroup [ref=e183]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg 3kg" [ref=e184]:
+                    - cell "1/2 kg 1 kg 2 kg 3kg" [ref=e185]:
+                      - generic [ref=e186]:
+                        - generic [ref=e188] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e190] [cursor=pointer]: 1 kg
+                        - generic [ref=e192] [cursor=pointer]: 2 kg
+                        - generic [ref=e194] [cursor=pointer]: 3kg
+            - listitem [ref=e195]:
+              - link "Plum Cake" [ref=e196] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/nutty-plum-cake/
+                - img "Plum Cake" [ref=e197]
+              - generic [ref=e198]:
+                - link "Nutty Plum Cake" [ref=e199] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/nutty-plum-cake/
+                  - heading "Nutty Plum Cake" [level=2] [ref=e200]
+                - generic [ref=e201]:
+                  - text: From
+                  - generic [ref=e203]: ₹975.00
+              - link "Select options for “Nutty Plum Cake”" [ref=e204] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/nutty-plum-cake/
+                - text: Buy now
+              - generic [ref=e205]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e207]:
+                - rowgroup [ref=e208]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e209]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e210]:
+                      - generic [ref=e211]:
+                        - generic [ref=e213] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e215] [cursor=pointer]: 1 kg
+                        - generic [ref=e217] [cursor=pointer]: 2 kg
+                  - row
+                  - row "with rum without rum" [ref=e218]:
+                    - cell "with rum without rum" [ref=e219]:
+                      - generic [ref=e220]:
+                        - generic [ref=e222] [cursor=pointer]: with rum
+                        - generic [ref=e224] [cursor=pointer]: without rum
+            - listitem [ref=e225]:
+              - link "Chocolate and Orange Cake" [ref=e226] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/choco-orange-cake/
+                - img "Chocolate and Orange Cake" [ref=e227]
+              - generic [ref=e228]:
+                - link "Choco Orange Cheese Cake" [ref=e229] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/choco-orange-cake/
+                  - heading "Choco Orange Cheese Cake" [level=2] [ref=e230]
+                - generic [ref=e231]:
+                  - text: From
+                  - generic [ref=e233]: ₹2,745.00
+              - link "Select options for “Choco Orange Cheese Cake”" [ref=e234] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/choco-orange-cake/
+                - text: Buy now
+              - generic [ref=e235]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e237]:
+                - rowgroup [ref=e238]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e239]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e240]:
+                      - generic [ref=e241]:
+                        - generic [ref=e243] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e245] [cursor=pointer]: 1 kg
+                        - generic [ref=e247] [cursor=pointer]: 2 kg
+            - listitem [ref=e248]:
+              - link "Caramel Butterscotch cake" [ref=e249] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/divine-caramel-cake/
+                - img "Caramel Butterscotch cake" [ref=e250]
+              - generic [ref=e251]:
+                - link "Divine Caramel Cake" [ref=e252] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/divine-caramel-cake/
+                  - heading "Divine Caramel Cake" [level=2] [ref=e253]
+                - generic [ref=e254]:
+                  - text: From
+                  - generic [ref=e256]: ₹1,784.00
+              - link "Select options for “Divine Caramel Cake”" [ref=e257] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/divine-caramel-cake/
+                - text: Buy now
+              - generic [ref=e258]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e260]:
+                - rowgroup [ref=e261]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e262]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e263]:
+                      - generic [ref=e264]:
+                        - generic [ref=e266] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e268] [cursor=pointer]: 1 kg
+                        - generic [ref=e270] [cursor=pointer]: 2 kg
+            - listitem [ref=e271]:
+              - link "Red Velvet Cake" [ref=e272] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/red-velvet-cake/
+                - img "Red Velvet Cake" [ref=e273]
+              - generic [ref=e274]:
+                - link "Heavenly Red Velvet Cake" [ref=e275] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/red-velvet-cake/
+                  - heading "Heavenly Red Velvet Cake" [level=2] [ref=e276]
+                - generic [ref=e277]:
+                  - text: From
+                  - generic [ref=e279]: ₹1,499.00
+              - link "Select options for “Heavenly Red Velvet Cake”" [ref=e280] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/red-velvet-cake/
+                - text: Buy now
+              - generic [ref=e281]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e283]:
+                - rowgroup [ref=e284]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e285]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e286]:
+                      - generic [ref=e287]:
+                        - generic [ref=e289] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e291] [cursor=pointer]: 1 kg
+                        - generic [ref=e293] [cursor=pointer]: 2 kg
+            - listitem [ref=e294]:
+              - link "Lotus Biscoff Cake" [ref=e295] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/lotus-biscoff-bliss-cake/
+                - img "Lotus Biscoff Cake" [ref=e296]
+              - generic [ref=e297]:
+                - link "Lotus Biscoff Bliss Cake" [ref=e298] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/lotus-biscoff-bliss-cake/
+                  - heading "Lotus Biscoff Bliss Cake" [level=2] [ref=e299]
+                - generic [ref=e300]:
+                  - text: From
+                  - generic [ref=e302]: ₹1,999.00
+              - link "Select options for “Lotus Biscoff Bliss Cake”" [ref=e303] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/lotus-biscoff-bliss-cake/
+                - text: Buy now
+              - generic [ref=e304]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e306]:
+                - rowgroup [ref=e307]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg 3kg" [ref=e308]:
+                    - cell "1/2 kg 1 kg 2 kg 3kg" [ref=e309]:
+                      - generic [ref=e310]:
+                        - generic [ref=e312] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e314] [cursor=pointer]: 1 kg
+                        - generic [ref=e316] [cursor=pointer]: 2 kg
+                        - generic [ref=e318] [cursor=pointer]: 3kg
+            - listitem [ref=e319]:
+              - link "choco-cake" [ref=e320] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/choco-fun-surprise-cake/
+                - img "choco-cake" [ref=e321]
+              - generic [ref=e322]:
+                - link "Choco-Fun Surprise Cake" [ref=e323] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/choco-fun-surprise-cake/
+                  - heading "Choco-Fun Surprise Cake" [level=2] [ref=e324]
+                - generic [ref=e325]:
+                  - text: From
+                  - generic [ref=e327]: ₹3,777.00
+              - link "Select options for “Choco-Fun Surprise Cake”" [ref=e328] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/choco-fun-surprise-cake/
+                - text: Buy now
+              - generic [ref=e329]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e331]:
+                - rowgroup [ref=e332]:
+                  - row
+                  - row "1 kg 2 kg" [ref=e333]:
+                    - cell "1 kg 2 kg" [ref=e334]:
+                      - generic [ref=e335]:
+                        - generic [ref=e337] [cursor=pointer]: 1 kg
+                        - generic [ref=e339] [cursor=pointer]: 2 kg
+            - listitem [ref=e340]:
+              - link "Bento Cake" [ref=e341] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/valentine-sweet-hearts-bento-cake/
+                - img "Bento Cake" [ref=e342]
+              - generic [ref=e343]:
+                - link "Valentine Sweet Hearts Bento Cake" [ref=e344] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/valentine-sweet-hearts-bento-cake/
+                  - heading "Valentine Sweet Hearts Bento Cake" [level=2] [ref=e345]
+                - generic [ref=e348]: ₹820.00
+              - 'link "Add to cart: “Valentine Sweet Hearts Bento Cake”" [ref=e349] [cursor=pointer]':
+                - /url: "?add-to-cart=994402"
+                - text: Select Options
+            - listitem [ref=e351]:
+              - link "Bento Cake" [ref=e352] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/red-velvet-bento-cake/
+                - img "Bento Cake" [ref=e353]
+              - generic [ref=e354]:
+                - link "Red Velvet Bento Cake" [ref=e355] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/red-velvet-bento-cake/
+                  - heading "Red Velvet Bento Cake" [level=2] [ref=e356]
+                - generic [ref=e359]: ₹995.00
+              - 'link "Add to cart: “Red Velvet Bento Cake”" [ref=e360] [cursor=pointer]':
+                - /url: "?add-to-cart=994398"
+                - text: Select Options
+            - listitem [ref=e362]:
+              - link "Premium Orange Choco Cake" [ref=e363] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/premium-orange-choco-cake/
+                - img "Premium Orange Choco Cake" [ref=e364]
+              - generic [ref=e365]:
+                - link "Premium Orange Choco Cake" [ref=e366] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/premium-orange-choco-cake/
+                  - heading "Premium Orange Choco Cake" [level=2] [ref=e367]
+                - generic [ref=e368]:
+                  - text: From
+                  - generic [ref=e370]: ₹1,745.00
+              - link "Select options for “Premium Orange Choco Cake”" [ref=e371] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/premium-orange-choco-cake/
+                - text: Buy now
+              - generic [ref=e372]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e374]:
+                - rowgroup [ref=e375]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e376]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e377]:
+                      - generic [ref=e378]:
+                        - generic [ref=e380] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e382] [cursor=pointer]: 1 kg
+                        - generic [ref=e384] [cursor=pointer]: 2 kg
+            - listitem [ref=e385]:
+              - link "Two Layer Chocolate Cake" [ref=e386] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/tempting-chocolate-cake/
+                - img "Two Layer Chocolate Cake" [ref=e387]
+              - generic [ref=e388]:
+                - link "Tempting Chocolate Cake" [ref=e389] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/tempting-chocolate-cake/
+                  - heading "Tempting Chocolate Cake" [level=2] [ref=e390]
+                - generic [ref=e391]:
+                  - text: From
+                  - generic [ref=e393]: ₹1,770.00
+              - link "Select options for “Tempting Chocolate Cake”" [ref=e394] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/tempting-chocolate-cake/
+                - text: Buy now
+              - generic [ref=e395]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e397]:
+                - rowgroup [ref=e398]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg" [ref=e399]:
+                    - cell "1/2 kg 1 kg 2 kg" [ref=e400]:
+                      - generic [ref=e401]:
+                        - generic [ref=e403] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e405] [cursor=pointer]: 1 kg
+                        - generic [ref=e407] [cursor=pointer]: 2 kg
+            - listitem [ref=e408]:
+              - link "Bento Cake" [ref=e409] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/creamy-delight-belgium-dark-chocolate-bento-cake/
+                - img "Bento Cake" [ref=e410]
+              - generic [ref=e411]:
+                - link "Creamy Delight Belgium Dark Chocolate Bento Cake" [ref=e412] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/creamy-delight-belgium-dark-chocolate-bento-cake/
+                  - heading "Creamy Delight Belgium Dark Chocolate Bento Cake" [level=2] [ref=e413]
+                - generic [ref=e416]: ₹845.00
+              - 'link "Add to cart: “Creamy Delight Belgium Dark Chocolate Bento Cake”" [ref=e417] [cursor=pointer]':
+                - /url: "?add-to-cart=994405"
+                - text: Select Options
+            - listitem [ref=e419]:
+              - link "Red Heart-Shaped Cake" [ref=e420] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/sweet-red-heart/
+                - img "Red Heart-Shaped Cake" [ref=e421]
+              - generic [ref=e422]:
+                - link "Sweet Red Heart" [ref=e423] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/sweet-red-heart/
+                  - heading "Sweet Red Heart" [level=2] [ref=e424]
+                - generic [ref=e425]:
+                  - text: From
+                  - generic [ref=e427]: ₹1,889.00
+              - link "Select options for “Sweet Red Heart”" [ref=e428] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/sweet-red-heart/
+                - text: Buy now
+              - generic [ref=e429]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e431]:
+                - rowgroup [ref=e432]:
+                  - row
+                  - row "1/2 kg 1 kg 2 kg 3kg" [ref=e433]:
+                    - cell "1/2 kg 1 kg 2 kg 3kg" [ref=e434]:
+                      - generic [ref=e435]:
+                        - generic [ref=e437] [cursor=pointer]: 1/2 kg
+                        - generic [ref=e439] [cursor=pointer]: 1 kg
+                        - generic [ref=e441] [cursor=pointer]: 2 kg
+                        - generic [ref=e443] [cursor=pointer]: 3kg
+          - navigation "Product Pagination" [ref=e444]:
+            - list [ref=e445]:
+              - listitem [ref=e446]:
+                - generic "Page 1" [ref=e447]: "1"
+              - listitem [ref=e448]:
+                - link "Page 2" [ref=e449] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/cakes/premium-cakes/page/2/
+                  - text: "2"
+              - listitem [ref=e450]:
+                - link "→" [ref=e451] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/cakes/premium-cakes/page/2/
+    - contentinfo [ref=e453]:
+      - generic [ref=e454]:
+        - generic [ref=e456]:
+          - generic [ref=e461]:
+            - generic [ref=e464]: 
+            - generic [ref=e465]:
+              - heading "Free Delivery" [level=3] [ref=e466]
+              - paragraph [ref=e467]: Fast & Free Delivery
+          - generic [ref=e472]:
+            - generic [ref=e475]: 
+            - generic [ref=e476]:
+              - heading "Reliable" [level=3] [ref=e477]
+              - paragraph [ref=e478]: 20+ years of experience
+          - generic [ref=e483]:
+            - generic [ref=e486]: 
+            - generic [ref=e487]:
+              - heading "Secure Payment" [level=3] [ref=e488]
+              - paragraph [ref=e489]: 100% secure payments
+          - generic [ref=e494]:
+            - generic [ref=e497]: 
+            - generic [ref=e498]:
+              - heading "Help" [level=3] [ref=e499]
+              - paragraph [ref=e500]: Dedicated support
+        - generic [ref=e502]:
+          - generic [ref=e504]:
+            - generic [ref=e506]: Sign Up To Our Newsletter
+            - generic [ref=e508]: Subscribe to receive updates, access to exclusive deals, and more.
+          - generic [ref=e515]:
+            - textbox "Email Address" [ref=e517]
+            - button "Subscribe" [ref=e518] [cursor=pointer]:
+              - generic [ref=e519]: Subscribe
+          - generic [ref=e524]:
+            - link "Instagram " [ref=e526] [cursor=pointer]:
+              - /url: https://www.instagram.com/prettypetalsmumbai/?igshid=MzRlODBiNWFlZA==&_ga=2.108204546.149711944.1687760035-68977772.1686555231
+              - generic [ref=e527]: Instagram
+              - generic [ref=e528]: 
+            - link "Facebook " [ref=e530] [cursor=pointer]:
+              - /url: https://www.facebook.com/prettypetalsmumbai/
+              - generic [ref=e531]: Facebook
+              - generic [ref=e532]: 
+        - generic [ref=e534]:
+          - generic [ref=e536]:
+            - paragraph [ref=e539]:
+              - text: Shop No. 3, 15A, Bhalerao Bhuvan, 15A,
+              - text: Off Carter Rd Union Park, Khar West, Mumbai,
+              - text: Maharashtra 400052
+            - generic [ref=e541]:
+              - link "+91 98331 00194" [ref=e542] [cursor=pointer]:
+                - /url: tel:+919833100194
+              - link "support@prettypetals.com" [ref=e543] [cursor=pointer]:
+                - /url: mailto:support@prettypetals.com
+          - generic [ref=e545]:
+            - heading "By Occasions" [level=6] [ref=e548]
+            - navigation "Menu" [ref=e551]:
+              - list [ref=e552]:
+                - listitem [ref=e553]:
+                  - link "Anniversary" [ref=e554] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/anniversary/
+                - listitem [ref=e555]:
+                  - link "Birthday" [ref=e556] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/birthday/
+                - listitem [ref=e557]:
+                  - link "Funeral" [ref=e558] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/funeral/
+                - listitem [ref=e559]:
+                  - link "Get Well Soon" [ref=e560] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/get-well-soon/
+                - listitem [ref=e561]:
+                  - link "House Warming" [ref=e562] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/house-warming/
+                - listitem [ref=e563]:
+                  - link "Wedding" [ref=e564] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/wedding/
+          - generic [ref=e566]:
+            - heading "By Flowers" [level=6] [ref=e569]
+            - navigation "Menu" [ref=e572]:
+              - list [ref=e573]:
+                - listitem [ref=e574]:
+                  - link "Roses" [ref=e575] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/roses/
+                - listitem [ref=e576]:
+                  - link "Carnations" [ref=e577] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/carnations/
+                - listitem [ref=e578]:
+                  - link "Orchids" [ref=e579] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/orchids/
+                - listitem [ref=e580]:
+                  - link "Gerberas" [ref=e581] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/gerberas/
+                - listitem [ref=e582]:
+                  - link "Lilies" [ref=e583] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/lilies/
+                - listitem [ref=e584]:
+                  - link "Tulips" [ref=e585] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/tulips-flowers/
+                - listitem [ref=e586]:
+                  - link "Mixed Flowers" [ref=e587] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/mixed-flowers/
+                - listitem [ref=e588]:
+                  - link "Exotic Flowers" [ref=e589] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/exotic-flowers/
+          - generic [ref=e591]:
+            - heading "Policy Info" [level=6] [ref=e594]
+            - navigation "Menu" [ref=e597]:
+              - list [ref=e598]:
+                - listitem [ref=e599]:
+                  - link "Blog" [ref=e600] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/blog/
+                - listitem [ref=e601]:
+                  - link "Privacy Policy" [ref=e602] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/privacy-policy/
+                - listitem [ref=e603]:
+                  - link "Delivery and Refund policy" [ref=e604] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/delivery-and-refund-policy/
+                - listitem [ref=e605]:
+                  - link "Terms and Conditions" [ref=e606] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/terms-and-conditions/
+                - listitem [ref=e607]:
+                  - link "Contact Us" [ref=e608] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/contact-us/
+          - generic [ref=e610]:
+            - heading "Connect with Us" [level=6] [ref=e613]
+            - list [ref=e616]:
+              - listitem [ref=e617]:
+                - link "+919833100194" [ref=e618] [cursor=pointer]:
+                  - /url: tel:+919833100194
+                  - generic [ref=e620]: 
+                  - generic [ref=e621]: "+919833100194"
+              - listitem [ref=e622]:
+                - generic [ref=e624]: 
+                - generic [ref=e625]: support@prettypetals.com
+            - heading "Delivery Cities" [level=6] [ref=e628]
+            - list [ref=e631]:
+              - listitem [ref=e632]:
+                - link "Mumbai" [ref=e633] [cursor=pointer]:
+                  - /url: https://prettypetals.com/
+                  - generic [ref=e635]: 
+                  - generic [ref=e636]: Mumbai
+              - listitem [ref=e637]:
+                - link "Navi Mumbai" [ref=e638] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-navi-mumbai/
+                  - generic [ref=e640]: 
+                  - generic [ref=e641]: Navi Mumbai
+              - listitem [ref=e642]:
+                - link "Thane" [ref=e643] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-thane/
+                  - generic [ref=e645]: 
+                  - generic [ref=e646]: Thane
+        - generic [ref=e652]: © 1999-2026 prettypetals.com. All rights reserved.
+  - generic [ref=e659] [cursor=pointer]: top 
+  - generic [ref=e660]: tablet
+  - status [ref=e661]

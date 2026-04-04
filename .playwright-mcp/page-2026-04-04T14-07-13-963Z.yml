@@ -1,0 +1,553 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - text:            
+    - generic [ref=e8]:
+      - list [ref=e11]:
+        - listitem [ref=e12]:
+          - link "Help" [ref=e13] [cursor=pointer]:
+            - /url: "#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExODA5IiwidG9nZ2xlIjpmYWxzZSwiYWxpZ25fd2l0aF9wYXJlbnQiOiIifQ%3D%3D"
+            - generic [ref=e15]: 
+            - generic [ref=e16]: Help
+      - list [ref=e19]:
+        - listitem [ref=e20]:
+          - link "Your account" [ref=e21] [cursor=pointer]:
+            - /url: /my-account
+            - generic [ref=e23]: 
+            - generic [ref=e24]: Your account
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - link "Wishlist" [ref=e29] [cursor=pointer]:
+            - /url: /wishlist
+            - generic [ref=e31]: 
+            - generic [ref=e32]: Wishlist
+    - generic [ref=e34]:
+      - link [ref=e39] [cursor=pointer]:
+        - /url: https://www.prettypetals.com
+      - generic [ref=e41]:
+        - generic [ref=e45]:
+          - text: 
+          - link "0  Cart" [ref=e47] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e48]:
+              - generic [ref=e49]: "0"
+              - generic [ref=e50]: 
+              - generic [ref=e51]: Cart
+        - generic [ref=e53]:
+          - text:   
+          - button "Menu Toggle" [ref=e54] [cursor=pointer]:
+            - generic [ref=e55]: 
+            - text: 
+            - generic [ref=e56]: Menu
+          - text:   
+    - search [ref=e64]:
+      - generic [ref=e65]:
+        - img [ref=e66]
+        - generic [ref=e68] [cursor=pointer]: Products search
+        - searchbox "Products search" [ref=e69]
+  - generic [ref=e72]:
+    - main [ref=e73]:
+      - generic [ref=e77]:
+        - generic [ref=e79]:
+          - navigation "Breadcrumb" [ref=e82]:
+            - link "Home" [ref=e83] [cursor=pointer]:
+              - /url: https://www.prettypetals.com
+            - text: / Signature Floral Arrangements
+          - heading "Signature Floral Arrangements" [level=2] [ref=e86]
+          - generic [ref=e88]:
+            - button "Clear all" [ref=e92] [cursor=pointer]
+            - generic [ref=e94]:
+              - heading "Price range " [level=3] [ref=e96]:
+                - text: Price range
+                - generic [ref=e97] [cursor=pointer]: 
+              - text: "-"
+            - heading "Category " [level=3] [ref=e101]:
+              - text: Category
+              - generic [ref=e102] [cursor=pointer]: 
+            - heading "Color " [level=3] [ref=e106]:
+              - text: Color
+              - generic [ref=e107] [cursor=pointer]: 
+            - generic [ref=e109]:
+              - heading "Customer rating " [level=3] [ref=e111]:
+                - text: Customer rating
+                - generic [ref=e112] [cursor=pointer]: 
+              - text:          
+        - generic [ref=e117]:
+          - alert [ref=e118]:
+            - text: Showing 1–15 of 78 results
+            - generic [ref=e119]: Sorted by popularity
+          - generic [ref=e120] [cursor=pointer]:
+            - generic [ref=e121]:
+              - generic [ref=e122]: Default
+              - generic [ref=e123]: 
+            - list:
+              - listitem:
+                - link "Default sorting":
+                  - /url: "?orderby=menu_order"
+              - listitem:
+                - link "Sort by popularity":
+                  - /url: "?orderby=popularity"
+              - listitem:
+                - link "Sort by average rating":
+                  - /url: "?orderby=rating"
+              - listitem:
+                - link "Sort by latest":
+                  - /url: "?orderby=date"
+              - listitem:
+                - 'link "Sort by price: low to high"':
+                  - /url: "?orderby=price"
+              - listitem:
+                - 'link "Sort by price: high to low"':
+                  - /url: "?orderby=price-desc"
+          - list [ref=e124]:
+            - listitem [ref=e125]:
+              - link "Gorgeous Tulips" [ref=e126] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/gorgeous-tulips/
+                - img "Gorgeous Tulips" [ref=e127]
+              - generic [ref=e128]:
+                - link "Gorgeous Tulips Rated 4.67 out of 5" [ref=e129] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/gorgeous-tulips/
+                  - heading "Gorgeous Tulips" [level=2] [ref=e130]
+                  - img "Rated 4.67 out of 5" [ref=e131]:
+                    - text: sssss
+                    - generic [ref=e132]:
+                      - text: SSSSS Rated
+                      - strong [ref=e133]: "4.67"
+                      - text: out of 5
+                - generic [ref=e136]: ₹4,648.00
+              - link "Select options for “Gorgeous Tulips”" [ref=e137] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/gorgeous-tulips/
+                - text: Buy now
+              - generic [ref=e138]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e140]:
+                - rowgroup [ref=e141]:
+                  - row
+                  - row [ref=e142]:
+                    - cell [ref=e143]
+            - listitem [ref=e157]:
+              - link "pink-tulips-handbunch" [ref=e158] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/tulips-beauty/
+                - img "pink-tulips-handbunch" [ref=e159]
+              - generic [ref=e160]:
+                - link "Tulips Beauty Rated 4.50 out of 5" [ref=e161] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/tulips-beauty/
+                  - heading "Tulips Beauty" [level=2] [ref=e162]
+                  - img "Rated 4.50 out of 5" [ref=e163]:
+                    - text: sssss
+                    - generic [ref=e164]:
+                      - text: SSSSS Rated
+                      - strong [ref=e165]: "4.50"
+                      - text: out of 5
+                - generic [ref=e168]: ₹4,799.00
+              - link "Select options for “Tulips Beauty”" [ref=e169] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/tulips-beauty/
+                - text: Buy now
+              - generic [ref=e170]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e172]:
+                - rowgroup [ref=e173]:
+                  - row
+                  - row [ref=e174]:
+                    - cell [ref=e175]
+            - listitem [ref=e187]:
+              - link "pink-tulips-bouquet" [ref=e188] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/blushing-pink-tulip/
+                - img "pink-tulips-bouquet" [ref=e189]
+              - generic [ref=e190]:
+                - link "Blushing Pink Tulips Rated 4.25 out of 5" [ref=e191] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/blushing-pink-tulip/
+                  - heading "Blushing Pink Tulips" [level=2] [ref=e192]
+                  - img "Rated 4.25 out of 5" [ref=e193]:
+                    - text: sssss
+                    - generic [ref=e194]:
+                      - text: SSSSS Rated
+                      - strong [ref=e195]: "4.25"
+                      - text: out of 5
+                - generic [ref=e198]: ₹4,584.69
+              - 'link "Add to cart: “Blushing Pink Tulips”" [ref=e199] [cursor=pointer]':
+                - /url: "?add-to-cart=3819"
+                - text: Select Options
+            - listitem [ref=e201]:
+              - link "red mokara orchids arrangement in vase" [ref=e202] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/opal-orchid-oasis/
+                - img "red mokara orchids arrangement in vase" [ref=e203]
+              - generic [ref=e204]:
+                - link "Opal Orchid Oasis Rated 4.50 out of 5" [ref=e205] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/opal-orchid-oasis/
+                  - heading "Opal Orchid Oasis" [level=2] [ref=e206]
+                  - img "Rated 4.50 out of 5" [ref=e207]:
+                    - text: sssss
+                    - generic [ref=e208]:
+                      - text: SSSSS Rated
+                      - strong [ref=e209]: "4.50"
+                      - text: out of 5
+                - generic [ref=e212]: ₹3,245.00
+              - link "Select options for “Opal Orchid Oasis”" [ref=e213] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/opal-orchid-oasis/
+                - text: Buy now
+              - generic [ref=e214]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e216]:
+                - rowgroup [ref=e217]:
+                  - row
+                  - row [ref=e218]:
+                    - cell [ref=e219]
+            - listitem [ref=e235]:
+              - link "Pink floral round arrangement" [ref=e236] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/spring-surprise/
+                - img "Pink floral round arrangement" [ref=e237]
+              - generic [ref=e238]:
+                - link "Spring Surprise" [ref=e239] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/spring-surprise/
+                  - heading "Spring Surprise" [level=2] [ref=e240]
+                - generic [ref=e243]: ₹5,455.00
+              - 'link "Add to cart: “Spring Surprise”" [ref=e244] [cursor=pointer]':
+                - /url: "?add-to-cart=6211"
+                - text: Select Options
+            - listitem [ref=e246]:
+              - link "The Flower of Love" [ref=e247] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/the-flower-of-love/
+                - img "The Flower of Love" [ref=e248]
+              - generic [ref=e249]:
+                - link "The Flower of Love Rated 4.60 out of 5" [ref=e250] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/the-flower-of-love/
+                  - heading "The Flower of Love" [level=2] [ref=e251]
+                  - img "Rated 4.60 out of 5" [ref=e252]:
+                    - text: sssss
+                    - generic [ref=e253]:
+                      - text: SSSSS Rated
+                      - strong [ref=e254]: "4.60"
+                      - text: out of 5
+                - generic [ref=e257]: ₹4,630.00
+              - link "Select options for “The Flower of Love”" [ref=e258] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/the-flower-of-love/
+                - text: Buy now
+              - generic [ref=e259]: This product has multiple variants. The options may be chosen on the product page
+              - table [ref=e261]:
+                - rowgroup [ref=e262]:
+                  - row
+                  - row [ref=e263]:
+                    - cell [ref=e264]
+            - listitem [ref=e274]:
+              - link "Pastel Floral Arrangement" [ref=e275] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/pastel-floral-arrangement/
+                - img "Pastel Floral Arrangement" [ref=e276]
+              - generic [ref=e277]:
+                - link "Pastel Blossoming" [ref=e278] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/pastel-floral-arrangement/
+                  - heading "Pastel Blossoming" [level=2] [ref=e279]
+                - generic [ref=e282]: ₹3,789.00
+              - 'link "Add to cart: “Pastel Blossoming”" [ref=e283] [cursor=pointer]':
+                - /url: "?add-to-cart=4589"
+                - text: Select Options
+            - listitem [ref=e285]:
+              - link "-17% blue orchids arrangement in vase" [ref=e286] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/sapphire-serenity/
+                - generic [ref=e287]: "-17%"
+                - img "blue orchids arrangement in vase" [ref=e288]
+              - generic [ref=e289]:
+                - link "Sapphire Serenity Rated 5.00 out of 5" [ref=e290] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/sapphire-serenity/
+                  - heading "Sapphire Serenity" [level=2] [ref=e291]
+                  - img "Rated 5.00 out of 5" [ref=e292]:
+                    - text: sssss
+                    - generic [ref=e293]:
+                      - text: SSSSS Rated
+                      - strong [ref=e294]: "5.00"
+                      - text: out of 5
+                - generic [ref=e295]:
+                  - deletion [ref=e296]:
+                    - generic [ref=e298]: ₹2,399.00
+                  - generic [ref=e299]: "Original price was: ₹2,399.00."
+                  - insertion [ref=e300]:
+                    - generic [ref=e302]: ₹1,999.00
+                  - generic [ref=e303]: "Current price is: ₹1,999.00."
+              - 'link "Add to cart: “Sapphire Serenity”" [ref=e304] [cursor=pointer]':
+                - /url: "?add-to-cart=993786"
+                - text: Select Options
+            - listitem [ref=e306]:
+              - link "-12% White Purity in Black Vase" [ref=e307] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/white-purity-in-black-vase/
+                - generic [ref=e308]: "-12%"
+                - img "White Purity in Black Vase" [ref=e309]
+              - generic [ref=e310]:
+                - link "White Purity in Black Vase Rated 5.00 out of 5" [ref=e311] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/white-purity-in-black-vase/
+                  - heading "White Purity in Black Vase" [level=2] [ref=e312]
+                  - img "Rated 5.00 out of 5" [ref=e313]:
+                    - text: sssss
+                    - generic [ref=e314]:
+                      - text: SSSSS Rated
+                      - strong [ref=e315]: "5.00"
+                      - text: out of 5
+                - generic [ref=e316]:
+                  - deletion [ref=e317]:
+                    - generic [ref=e319]: ₹4,200.00
+                  - generic [ref=e320]: "Original price was: ₹4,200.00."
+                  - insertion [ref=e321]:
+                    - generic [ref=e323]: ₹3,696.00
+                  - generic [ref=e324]: "Current price is: ₹3,696.00."
+              - 'link "Add to cart: “White Purity in Black Vase”" [ref=e325] [cursor=pointer]':
+                - /url: "?add-to-cart=6740"
+                - text: Select Options
+            - listitem [ref=e327]:
+              - link "Lilies Carnations Roses" [ref=e328] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/impressve-blooms/
+                - img "Lilies Carnations Roses" [ref=e329]
+              - generic [ref=e330]:
+                - link "Impressive Blooms" [ref=e331] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/impressve-blooms/
+                  - heading "Impressive Blooms" [level=2] [ref=e332]
+                - generic [ref=e335]: ₹5,750.00
+              - 'link "Add to cart: “Impressive Blooms”" [ref=e336] [cursor=pointer]':
+                - /url: "?add-to-cart=4075"
+                - text: Select Options
+            - listitem [ref=e338]:
+              - link "Vase white green floral arrangment" [ref=e339] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/white-roses-carnations-green-chrysanthemums/
+                - img "Vase white green floral arrangment" [ref=e340]
+              - generic [ref=e341]:
+                - link "Exquisite Bouquet" [ref=e342] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/white-roses-carnations-green-chrysanthemums/
+                  - heading "Exquisite Bouquet" [level=2] [ref=e343]
+                - generic [ref=e346]: ₹3,870.00
+              - 'link "Add to cart: “Exquisite Bouquet”" [ref=e347] [cursor=pointer]':
+                - /url: "?add-to-cart=3986"
+                - text: Select Options
+            - listitem [ref=e349]:
+              - link "sweetpink roses,purple roses,blue exotic hydrangea handbunch" [ref=e350] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/pastel-blush/
+                - img "sweetpink roses,purple roses,blue exotic hydrangea handbunch" [ref=e351]
+              - generic [ref=e352]:
+                - link "Pastel Blush" [ref=e353] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/pastel-blush/
+                  - heading "Pastel Blush" [level=2] [ref=e354]
+                - generic [ref=e357]: ₹5,488.00
+              - 'link "Add to cart: “Pastel Blush”" [ref=e358] [cursor=pointer]':
+                - /url: "?add-to-cart=994774"
+                - text: Select Options
+            - listitem [ref=e360]:
+              - link "-14% Pink tulips" [ref=e361] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/stunning-pink-tulips/
+                - generic [ref=e362]: "-14%"
+                - img "Pink tulips" [ref=e363]
+              - generic [ref=e364]:
+                - link "Stunning Pink Tulips Rated 5.00 out of 5" [ref=e365] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/stunning-pink-tulips/
+                  - heading "Stunning Pink Tulips" [level=2] [ref=e366]
+                  - img "Rated 5.00 out of 5" [ref=e367]:
+                    - text: sssss
+                    - generic [ref=e368]:
+                      - text: SSSSS Rated
+                      - strong [ref=e369]: "5.00"
+                      - text: out of 5
+                - generic [ref=e370]:
+                  - deletion [ref=e371]:
+                    - generic [ref=e373]: ₹12,823.58
+                  - generic [ref=e374]: "Original price was: ₹12,823.58."
+                  - insertion [ref=e375]:
+                    - generic [ref=e377]: ₹10,999.00
+                  - generic [ref=e378]: "Current price is: ₹10,999.00."
+              - 'link "Add to cart: “Stunning Pink Tulips”" [ref=e379] [cursor=pointer]':
+                - /url: "?add-to-cart=992563"
+                - text: Select Options
+            - listitem [ref=e381]:
+              - link "Dream World" [ref=e382] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/dream-world/
+                - img "Dream World" [ref=e383]
+              - generic [ref=e384]:
+                - link "Dream World" [ref=e385] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/dream-world/
+                  - heading "Dream World" [level=2] [ref=e386]
+                - generic [ref=e389]: ₹5,455.00
+              - 'link "Add to cart: “Dream World”" [ref=e390] [cursor=pointer]':
+                - /url: "?add-to-cart=6706"
+                - text: Select Options
+            - listitem [ref=e392]:
+              - link "pink lilies white chrysthemum" [ref=e393] [cursor=pointer]:
+                - /url: https://www.prettypetals.com/assorted-flowers-bouquet/
+                - img "pink lilies white chrysthemum" [ref=e394]
+              - generic [ref=e395]:
+                - link "Love Cluster" [ref=e396] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/assorted-flowers-bouquet/
+                  - heading "Love Cluster" [level=2] [ref=e397]
+                - generic [ref=e400]: ₹7,590.00
+              - 'link "Add to cart: “Love Cluster”" [ref=e401] [cursor=pointer]':
+                - /url: "?add-to-cart=4381"
+                - text: Select Options
+          - navigation "Product Pagination" [ref=e403]:
+            - list [ref=e404]:
+              - listitem [ref=e405]:
+                - generic "Page 1" [ref=e406]: "1"
+              - listitem [ref=e407]:
+                - link "Page 2" [ref=e408] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/2/
+                  - text: "2"
+              - listitem [ref=e409]:
+                - link "Page 3" [ref=e410] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/3/
+                  - text: "3"
+              - listitem [ref=e411]:
+                - link "Page 4" [ref=e412] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/4/
+                  - text: "4"
+              - listitem [ref=e413]:
+                - link "Page 5" [ref=e414] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/5/
+                  - text: "5"
+              - listitem [ref=e415]:
+                - link "Page 6" [ref=e416] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/6/
+                  - text: "6"
+              - listitem [ref=e417]:
+                - link "→" [ref=e418] [cursor=pointer]:
+                  - /url: https://www.prettypetals.com/signature/page/2/
+    - contentinfo [ref=e420]:
+      - generic [ref=e421]:
+        - generic [ref=e423]:
+          - generic [ref=e428]:
+            - generic [ref=e431]: 
+            - generic [ref=e432]:
+              - heading "Free Delivery" [level=3] [ref=e433]
+              - paragraph [ref=e434]: Fast & Free Delivery
+          - generic [ref=e439]:
+            - generic [ref=e442]: 
+            - generic [ref=e443]:
+              - heading "Reliable" [level=3] [ref=e444]
+              - paragraph [ref=e445]: 20+ years of experience
+          - generic [ref=e450]:
+            - generic [ref=e453]: 
+            - generic [ref=e454]:
+              - heading "Secure Payment" [level=3] [ref=e455]
+              - paragraph [ref=e456]: 100% secure payments
+          - generic [ref=e461]:
+            - generic [ref=e464]: 
+            - generic [ref=e465]:
+              - heading "Help" [level=3] [ref=e466]
+              - paragraph [ref=e467]: Dedicated support
+        - generic [ref=e469]:
+          - generic [ref=e471]:
+            - generic [ref=e473]: Sign Up To Our Newsletter
+            - generic [ref=e475]: Subscribe to receive updates, access to exclusive deals, and more.
+          - generic [ref=e482]:
+            - textbox "Email Address" [ref=e484]
+            - button "Subscribe" [ref=e485] [cursor=pointer]:
+              - generic [ref=e486]: Subscribe
+          - generic [ref=e491]:
+            - link "Instagram " [ref=e493] [cursor=pointer]:
+              - /url: https://www.instagram.com/prettypetalsmumbai/?igshid=MzRlODBiNWFlZA==&_ga=2.108204546.149711944.1687760035-68977772.1686555231
+              - generic [ref=e494]: Instagram
+              - generic [ref=e495]: 
+            - link "Facebook " [ref=e497] [cursor=pointer]:
+              - /url: https://www.facebook.com/prettypetalsmumbai/
+              - generic [ref=e498]: Facebook
+              - generic [ref=e499]: 
+        - generic [ref=e501]:
+          - generic [ref=e503]:
+            - paragraph [ref=e506]:
+              - text: Shop No. 3, 15A, Bhalerao Bhuvan, 15A,
+              - text: Off Carter Rd Union Park, Khar West, Mumbai,
+              - text: Maharashtra 400052
+            - generic [ref=e508]:
+              - link "+91 98331 00194" [ref=e509] [cursor=pointer]:
+                - /url: tel:+919833100194
+              - link "support@prettypetals.com" [ref=e510] [cursor=pointer]:
+                - /url: mailto:support@prettypetals.com
+          - generic [ref=e512]:
+            - heading "By Occasions" [level=6] [ref=e515]
+            - navigation "Menu" [ref=e518]:
+              - list [ref=e519]:
+                - listitem [ref=e520]:
+                  - link "Anniversary" [ref=e521] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/anniversary/
+                - listitem [ref=e522]:
+                  - link "Birthday" [ref=e523] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/birthday/
+                - listitem [ref=e524]:
+                  - link "Funeral" [ref=e525] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/funeral/
+                - listitem [ref=e526]:
+                  - link "Get Well Soon" [ref=e527] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/get-well-soon/
+                - listitem [ref=e528]:
+                  - link "House Warming" [ref=e529] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/house-warming/
+                - listitem [ref=e530]:
+                  - link "Wedding" [ref=e531] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/wedding/
+          - generic [ref=e533]:
+            - heading "By Flowers" [level=6] [ref=e536]
+            - navigation "Menu" [ref=e539]:
+              - list [ref=e540]:
+                - listitem [ref=e541]:
+                  - link "Roses" [ref=e542] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/roses/
+                - listitem [ref=e543]:
+                  - link "Carnations" [ref=e544] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/carnations/
+                - listitem [ref=e545]:
+                  - link "Orchids" [ref=e546] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/orchids/
+                - listitem [ref=e547]:
+                  - link "Gerberas" [ref=e548] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/gerberas/
+                - listitem [ref=e549]:
+                  - link "Lilies" [ref=e550] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/lilies/
+                - listitem [ref=e551]:
+                  - link "Tulips" [ref=e552] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/tulips-flowers/
+                - listitem [ref=e553]:
+                  - link "Mixed Flowers" [ref=e554] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/mixed-flowers/
+                - listitem [ref=e555]:
+                  - link "Exotic Flowers" [ref=e556] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/flowers/exotic-flowers/
+          - generic [ref=e558]:
+            - heading "Policy Info" [level=6] [ref=e561]
+            - navigation "Menu" [ref=e564]:
+              - list [ref=e565]:
+                - listitem [ref=e566]:
+                  - link "Blog" [ref=e567] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/blog/
+                - listitem [ref=e568]:
+                  - link "Privacy Policy" [ref=e569] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/privacy-policy/
+                - listitem [ref=e570]:
+                  - link "Delivery and Refund policy" [ref=e571] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/delivery-and-refund-policy/
+                - listitem [ref=e572]:
+                  - link "Terms and Conditions" [ref=e573] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/terms-and-conditions/
+                - listitem [ref=e574]:
+                  - link "Contact Us" [ref=e575] [cursor=pointer]:
+                    - /url: https://www.prettypetals.com/contact-us/
+          - generic [ref=e577]:
+            - heading "Connect with Us" [level=6] [ref=e580]
+            - list [ref=e583]:
+              - listitem [ref=e584]:
+                - link "+919833100194" [ref=e585] [cursor=pointer]:
+                  - /url: tel:+919833100194
+                  - generic [ref=e587]: 
+                  - generic [ref=e588]: "+919833100194"
+              - listitem [ref=e589]:
+                - generic [ref=e591]: 
+                - generic [ref=e592]: support@prettypetals.com
+            - heading "Delivery Cities" [level=6] [ref=e595]
+            - list [ref=e598]:
+              - listitem [ref=e599]:
+                - link "Mumbai" [ref=e600] [cursor=pointer]:
+                  - /url: https://prettypetals.com/
+                  - generic [ref=e602]: 
+                  - generic [ref=e603]: Mumbai
+              - listitem [ref=e604]:
+                - link "Navi Mumbai" [ref=e605] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-navi-mumbai/
+                  - generic [ref=e607]: 
+                  - generic [ref=e608]: Navi Mumbai
+              - listitem [ref=e609]:
+                - link "Thane" [ref=e610] [cursor=pointer]:
+                  - /url: https://prettypetals.com/send-flowers-thane/
+                  - generic [ref=e612]: 
+                  - generic [ref=e613]: Thane
+        - generic [ref=e619]: © 1999-2026 prettypetals.com. All rights reserved.
+  - generic [ref=e626] [cursor=pointer]: top 
+  - generic [ref=e627]: tablet
+  - status [ref=e628]

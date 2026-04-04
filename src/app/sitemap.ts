@@ -13,7 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const [products, categories, blogs] = await Promise.all([
     Product.find({ isActive: true }, "slug updatedAt").lean(),
-    Category.find({ isActive: true }, "slug updatedAt").lean(),
+    Category.find({ isActive: true }, "slug updatedAt parent")
+      .populate("parent", "slug")
+      .lean(),
     Blog.find({ isPublished: true }, "slug updatedAt").lean(),
   ]);
 
@@ -46,15 +48,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const categoryUrls: MetadataRoute.Sitemap = categories.map((c) => ({
-    url: `${BASE_URL}/${c.slug}/`,
-    lastModified: c.updatedAt,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
+  // Categories: nested path for children, flat for parents/standalone
+  const categoryUrls: MetadataRoute.Sitemap = categories.map((c) => {
+    const parent = c.parent as { slug: string } | null;
+    const path = parent && typeof parent === "object" && parent.slug
+      ? `/${parent.slug}/${c.slug}/`
+      : `/${c.slug}/`;
+
+    return {
+      url: `${BASE_URL}${path}`,
+      lastModified: c.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    };
+  });
 
   const productUrls: MetadataRoute.Sitemap = products.map((p) => ({
-    url: `${BASE_URL}/${p.slug}/`,
+    url: `${BASE_URL}/product/${p.slug}/`,
     lastModified: p.updatedAt,
     changeFrequency: "weekly",
     priority: 0.8,
