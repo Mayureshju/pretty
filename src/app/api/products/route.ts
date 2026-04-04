@@ -8,10 +8,20 @@ export async function GET(request: NextRequest) {
     await connectDB();
 
     const { searchParams } = request.nextUrl;
+    const ids = searchParams.get("ids") || "";
     const category = searchParams.get("category") || "";
     const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
     const limit = Math.min(48, Math.max(1, parseInt(searchParams.get("limit") || "24", 10)));
     const sort = searchParams.get("sort") || "popularity";
+
+    // Fetch by specific IDs (for wishlist)
+    if (ids) {
+      const idList = ids.split(",").filter(Boolean);
+      const products = await Product.find({ _id: { $in: idList }, isActive: true })
+        .select("name slug pricing images metrics isFeatured")
+        .lean();
+      return Response.json({ products, total: products.length, page: 1, pages: 1 });
+    }
 
     const filter: Record<string, unknown> = { isActive: true };
 

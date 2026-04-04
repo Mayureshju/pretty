@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { addToCart } from "@/lib/cart";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -104,10 +107,30 @@ const trustBadges = [
 ];
 
 export default function ProductDetail({ product, similarProducts, saleInfo }: ProductDetailProps) {
+  const router = useRouter();
   const [activeImg, setActiveImg] = useState(0);
   const [activeVariant, setActiveVariant] = useState(0);
   const [wishlisted, setWishlisted] = useState(false);
   const [showOffers, setShowOffers] = useState(false);
+
+  function handleAddToCart() {
+    const variantLabel = product.variants.length > 0 ? product.variants[activeVariant].label : undefined;
+    addToCart({
+      productId: product._id,
+      name: product.name,
+      slug: product.slug,
+      price: currentPrice,
+      originalPrice: product.pricing.regularPrice,
+      image: product.images?.[0]?.url || "/images/products/placeholder.jpg",
+      variant: variantLabel,
+    });
+    toast.success("Added to cart!");
+  }
+
+  function handleBuyNow() {
+    handleAddToCart();
+    router.push("/cart/");
+  }
 
   const galleryRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
@@ -465,10 +488,10 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
       {/* Sticky Bottom Bar */}
       <div className="sticky bottom-0 z-40 bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
         <div className="max-w-[1440px] mx-auto px-4 py-3 flex items-center gap-3">
-          <button className="flex-1 py-3 rounded-lg border-2 border-[#737530] text-[#737530] text-sm md:text-base font-semibold transition-colors hover:bg-[#737530]/5 cursor-pointer">
+          <button onClick={handleAddToCart} className="flex-1 py-3 rounded-lg border-2 border-[#737530] text-[#737530] text-sm md:text-base font-semibold transition-colors hover:bg-[#737530]/5 cursor-pointer">
             ADD TO CART
           </button>
-          <button className="flex-1 py-3 rounded-lg bg-[#737530] text-white text-sm md:text-base font-semibold transition-colors hover:bg-[#4C4D27] cursor-pointer">
+          <button onClick={handleBuyNow} className="flex-1 py-3 rounded-lg bg-[#737530] text-white text-sm md:text-base font-semibold transition-colors hover:bg-[#4C4D27] cursor-pointer">
             BUY NOW | &#8377; {currentPrice.toLocaleString()}
           </button>
         </div>

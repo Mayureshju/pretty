@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// Sale pricing is computed server-side and passed via activeSales prop
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,8 @@ interface CategoryProduct {
     totalSales: number;
   };
   isFeatured: boolean;
+  categories?: string[];
+  _saleInfo?: { effectivePrice: number; discountPercent: number; saleLabel: string | null } | null;
 }
 
 interface ChildCategory {
@@ -294,7 +297,11 @@ export default function CategoryPage({
         <>
           <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 py-6">
             {filteredProducts.map((product) => {
-              const disc = discount(product);
+              // Use pre-computed sale pricing from server
+              const si = product._saleInfo;
+              const effectivePrice = si ? si.effectivePrice : product.pricing.currentPrice;
+              const effectiveDiscount = si ? si.discountPercent : discount(product);
+              const saleLabel = si?.saleLabel;
               const mainImage = product.images?.[0]?.url || "/images/products/placeholder.jpg";
 
               return (
@@ -303,6 +310,11 @@ export default function CategoryPage({
                   {product.isFeatured && (
                     <span className="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 bg-[#737530] text-white text-[10px] font-semibold rounded-md">
                       Best Seller
+                    </span>
+                  )}
+                  {saleLabel && !product.isFeatured && (
+                    <span className="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 bg-[#EA1E61] text-white text-[10px] font-semibold rounded-md">
+                      {saleLabel}
                     </span>
                   )}
 
@@ -327,16 +339,16 @@ export default function CategoryPage({
                     </Link>
 
                     <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                      {disc > 0 && (
+                      {effectiveDiscount > 0 && (
                         <span className="text-[11px] text-[#999] line-through">
                           &#8377;{product.pricing.regularPrice.toLocaleString()}
                         </span>
                       )}
                       <span className="text-sm font-bold text-[#1C2120]">
-                        &#8377;{product.pricing.currentPrice.toLocaleString()}
+                        &#8377;{effectivePrice.toLocaleString()}
                       </span>
-                      {disc > 0 && (
-                        <span className="text-[10px] font-semibold text-[#FFA500]">{disc}% OFF</span>
+                      {effectiveDiscount > 0 && (
+                        <span className="text-[10px] font-semibold text-[#FFA500]">{effectiveDiscount}% OFF</span>
                       )}
                     </div>
 

@@ -8,6 +8,7 @@ import {
 import Category from "@/models/Category";
 import Blog, { IBlog } from "@/models/Blog";
 import Product from "@/models/Product";
+import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CategoryPage from "@/components/CategoryPage";
 import BlogPostPage from "@/components/BlogPostPage";
 
@@ -149,9 +150,9 @@ export default async function SlugPage({ params }: Props) {
     if (!category) notFound();
 
     await connectDB();
-    const [products, childCategories, totalProducts] = await Promise.all([
+    const [products, childCategories, totalProducts, activeSales] = await Promise.all([
       Product.find({ categories: category!._id, isActive: true })
-        .select("name slug pricing images metrics isFeatured")
+        .select("name slug pricing images metrics isFeatured categories")
         .sort({ order: 1, "metrics.totalSales": -1 })
         .limit(24)
         .lean(),
@@ -160,12 +161,22 @@ export default async function SlugPage({ params }: Props) {
         .sort({ order: 1 })
         .lean(),
       Product.countDocuments({ categories: category!._id, isActive: true }),
+      getActiveSales(),
     ]);
+
+    // Pre-compute sale pricing per product on server
+    const productsWithSales = products.map((p) => {
+      const sale = applyActiveSale(
+        { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
+        activeSales as Parameters<typeof applyActiveSale>[1]
+      );
+      return { ...p, _saleInfo: sale.hasSale ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel } : null };
+    });
 
     return (
       <CategoryPage
         category={JSON.parse(JSON.stringify(category))}
-        products={JSON.parse(JSON.stringify(products))}
+        products={JSON.parse(JSON.stringify(productsWithSales))}
         childCategories={JSON.parse(JSON.stringify(childCategories))}
         totalProducts={totalProducts}
       />
@@ -181,9 +192,9 @@ export default async function SlugPage({ params }: Props) {
     .lean();
 
   if (category) {
-    const [products, childCategories, totalProducts] = await Promise.all([
+    const [products, childCategories, totalProducts, activeSales] = await Promise.all([
       Product.find({ categories: category._id, isActive: true })
-        .select("name slug pricing images metrics isFeatured")
+        .select("name slug pricing images metrics isFeatured categories")
         .sort({ order: 1, "metrics.totalSales": -1 })
         .limit(24)
         .lean(),
@@ -192,12 +203,21 @@ export default async function SlugPage({ params }: Props) {
         .sort({ order: 1 })
         .lean(),
       Product.countDocuments({ categories: category._id, isActive: true }),
+      getActiveSales(),
     ]);
+
+    const productsWithSales = products.map((p) => {
+      const sale = applyActiveSale(
+        { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
+        activeSales as Parameters<typeof applyActiveSale>[1]
+      );
+      return { ...p, _saleInfo: sale.hasSale ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel } : null };
+    });
 
     return (
       <CategoryPage
         category={JSON.parse(JSON.stringify(category))}
-        products={JSON.parse(JSON.stringify(products))}
+        products={JSON.parse(JSON.stringify(productsWithSales))}
         childCategories={JSON.parse(JSON.stringify(childCategories))}
         totalProducts={totalProducts}
       />

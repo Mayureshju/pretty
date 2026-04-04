@@ -2,12 +2,21 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { getCartCount } from "@/lib/cart";
 
 const searchTerms = ["flowers", "cakes", "plants", "gifts", "combos"];
 
 export default function Header() {
   const [termIdx, setTermIdx] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    setCartCount(getCartCount());
+    const handler = () => setCartCount(getCartCount());
+    window.addEventListener("cart-updated", handler);
+    return () => window.removeEventListener("cart-updated", handler);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,7 +72,7 @@ export default function Header() {
                   <path d="M3 6h18" />
                   <path d="M16 10a4 4 0 01-8 0" />
                 </svg>
-                <span className="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white rounded-full w-[16px] h-[16px] flex items-center justify-center bg-[#EA3761]">0</span>
+                {cartCount > 0 && <span className="absolute -top-1.5 -right-1.5 text-[9px] font-bold text-white rounded-full w-[16px] h-[16px] flex items-center justify-center bg-[#EA3761]">{cartCount}</span>}
               </div>
               <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors hidden md:block">Cart</span>
             </a>
