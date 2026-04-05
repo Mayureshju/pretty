@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import mongoose from "mongoose";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
@@ -21,14 +22,27 @@ export async function GET(
 
   try {
     const { id } = await params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return notFoundResponse("Invalid order ID");
+    }
+
     await connectDB();
 
-    const order = await Order.findById(id)
-      .populate("items.product", "name images")
-      .lean();
+    let order = await Order.findById(id).lean();
 
     if (!order) {
       return notFoundResponse("Order not found");
+    }
+
+    // Populate product details only for items that have a valid product ref
+    try {
+      order = await Order.populate(order, {
+        path: "items.product",
+        select: "name images",
+      });
+    } catch {
+      // Populate may fail for invalid refs, continue with raw data
     }
 
     return Response.json(order);
