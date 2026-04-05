@@ -2,9 +2,22 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useUser, useClerk, UserButton, Show } from "@clerk/nextjs";
 import { getCartCount } from "@/lib/cart";
 
 const searchTerms = ["flowers", "cakes", "plants", "gifts", "combos"];
+
+function MobileSignOutButton() {
+  const { signOut } = useClerk();
+  return (
+    <button
+      onClick={() => signOut({ redirectUrl: "/" })}
+      className="block w-full text-left py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors cursor-pointer"
+    >
+      Sign Out
+    </button>
+  );
+}
 
 export default function Header() {
   const [termIdx, setTermIdx] = useState(0);
@@ -85,13 +98,26 @@ export default function Header() {
               <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors">INR</span>
             </div>
 
-            <div className="hidden md:flex flex-col items-center gap-0.5 cursor-pointer group min-w-[36px]">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="1.5" className="group-hover:stroke-[#737530] transition-colors">
-                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors">Sign In</span>
-            </div>
+            <Show when="signed-in">
+              <div className="hidden md:flex flex-col items-center gap-0.5 min-w-[36px]">
+                <UserButton
+                  appearance={{
+                    elements: {
+                      organizationSwitcherTrigger: { display: "none" },
+                    },
+                  }}
+                />
+              </div>
+            </Show>
+            <Show when="signed-out">
+              <a href="/sign-in" className="hidden md:flex flex-col items-center gap-0.5 cursor-pointer group min-w-[36px]">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="1.5" className="group-hover:stroke-[#737530] transition-colors">
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors">Sign In</span>
+              </a>
+            </Show>
 
             {/* Mobile hamburger */}
             <button
@@ -139,9 +165,15 @@ export default function Header() {
               </button>
             </div>
             <nav className="p-4">
+              <a href="/trackorder" className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">Track Order</a>
+              <Show when="signed-in">
+                <a href="/account" className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">My Account</a>
+                <MobileSignOutButton />
+              </Show>
+              <Show when="signed-out">
+                <a href="/sign-in" className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">Sign In</a>
+              </Show>
               {[
-                { label: "Track Order", href: "/trackorder" },
-                { label: "Sign In", href: "#" },
                 { label: "Flowers", href: "/flowers/" },
                 { label: "Cakes", href: "/all-cakes" },
                 { label: "Combos", href: "/gift-hampers" },

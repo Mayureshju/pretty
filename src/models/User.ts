@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface ICustomerAddress {
+export interface IUserAddress {
   label?: string;
   address?: string;
   city?: string;
@@ -9,25 +9,27 @@ export interface ICustomerAddress {
   isDefault: boolean;
 }
 
-export interface ICustomer extends Document {
-  clerkId?: string;
+export interface IUser extends Document {
+  clerkId: string;
   name: {
     first: string;
     last?: string;
   };
   email: string;
   phone?: string;
-  addresses: ICustomerAddress[];
+  role: "admin" | "member";
+  addresses: IUserAddress[];
   orderCount: number;
   totalSpent: number;
   lastOrderDate?: Date;
+  lastLoginAt?: Date;
   wpCustomerId?: number;
   wpUserId?: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const CustomerAddressSchema = new Schema(
+const UserAddressSchema = new Schema(
   {
     label: { type: String },
     address: { type: String },
@@ -39,32 +41,31 @@ const CustomerAddressSchema = new Schema(
   { _id: false }
 );
 
-const CustomerSchema = new Schema<ICustomer>(
+const UserSchema = new Schema<IUser>(
   {
-    clerkId: { type: String, sparse: true, unique: true },
+    clerkId: { type: String, required: true, unique: true },
     name: {
       first: { type: String, required: true },
       last: { type: String },
     },
     email: { type: String, required: true, unique: true, lowercase: true },
     phone: { type: String },
-    addresses: [CustomerAddressSchema],
+    role: { type: String, enum: ["admin", "member"], default: "member" },
+    addresses: [UserAddressSchema],
     orderCount: { type: Number, default: 0 },
     totalSpent: { type: Number, default: 0 },
     lastOrderDate: { type: Date },
+    lastLoginAt: { type: Date },
     wpCustomerId: { type: Number },
     wpUserId: { type: Number },
   },
   { timestamps: true }
 );
 
-// Indexes
-CustomerSchema.index({ clerkId: 1 }, { unique: true, sparse: true });
-CustomerSchema.index({ email: 1 }, { unique: true });
-CustomerSchema.index({ wpCustomerId: 1 });
+UserSchema.index({ clerkId: 1 }, { unique: true });
+UserSchema.index({ email: 1 }, { unique: true });
 
-const Customer =
-  mongoose.models.Customer ||
-  mongoose.model<ICustomer>("Customer", CustomerSchema);
+const User =
+  mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 
-export default Customer;
+export default User;

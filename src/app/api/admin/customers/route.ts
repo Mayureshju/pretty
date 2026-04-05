@@ -1,13 +1,13 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
-import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
-import Customer from "@/models/Customer";
+import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
+import User from "@/models/User";
 
 export async function GET(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -32,12 +32,12 @@ export async function GET(request: NextRequest) {
     }
 
     const [customers, total] = await Promise.all([
-      Customer.find(filter)
+      User.find(filter)
         .sort({ createdAt: -1 })
         .skip((page - 1) * limit)
         .limit(limit)
         .lean(),
-      Customer.countDocuments(filter),
+      User.countDocuments(filter),
     ]);
 
     const pages = Math.ceil(total / limit);

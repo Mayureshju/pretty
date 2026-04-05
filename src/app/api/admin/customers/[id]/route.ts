@@ -2,11 +2,11 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
-  unauthorizedResponse,
+  handleAuthError,
   notFoundResponse,
   errorResponse,
 } from "@/lib/auth";
-import Customer from "@/models/Customer";
+import User from "@/models/User";
 
 export async function GET(
   _request: NextRequest,
@@ -14,17 +14,17 @@ export async function GET(
 ) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
     const { id } = await params;
     await connectDB();
 
-    const customer = await Customer.findById(id).lean();
+    const customer = await User.findById(id).lean();
     if (!customer) {
-      return notFoundResponse("Customer not found");
+      return notFoundResponse("User not found");
     }
 
     return Response.json(customer);

@@ -189,6 +189,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     title: "SYSTEM",
     items: [
+      { label: "Users", href: "/admin/users", icon: IconUsers },
       { label: "Reports", href: "/admin/reports", icon: IconBarChart },
       { label: "Settings", href: "/admin/settings", icon: IconSettings },
     ],

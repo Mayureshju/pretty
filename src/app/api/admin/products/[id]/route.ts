@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
-  unauthorizedResponse,
+  handleAuthError,
   notFoundResponse,
   errorResponse,
 } from "@/lib/auth";
@@ -17,8 +17,8 @@ export async function GET(
 ) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -51,8 +51,8 @@ export async function PUT(
 ) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -127,8 +127,8 @@ export async function DELETE(
 ) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {

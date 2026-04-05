@@ -2,15 +2,15 @@ import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client, S3_BUCKET, getS3Url } from "@/lib/s3";
 import {
   requireAdmin,
-  unauthorizedResponse,
+  handleAuthError,
   errorResponse,
 } from "@/lib/auth";
 
 export async function POST(request: Request) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -57,8 +57,8 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {

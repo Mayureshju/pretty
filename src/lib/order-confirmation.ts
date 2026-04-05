@@ -2,6 +2,8 @@ import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
 import { Counter } from "@/models/Order";
 import Coupon from "@/models/Coupon";
+import User from "@/models/User";
+import GuestUser from "@/models/GuestUser";
 import { sendOrderConfirmationEmail } from "@/lib/email";
 
 /**
@@ -58,6 +60,24 @@ export async function confirmOrderPayment(
     } catch (err) {
       console.error("Failed to increment coupon usage:", err);
     }
+  }
+
+  // Update order metrics on the user/guest record
+  const metricsUpdate = {
+    $inc: { orderCount: 1, totalSpent: order.pricing.total },
+    $set: { lastOrderDate: new Date() },
+  };
+
+  if (order.customer.clerkId) {
+    await User.findOneAndUpdate(
+      { clerkId: order.customer.clerkId },
+      metricsUpdate
+    );
+  } else if (order.customer.email) {
+    await GuestUser.findOneAndUpdate(
+      { email: order.customer.email },
+      metricsUpdate
+    );
   }
 
   // Send confirmation email (fire-and-forget)

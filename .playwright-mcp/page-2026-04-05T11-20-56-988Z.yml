@@ -1,0 +1,291 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e729]: gifts
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "1 Cart" [ref=e730] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e731]: "1"
+            - generic [ref=e20]: Cart
+          - generic [ref=e21] [cursor=pointer]:
+            - img [ref=e22]
+            - generic [ref=e25]: INR
+          - link "Sign In" [ref=e579] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e580]
+            - generic [ref=e583]: Sign In
+    - navigation [ref=e26]:
+      - list [ref=e28]:
+        - listitem [ref=e29]:
+          - link "Flowers" [ref=e30] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e31]:
+          - link "Cakes" [ref=e32] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e33]:
+          - link "Combos" [ref=e34] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e35]:
+          - link "Birthday" [ref=e36] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e37]:
+          - link "Anniversary" [ref=e38] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e39]:
+          - link "Gifts" [ref=e40] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e41]:
+          - link "Personalised" [ref=e42] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e43]:
+          - link "Plants" [ref=e44] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e45]:
+          - link "Chocolates" [ref=e46] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e47]:
+          - link "Occasions" [ref=e48] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e49]:
+          - link "International" [ref=e50] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e51]:
+      - navigation [ref=e597]:
+        - link "Home" [ref=e598] [cursor=pointer]:
+          - /url: /
+        - img [ref=e599]
+        - link "Flowers" [ref=e601] [cursor=pointer]:
+          - /url: /flowers/
+        - img [ref=e602]
+        - link "Birthday" [ref=e604] [cursor=pointer]:
+          - /url: /flowers/birthday/
+        - img [ref=e605]
+        - generic [ref=e607]: Pastel Pink Bunch
+      - generic [ref=e608]:
+        - generic [ref=e609]:
+          - generic [ref=e610]:
+            - button "Pastel Pink Bunch" [ref=e612] [cursor=pointer]:
+              - img "Pastel Pink Bunch" [ref=e613]
+            - img "Pastel Pink Bunch" [ref=e615]
+          - generic [ref=e616]:
+            - generic [ref=e617]:
+              - heading "Pastel Pink Bunch" [level=1] [ref=e618]
+              - button [ref=e619] [cursor=pointer]:
+                - img [ref=e620]
+            - generic [ref=e622]:
+              - generic [ref=e623]: ★ 4.75
+              - generic [ref=e624]: •
+              - generic [ref=e625]: 4 Reviews
+            - generic [ref=e627]: ₹ 1,595
+            - generic [ref=e628]:
+              - generic [ref=e629]:
+                - paragraph [ref=e630]: Select Area / Location
+                - button "Use My Location" [ref=e631] [cursor=pointer]:
+                  - img [ref=e632]
+                  - text: Use My Location
+              - generic [ref=e635]:
+                - img [ref=e636]
+                - textbox "Select Area / Location" [ref=e639]
+            - button "Offers Available" [ref=e640] [cursor=pointer]:
+              - generic [ref=e641]:
+                - img [ref=e642]
+                - generic [ref=e645]: Offers Available
+              - img [ref=e646]
+            - generic [ref=e648]:
+              - heading "Description" [level=3] [ref=e649]
+              - paragraph [ref=e650]: Pink roses represent innocent romantic love, and make a good choice for teen romance or the early phases of a romantic relationship. Pink roses represent a beautiful, fresh love and a pureness of emotion. Send this cute sweet pink roses bunch to your loved ones.
+            - generic [ref=e651]:
+              - paragraph [ref=e652]: SKU Number
+              - paragraph [ref=e653]: "16385"
+        - generic [ref=e654]:
+          - generic [ref=e655]:
+            - img [ref=e657]
+            - paragraph [ref=e662]: 20+ Mn Smiles
+            - paragraph [ref=e663]: Delivered
+          - generic [ref=e664]:
+            - img [ref=e666]
+            - paragraph [ref=e669]: 20000+
+            - paragraph [ref=e670]: Pincodes Covered
+          - generic [ref=e671]:
+            - img [ref=e673]
+            - paragraph [ref=e678]: 620+ Cities Enjoying
+            - paragraph [ref=e679]: same-day delivery
+        - generic [ref=e680]:
+          - heading "Similar Products" [level=2] [ref=e681]
+          - generic [ref=e682]:
+            - link "Pink Lilies and Roses Pink Lilies and Roses ₹ 3,490 ★ 4.5 (4)" [ref=e683] [cursor=pointer]:
+              - /url: /product/pink-lilies-and-roses/
+              - img "Pink Lilies and Roses" [ref=e685]
+              - generic [ref=e686]:
+                - heading "Pink Lilies and Roses" [level=3] [ref=e687]
+                - generic [ref=e689]: ₹ 3,490
+                - generic [ref=e690]:
+                  - generic [ref=e691]: ★ 4.5
+                  - generic [ref=e692]: (4)
+            - link "African Daisies African Daisies ₹ 1,999 ★ 4.5 (2)" [ref=e693] [cursor=pointer]:
+              - /url: /product/mixed-colored-gerberas-bunch/
+              - img "African Daisies" [ref=e695]
+              - generic [ref=e696]:
+                - heading "African Daisies" [level=3] [ref=e697]
+                - generic [ref=e699]: ₹ 1,999
+                - generic [ref=e700]:
+                  - generic [ref=e701]: ★ 4.5
+                  - generic [ref=e702]: (2)
+            - link "Blue Hydrangea Blue Hydrangea ₹ 3,499 ★ 5 (3)" [ref=e703] [cursor=pointer]:
+              - /url: /product/blue-hydrangea/
+              - img "Blue Hydrangea" [ref=e705]
+              - generic [ref=e706]:
+                - heading "Blue Hydrangea" [level=3] [ref=e707]
+                - generic [ref=e709]: ₹ 3,499
+                - generic [ref=e710]:
+                  - generic [ref=e711]: ★ 5
+                  - generic [ref=e712]: (3)
+            - link "Red Carnations in a vase Red Carnations in a vase ₹ 2,499 ★ 5 (1)" [ref=e713] [cursor=pointer]:
+              - /url: /product/red-carnation/
+              - img "Red Carnations in a vase" [ref=e715]
+              - generic [ref=e716]:
+                - heading "Red Carnations in a vase" [level=3] [ref=e717]
+                - generic [ref=e719]: ₹ 2,499
+                - generic [ref=e720]:
+                  - generic [ref=e721]: ★ 5
+                  - generic [ref=e722]: (1)
+      - generic [ref=e724]:
+        - button "ADD TO CART" [active] [ref=e725] [cursor=pointer]
+        - button "BUY NOW | ₹ 1,595" [ref=e726] [cursor=pointer]
+    - contentinfo [ref=e466]:
+      - generic [ref=e468]:
+        - list [ref=e469]:
+          - listitem [ref=e470]:
+            - link "About Us" [ref=e471] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e472]:
+            - link "Sell With Us" [ref=e473] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e474]:
+            - link "Coupons & Deals" [ref=e475] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e476]:
+            - link "Cancellation & Refund" [ref=e477] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e478]:
+            - link "Terms and Conditions" [ref=e479] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e480]:
+            - link "Retail Stores" [ref=e481] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e482]:
+            - link "Career" [ref=e483] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e484]:
+          - listitem [ref=e485]:
+            - link "Media" [ref=e486] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e487]:
+            - link "Privacy Policy" [ref=e488] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e489]:
+            - link "Reviews" [ref=e490] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e491]:
+            - link "Blog" [ref=e492] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e493]:
+            - link "Sitemap" [ref=e494] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e495]:
+            - link "Quotes" [ref=e496] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e497]:
+          - listitem [ref=e498]:
+            - link "Corporate Gifts" [ref=e499] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e500]:
+            - link "Franchise" [ref=e501] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e502]:
+            - link "FAQ" [ref=e503] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e504]:
+            - link "Contact Us" [ref=e505] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e506]:
+            - link "Download App" [ref=e507] [cursor=pointer]:
+              - /url: /download-app
+          - listitem [ref=e508]:
+            - paragraph [ref=e509]: Delivery Cities
+            - list [ref=e510]:
+              - listitem [ref=e511]:
+                - link "Flowers in Mumbai" [ref=e512] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e513]:
+                - link "Flowers in Thane" [ref=e514] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e515]:
+                - link "Flowers in Navi Mumbai" [ref=e516] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e517]:
+          - paragraph [ref=e518]: Simplify your gifting experience with our app.
+          - generic [ref=e519]:
+            - generic [ref=e520] [cursor=pointer]:
+              - img [ref=e521]
+              - generic [ref=e523]:
+                - generic [ref=e524]: Get it on
+                - generic [ref=e525]: Google Play
+            - generic [ref=e526] [cursor=pointer]:
+              - img [ref=e527]
+              - generic [ref=e529]:
+                - generic [ref=e530]: Download on the
+                - generic [ref=e531]: App Store
+          - heading "Spread The Love On Social Media" [level=3] [ref=e532]
+          - generic [ref=e533]:
+            - link "Facebook" [ref=e534] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e535]
+            - link "Twitter" [ref=e537] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e538]
+            - link "YouTube" [ref=e540] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e541]
+            - link "Pinterest" [ref=e543] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e544]
+            - link "Instagram" [ref=e546] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e547]
+            - link "LinkedIn" [ref=e549] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e550]
+      - generic [ref=e553]:
+        - generic [ref=e554]:
+          - generic [ref=e555]: PRETTY PETALS
+          - generic [ref=e556]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e557]:
+          - generic [ref=e558]: "We Accept:"
+          - generic [ref=e559]: Visa
+          - generic [ref=e560]: MC
+          - generic [ref=e561]: Amex
+          - generic [ref=e562]: UPI
+          - generic [ref=e563]: PayPal
+          - generic [ref=e564]: Paytm
+    - link [ref=e565] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e566]
+  - status [ref=e737]: Added to cart!
+  - button "Open Next.js Dev Tools" [ref=e585] [cursor=pointer]:
+    - generic [ref=e588]:
+      - text: Compiling
+      - generic [ref=e589]:
+        - generic [ref=e590]: .
+        - generic [ref=e591]: .
+        - generic [ref=e592]: .
+  - alert [ref=e577]: Pastel Pink Bunch | Pretty Petals

@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
-import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
+import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Product from "@/models/Product";
 import "@/models/Category"; // Register Category model for populate
 import { createProductSchema } from "@/lib/validators/product";
@@ -8,8 +8,8 @@ import { createProductSchema } from "@/lib/validators/product";
 export async function GET(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -80,8 +80,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {

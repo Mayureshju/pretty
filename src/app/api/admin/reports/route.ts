@@ -1,13 +1,13 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
-import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
+import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Order from "@/models/Order";
 
 export async function GET(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {

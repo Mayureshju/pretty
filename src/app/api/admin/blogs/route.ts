@@ -1,14 +1,14 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
-import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
+import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Blog from "@/models/Blog";
 import { createBlogSchema } from "@/lib/validators/blog";
 
 export async function GET(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -62,8 +62,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {

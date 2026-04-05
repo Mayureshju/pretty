@@ -1,14 +1,14 @@
 import { connectDB } from "@/lib/db";
-import { requireAdmin, unauthorizedResponse, errorResponse } from "@/lib/auth";
+import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Order from "@/models/Order";
 import Product from "@/models/Product";
-import Customer from "@/models/Customer";
+import User from "@/models/User";
 
 export async function GET() {
   try {
     await requireAdmin();
-  } catch {
-    return unauthorizedResponse();
+  } catch (err) {
+    return handleAuthError(err);
   }
 
   try {
@@ -18,7 +18,7 @@ export async function GET() {
     const [
       totalOrders,
       totalProducts,
-      totalCustomers,
+      totalUsers,
       revenueResult,
       recentOrders,
       ordersByStatus,
@@ -32,7 +32,7 @@ export async function GET() {
       Product.countDocuments(),
 
       // Total customers count
-      Customer.countDocuments(),
+      User.countDocuments(),
 
       // Total revenue
       Order.aggregate([
@@ -112,7 +112,7 @@ export async function GET() {
       totalOrders,
       totalRevenue,
       totalProducts,
-      totalCustomers,
+      totalUsers,
       recentOrders,
       ordersByStatus,
       revenueByDay,

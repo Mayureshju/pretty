@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
 import gsap from "gsap";
 import { getCart, CartItem } from "@/lib/cart";
@@ -23,8 +24,15 @@ interface DeliveryInfo {
 function CheckoutInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { isSignedIn, user, isLoaded } = useUser();
 
-  /* ── Cart state ── */
+  /* ── Checkout gate ── */
+  const [checkoutMode, setCheckoutMode] = useState<"gate" | "form">("gate");
+  const [guestEmail, setGuestEmail] = useState("");
+  const [guestEmailError, setGuestEmailError] = useState("");
+  const [guestLoading, setGuestLoading] = useState(false);
+
+  /* ── Cart state ─�� */
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -111,6 +119,17 @@ function CheckoutInner() {
     setCartItems(items);
     setMounted(true);
   }, [router]);
+
+  /* ── Auto-skip gate for signed-in users ── */
+  useEffect(() => {
+    if (!isLoaded) return;
+    if (isSignedIn && user) {
+      setName(user.fullName || `${user.firstName || ""} ${user.lastName || ""}`.trim());
+      setEmail(user.primaryEmailAddress?.emailAddress || "");
+      setPhone(user.phoneNumbers?.[0]?.phoneNumber?.replace(/^\+91/, "") || "");
+      setCheckoutMode("form");
+    }
+  }, [isLoaded, isSignedIn, user]);
 
   /* ── Check for payment_failed in URL ── */
   useEffect(() => {
@@ -303,6 +322,32 @@ function CheckoutInner() {
     return `${dayName}, ${dateStr}`;
   };
 
+  /* ── Handle guest continue ── */
+  const handleGuestContinue = async () => {
+    if (!guestEmail.trim()) {
+      setGuestEmailError("Email is required");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
+      setGuestEmailError("Enter a valid email");
+      return;
+    }
+    setGuestEmailError("");
+    setGuestLoading(true);
+    try {
+      await fetch("/api/guest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: guestEmail.trim().toLowerCase() }),
+      });
+    } catch {
+      // Non-critical — continue even if capture fails
+    }
+    setEmail(guestEmail.trim().toLowerCase());
+    setCheckoutMode("form");
+    setGuestLoading(false);
+  };
+
   if (!mounted) {
     return (
       <div className="max-w-[1440px] mx-auto px-4 py-10">
@@ -322,7 +367,94 @@ function CheckoutInner() {
         {/* Page title */}
         <h1 className="text-2xl md:text-3xl font-bold text-[#1C2120] mb-6">Checkout</h1>
 
-        <div className="flex flex-col lg:flex-row gap-6">
+        {/* ── Checkout Gate (for unauthenticated users) ── */}
+        {checkoutMode === "gate" && isLoaded && !isSignedIn && (
+          <div className="max-w-xl mx-auto mb-8">
+            <div className="bg-white rounded-xl border border-gray-100 p-6">
+              <h2 className="text-lg font-semibold text-[#1C2120] mb-1 text-center">How would you like to checkout?</h2>
+              <p className="text-sm text-[#888] mb-6 text-center">Sign in for a faster experience or continue as a guest</p>
+
+              <div className="space-y-3">
+                {/* Sign In */}
+                <a
+                  href={`/sign-in?redirect_url=/checkout`}
+                  className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-[#737530] transition-colors group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#F2F3E8] flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round">
+                      <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" />
+                      <polyline points="10 17 15 12 10 7" />
+                      <line x1="15" y1="12" x2="3" y2="12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#1C2120] group-hover:text-[#737530] transition-colors">Sign In</p>
+                    <p className="text-xs text-[#888]">Already have an account? Sign in to prefill your details</p>
+                  </div>
+                </a>
+
+                {/* Create Account */}
+                <a
+                  href={`/sign-up?redirect_url=/checkout`}
+                  className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-[#737530] transition-colors group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#F2F3E8] flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round">
+                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                      <circle cx="8.5" cy="7" r="4" />
+                      <line x1="20" y1="8" x2="20" y2="14" />
+                      <line x1="23" y1="11" x2="17" y2="11" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#1C2120] group-hover:text-[#737530] transition-colors">Create Account</p>
+                    <p className="text-xs text-[#888]">Save your details for faster checkout next time</p>
+                  </div>
+                </a>
+
+                {/* Continue as Guest */}
+                <div className="rounded-lg border border-gray-200 hover:border-[#737530] transition-colors">
+                  <div className="flex items-center gap-4 p-4">
+                    <div className="w-10 h-10 rounded-full bg-[#F2F3E8] flex items-center justify-center shrink-0">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-[#1C2120]">Continue as Guest</p>
+                      <p className="text-xs text-[#888]">Just enter your email to proceed</p>
+                    </div>
+                  </div>
+                  <div className="px-4 pb-4">
+                    <div className="flex gap-2">
+                      <input
+                        type="email"
+                        value={guestEmail}
+                        onChange={(e) => setGuestEmail(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleGuestContinue()}
+                        placeholder="your@email.com"
+                        className={`flex-1 border ${guestEmailError ? "border-[#EA1E61]" : "border-gray-200"} rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors`}
+                      />
+                      <button
+                        type="button"
+                        onClick={handleGuestContinue}
+                        disabled={guestLoading}
+                        className="px-5 py-2.5 text-sm font-semibold bg-[#737530] text-white rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer disabled:opacity-50"
+                      >
+                        {guestLoading ? "..." : "Continue"}
+                      </button>
+                    </div>
+                    {guestEmailError && <p className="text-xs text-[#EA1E61] mt-1">{guestEmailError}</p>}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Checkout Form (shown after gate is passed) ── */}
+        {checkoutMode === "form" && <div className="flex flex-col lg:flex-row gap-6">
           {/* ── Left Column: Form ── */}
           <div className="flex-1 lg:w-[60%]">
             {/* Customer Info */}
@@ -688,7 +820,7 @@ function CheckoutInner() {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );

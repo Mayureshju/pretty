@@ -130,7 +130,13 @@ export default function AdminHeader({ onMenuToggle }: AdminHeaderProps) {
         </button>
 
         {/* Clerk UserButton */}
-        <UserButton />
+        <UserButton
+          appearance={{
+            elements: {
+              organizationSwitcherTrigger: { display: "none" },
+            },
+          }}
+        />
       </div>
     </header>
   );

@@ -1,0 +1,613 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e593]: cakes
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - img [ref=e17]
+            - generic [ref=e20]: Cart
+          - generic [ref=e21] [cursor=pointer]:
+            - img [ref=e22]
+            - generic [ref=e25]: INR
+          - link "Sign In" [ref=e579] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e580]
+            - generic [ref=e583]: Sign In
+    - navigation [ref=e26]:
+      - list [ref=e28]:
+        - listitem [ref=e29]:
+          - link "Flowers" [ref=e30] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e31]:
+          - link "Cakes" [ref=e32] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e33]:
+          - link "Combos" [ref=e34] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e35]:
+          - link "Birthday" [ref=e36] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e37]:
+          - link "Anniversary" [ref=e38] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e39]:
+          - link "Gifts" [ref=e40] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e41]:
+          - link "Personalised" [ref=e42] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e43]:
+          - link "Plants" [ref=e44] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e45]:
+          - link "Chocolates" [ref=e46] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e47]:
+          - link "Occasions" [ref=e48] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e49]:
+          - link "International" [ref=e50] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - navigation [ref=e54]:
+            - link "Home" [ref=e55] [cursor=pointer]:
+              - /url: /
+            - img [ref=e56]
+            - generic [ref=e58]: Flowers
+          - heading "Flowers" [level=1] [ref=e59]
+          - paragraph [ref=e60]: 471 Products
+        - generic [ref=e61]:
+          - link "Birthday(467)" [ref=e62] [cursor=pointer]:
+            - /url: /flowers/birthday/
+            - text: Birthday
+            - generic [ref=e63]: (467)
+          - link "Anniversary(395)" [ref=e64] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+            - text: Anniversary
+            - generic [ref=e65]: (395)
+          - link "Wedding(372)" [ref=e66] [cursor=pointer]:
+            - /url: /flowers/wedding/
+            - text: Wedding
+            - generic [ref=e67]: (372)
+          - link "Funeral(51)" [ref=e68] [cursor=pointer]:
+            - /url: /flowers/funeral/
+            - text: Funeral
+            - generic [ref=e69]: (51)
+          - link "Get Well Soon(282)" [ref=e70] [cursor=pointer]:
+            - /url: /flowers/get-well-soon/
+            - text: Get Well Soon
+            - generic [ref=e71]: (282)
+          - link "House Warming(365)" [ref=e72] [cursor=pointer]:
+            - /url: /flowers/house-warming/
+            - text: House Warming
+            - generic [ref=e73]: (365)
+          - link "Corporate(310)" [ref=e74] [cursor=pointer]:
+            - /url: /flowers/corporate/
+            - text: Corporate
+            - generic [ref=e75]: (310)
+          - link "Women's Day(390)" [ref=e76] [cursor=pointer]:
+            - /url: /flowers/womens-day/
+            - text: Women's Day
+            - generic [ref=e77]: (390)
+          - link "Valentine's Day(339)" [ref=e78] [cursor=pointer]:
+            - /url: /flowers/valentines-day/
+            - text: Valentine's Day
+            - generic [ref=e79]: (339)
+          - link "Tulips(9)" [ref=e80] [cursor=pointer]:
+            - /url: /flowers/tulips-flowers/
+            - text: Tulips
+            - generic [ref=e81]: (9)
+          - link "Roses(195)" [ref=e82] [cursor=pointer]:
+            - /url: /flowers/roses/
+            - text: Roses
+            - generic [ref=e83]: (195)
+          - link "Orchids(13)" [ref=e84] [cursor=pointer]:
+            - /url: /flowers/orchids/
+            - text: Orchids
+            - generic [ref=e85]: (13)
+          - link "Gerberas(2)" [ref=e86] [cursor=pointer]:
+            - /url: /flowers/gerberas/
+            - text: Gerberas
+            - generic [ref=e87]: (2)
+          - link "Lilies(14)" [ref=e88] [cursor=pointer]:
+            - /url: /flowers/lilies/
+            - text: Lilies
+            - generic [ref=e89]: (14)
+          - link "Mixed Flowers(233)" [ref=e90] [cursor=pointer]:
+            - /url: /flowers/mixed-flowers/
+            - text: Mixed Flowers
+            - generic [ref=e91]: (233)
+          - link "Exotic Flowers(47)" [ref=e92] [cursor=pointer]:
+            - /url: /flowers/exotic-flowers/
+            - text: Exotic Flowers
+            - generic [ref=e93]: (47)
+          - link "Carnations(13)" [ref=e94] [cursor=pointer]:
+            - /url: /flowers/carnations/
+            - text: Carnations
+            - generic [ref=e95]: (13)
+          - link "Friendship Day(159)" [ref=e96] [cursor=pointer]:
+            - /url: /flowers/friendship-day/
+            - text: Friendship Day
+            - generic [ref=e97]: (159)
+          - link "Flowers for Mother's Day(76)" [ref=e98] [cursor=pointer]:
+            - /url: /flowers/mother-flower/
+            - text: Flowers for Mother's Day
+            - generic [ref=e99]: (76)
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - button "All Prices" [ref=e102] [cursor=pointer]
+            - button "Under ₹500" [ref=e103] [cursor=pointer]
+            - button "₹500 - ₹1000" [ref=e104] [cursor=pointer]
+            - button "₹1000 - ₹2000" [ref=e105] [cursor=pointer]
+            - button "Above ₹2000" [ref=e106] [cursor=pointer]
+            - button "All" [ref=e108] [cursor=pointer]
+            - button "4★ & above" [ref=e109] [cursor=pointer]
+            - button "3★ & above" [ref=e110] [cursor=pointer]
+          - generic [ref=e111]:
+            - generic [ref=e112]: 24 of 471
+            - button "Popularity" [ref=e114] [cursor=pointer]:
+              - generic [ref=e115]: Popularity
+              - img [ref=e116]
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - button [ref=e120] [cursor=pointer]:
+              - img [ref=e121]
+            - link "Pastel Pink Bunch" [active] [ref=e123] [cursor=pointer]:
+              - /url: /product/sweet-pink-roses-handbunch/
+              - img "Pastel Pink Bunch" [ref=e125]
+            - generic [ref=e126]:
+              - link "Pastel Pink Bunch" [ref=e127] [cursor=pointer]:
+                - /url: /product/sweet-pink-roses-handbunch/
+                - heading "Pastel Pink Bunch" [level=3] [ref=e128]
+              - generic [ref=e130]: ₹1,595
+              - generic [ref=e131]:
+                - generic [ref=e132]: ★
+                - generic [ref=e133]: 4.75 | 4
+          - generic [ref=e134]:
+            - button [ref=e135] [cursor=pointer]:
+              - img [ref=e136]
+            - link "Pink Passion" [ref=e138] [cursor=pointer]:
+              - /url: /product/sweet-pretty-pink-roses-handbunch/
+              - img "Pink Passion" [ref=e140]
+            - generic [ref=e141]:
+              - link "Pink Passion" [ref=e142] [cursor=pointer]:
+                - /url: /product/sweet-pretty-pink-roses-handbunch/
+                - heading "Pink Passion" [level=3] [ref=e143]
+              - generic [ref=e145]: ₹4,799
+              - generic [ref=e146]:
+                - generic [ref=e147]: ★
+                - generic [ref=e148]: 5 | 2
+          - generic [ref=e149]:
+            - button [ref=e150] [cursor=pointer]:
+              - img [ref=e151]
+            - link "Pretty Pink & Purple" [ref=e153] [cursor=pointer]:
+              - /url: /product/pretty-pink-purple/
+              - img "Pretty Pink & Purple" [ref=e155]
+            - generic [ref=e156]:
+              - link "Pretty Pink & Purple" [ref=e157] [cursor=pointer]:
+                - /url: /product/pretty-pink-purple/
+                - heading "Pretty Pink & Purple" [level=3] [ref=e158]
+              - generic [ref=e159]:
+                - generic [ref=e160]: ₹2,150
+                - generic [ref=e161]: ₹1,799
+                - generic [ref=e162]: 16% OFF
+              - generic [ref=e163]:
+                - generic [ref=e164]: ★
+                - generic [ref=e165]: 5 | 1
+          - generic [ref=e166]:
+            - button [ref=e167] [cursor=pointer]:
+              - img [ref=e168]
+            - link "Abundant Bunch" [ref=e170] [cursor=pointer]:
+              - /url: /product/lilies-roses-handbunch/
+              - img "Abundant Bunch" [ref=e172]
+            - generic [ref=e173]:
+              - link "Abundant Bunch" [ref=e174] [cursor=pointer]:
+                - /url: /product/lilies-roses-handbunch/
+                - heading "Abundant Bunch" [level=3] [ref=e175]
+              - generic [ref=e177]: ₹3,499
+              - generic [ref=e178]:
+                - generic [ref=e179]: ★
+                - generic [ref=e180]: 4.8 | 5
+          - generic [ref=e181]:
+            - button [ref=e182] [cursor=pointer]:
+              - img [ref=e183]
+            - link "Colourful Blooms" [ref=e185] [cursor=pointer]:
+              - /url: /product/mix-color-roses-handbunch/
+              - img "Colourful Blooms" [ref=e187]
+            - generic [ref=e188]:
+              - link "Colourful Blooms" [ref=e189] [cursor=pointer]:
+                - /url: /product/mix-color-roses-handbunch/
+                - heading "Colourful Blooms" [level=3] [ref=e190]
+              - generic [ref=e192]: ₹3,599
+              - generic [ref=e193]:
+                - generic [ref=e194]: ★
+                - generic [ref=e195]: 5 | 1
+          - generic [ref=e196]:
+            - button [ref=e197] [cursor=pointer]:
+              - img [ref=e198]
+            - link "Lily Bliss" [ref=e200] [cursor=pointer]:
+              - /url: /product/lily-bliss/
+              - img "Lily Bliss" [ref=e202]
+            - generic [ref=e203]:
+              - link "Lily Bliss" [ref=e204] [cursor=pointer]:
+                - /url: /product/lily-bliss/
+                - heading "Lily Bliss" [level=3] [ref=e205]
+              - generic [ref=e206]:
+                - generic [ref=e207]: ₹3,999
+                - generic [ref=e208]: ₹3,281
+                - generic [ref=e209]: 18% OFF
+              - generic [ref=e210]:
+                - generic [ref=e211]: ★
+                - generic [ref=e212]: 4.5 | 2
+          - generic [ref=e213]:
+            - button [ref=e214] [cursor=pointer]:
+              - img [ref=e215]
+            - link "Sunny Embrace" [ref=e217] [cursor=pointer]:
+              - /url: /product/sunny-embrace/
+              - img "Sunny Embrace" [ref=e219]
+            - generic [ref=e220]:
+              - link "Sunny Embrace" [ref=e221] [cursor=pointer]:
+                - /url: /product/sunny-embrace/
+                - heading "Sunny Embrace" [level=3] [ref=e222]
+              - generic [ref=e224]: ₹699
+          - generic [ref=e225]:
+            - button [ref=e226] [cursor=pointer]:
+              - img [ref=e227]
+            - link "Amour Red" [ref=e229] [cursor=pointer]:
+              - /url: /product/amour-red/
+              - img "Amour Red" [ref=e231]
+            - generic [ref=e232]:
+              - link "Amour Red" [ref=e233] [cursor=pointer]:
+                - /url: /product/amour-red/
+                - heading "Amour Red" [level=3] [ref=e234]
+              - generic [ref=e236]: ₹1,399
+          - generic [ref=e237]:
+            - button [ref=e238] [cursor=pointer]:
+              - img [ref=e239]
+            - link "Pink Lilies and Roses" [ref=e241] [cursor=pointer]:
+              - /url: /product/pink-lilies-and-roses/
+              - img "Pink Lilies and Roses" [ref=e243]
+            - generic [ref=e244]:
+              - link "Pink Lilies and Roses" [ref=e245] [cursor=pointer]:
+                - /url: /product/pink-lilies-and-roses/
+                - heading "Pink Lilies and Roses" [level=3] [ref=e246]
+              - generic [ref=e248]: ₹3,490
+              - generic [ref=e249]:
+                - generic [ref=e250]: ★
+                - generic [ref=e251]: 4.5 | 4
+          - generic [ref=e252]:
+            - button [ref=e253] [cursor=pointer]:
+              - img [ref=e254]
+            - link "Peach Perfection" [ref=e256] [cursor=pointer]:
+              - /url: /product/peach-perfection/
+              - img "Peach Perfection" [ref=e258]
+            - generic [ref=e259]:
+              - link "Peach Perfection" [ref=e260] [cursor=pointer]:
+                - /url: /product/peach-perfection/
+                - heading "Peach Perfection" [level=3] [ref=e261]
+              - generic [ref=e263]: ₹2,144
+          - generic [ref=e264]:
+            - button [ref=e265] [cursor=pointer]:
+              - img [ref=e266]
+            - link "Vibrant Roses" [ref=e268] [cursor=pointer]:
+              - /url: /product/multi-colored-roses/
+              - img "Vibrant Roses" [ref=e270]
+            - generic [ref=e271]:
+              - link "Vibrant Roses" [ref=e272] [cursor=pointer]:
+                - /url: /product/multi-colored-roses/
+                - heading "Vibrant Roses" [level=3] [ref=e273]
+              - generic [ref=e275]: ₹2,675
+              - generic [ref=e276]:
+                - generic [ref=e277]: ★
+                - generic [ref=e278]: 5 | 1
+          - generic [ref=e279]:
+            - button [ref=e280] [cursor=pointer]:
+              - img [ref=e281]
+            - link "Gorgeous Tulips" [ref=e283] [cursor=pointer]:
+              - /url: /product/gorgeous-tulips/
+              - img "Gorgeous Tulips" [ref=e285]
+            - generic [ref=e286]:
+              - link "Gorgeous Tulips" [ref=e287] [cursor=pointer]:
+                - /url: /product/gorgeous-tulips/
+                - heading "Gorgeous Tulips" [level=3] [ref=e288]
+              - generic [ref=e290]: ₹4,648
+              - generic [ref=e291]:
+                - generic [ref=e292]: ★
+                - generic [ref=e293]: 4.67 | 3
+          - generic [ref=e294]:
+            - button [ref=e295] [cursor=pointer]:
+              - img [ref=e296]
+            - link "Lily of the Incas" [ref=e298] [cursor=pointer]:
+              - /url: /product/lily-of-the-incas/
+              - img "Lily of the Incas" [ref=e300]
+            - generic [ref=e301]:
+              - link "Lily of the Incas" [ref=e302] [cursor=pointer]:
+                - /url: /product/lily-of-the-incas/
+                - heading "Lily of the Incas" [level=3] [ref=e303]
+              - generic [ref=e305]: ₹1,997
+              - generic [ref=e306]:
+                - generic [ref=e307]: ★
+                - generic [ref=e308]: 5 | 1
+          - generic [ref=e309]:
+            - button [ref=e310] [cursor=pointer]:
+              - img [ref=e311]
+            - link "Tulips Beauty" [ref=e313] [cursor=pointer]:
+              - /url: /product/tulips-beauty/
+              - img "Tulips Beauty" [ref=e315]
+            - generic [ref=e316]:
+              - link "Tulips Beauty" [ref=e317] [cursor=pointer]:
+                - /url: /product/tulips-beauty/
+                - heading "Tulips Beauty" [level=3] [ref=e318]
+              - generic [ref=e320]: ₹4,799
+              - generic [ref=e321]:
+                - generic [ref=e322]: ★
+                - generic [ref=e323]: 4.5 | 2
+          - generic [ref=e324]:
+            - button [ref=e325] [cursor=pointer]:
+              - img [ref=e326]
+            - link "Beauty in Soul" [ref=e328] [cursor=pointer]:
+              - /url: /product/beauty-in-soul/
+              - img "Beauty in Soul" [ref=e330]
+            - generic [ref=e331]:
+              - link "Beauty in Soul" [ref=e332] [cursor=pointer]:
+                - /url: /product/beauty-in-soul/
+                - heading "Beauty in Soul" [level=3] [ref=e333]
+              - generic [ref=e335]: ₹3,885
+              - generic [ref=e336]:
+                - generic [ref=e337]: ★
+                - generic [ref=e338]: 5 | 2
+          - generic [ref=e339]:
+            - button [ref=e340] [cursor=pointer]:
+              - img [ref=e341]
+            - link "Assorted Blooms" [ref=e343] [cursor=pointer]:
+              - /url: /product/mixed-floral-handbunch/
+              - img "Assorted Blooms" [ref=e345]
+            - generic [ref=e346]:
+              - link "Assorted Blooms" [ref=e347] [cursor=pointer]:
+                - /url: /product/mixed-floral-handbunch/
+                - heading "Assorted Blooms" [level=3] [ref=e348]
+              - generic [ref=e350]: ₹3,340
+          - generic [ref=e351]:
+            - button [ref=e352] [cursor=pointer]:
+              - img [ref=e353]
+            - link "Dream a Little" [ref=e355] [cursor=pointer]:
+              - /url: /product/dream-a-little/
+              - img "Dream a Little" [ref=e357]
+            - generic [ref=e358]:
+              - link "Dream a Little" [ref=e359] [cursor=pointer]:
+                - /url: /product/dream-a-little/
+                - heading "Dream a Little" [level=3] [ref=e360]
+              - generic [ref=e362]: ₹2,599
+              - generic [ref=e363]:
+                - generic [ref=e364]: ★
+                - generic [ref=e365]: 5 | 3
+          - generic [ref=e366]:
+            - button [ref=e367] [cursor=pointer]:
+              - img [ref=e368]
+            - link "Sunshine" [ref=e370] [cursor=pointer]:
+              - /url: /product/sunshine/
+              - img "Sunshine" [ref=e372]
+            - generic [ref=e373]:
+              - link "Sunshine" [ref=e374] [cursor=pointer]:
+                - /url: /product/sunshine/
+                - heading "Sunshine" [level=3] [ref=e375]
+              - generic [ref=e376]:
+                - generic [ref=e377]: ₹2,400
+                - generic [ref=e378]: ₹1,814
+                - generic [ref=e379]: 24% OFF
+              - generic [ref=e380]:
+                - generic [ref=e381]: ★
+                - generic [ref=e382]: 5 | 1
+          - generic [ref=e383]:
+            - button [ref=e384] [cursor=pointer]:
+              - img [ref=e385]
+            - link "Stargazers" [ref=e387] [cursor=pointer]:
+              - /url: /product/bunch-of-pretty-lilies/
+              - img "Stargazers" [ref=e389]
+            - generic [ref=e390]:
+              - link "Stargazers" [ref=e391] [cursor=pointer]:
+                - /url: /product/bunch-of-pretty-lilies/
+                - heading "Stargazers" [level=3] [ref=e392]
+              - generic [ref=e394]: ₹5,499
+              - generic [ref=e395]:
+                - generic [ref=e396]: ★
+                - generic [ref=e397]: 5 | 2
+          - generic [ref=e398]:
+            - button [ref=e399] [cursor=pointer]:
+              - img [ref=e400]
+            - link "Blue Hydrangea" [ref=e402] [cursor=pointer]:
+              - /url: /product/blue-hydrangea/
+              - img "Blue Hydrangea" [ref=e404]
+            - generic [ref=e405]:
+              - link "Blue Hydrangea" [ref=e406] [cursor=pointer]:
+                - /url: /product/blue-hydrangea/
+                - heading "Blue Hydrangea" [level=3] [ref=e407]
+              - generic [ref=e409]: ₹3,499
+              - generic [ref=e410]:
+                - generic [ref=e411]: ★
+                - generic [ref=e412]: 5 | 3
+          - generic [ref=e413]:
+            - button [ref=e414] [cursor=pointer]:
+              - img [ref=e415]
+            - link "Sunny Duo Blossoms" [ref=e417] [cursor=pointer]:
+              - /url: /product/sunny-duo-blossoms/
+              - img "Sunny Duo Blossoms" [ref=e419]
+            - generic [ref=e420]:
+              - link "Sunny Duo Blossoms" [ref=e421] [cursor=pointer]:
+                - /url: /product/sunny-duo-blossoms/
+                - heading "Sunny Duo Blossoms" [level=3] [ref=e422]
+              - generic [ref=e424]: ₹999
+          - generic [ref=e425]:
+            - button [ref=e426] [cursor=pointer]:
+              - img [ref=e427]
+            - link "Cherry Blossom" [ref=e429] [cursor=pointer]:
+              - /url: /product/cherry-blossom/
+              - img "Cherry Blossom" [ref=e431]
+            - generic [ref=e432]:
+              - link "Cherry Blossom" [ref=e433] [cursor=pointer]:
+                - /url: /product/cherry-blossom/
+                - heading "Cherry Blossom" [level=3] [ref=e434]
+              - generic [ref=e436]: ₹1,599
+          - generic [ref=e437]:
+            - button [ref=e438] [cursor=pointer]:
+              - img [ref=e439]
+            - link "Vibrant Blooms" [ref=e441] [cursor=pointer]:
+              - /url: /product/vibrant-blooms/
+              - img "Vibrant Blooms" [ref=e443]
+            - generic [ref=e444]:
+              - link "Vibrant Blooms" [ref=e445] [cursor=pointer]:
+                - /url: /product/vibrant-blooms/
+                - heading "Vibrant Blooms" [level=3] [ref=e446]
+              - generic [ref=e448]: ₹1,598
+          - generic [ref=e449]:
+            - button [ref=e450] [cursor=pointer]:
+              - img [ref=e451]
+            - link "Pink Perfection" [ref=e453] [cursor=pointer]:
+              - /url: /product/pink-perfection/
+              - img "Pink Perfection" [ref=e455]
+            - generic [ref=e456]:
+              - link "Pink Perfection" [ref=e457] [cursor=pointer]:
+                - /url: /product/pink-perfection/
+                - heading "Pink Perfection" [level=3] [ref=e458]
+              - generic [ref=e460]: ₹10,499
+              - generic [ref=e461]:
+                - generic [ref=e462]: ★
+                - generic [ref=e463]: 4.5 | 2
+        - button "Load More Products" [ref=e465] [cursor=pointer]
+    - contentinfo [ref=e466]:
+      - generic [ref=e468]:
+        - list [ref=e469]:
+          - listitem [ref=e470]:
+            - link "About Us" [ref=e471] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e472]:
+            - link "Sell With Us" [ref=e473] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e474]:
+            - link "Coupons & Deals" [ref=e475] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e476]:
+            - link "Cancellation & Refund" [ref=e477] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e478]:
+            - link "Terms and Conditions" [ref=e479] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e480]:
+            - link "Retail Stores" [ref=e481] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e482]:
+            - link "Career" [ref=e483] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e484]:
+          - listitem [ref=e485]:
+            - link "Media" [ref=e486] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e487]:
+            - link "Privacy Policy" [ref=e488] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e489]:
+            - link "Reviews" [ref=e490] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e491]:
+            - link "Blog" [ref=e492] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e493]:
+            - link "Sitemap" [ref=e494] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e495]:
+            - link "Quotes" [ref=e496] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e497]:
+          - listitem [ref=e498]:
+            - link "Corporate Gifts" [ref=e499] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e500]:
+            - link "Franchise" [ref=e501] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e502]:
+            - link "FAQ" [ref=e503] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e504]:
+            - link "Contact Us" [ref=e505] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e506]:
+            - link "Download App" [ref=e507] [cursor=pointer]:
+              - /url: /download-app
+          - listitem [ref=e508]:
+            - paragraph [ref=e509]: Delivery Cities
+            - list [ref=e510]:
+              - listitem [ref=e511]:
+                - link "Flowers in Mumbai" [ref=e512] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e513]:
+                - link "Flowers in Thane" [ref=e514] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e515]:
+                - link "Flowers in Navi Mumbai" [ref=e516] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e517]:
+          - paragraph [ref=e518]: Simplify your gifting experience with our app.
+          - generic [ref=e519]:
+            - generic [ref=e520] [cursor=pointer]:
+              - img [ref=e521]
+              - generic [ref=e523]:
+                - generic [ref=e524]: Get it on
+                - generic [ref=e525]: Google Play
+            - generic [ref=e526] [cursor=pointer]:
+              - img [ref=e527]
+              - generic [ref=e529]:
+                - generic [ref=e530]: Download on the
+                - generic [ref=e531]: App Store
+          - heading "Spread The Love On Social Media" [level=3] [ref=e532]
+          - generic [ref=e533]:
+            - link "Facebook" [ref=e534] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e535]
+            - link "Twitter" [ref=e537] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e538]
+            - link "YouTube" [ref=e540] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e541]
+            - link "Pinterest" [ref=e543] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e544]
+            - link "Instagram" [ref=e546] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e547]
+            - link "LinkedIn" [ref=e549] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e550]
+      - generic [ref=e553]:
+        - generic [ref=e554]:
+          - generic [ref=e555]: PRETTY PETALS
+          - generic [ref=e556]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e557]:
+          - generic [ref=e558]: "We Accept:"
+          - generic [ref=e559]: Visa
+          - generic [ref=e560]: MC
+          - generic [ref=e561]: Amex
+          - generic [ref=e562]: UPI
+          - generic [ref=e563]: PayPal
+          - generic [ref=e564]: Paytm
+    - link [ref=e565] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e566]
+  - button "Open Next.js Dev Tools" [ref=e585] [cursor=pointer]:
+    - generic [ref=e588]:
+      - text: Compiling
+      - generic [ref=e589]:
+        - generic [ref=e590]: .
+        - generic [ref=e591]: .
+        - generic [ref=e592]: .
+  - alert [ref=e577]

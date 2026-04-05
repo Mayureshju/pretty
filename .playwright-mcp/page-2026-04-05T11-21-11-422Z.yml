@@ -1,0 +1,213 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "1 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "1"
+            - generic [ref=e21]: Cart
+          - generic [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+            - generic [ref=e26]: INR
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - heading "Your Cart (1 item)" [level=1] [ref=e54]
+        - generic [ref=e55]:
+          - generic [ref=e58]:
+            - link "Pastel Pink Bunch" [ref=e59] [cursor=pointer]:
+              - /url: /product/sweet-pink-roses-handbunch/
+              - img "Pastel Pink Bunch" [ref=e61]
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - generic [ref=e64]:
+                  - link "Pastel Pink Bunch" [ref=e65] [cursor=pointer]:
+                    - /url: /product/sweet-pink-roses-handbunch/
+                  - generic [ref=e67]: ₹ 1,595
+                - button "Remove" [ref=e68] [cursor=pointer]:
+                  - img [ref=e69]
+              - generic [ref=e71]:
+                - generic [ref=e72]:
+                  - button "-" [ref=e73] [cursor=pointer]
+                  - generic [ref=e74]: "1"
+                  - button "+" [ref=e75] [cursor=pointer]
+                - generic [ref=e76]: ₹ 1,595
+          - generic [ref=e78]:
+            - heading "Bill Summary" [level=3] [ref=e79]
+            - generic [ref=e80]:
+              - generic [ref=e81]: Subtotal (1 item)
+              - generic [ref=e82]: ₹ 1,595
+            - generic [ref=e83]:
+              - generic [ref=e84]: Delivery
+              - generic [ref=e85]: Calculated at checkout
+            - generic [ref=e87]:
+              - generic [ref=e88]: Total
+              - generic [ref=e89]: ₹ 1,595
+            - button "PROCEED TO CHECKOUT" [ref=e90] [cursor=pointer]
+            - paragraph [ref=e91]: Have a Coupon Code? Apply at checkout.
+    - contentinfo [ref=e92]:
+      - generic [ref=e94]:
+        - list [ref=e95]:
+          - listitem [ref=e96]:
+            - link "About Us" [ref=e97] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e98]:
+            - link "Sell With Us" [ref=e99] [cursor=pointer]:
+              - /url: /sell-with-us
+          - listitem [ref=e100]:
+            - link "Coupons & Deals" [ref=e101] [cursor=pointer]:
+              - /url: /coupon-deals
+          - listitem [ref=e102]:
+            - link "Cancellation & Refund" [ref=e103] [cursor=pointer]:
+              - /url: /cancellation-and-refund
+          - listitem [ref=e104]:
+            - link "Terms and Conditions" [ref=e105] [cursor=pointer]:
+              - /url: /termcondition
+          - listitem [ref=e106]:
+            - link "Retail Stores" [ref=e107] [cursor=pointer]:
+              - /url: /retail-stores
+          - listitem [ref=e108]:
+            - link "Career" [ref=e109] [cursor=pointer]:
+              - /url: /career-page
+        - list [ref=e110]:
+          - listitem [ref=e111]:
+            - link "Media" [ref=e112] [cursor=pointer]:
+              - /url: /show-media
+          - listitem [ref=e113]:
+            - link "Privacy Policy" [ref=e114] [cursor=pointer]:
+              - /url: /privacy-page
+          - listitem [ref=e115]:
+            - link "Reviews" [ref=e116] [cursor=pointer]:
+              - /url: /reviews
+          - listitem [ref=e117]:
+            - link "Blog" [ref=e118] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e119]:
+            - link "Sitemap" [ref=e120] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e121]:
+            - link "Quotes" [ref=e122] [cursor=pointer]:
+              - /url: /quotes
+        - list [ref=e123]:
+          - listitem [ref=e124]:
+            - link "Corporate Gifts" [ref=e125] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e126]:
+            - link "Franchise" [ref=e127] [cursor=pointer]:
+              - /url: /franchise
+          - listitem [ref=e128]:
+            - link "FAQ" [ref=e129] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e130]:
+            - link "Contact Us" [ref=e131] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e132]:
+            - link "Download App" [ref=e133] [cursor=pointer]:
+              - /url: /download-app
+          - listitem [ref=e134]:
+            - paragraph [ref=e135]: Delivery Cities
+            - list [ref=e136]:
+              - listitem [ref=e137]:
+                - link "Flowers in Mumbai" [ref=e138] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e139]:
+                - link "Flowers in Thane" [ref=e140] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e141]:
+                - link "Flowers in Navi Mumbai" [ref=e142] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e143]:
+          - paragraph [ref=e144]: Simplify your gifting experience with our app.
+          - generic [ref=e145]:
+            - generic [ref=e146] [cursor=pointer]:
+              - img [ref=e147]
+              - generic [ref=e149]:
+                - generic [ref=e150]: Get it on
+                - generic [ref=e151]: Google Play
+            - generic [ref=e152] [cursor=pointer]:
+              - img [ref=e153]
+              - generic [ref=e155]:
+                - generic [ref=e156]: Download on the
+                - generic [ref=e157]: App Store
+          - heading "Spread The Love On Social Media" [level=3] [ref=e158]
+          - generic [ref=e159]:
+            - link "Facebook" [ref=e160] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e161]
+            - link "Twitter" [ref=e163] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e164]
+            - link "YouTube" [ref=e166] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e167]
+            - link "Pinterest" [ref=e169] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e170]
+            - link "Instagram" [ref=e172] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e173]
+            - link "LinkedIn" [ref=e175] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e176]
+      - generic [ref=e179]:
+        - generic [ref=e180]:
+          - generic [ref=e181]: PRETTY PETALS
+          - generic [ref=e182]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e183]:
+          - generic [ref=e184]: "We Accept:"
+          - generic [ref=e185]: Visa
+          - generic [ref=e186]: MC
+          - generic [ref=e187]: Amex
+          - generic [ref=e188]: UPI
+          - generic [ref=e189]: PayPal
+          - generic [ref=e190]: Paytm
+    - link [ref=e191] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e192]
+  - button "Open Next.js Dev Tools" [ref=e199] [cursor=pointer]:
+    - img [ref=e200]
+  - alert [ref=e203]
