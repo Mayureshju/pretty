@@ -112,6 +112,16 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   const [activeVariant, setActiveVariant] = useState(0);
   const [wishlisted, setWishlisted] = useState(false);
   const [showOffers, setShowOffers] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
+  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
+  const imgContainerRef = useRef<HTMLDivElement>(null);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomPos({ x, y });
+  }
 
   function handleAddToCart() {
     const variantLabel = product.variants.length > 0 ? product.variants[activeVariant].label : undefined;
@@ -234,16 +244,40 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             </div>
 
             {/* Main Image */}
-            <div className="flex-1 relative rounded-xl overflow-hidden bg-[#f8f8f8] aspect-[4/5] sm:aspect-auto sm:h-[520px]">
+            <div
+              ref={imgContainerRef}
+              className="flex-1 relative rounded-xl overflow-hidden bg-[#f8f8f8] aspect-square sm:aspect-auto sm:h-[520px] cursor-crosshair"
+              onMouseEnter={() => setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+              onMouseMove={handleMouseMove}
+            >
               <Image
                 src={images[activeImg].url}
                 alt={images[activeImg].alt || product.name}
                 fill
-                className="object-cover transition-opacity duration-300"
+                className="object-contain transition-opacity duration-300"
                 key={activeImg}
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 priority
               />
+              {isZooming && (
+                <div
+                  className="absolute inset-0 z-10 hidden md:block"
+                  style={{
+                    backgroundImage: `url(${images[activeImg].url})`,
+                    backgroundSize: "250%",
+                    backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
+                    backgroundRepeat: "no-repeat",
+                  }}
+                />
+              )}
+              {isZooming && (
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-1.5
+                  bg-black/60 backdrop-blur-sm text-white text-[11px] font-medium px-3 py-1.5 rounded-full pointer-events-none">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" /><path d="M11 8v6M8 11h6" /></svg>
+                  Move to zoom
+                </div>
+              )}
             </div>
           </div>
 
