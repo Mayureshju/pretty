@@ -1,30 +1,19 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
+import toast from "react-hot-toast";
+import {
+  getCart,
+  removeFromCart,
+  updateCartQuantity,
+  getCartTotal,
+  type CartItem,
+} from "@/lib/cart";
 
-/* ── Demo cart data ── */
-const initialItems = [
-  {
-    id: 1,
-    name: "Decadent Red Velvet Cake",
-    price: 685,
-    originalPrice: 895,
-    discount: 30,
-    weight: "0.9 kg",
-    qty: 1,
-    image: "/images/products/red-velvet.jpg",
-    delivery: "Express Delivery",
-  },
-];
-
-const addons = [
-  { id: 101, name: "Silk Dairy Milk Chocolate Set", price: 99, image: "/images/products/chocolate-cake.jpg" },
-  { id: 102, name: "Corn Bakes Cake Topper", price: 95, image: "/images/products/cakes-category.jpg" },
-  { id: 103, name: "5 Cadbury Milk Chocolates (13gm each)", price: 149, image: "/images/products/chocolate-cake.jpg" },
-  { id: 104, name: "3 Roasted Alnut Crayon Candles", price: 345, image: "/images/products/gifts-category.jpg" },
-];
-
+/* ── Browse categories for empty state ── */
 const browseCategories = [
   { name: "Flowers", image: "/images/categories/flowers.jpg", href: "/flowers/" },
   { name: "Cakes", image: "/images/categories/cakes.jpg", href: "/cakes" },
@@ -36,51 +25,83 @@ const browseCategories = [
 
 /* ── Component ── */
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState(initialItems);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const emptyRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  const updateQty = (id: number, delta: number) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, qty: Math.max(0, item.qty + delta) } : item
-        )
-        .filter((item) => item.qty > 0)
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const totalItems = cartItems.reduce((sum, item) => sum + item.qty, 0);
-  const totalSaved = cartItems.reduce(
-    (sum, item) => sum + (item.originalPrice - item.price) * item.qty,
-    0
-  );
-
+  /* Load cart on mount and listen for updates */
   useEffect(() => {
-    if (containerRef.current) {
+    setCartItems(getCart());
+    setMounted(true);
+
+    const handleCartUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent<CartItem[]>;
+      setCartItems(customEvent.detail);
+    };
+
+    window.addEventListener("cart-updated", handleCartUpdate);
+    return () => window.removeEventListener("cart-updated", handleCartUpdate);
+  }, []);
+
+  /* GSAP fade-in on mount */
+  useEffect(() => {
+    if (mounted && cartItems.length > 0 && containerRef.current) {
       gsap.fromTo(
         containerRef.current.children,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power3.out" }
       );
     }
-  }, []);
+  }, [mounted, cartItems.length]);
 
-  // Empty animation when cart clears
+  /* Animate empty state when cart becomes empty */
   useEffect(() => {
-    if (cartItems.length === 0 && emptyRef.current) {
+    if (mounted && cartItems.length === 0 && emptyRef.current) {
       gsap.fromTo(
         emptyRef.current.children,
         { opacity: 0, y: 30, scale: 0.95 },
         { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: "back.out(1.2)" }
       );
     }
-  }, [cartItems.length]);
+  }, [mounted, cartItems.length]);
+
+  const handleUpdateQty = useCallback(
+    (productId: string, currentQty: number, delta: number, variant?: string) => {
+      const newQty = currentQty + delta;
+      if (newQty <= 0) {
+        removeFromCart(productId, variant);
+        toast.success("Item removed from cart");
+      } else {
+        updateCartQuantity(productId, newQty, variant);
+      }
+    },
+    []
+  );
+
+  const handleRemove = useCallback(
+    (productId: string, name: string, variant?: string) => {
+      removeFromCart(productId, variant);
+      toast.success(`${name} removed from cart`);
+    },
+    []
+  );
+
+  /* Computed totals */
+  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  /* Don't render anything until mounted (avoids hydration mismatch with localStorage) */
+  if (!mounted) {
+    return (
+      <div className="max-w-[1440px] mx-auto px-4 py-10">
+        <div className="flex items-center justify-center min-h-[300px]">
+          <div className="w-8 h-8 border-2 border-[#737530] border-t-transparent rounded-full animate-spin" />
+        </div>
+      </div>
+    );
+  }
 
   /* ── Empty Cart ── */
   if (cartItems.length === 0) {
@@ -116,7 +137,7 @@ export default function CartPage() {
           </div>
 
           <h2 className="text-xl md:text-2xl font-semibold text-[#737530] leading-snug">
-            Hey, cart bag seems to be empty,<br />
+            Your bag is empty,<br />
             Let&apos;s add some items.
           </h2>
 
@@ -157,131 +178,118 @@ export default function CartPage() {
   /* ── Cart with Items ── */
   return (
     <div className="max-w-[1440px] mx-auto px-4 py-6 md:py-8" ref={containerRef}>
-      {/* Savings banner */}
-      {totalSaved > 0 && (
-        <div className="bg-[#E8F5E9] border border-[#A5D6A7] rounded-lg px-4 py-2.5 mb-5 text-center">
-          <span className="text-sm font-medium text-[#2E7D32]">
-            You have saved &#8377; {totalSaved.toLocaleString()} on this order
-          </span>
-        </div>
-      )}
+      {/* Header */}
+      <h1 className="text-xl md:text-2xl font-semibold text-[#1C2120] mb-5">
+        Your Cart ({totalItems} item{totalItems !== 1 ? "s" : ""})
+      </h1>
 
       <div className="flex flex-col lg:flex-row gap-6">
         {/* ── Left: Cart Items ── */}
         <div className="flex-1">
-          {cartItems.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-xl border border-gray-200 p-4 md:p-5 mb-4"
-              style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}
-            >
-              {/* Express badge */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className="px-3 py-1 bg-[#737530] text-white text-xs font-semibold rounded-md">
-                  {item.delivery}
-                </span>
-                <span className="text-xs text-[#888]">&#8377; 30-40 km</span>
-              </div>
+          {cartItems.map((item) => {
+            const lineTotal = item.price * item.quantity;
+            const itemKey = item.variant
+              ? `${item.productId}-${item.variant}`
+              : item.productId;
 
-              <div className="flex gap-4">
-                {/* Product Image */}
-                <div className="relative shrink-0">
-                  {item.discount > 0 && (
-                    <span className="absolute -top-1 -left-1 z-10 px-1.5 py-0.5 bg-[#FFA500] text-white text-[10px] font-bold rounded">
-                      &#8377; {item.originalPrice - item.price} OFF
-                    </span>
-                  )}
-                  <div className="w-[90px] h-[90px] md:w-[100px] md:h-[100px] rounded-lg overflow-hidden bg-[#f8f8f8]">
-                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                  </div>
-                </div>
+            return (
+              <div
+                key={itemKey}
+                className="bg-white rounded-xl border border-gray-200 p-4 md:p-5 mb-4"
+                style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}
+              >
+                <div className="flex gap-4">
+                  {/* Product Image */}
+                  <a
+                    href={`/product/${item.slug}/`}
+                    className="relative shrink-0"
+                  >
+                    <div className="w-[80px] h-[80px] rounded-lg overflow-hidden bg-[#f8f8f8]">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        width={80}
+                        height={80}
+                        className="w-full h-full object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  </a>
 
-                {/* Product Info */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h3 className="text-sm md:text-base font-medium text-[#1C2120]">{item.name}</h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-base font-bold text-[#1C2120]">&#8377; {item.price}</span>
-                        {item.originalPrice > item.price && (
-                          <span className="text-xs text-[#999] line-through">&#8377; {item.originalPrice}</span>
+                  {/* Product Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <a
+                          href={`/product/${item.slug}/`}
+                          className="text-sm md:text-base font-medium text-[#1C2120] hover:text-[#737530] transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                        {item.variant && (
+                          <p className="text-xs text-[#888] mt-0.5">
+                            Variant: {item.variant}
+                          </p>
                         )}
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-base font-bold text-[#1C2120]">
+                            &#8377; {item.price.toLocaleString()}
+                          </span>
+                          {item.originalPrice > item.price && (
+                            <span className="text-xs text-[#999] line-through">
+                              &#8377; {item.originalPrice.toLocaleString()}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <p className="text-xs text-[#888] mt-0.5">Weight: {item.weight}</p>
+
+                      {/* Remove */}
+                      <button
+                        onClick={() => handleRemove(item.productId, item.name, item.variant)}
+                        className="shrink-0 text-[#999] hover:text-[#E74C3C] transition-colors cursor-pointer p-1"
+                        title="Remove"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                          <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                      </button>
                     </div>
 
-                    {/* Remove */}
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="shrink-0 text-[#999] hover:text-[#E74C3C] transition-colors cursor-pointer p-1"
-                      title="Remove"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <path d="M18 6L6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
+                    {/* Qty + Line Total */}
+                    <div className="flex items-center justify-between mt-3">
+                      {/* Qty selector */}
+                      <div className="flex items-center border border-[#737530] rounded-lg overflow-hidden">
+                        <button
+                          onClick={() =>
+                            handleUpdateQty(item.productId, item.quantity, -1, item.variant)
+                          }
+                          className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
+                        >
+                          -
+                        </button>
+                        <span className="w-8 h-8 flex items-center justify-center text-sm font-semibold text-[#1C2120] border-x border-[#737530]">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            handleUpdateQty(item.productId, item.quantity, 1, item.variant)
+                          }
+                          className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
+                        >
+                          +
+                        </button>
+                      </div>
 
-                  {/* Message + Qty */}
-                  <div className="flex items-center justify-between mt-3">
-                    <button className="text-xs text-[#737530] flex items-center gap-1 hover:underline cursor-pointer">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                      </svg>
-                      Write your message
-                    </button>
-
-                    {/* Qty selector */}
-                    <div className="flex items-center border border-[#737530] rounded-lg overflow-hidden">
-                      <button
-                        onClick={() => updateQty(item.id, -1)}
-                        className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
-                      >
-                        -
-                      </button>
-                      <span className="w-8 h-8 flex items-center justify-center text-sm font-semibold text-[#1C2120] border-x border-[#737530]">
-                        {item.qty}
+                      {/* Line total */}
+                      <span className="text-sm font-semibold text-[#1C2120]">
+                        &#8377; {lineTotal.toLocaleString()}
                       </span>
-                      <button
-                        onClick={() => updateQty(item.id, 1)}
-                        className="w-8 h-8 flex items-center justify-center text-[#737530] hover:bg-[#737530]/5 transition-colors cursor-pointer text-lg font-bold"
-                      >
-                        +
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-
-          {/* ── Last Minute Addons ── */}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold text-[#1C2120] mb-4">
-              Your last minute add-ons
-            </h3>
-            <div className="flex gap-3 overflow-x-auto scroll-container pb-2">
-              {addons.map((addon) => (
-                <div
-                  key={addon.id}
-                  className="shrink-0 w-[150px] md:w-[170px] bg-white rounded-xl border border-gray-200 overflow-hidden"
-                  style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}
-                >
-                  <div className="h-[100px] md:h-[110px] bg-[#f8f8f8] overflow-hidden">
-                    <img src={addon.image} alt={addon.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div className="p-2.5">
-                    <p className="text-xs text-[#464646] line-clamp-2 min-h-[32px]">{addon.name}</p>
-                    <p className="text-sm font-bold text-[#1C2120] mt-1">&#8377; {addon.price}</p>
-                    <button className="w-full mt-2 py-1.5 text-xs font-semibold border-2 border-[#737530] text-[#737530] rounded-lg hover:bg-[#737530] hover:text-white transition-colors cursor-pointer">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+            );
+          })}
         </div>
 
         {/* ── Right: Bill Summary ── */}
@@ -293,30 +301,31 @@ export default function CartPage() {
             <h3 className="text-lg font-semibold text-[#1C2120] mb-4">Bill Summary</h3>
 
             <div className="flex items-center justify-between text-sm mb-3">
-              <div className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M9 12l2 2 4-4" />
-                </svg>
-                <span className="text-[#464646]">Order Total</span>
-              </div>
-              <span className="text-[#888]">{totalItems} item{totalItems > 1 ? "s" : ""}</span>
-              <span className="font-semibold text-[#1C2120]">&#8377; {orderTotal.toLocaleString()}</span>
+              <span className="text-[#464646]">Subtotal ({totalItems} item{totalItems !== 1 ? "s" : ""})</span>
+              <span className="font-semibold text-[#1C2120]">&#8377; {subtotal.toLocaleString()}</span>
+            </div>
+
+            <div className="flex items-center justify-between text-sm mb-3">
+              <span className="text-[#464646]">Delivery</span>
+              <span className="text-sm text-[#888]">Calculated at checkout</span>
             </div>
 
             <div className="border-t border-gray-100 pt-3 mt-3">
               <div className="flex items-center justify-between">
-                <span className="text-base font-bold text-[#1C2120]">Grand Total</span>
-                <span className="text-xl font-bold text-[#1C2120]">&#8377; {orderTotal.toLocaleString()}</span>
+                <span className="text-base font-bold text-[#1C2120]">Total</span>
+                <span className="text-xl font-bold text-[#1C2120]">&#8377; {subtotal.toLocaleString()}</span>
               </div>
             </div>
 
-            <button className="w-full mt-5 py-3.5 bg-[#737530] text-white text-sm font-bold rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer tracking-wide">
-              PLACE ORDER
+            <button
+              onClick={() => router.push("/checkout/")}
+              className="w-full mt-5 py-3.5 bg-[#737530] text-white text-sm font-bold rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer tracking-wide"
+            >
+              PROCEED TO CHECKOUT
             </button>
 
             <p className="text-xs text-[#888] text-center mt-3">
-              Have a Coupon Code? You can apply the discount coupon at the Checkout Process.
+              Have a Coupon Code? Apply at checkout.
             </p>
           </div>
         </div>

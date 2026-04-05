@@ -66,7 +66,7 @@ export interface IOrder extends Document {
 
 const OrderItemSchema = new Schema(
   {
-    product: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+    product: { type: Schema.Types.ObjectId, ref: "Product" },
     productName: { type: String },
     variant: { type: String },
     quantity: { type: Number, required: true, default: 1 },
@@ -155,12 +155,12 @@ const CounterSchema = new Schema({
   seq: { type: Number, default: 0 },
 });
 
-const Counter =
+export const Counter =
   mongoose.models.Counter ||
   mongoose.model("Counter", CounterSchema);
 
-// Pre-save hook: auto-generate orderNumber if not provided
-OrderSchema.pre("save", async function () {
+// Pre-validate hook: auto-generate orderNumber if not provided
+OrderSchema.pre("validate", async function () {
   if (this.orderNumber) {
     return;
   }

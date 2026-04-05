@@ -1,0 +1,67 @@
+import { connectDB } from "@/lib/db";
+import Order from "@/models/Order";
+import { Counter } from "@/models/Order";
+import Coupon from "@/models/Coupon";
+import { sendOrderConfirmationEmail } from "@/lib/email";
+
+/**
+ * Shared order confirmation logic used by both PayU success redirect and webhook.
+ * Idempotent: only processes if payment.status is still "pending".
+ */
+export async function confirmOrderPayment(
+  orderId: string,
+  payuTransactionId: string
+) {
+  await connectDB();
+
+  // Generate invoice number
+  const year = new Date().getFullYear();
+  const counter = await Counter.findByIdAndUpdate(
+    "invoiceNumber",
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true }
+  );
+  const invoiceNumber = `INV-${year}-${String(counter.seq).padStart(5, "0")}`;
+
+  // Atomic update: only succeeds if payment is still pending (idempotent)
+  const order = await Order.findOneAndUpdate(
+    { _id: orderId, "payment.status": "pending" },
+    {
+      "payment.status": "paid",
+      "payment.transactionId": payuTransactionId,
+      status: "confirmed",
+      "invoice.number": invoiceNumber,
+      "invoice.date": new Date(),
+      $push: {
+        statusHistory: {
+          status: "confirmed",
+          timestamp: new Date(),
+          note: `Payment successful via PayU (${payuTransactionId})`,
+        },
+      },
+    },
+    { new: true }
+  );
+
+  if (!order) {
+    // Either order not found or already processed
+    return null;
+  }
+
+  // Increment coupon usage if applicable
+  if (order.pricing.couponCode) {
+    try {
+      await Coupon.findOneAndUpdate(
+        { code: order.pricing.couponCode },
+        { $inc: { usedCount: 1 } }
+      );
+    } catch (err) {
+      console.error("Failed to increment coupon usage:", err);
+    }
+  }
+
+  // Send confirmation email (fire-and-forget)
+  sendOrderConfirmationEmail(order).catch(() => {});
+
+  return order;
+}
