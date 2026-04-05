@@ -41,6 +41,10 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "**.floristaindia.com",
       },
+      {
+        protocol: "https",
+        hostname: "pretty-petals-web.s3.eu-central-1.amazonaws.com",
+      },
     ],
   },
   async redirects() {

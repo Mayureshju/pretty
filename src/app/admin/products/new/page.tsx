@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import ImageUploader from "@/components/admin/shared/ImageUploader";
 
 interface CategoryOption {
   _id: string;
@@ -56,6 +57,7 @@ export default function NewProductPage() {
   const [deliveryInfo, setDeliveryInfo] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
+  const [productType, setProductType] = useState<"simple" | "variable">("simple");
   const [images, setImages] = useState<ImageRow[]>([]);
   const [variants, setVariants] = useState<VariantRow[]>([]);
   const [addons, setAddons] = useState<AddonRow[]>([]);
@@ -197,19 +199,19 @@ export default function NewProductPage() {
       if (validImages.length > 0) body.images = validImages;
 
       // Variants
-      const validVariants = variants
-        .filter((v) => v.label.trim() && v.price)
-        .map((v) => ({
-          label: v.label.trim(),
-          price: Number(v.price),
-          salePrice: v.salePrice ? Number(v.salePrice) : null,
-          image: v.image.trim() || undefined,
-          sku: v.sku.trim() || undefined,
-          stock: v.stock ? Number(v.stock) : 0,
-        }));
-      if (validVariants.length > 0) {
-        body.variants = validVariants;
-        body.type = "variable";
+      body.type = productType;
+      if (productType === "variable") {
+        const validVariants = variants
+          .filter((v) => v.label.trim() && v.price)
+          .map((v) => ({
+            label: v.label.trim(),
+            price: Number(v.price),
+            salePrice: v.salePrice ? Number(v.salePrice) : null,
+            image: v.image.trim() || undefined,
+            sku: v.sku.trim() || undefined,
+            stock: v.stock ? Number(v.stock) : 0,
+          }));
+        if (validVariants.length > 0) body.variants = validVariants;
       }
 
       // Addons
@@ -338,15 +340,51 @@ export default function NewProductPage() {
               </div>
             </div>
 
+            {/* Product Type */}
+            <div className={cardClass}>
+              <h2 className="text-base font-semibold text-[#1C2120] mb-4">
+                Product Type
+              </h2>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setProductType("simple")}
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                    productType === "simple"
+                      ? "bg-[#737530] text-white border-[#737530]"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-[#737530]"
+                  }`}
+                >
+                  Simple Product
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setProductType("variable")}
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                    productType === "variable"
+                      ? "bg-[#737530] text-white border-[#737530]"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-[#737530]"
+                  }`}
+                >
+                  Variable Product
+                </button>
+              </div>
+              {productType === "variable" && (
+                <p className="text-xs text-gray-400 mt-2">
+                  Prices and images are set per variant below. Base price is used for listings.
+                </p>
+              )}
+            </div>
+
             {/* Pricing */}
             <div className={cardClass}>
               <h2 className="text-base font-semibold text-[#1C2120] mb-4">
-                Pricing
+                {productType === "variable" ? "Base Pricing" : "Pricing"}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="regularPrice" className={labelClass}>
-                    Regular Price *
+                    {productType === "variable" ? "Starting Price *" : "Regular Price *"}
                   </label>
                   <input
                     id="regularPrice"
@@ -360,21 +398,23 @@ export default function NewProductPage() {
                     required
                   />
                 </div>
-                <div>
-                  <label htmlFor="salePrice" className={labelClass}>
-                    Sale Price
-                  </label>
-                  <input
-                    id="salePrice"
-                    type="number"
-                    value={salePrice}
-                    onChange={(e) => setSalePrice(e.target.value)}
-                    placeholder="Optional"
-                    min="0"
-                    step="0.01"
-                    className={inputClass}
-                  />
-                </div>
+                {productType === "simple" && (
+                  <div>
+                    <label htmlFor="salePrice" className={labelClass}>
+                      Sale Price
+                    </label>
+                    <input
+                      id="salePrice"
+                      type="number"
+                      value={salePrice}
+                      onChange={(e) => setSalePrice(e.target.value)}
+                      placeholder="Optional"
+                      min="0"
+                      step="0.01"
+                      className={inputClass}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -409,135 +449,107 @@ export default function NewProductPage() {
               </div>
               {images.length === 0 ? (
                 <p className="text-sm text-gray-400">
-                  No images added yet. Click &quot;Add Image&quot; to add image
-                  URLs.
+                  No images added yet. Click &quot;Add Image&quot; to upload or
+                  add image URLs.
                 </p>
               ) : (
                 <div className="space-y-3">
                   {images.map((img, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="flex-1 space-y-2">
-                        <input
-                          type="url"
-                          value={img.url}
-                          onChange={(e) =>
-                            updateImage(index, "url", e.target.value)
-                          }
-                          placeholder="Image URL"
-                          className={inputClass}
-                        />
-                        <input
-                          type="text"
-                          value={img.alt}
-                          onChange={(e) =>
-                            updateImage(index, "alt", e.target.value)
-                          }
-                          placeholder="Alt text (optional)"
-                          className={inputClass}
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="mt-2 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4 4L12 12M4 12L12 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
+                    <ImageUploader
+                      key={index}
+                      value={img.url}
+                      alt={img.alt}
+                      onUrlChange={(url) => updateImage(index, "url", url)}
+                      onAltChange={(alt) => updateImage(index, "alt", alt)}
+                      onRemove={() => removeImage(index)}
+                    />
                   ))}
                 </div>
               )}
             </div>
 
             {/* Variants */}
-            <div className={cardClass}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-base font-semibold text-[#1C2120]">
-                  Variants
-                </h2>
-                <button
-                  type="button"
-                  onClick={addVariant}
-                  className="inline-flex items-center gap-1 text-sm text-[#737530] hover:text-[#4C4D27] font-medium transition-colors"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            {productType === "variable" && (
+              <div className={cardClass}>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-base font-semibold text-[#1C2120]">
+                    Variants
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={addVariant}
+                    className="inline-flex items-center gap-1 text-sm text-[#737530] hover:text-[#4C4D27] font-medium transition-colors"
                   >
-                    <path
-                      d="M8 3.33334V12.6667M3.33334 8H12.6667"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  Add Variant
-                </button>
-              </div>
-              {variants.length === 0 ? (
-                <p className="text-sm text-gray-400">
-                  No variants. Add variants for different sizes or styles.
-                </p>
-              ) : (
-                <div className="space-y-4">
-                  {variants.map((v, index) => (
-                    <div key={index} className="border border-gray-100 rounded-lg p-4 relative">
-                      <button
-                        type="button"
-                        onClick={() => removeVariant(index)}
-                        className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      >
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                      </button>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">Label *</label>
-                          <input type="text" value={v.label} onChange={(e) => updateVariant(index, "label", e.target.value)} placeholder="e.g., Small" className={inputClass} />
-                        </div>
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">Price *</label>
-                          <input type="number" value={v.price} onChange={(e) => updateVariant(index, "price", e.target.value)} placeholder="0" min="0" step="0.01" className={inputClass} />
-                        </div>
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">Sale Price</label>
-                          <input type="number" value={v.salePrice} onChange={(e) => updateVariant(index, "salePrice", e.target.value)} placeholder="Optional" min="0" step="0.01" className={inputClass} />
-                        </div>
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">SKU</label>
-                          <input type="text" value={v.sku} onChange={(e) => updateVariant(index, "sku", e.target.value)} placeholder="Optional" className={inputClass} />
-                        </div>
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">Stock</label>
-                          <input type="number" value={v.stock} onChange={(e) => updateVariant(index, "stock", e.target.value)} placeholder="0" min="0" className={inputClass} />
-                        </div>
-                        <div>
-                          <label className="text-xs text-gray-500 mb-1 block">Image URL</label>
-                          <input type="url" value={v.image} onChange={(e) => updateVariant(index, "image", e.target.value)} placeholder="Optional" className={inputClass} />
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 3.33334V12.6667M3.33334 8H12.6667"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    Add Variant
+                  </button>
+                </div>
+                {variants.length === 0 ? (
+                  <p className="text-sm text-gray-400">
+                    No variants. Add variants for different sizes or styles.
+                  </p>
+                ) : (
+                  <div className="space-y-4">
+                    {variants.map((v, index) => (
+                      <div key={index} className="border border-gray-100 rounded-lg p-4 relative">
+                        <button
+                          type="button"
+                          onClick={() => removeVariant(index)}
+                          className="absolute top-2 right-2 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M4 12L12 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        </button>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">Label *</label>
+                            <input type="text" value={v.label} onChange={(e) => updateVariant(index, "label", e.target.value)} placeholder="e.g., Small" className={inputClass} />
+                          </div>
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">Price *</label>
+                            <input type="number" value={v.price} onChange={(e) => updateVariant(index, "price", e.target.value)} placeholder="0" min="0" step="0.01" className={inputClass} />
+                          </div>
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">Sale Price</label>
+                            <input type="number" value={v.salePrice} onChange={(e) => updateVariant(index, "salePrice", e.target.value)} placeholder="Optional" min="0" step="0.01" className={inputClass} />
+                          </div>
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">SKU</label>
+                            <input type="text" value={v.sku} onChange={(e) => updateVariant(index, "sku", e.target.value)} placeholder="Optional" className={inputClass} />
+                          </div>
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">Stock</label>
+                            <input type="number" value={v.stock} onChange={(e) => updateVariant(index, "stock", e.target.value)} placeholder="0" min="0" className={inputClass} />
+                          </div>
+                          <div>
+                            <label className="text-xs text-gray-500 mb-1 block">Image</label>
+                            <ImageUploader
+                              value={v.image}
+                              onUrlChange={(url) => updateVariant(index, "image", url)}
+                              onRemove={() => updateVariant(index, "image", "")}
+                              compact
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Addons */}
             <div className={cardClass}>
