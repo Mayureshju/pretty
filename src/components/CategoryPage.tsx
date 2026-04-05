@@ -81,9 +81,31 @@ const sortOptions = [
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill={filled ? "#737530" : "none"} stroke={filled ? "#737530" : "#fff"} strokeWidth="2">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill={filled ? "var(--accent-rose)" : "none"} stroke={filled ? "var(--accent-rose)" : "currentColor"} strokeWidth="2">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
     </svg>
+  );
+}
+
+function StarRating({ rating, count }: { rating: number; count: number }) {
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating - fullStars >= 0.3;
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="flex items-center">
+        {Array.from({ length: 5 }, (_, i) => (
+          <svg key={i} width="12" height="12" viewBox="0 0 24 24"
+            fill={i < fullStars ? "var(--accent-gold)" : i === fullStars && hasHalf ? "url(#half)" : "#e0e0e0"}
+            stroke="none">
+            <defs><linearGradient id="half"><stop offset="50%" stopColor="var(--accent-gold)" /><stop offset="50%" stopColor="#e0e0e0" /></linearGradient></defs>
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        ))}
+      </div>
+      {count > 0 && (
+        <span className="text-[11px] text-[var(--text-gray)]">({count.toLocaleString()})</span>
+      )}
+    </div>
   );
 }
 
@@ -295,74 +317,100 @@ export default function CategoryPage({
       {/* Product Grid */}
       {filteredProducts.length > 0 ? (
         <>
-          <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4 py-6">
+          <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6 py-8">
             {filteredProducts.map((product) => {
-              // Use pre-computed sale pricing from server
               const si = product._saleInfo;
               const effectivePrice = si ? si.effectivePrice : product.pricing.currentPrice;
               const effectiveDiscount = si ? si.discountPercent : discount(product);
               const saleLabel = si?.saleLabel;
               const mainImage = product.images?.[0]?.url || "/images/products/placeholder.jpg";
+              const hoverImage = product.images?.[1]?.url;
 
               return (
-                <div key={product._id} className="product-card relative bg-white rounded-xl overflow-hidden group"
-                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                  {product.isFeatured && (
-                    <span className="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 bg-[#737530] text-white text-[10px] font-semibold rounded-md">
-                      Best Seller
-                    </span>
-                  )}
-                  {saleLabel && !product.isFeatured && (
-                    <span className="absolute top-2.5 left-2.5 z-10 px-2 py-0.5 bg-[#EA1E61] text-white text-[10px] font-semibold rounded-md">
-                      {saleLabel}
-                    </span>
-                  )}
+                <Link key={product._id} href={`/product/${product.slug}/`}
+                  className="product-card relative bg-white rounded-xl overflow-hidden group cursor-pointer
+                    border border-[var(--border-card)] hover:border-[var(--accent-sage)]
+                    transition-all duration-500 ease-out hover:-translate-y-1.5"
+                  style={{ boxShadow: "var(--shadow-card)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "var(--shadow-hover)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "var(--shadow-card)"; }}>
 
-                  <button onClick={() => toggleWishlist(product._id)}
-                    className="absolute top-2.5 right-2.5 z-10 bg-white/30 backdrop-blur-sm rounded-full p-1.5 transition-all hover:scale-110 hover:bg-white/60 cursor-pointer">
-                    <HeartIcon filled={wishlist.includes(product._id)} />
-                  </button>
+                  {/* Badges */}
+                  <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1">
+                    {product.isFeatured && (
+                      <span className="inline-flex items-center gap-1 px-2 py-[3px] text-[9px] font-bold tracking-wider uppercase
+                        bg-[var(--primary)] text-white rounded-[4px] shadow-sm">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                        Bestseller
+                      </span>
+                    )}
+                    {saleLabel && !product.isFeatured && (
+                      <span className="px-2 py-[3px] text-[9px] font-bold tracking-wider uppercase
+                        bg-[var(--accent-rose)] text-white rounded-[4px] shadow-sm">
+                        {saleLabel}
+                      </span>
+                    )}
+                  </div>
 
-                  <Link href={`/product/${product.slug}/`} className="block">
-                    <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f5f5f5]">
-                      <Image src={mainImage} alt={product.images?.[0]?.alt || product.name} fill unoptimized
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" loading="lazy" />
+                  {/* Discount tag */}
+                  {effectiveDiscount > 0 && (
+                    <div className="absolute top-2.5 right-2.5 z-10">
+                      <span className="block px-1.5 py-[3px] text-[10px] font-bold
+                        bg-[var(--accent-rose)] text-white rounded-[4px] leading-none shadow-sm">
+                        -{effectiveDiscount}%
+                      </span>
                     </div>
-                  </Link>
+                  )}
 
-                  <div className="p-3">
-                    <Link href={`/product/${product.slug}/`}>
-                      <h3 className="text-[13px] font-medium text-[#1C2120] leading-snug line-clamp-2 min-h-[34px]">
-                        {product.name}
-                      </h3>
-                    </Link>
+                  {/* Image container */}
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--bg-lighter)]">
+                    <Image src={mainImage} alt={product.images?.[0]?.alt || product.name} fill unoptimized
+                      className={`object-cover transition-all duration-700 ease-out ${hoverImage ? "group-hover:opacity-0" : "group-hover:scale-[1.06]"}`}
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" loading="lazy" />
+                    {hoverImage && (
+                      <Image src={hoverImage} alt={product.name} fill unoptimized
+                        className="object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out scale-[1.04] group-hover:scale-100"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" loading="lazy" />
+                    )}
 
-                    <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                      {effectiveDiscount > 0 && (
-                        <span className="text-[11px] text-[#999] line-through">
-                          &#8377;{product.pricing.regularPrice.toLocaleString()}
-                        </span>
-                      )}
-                      <span className="text-sm font-bold text-[#1C2120]">
+                    {/* Hover overlay actions */}
+                    <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-center gap-2
+                      translate-y-full group-hover:translate-y-0 transition-transform duration-400 ease-out pb-3 pt-10
+                      bg-gradient-to-t from-black/30 to-transparent">
+                      <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWishlist(product._id); }}
+                        className="flex items-center justify-center w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm
+                          text-[var(--text-dark)] hover:bg-white hover:scale-110 transition-all duration-200
+                          shadow-[0_2px_8px_rgba(0,0,0,0.15)] cursor-pointer">
+                        <HeartIcon filled={wishlist.includes(product._id)} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Product info */}
+                  <div className="px-3 pt-3 pb-3.5 md:px-3.5 md:pt-3.5 md:pb-4 flex flex-col gap-1.5">
+                    <h3 className="text-[12.5px] md:text-[13px] font-medium text-[var(--text-dark)] leading-[1.4] line-clamp-2 min-h-[36px]
+                      group-hover:text-[var(--primary)] transition-colors duration-300">
+                      {product.name}
+                    </h3>
+
+                    {/* Price row */}
+                    <div className="flex items-baseline gap-1.5 flex-wrap">
+                      <span className="text-[15px] md:text-base font-bold text-[var(--text-dark)] tracking-tight">
                         &#8377;{effectivePrice.toLocaleString()}
                       </span>
                       {effectiveDiscount > 0 && (
-                        <span className="text-[10px] font-semibold text-[#FFA500]">{effectiveDiscount}% OFF</span>
+                        <span className="text-[11px] text-[var(--text-light)] line-through decoration-[var(--text-light)]">
+                          &#8377;{product.pricing.regularPrice.toLocaleString()}
+                        </span>
                       )}
                     </div>
 
+                    {/* Rating */}
                     {product.metrics.averageRating > 0 && (
-                      <div className="flex items-center gap-1 mt-1.5">
-                        <span className="text-[11px]">&#9733;</span>
-                        <span className="text-[11px] text-[#1C2120]">
-                          {product.metrics.averageRating}
-                          {product.metrics.ratingCount > 0 && ` | ${product.metrics.ratingCount.toLocaleString()}`}
-                        </span>
-                      </div>
+                      <StarRating rating={product.metrics.averageRating} count={product.metrics.ratingCount} />
                     )}
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
