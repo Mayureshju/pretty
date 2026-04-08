@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { connectDB } from "@/lib/db";
+import Product from "@/models/Product";
+import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CityFlowerPage from "@/components/CityFlowerPage";
 
 export const metadata: Metadata = {
@@ -6,6 +9,8 @@ export const metadata: Metadata = {
   description:
     "Send flowers to Navi Mumbai from Pretty Petals. Our online flower delivery in Navi Mumbai will send the best quality flowers on the same day.",
 };
+
+export const revalidate = 3600;
 
 const naviMumbaiData = {
   city: "Navi Mumbai",
@@ -62,6 +67,51 @@ const naviMumbaiData = {
   ],
 };
 
-export default function SendFlowersNaviMumbai() {
-  return <CityFlowerPage data={naviMumbaiData} />;
+async function getProducts() {
+  await connectDB();
+  const [bestSellers, popular, activeSales] = await Promise.all([
+    Product.find({ isActive: true })
+      .select("name slug pricing images metrics isFeatured categories")
+      .sort({ "metrics.totalSales": -1 })
+      .limit(8)
+      .lean(),
+    Product.find({ isActive: true })
+      .select("name slug pricing images metrics isFeatured categories")
+      .sort({ createdAt: -1 })
+      .limit(8)
+      .lean(),
+    getActiveSales(),
+  ]);
+
+  const addSaleInfo = (p: (typeof bestSellers)[number]) => {
+    const sale = applyActiveSale(
+      { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
+      activeSales as Parameters<typeof applyActiveSale>[1]
+    );
+    return {
+      ...p,
+      _saleInfo: sale.hasSale
+        ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel }
+        : null,
+    };
+  };
+
+  return {
+    bestSellers: bestSellers.map(addSaleInfo),
+    popularProducts: popular.map(addSaleInfo),
+  };
+}
+
+export default async function SendFlowersNaviMumbai() {
+  const { bestSellers, popularProducts } = await getProducts();
+
+  return (
+    <CityFlowerPage
+      data={{
+        ...naviMumbaiData,
+        bestSellers: JSON.parse(JSON.stringify(bestSellers)),
+        popularProducts: JSON.parse(JSON.stringify(popularProducts)),
+      }}
+    />
+  );
 }
