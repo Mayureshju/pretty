@@ -38,6 +38,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# image enhancement/upscaling progress
+.enhance-progress.json
+.upscale-progress.json
+.upscale-tmp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
