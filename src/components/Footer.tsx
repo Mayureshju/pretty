@@ -3,27 +3,20 @@
 const footerLinks = {
   column1: [
     { label: "About Us", href: "/about-us" },
-    { label: "Sell With Us", href: "/sell-with-us" },
-    { label: "Coupons & Deals", href: "/coupon-deals" },
-    { label: "Cancellation & Refund", href: "/cancellation-and-refund" },
-    { label: "Terms and Conditions", href: "/termcondition" },
-    { label: "Retail Stores", href: "/retail-stores" },
-    { label: "Career", href: "/career-page" },
+    { label: "Delivery & Refund Policy", href: "/delivery-and-refund-policy" },
+    { label: "Terms and Conditions", href: "/terms-and-conditions" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ],
   column2: [
-    { label: "Media", href: "/show-media" },
-    { label: "Privacy Policy", href: "/privacy-page" },
-    { label: "Reviews", href: "/reviews" },
     { label: "Blog", href: "/blog" },
-    { label: "Sitemap", href: "/sitemap.html" },
     { label: "Quotes", href: "/quotes" },
+    { label: "Sitemap", href: "/sitemap.html" },
+    { label: "Retail Stores", href: "https://share.google/aQtmjIlTnncsUqGmJ" },
   ],
   column3: [
     { label: "Corporate Gifts", href: "/corporate-gifts" },
-    { label: "Franchise", href: "/franchise" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "Download App", href: "/download-app" },
   ],
   deliveryCities: [
     { label: "Flowers in Mumbai", href: "/flowers/" },
@@ -83,33 +76,15 @@ export default function Footer() {
             </li>
           </ul>
 
-          {/* App Download & Social */}
+          {/* Brand & Social */}
           <div className="col-span-2">
-            <p className="text-sm font-medium text-[#1C2120] mb-3">
-              Simplify your gifting experience with our app.
+            {/* Pretty Petals Logo */}
+            <a href="/" className="inline-block mb-5">
+              <img src="/logo11.webp" alt="Pretty Petals" className="h-12 md:h-14 w-auto" />
+            </a>
+            <p className="text-[13px] text-[#555] leading-relaxed mb-5 max-w-xs">
+              Mumbai&apos;s trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
             </p>
-
-            {/* App Store Buttons */}
-            <div className="flex gap-3 mb-5">
-              <div className="flex items-center gap-2 bg-black text-white rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-800 transition-colors">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                  <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" />
-                </svg>
-                <div>
-                  <div className="text-[8px] uppercase tracking-wider opacity-80">Get it on</div>
-                  <div className="text-[13px] font-medium -mt-0.5">Google Play</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 bg-black text-white rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-800 transition-colors">
-                <svg width="16" height="18" viewBox="0 0 24 24" fill="white">
-                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 16.56 2.93 11.3 4.7 7.72C5.57 5.94 7.36 4.86 9.28 4.84C10.56 4.81 11.78 5.72 12.56 5.72C13.34 5.72 14.83 4.62 16.39 4.8C17.07 4.83 18.94 5.09 20.13 6.86C20.04 6.92 17.77 8.27 17.8 11.06C17.83 14.36 20.67 15.45 20.7 15.46C20.67 15.55 20.23 17.09 19.12 18.68L18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
-                </svg>
-                <div>
-                  <div className="text-[8px] uppercase tracking-wider opacity-80">Download on the</div>
-                  <div className="text-[13px] font-medium -mt-0.5">App Store</div>
-                </div>
-              </div>
-            </div>
 
             {/* Social Media */}
             <h3 className="text-sm font-semibold text-[#1C2120] mb-3">

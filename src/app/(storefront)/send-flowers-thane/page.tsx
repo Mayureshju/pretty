@@ -3,14 +3,159 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CityFlowerPage from "@/components/CityFlowerPage";
+import type { ContentSection, ContentSlot } from "@/components/CityFlowerPage";
 
 export const metadata: Metadata = {
   title: "Flower Delivery Thane | Florist in Thane - Pretty Petals",
   description:
-    "Flower Delivery Thane – Pretty Petals offers fresh flowers with same-day delivery in Thane. Pretty Petals is one of the #1 florists in Thane.",
+    "Flower Delivery Thane \u2013 Pretty Petals offers fresh flowers with same-day delivery in Thane. Pretty Petals is one of the #1 florists in Thane.",
 };
 
 export const revalidate = 3600;
+
+const sections: ContentSection[] = [
+  {
+    type: "occasions",
+    title: "Send Flowers in Thane for Every Occasion",
+    content: "Flowers make every moment memorable. At Pretty Petals, we design bouquets that match the emotion behind your gesture.",
+    listLabel: "Popular Occasions:",
+    occasions: [
+      "Birthday flower delivery in Thane",
+      "Anniversary & romantic flowers",
+      "Congratulations & celebration bouquets",
+      "Get well soon flowers",
+      "Wedding & engagement floral arrangements",
+    ],
+    closingLine: "Each bouquet is handcrafted to suit your occasion and create a lasting impression.",
+  },
+  {
+    type: "product-highlight",
+    title: "Explore Our Premium Flower Collection",
+    content: "Choose from a wide variety of fresh and elegant floral arrangements:",
+    highlights: [
+      {
+        name: "Fresh Flower Bouquets",
+        description: "Hand-tied bouquets crafted with the freshest seasonal blooms, perfect for any occasion.",
+      },
+      {
+        name: "Flower & Gift Combos",
+        description: "Pair stunning flowers with chocolates, cakes, or personalized gifts for the perfect surprise.",
+      },
+      {
+        name: "Luxury Floral Designs",
+        description: "Premium arrangements featuring exotic flowers and elegant presentation for those extra-special moments.",
+      },
+    ],
+    closingLine: "All products are available for same-day flower delivery in Thane.",
+  },
+  {
+    type: "text",
+    title: "Flower Delivery in Thane \u2013 Fast & Reliable",
+    content: "Need urgent delivery? We\u2019ve got you covered.",
+    subHeading: "Our Delivery Options:",
+    listItems: [
+      "Same-day flower delivery",
+      "Express delivery within hours",
+    ],
+  },
+  {
+    type: "features",
+    title: "Why Choose Pretty Petals \u2013 Best Florist in Thane",
+    content: "We go beyond just delivering flowers \u2014 we deliver experiences.",
+    features: [
+      {
+        title: "Fresh Flowers, Every Day",
+        description: "We source flowers daily to maintain freshness and quality.",
+      },
+      {
+        title: "Expert Florist Designs",
+        description: "Our skilled florists create visually stunning arrangements.",
+      },
+      {
+        title: "Personalized Gifting",
+        description: "Customize bouquets as per your needs and preferences.",
+      },
+      {
+        title: "Transparent Pricing",
+        description: "No hidden charges \u2014 clear and honest pricing.",
+      },
+      {
+        title: "Local Florist You Can Trust",
+        description: "We are a real florist brand, not just a marketplace.",
+      },
+    ],
+  },
+  {
+    type: "promise",
+    title: "Our Commitment to Quality & Customer Satisfaction",
+    content: "At Pretty Petals, every order is handled with care because we understand the emotions behind it.",
+    ensureLabel: "We ensure:",
+    bullets: [
+      "Fresh and vibrant flowers",
+      "Premium packaging",
+      "Timely delivery",
+      "Dedicated customer support",
+    ],
+    closingLine: "Our goal is to create a smooth and delightful gifting experience every time.",
+  },
+  {
+    type: "process",
+    title: "How We Deliver Fresh Flowers in Thane",
+    qualitySteps: {
+      intro: "Our process ensures quality at every step:",
+      items: [
+        "Daily sourcing of fresh flowers",
+        "Handcrafted bouquet design",
+        "Quality check before dispatch",
+        "Safe and timely delivery",
+      ],
+      closing: "This helps us maintain high standards for every order.",
+    },
+    orderingIntro: "Sending flowers with Pretty Petals is simple:",
+    steps: [
+      { label: "Choose your favorite bouquet", description: "" },
+      { label: "Select delivery date & time", description: "" },
+      { label: "Add a personalized message", description: "" },
+      { label: "Place your order securely", description: "" },
+    ],
+    closingLine: "Sit back while we deliver your emotions with care.",
+  },
+  {
+    type: "faq",
+    title: "FAQs \u2013 Flower Delivery Thane",
+    faqs: [
+      {
+        question: "Do you offer same-day flower delivery in Thane?",
+        answer: "Yes, we provide same-day delivery for orders placed before the cut-off time.",
+      },
+      {
+        question: "Is midnight delivery available?",
+        answer: "Yes, we offer midnight flower delivery for special occasions.",
+      },
+      {
+        question: "Do you deliver across all areas in Thane?",
+        answer: "We cover major areas including Thane West, Ghodbunder Road, Majiwada, and more.",
+      },
+      {
+        question: "Can I customize my bouquet?",
+        answer: "Yes, we offer personalized floral arrangements based on your requirements.",
+      },
+    ],
+  },
+];
+
+const contentLayout: ContentSlot[] = [
+  { slot: "best-sellers" },
+  { slot: "section", index: 0 },
+  { slot: "collections" },
+  { slot: "section", index: 1 },
+  { slot: "popular-products" },
+  { slot: "section", index: 2 },
+  { slot: "section", index: 3 },
+  { slot: "section", index: 4 },
+  { slot: "section", index: 5 },
+  { slot: "section", index: 6 },
+];
 
 const thaneData = {
   city: "Thane",
@@ -18,29 +163,9 @@ const thaneData = {
   heroSubtitle: "Fresh handcrafted bouquets delivered same-day across Thane",
   heroImage: "/images/banners/flowers.jpg",
   intro:
-    "Send a flower bouquet online to Thane to greet your loved ones on any special occasion. Booking flowers in Thane gives you satisfaction over its quality, freshness and fragrance. Our florist in Thane displays flowers that will enthrall you. Our online flower shop in Thane excels in offering you an exquisite range of flowers that you will admire and adore. Book for flower delivery in Thane even as you travel abroad. It makes your presence felt even in your absence. A flower bouquet online sent to Thane by you sends flutters of joy and happiness in your family circles. It creates an indelible impression about you. Online flower delivery in Thane is something you cannot afford to miss.",
-  sections: [
-    {
-      title: "Online Best Florist in Thane",
-      content:
-        "Pretty Petals is the premier online florist serving Thane with the freshest flowers, stunning arrangements, and reliable same-day delivery. Our expert florists handcraft each bouquet with care, ensuring every petal is perfect. Whether you need roses for a romantic gesture, lilies for a celebration, or a mixed bouquet to brighten someone's day, our Thane flower delivery service has you covered.",
-    },
-    {
-      title: "Compensate Your Absence with Flower Bouquet Delivery in Thane",
-      content:
-        "Is this month studded with parties? It may not be possible to attend all parties. Let bouquet delivery in Thane mark your attendance when you are away from the city. So just click and book. Our online flower shop in Thane has all the varieties you look for. Spread the cloak of happiness all around. Flowers are communication media too. They convey your expressions, feelings and care. Peep into our florist in Thane and you can see for yourself.",
-    },
-    {
-      title: "Gifting Flowers in Thane",
-      content:
-        "Most moving moments are silent as it can be. Assuage the feelings with online flowers in Thane. Flowers on Earth are God's creation at its best. Pick and choose flowers you like from our florist in Thane. They are feast to your eyes. Online flower delivery in Thane has captured the imagination of one and all. When people wish to celebrate, it is flowers online delivery that they think of and how right they are!",
-    },
-    {
-      title: "Send Roses Online to Thane",
-      content:
-        "Roses create sweet memories, fragrant thoughts and gentle feelings. Is there anything more exciting than sending roses online? Variety, fragrance and freshness in every bunch and in every flower are guaranteed in online rose delivery in Thane. Don't you want to join that fortunate lot and get the best roses from our online flower shop in Thane? Avail this opportunity with Pretty Petals. A simple click makes a joyous leap, a leap of joy when you send flowers online to Thane.",
-    },
-  ],
+    "Looking for a trusted florist in Thane who can deliver fresh, beautiful flowers on time? Welcome to Pretty Petals \u2014 your go-to destination for online flower delivery in Thane with premium quality, elegant designs, and reliable service. Whether it\u2019s a birthday, anniversary, romantic surprise, or a last-minute celebration, we help you express your emotions with perfectly crafted floral arrangements. Order flowers in Thane today for same-day delivery.",
+  sections,
+  contentLayout,
   testimonials: [
     {
       name: "Divya Shah",
@@ -66,6 +191,17 @@ const thaneData = {
     { name: "Corporate", count: 310, href: "/gifts/corporate" },
   ],
 };
+
+const faqSection = sections.find((s) => s.type === "faq") as Extract<ContentSection, { type: "faq" }>;
+const faqStructuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqSection.faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+});
 
 async function getProducts() {
   await connectDB();
@@ -106,12 +242,19 @@ export default async function SendFlowersThane() {
   const { bestSellers, popularProducts } = await getProducts();
 
   return (
-    <CityFlowerPage
-      data={{
-        ...thaneData,
-        bestSellers: JSON.parse(JSON.stringify(bestSellers)),
-        popularProducts: JSON.parse(JSON.stringify(popularProducts)),
-      }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        /* Safe: static developer-authored JSON-LD, no user input */
+        dangerouslySetInnerHTML={{ __html: faqStructuredData }}
+      />
+      <CityFlowerPage
+        data={{
+          ...thaneData,
+          bestSellers: JSON.parse(JSON.stringify(bestSellers)),
+          popularProducts: JSON.parse(JSON.stringify(popularProducts)),
+        }}
+      />
+    </>
   );
 }
