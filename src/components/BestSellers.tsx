@@ -1,111 +1,25 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const products = [
-  {
-    id: 1,
-    name: "10 Red Roses Bouquet",
-    href: "/product/red-roses-bouquet/",
-    price: 695,
-    originalPrice: 770,
-    rating: 4.9,
-    reviews: 1645,
-    delivery: "Tomorrow",
-    image: "/images/products/red-roses.jpg",
-    badge: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Profuse Jade Terrarium",
-    href: "/product/profuse-jade-terrarium/",
-    price: 695,
-    originalPrice: 999,
-    rating: 4.9,
-    reviews: 68,
-    delivery: "Tomorrow",
-    image: "/images/products/jade-plant.jpg",
-    badge: "PRICE DROP",
-  },
-  {
-    id: 3,
-    name: "Chocolate Truffle Cake",
-    href: "/product/chocolate-truffle-cake/",
-    price: 595,
-    originalPrice: 745,
-    rating: 4.9,
-    reviews: 829,
-    delivery: "Tomorrow",
-    image: "/images/products/chocolate-cake.jpg",
-    badge: "Best Seller",
-  },
-  {
-    id: 4,
-    name: "Bellina Purple Orchid Bouquet",
-    href: "/product/purple-orchid-bouquet/",
-    price: 795,
-    originalPrice: 999,
-    rating: 4.9,
-    reviews: 676,
-    delivery: "Tomorrow",
-    image: "/images/products/purple-orchid.jpg",
-    badge: null,
-  },
-  {
-    id: 5,
-    name: "Pastel Blooms Of Serenity",
-    href: "/product/pastel-blooms/",
-    price: 595,
-    originalPrice: 795,
-    rating: 5,
-    reviews: 2,
-    delivery: "Tomorrow",
-    image: "/images/products/pink-bouquet.jpg",
-    badge: "PRICE DROP",
-  },
-  {
-    id: 6,
-    name: "Red Roses Wrapped In Heartfelt Devotion",
-    href: "/product/red-roses-wrapped/",
-    price: 545,
-    originalPrice: 795,
-    rating: 4.8,
-    reviews: 4,
-    delivery: "Tomorrow",
-    image: "/images/products/red-wrapped.jpg",
-    badge: "PRICE DROP",
-  },
-  {
-    id: 7,
-    name: "Decadent Red Velvet Cake",
-    href: "/product/red-velvet-cake/",
-    price: 685,
-    originalPrice: 895,
-    rating: 4.9,
-    reviews: 320,
-    delivery: "Tomorrow",
-    image: "/images/products/red-velvet.jpg",
-    badge: "Best Seller",
-  },
-  {
-    id: 8,
-    name: "Twin Hearts Floral Balloon",
-    href: "/product/twin-hearts-balloon/",
-    price: 895,
-    originalPrice: 1295,
-    rating: 4.6,
-    reviews: 8,
-    delivery: "Tomorrow",
-    image: "/images/products/balloon.jpg",
-    badge: null,
-  },
-];
+interface BestSellerProduct {
+  _id: string;
+  name: string;
+  slug: string;
+  pricing: { regularPrice: number; salePrice?: number | null; currentPrice: number };
+  images: { url: string; alt?: string; order: number }[];
+  metrics: { ratingCount: number; averageRating: number; totalSales: number };
+  isFeatured: boolean;
+  _saleInfo?: { effectivePrice: number; discountPercent: number; saleLabel: string | null } | null;
+}
 
-export default function BestSellers() {
+export default function BestSellers({ products }: { products?: BestSellerProduct[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -113,7 +27,6 @@ export default function BestSellers() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    // Header fade-in
     if (headerRef.current) {
       gsap.fromTo(
         headerRef.current,
@@ -123,15 +36,11 @@ export default function BestSellers() {
           y: 0,
           duration: 0.6,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         }
       );
     }
 
-    // Product cards stagger fade-in
     const cards = cardsRef.current.filter(Boolean);
     gsap.fromTo(
       cards,
@@ -142,17 +51,14 @@ export default function BestSellers() {
         duration: 0.6,
         stagger: 0.06,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 65%",
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 65%" },
       }
     );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
   }, []);
+
+  if (!products || products.length === 0) return null;
 
   return (
     <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-16">
@@ -164,98 +70,89 @@ export default function BestSellers() {
           </h2>
           <p className="text-sm text-[#939393] mt-1">Surprise Your Loved Ones</p>
         </div>
-        <a
-          href="/best-seller"
+        <Link
+          href="/flowers/"
           className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium border border-[#737530] text-[#737530] rounded-lg px-4 py-2 transition-colors hover:bg-[#737530] hover:text-white shrink-0"
         >
           View All
-        </a>
+        </Link>
       </div>
 
       {/* Product Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        {products.map((product, i) => (
-          <div
-            key={product.id}
-            ref={(el) => {
-              cardsRef.current[i] = el;
-            }}
-            className="bg-white rounded-lg overflow-hidden"
-          >
-            {/* Product Image */}
-            <a href={product.href} className="block">
-              <div className="aspect-square bg-[#F5F5F5] overflow-hidden relative">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                {product.badge && (
-                  <span
-                    className={`absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                      product.badge === "PRICE DROP"
-                        ? "bg-red-500 text-white"
-                        : "border border-[#737530] text-[#737530] bg-white"
-                    }`}
-                  >
-                    {product.badge}
-                  </span>
-                )}
-                {/* Carousel dots indicator */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-80" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-30" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1C2120] opacity-30" />
+        {products.map((product, i) => {
+          const price = product._saleInfo?.effectivePrice ?? product.pricing.currentPrice;
+          const originalPrice = product.pricing.regularPrice;
+          const hasDiscount = price < originalPrice;
+          const image = product.images?.[0]?.url || "/images/products/placeholder.jpg";
+
+          return (
+            <div
+              key={product._id}
+              ref={(el) => { cardsRef.current[i] = el; }}
+              className="bg-white rounded-xl overflow-hidden border border-[#F0F0F0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow"
+            >
+              <Link href={`/product/${product.slug}/`} className="block">
+                <div className="aspect-square bg-[#F5F5F5] overflow-hidden relative">
+                  <Image
+                    src={image}
+                    alt={product.images?.[0]?.alt || product.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    loading="lazy"
+                  />
+                  {product._saleInfo?.saleLabel && (
+                    <span className="absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-red-500 text-white">
+                      {product._saleInfo.discountPercent}% OFF
+                    </span>
+                  )}
+                  {product.isFeatured && !product._saleInfo?.saleLabel && (
+                    <span className="absolute top-2 left-2 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-[#737530] text-[#737530] bg-white">
+                      Best Seller
+                    </span>
+                  )}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1">
+                    {product.images.slice(0, 3).map((_, idx) => (
+                      <span key={idx} className={`w-1.5 h-1.5 rounded-full bg-[#1C2120] ${idx === 0 ? "opacity-80" : "opacity-30"}`} />
+                    ))}
+                  </div>
                 </div>
+              </Link>
+
+              <div className="p-3">
+                <Link href={`/product/${product.slug}/`}>
+                  <h3 className="text-sm font-medium text-[#1C2120] truncate">{product.name}</h3>
+                </Link>
+                <div className="flex items-center gap-1.5 mt-1.5">
+                  {hasDiscount && (
+                    <span className="text-xs text-[#939393] line-through">&#8377;{originalPrice}</span>
+                  )}
+                  <span className="text-sm font-bold text-[#1C2120]">&#8377;{price}</span>
+                </div>
+                {product.metrics.averageRating > 0 && (
+                  <div className="flex items-center gap-1 mt-1.5">
+                    <span className="text-xs text-[#1C2120]">
+                      &#11088; {product.metrics.averageRating.toFixed(1)} | {product.metrics.ratingCount}
+                    </span>
+                  </div>
+                )}
+                <p className="text-[11px] text-[#939393] mt-1.5">
+                  Earliest Delivery : <span className="text-[#1C2120] font-medium">Tomorrow</span>
+                </p>
               </div>
-            </a>
-
-            {/* Product Info */}
-            <div className="p-3">
-              <a href={product.href}>
-                <h3 className="text-sm font-medium text-[#1C2120] truncate">
-                  {product.name}
-                </h3>
-              </a>
-
-              {/* Price */}
-              <div className="flex items-center gap-1.5 mt-1.5">
-                <span className="text-xs text-[#939393] line-through">
-                  &#8377;{product.originalPrice}
-                </span>
-                <span className="text-sm font-bold text-[#1C2120]">
-                  &#8377;{product.price}
-                </span>
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mt-1.5">
-                <span className="text-xs text-[#1C2120]">
-                  &#11088; {product.rating} | {product.reviews}
-                </span>
-              </div>
-
-              {/* Delivery */}
-              <p className="text-[11px] text-[#939393] mt-1.5">
-                Earliest Delivery :{" "}
-                <span className="text-[#1C2120] font-medium">
-                  {product.delivery}
-                </span>
-              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* View All Button - full width, centered */}
-      <div className="flex justify-center mt-6">
-        <a
-          href="/best-seller"
+      <div className="flex justify-center mt-6 sm:hidden">
+        <Link
+          href="/flowers/"
           className="inline-flex items-center gap-1 px-8 py-2.5 text-sm font-medium border border-[#737530] text-[#737530] rounded-lg transition-colors hover:bg-[#737530] hover:text-white"
         >
           View All Best Sellers &gt;
-        </a>
+        </Link>
       </div>
     </section>
   );

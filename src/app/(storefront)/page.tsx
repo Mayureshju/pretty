@@ -11,8 +11,40 @@ import Testimonials from "@/components/Testimonials";
 import NewsletterCTA from "@/components/NewsletterCTA";
 import SeoContent from "@/components/SeoContent";
 import BlogSection from "@/components/BlogSection";
+import { connectDB } from "@/lib/db";
+import Product from "@/models/Product";
+import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 
-export default function Home() {
+export const revalidate = 3600;
+
+async function getBestSellers() {
+  await connectDB();
+  const [products, activeSales] = await Promise.all([
+    Product.find({ isActive: true })
+      .select("name slug pricing images metrics isFeatured categories")
+      .sort({ "metrics.totalSales": -1 })
+      .limit(8)
+      .lean(),
+    getActiveSales(),
+  ]);
+
+  return products.map((p) => {
+    const sale = applyActiveSale(
+      { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
+      activeSales as Parameters<typeof applyActiveSale>[1]
+    );
+    return {
+      ...p,
+      _saleInfo: sale.hasSale
+        ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel }
+        : null,
+    };
+  });
+}
+
+export default async function Home() {
+  const bestSellers = await getBestSellers();
+
   return (
     <>
       <HeroBanner />
@@ -20,7 +52,7 @@ export default function Home() {
       <FlowerTypes />
       <TrustStrip />
       <OccasionsSection />
-      <BestSellers />
+      <BestSellers products={JSON.parse(JSON.stringify(bestSellers))} />
       <FeaturedCollection />
       <CategoryCards />
       <ReferBanner />
