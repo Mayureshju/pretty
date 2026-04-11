@@ -42,6 +42,7 @@ async function getHeroBanners() {
     subtitle: b.subtitle || "",
     cta: { text: "Shop Now", href: b.link || "/flowers/" },
     image: b.image,
+    mobileImage: (b as unknown as Record<string, string>).mobileImage || undefined,
   }));
 }
 

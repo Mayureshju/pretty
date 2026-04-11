@@ -16,6 +16,7 @@ interface BannerItem {
   subtitle: string;
   cta: { text: string; href: string };
   image: string;
+  mobileImage?: string;
 }
 
 const fallbackBanners: BannerItem[] = [
@@ -318,12 +319,25 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
             zIndex: idx === current ? 2 : 1,
           }}
         >
-          {/* Background Image */}
-          <div className="absolute inset-0" data-parallax-img>
+          {/* Background Image - Desktop */}
+          <div className="absolute inset-0 hidden md:block" data-parallax-img>
             <Image
               src={b.image}
-              alt={b.tag}
+              alt={b.tag || b.title}
               fill
+              unoptimized
+              className="object-cover"
+              priority={idx === 0}
+              sizes="100vw"
+            />
+          </div>
+          {/* Background Image - Mobile */}
+          <div className="absolute inset-0 md:hidden" data-parallax-img>
+            <Image
+              src={b.mobileImage || b.image}
+              alt={b.tag || b.title}
+              fill
+              unoptimized
               className="object-cover"
               priority={idx === 0}
               sizes="100vw"

@@ -4,6 +4,7 @@ export interface IBanner extends Document {
   title: string;
   subtitle?: string;
   image: string;
+  mobileImage?: string;
   link?: string;
   position: "hero" | "sidebar" | "popup";
   order: number;
@@ -19,6 +20,7 @@ const BannerSchema = new Schema<IBanner>(
     title: { type: String, required: true },
     subtitle: { type: String },
     image: { type: String, required: true },
+    mobileImage: { type: String },
     link: { type: String },
     position: {
       type: String,

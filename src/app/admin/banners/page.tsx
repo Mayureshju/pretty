@@ -14,6 +14,7 @@ interface BannerItem {
   title: string;
   subtitle?: string;
   image: string;
+  mobileImage?: string;
   link?: string;
   position: "hero" | "sidebar" | "popup";
   order: number;
@@ -28,6 +29,7 @@ interface BannerForm {
   title: string;
   subtitle: string;
   image: string;
+  mobileImage: string;
   link: string;
   position: "hero" | "sidebar" | "popup";
   order: number;
@@ -40,6 +42,7 @@ const defaultForm: BannerForm = {
   title: "",
   subtitle: "",
   image: "",
+  mobileImage: "",
   link: "",
   position: "hero",
   order: 0,
@@ -96,6 +99,7 @@ export default function AdminBannersPage() {
       title: banner.title,
       subtitle: banner.subtitle || "",
       image: banner.image,
+      mobileImage: banner.mobileImage || "",
       link: banner.link || "",
       position: banner.position,
       order: banner.order,
@@ -129,6 +133,7 @@ export default function AdminBannersPage() {
         isActive: form.isActive,
       };
       if (form.subtitle) payload.subtitle = form.subtitle;
+      if (form.mobileImage) payload.mobileImage = form.mobileImage;
       if (form.link) payload.link = form.link;
       if (form.startDate) payload.startDate = form.startDate;
       if (form.endDate) payload.endDate = form.endDate;
@@ -388,27 +393,59 @@ export default function AdminBannersPage() {
             />
           </div>
 
-          {/* Image URL */}
+          {/* Desktop Image URL */}
           <div>
             <label className={labelClass}>
-              Image URL <span className="text-red-500">*</span>
+              Desktop Image <span className="text-red-500">*</span>
             </label>
+            <p className="text-[11px] text-gray-400 mb-1.5">
+              Recommended: 1440 x 520 px (landscape). JPEG/WebP, max 2MB.
+            </p>
             <input
               type="url"
               value={form.image}
               onChange={(e) => setForm({ ...form, image: e.target.value })}
               className={inputClass}
-              placeholder="https://example.com/banner.jpg"
+              placeholder="https://example.com/desktop-banner.jpg"
               required
             />
             {form.image && (
               <div className="mt-2 aspect-video relative bg-gray-100 rounded-lg overflow-hidden max-h-40">
                 <Image
                   src={form.image}
-                  alt="Preview"
+                  alt="Desktop preview"
                   fill
                   className="object-cover"
                   sizes="400px"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Image URL */}
+          <div>
+            <label className={labelClass}>Mobile Image</label>
+            <p className="text-[11px] text-gray-400 mb-1.5">
+              Recommended: 768 x 480 px (taller). Falls back to desktop image if empty.
+            </p>
+            <input
+              type="url"
+              value={form.mobileImage}
+              onChange={(e) => setForm({ ...form, mobileImage: e.target.value })}
+              className={inputClass}
+              placeholder="https://example.com/mobile-banner.jpg"
+            />
+            {form.mobileImage && (
+              <div className="mt-2 aspect-[3/2] relative bg-gray-100 rounded-lg overflow-hidden max-h-32">
+                <Image
+                  src={form.mobileImage}
+                  alt="Mobile preview"
+                  fill
+                  className="object-cover"
+                  sizes="300px"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = "none";
                   }}
