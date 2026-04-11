@@ -24,6 +24,15 @@ interface CategoryItem {
   order: number;
   isActive: boolean;
   productCount: number;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+  };
+  isBanner: boolean;
+  bannerImage?: string;
+  displayText?: string;
 }
 
 const defaultForm = {
@@ -33,6 +42,13 @@ const defaultForm = {
   parent: "",
   order: 0,
   isActive: true,
+  seoMetaTitle: "",
+  seoMetaDescription: "",
+  seoOgTitle: "",
+  seoOgDescription: "",
+  isBanner: false,
+  bannerImage: "",
+  displayText: "",
 };
 
 export default function CategoriesPage() {
@@ -89,6 +105,13 @@ export default function CategoriesPage() {
       parent: cat.parent?._id || "",
       order: cat.order,
       isActive: cat.isActive,
+      seoMetaTitle: cat.seo?.metaTitle || "",
+      seoMetaDescription: cat.seo?.metaDescription || "",
+      seoOgTitle: cat.seo?.ogTitle || "",
+      seoOgDescription: cat.seo?.ogDescription || "",
+      isBanner: cat.isBanner || false,
+      bannerImage: cat.bannerImage || "",
+      displayText: cat.displayText || "",
     });
     setModalOpen(true);
   }
@@ -99,9 +122,21 @@ export default function CategoriesPage() {
 
     try {
       const payload = {
-        ...form,
-        parent: form.parent || null,
+        name: form.name,
+        description: form.description,
         image: form.image || undefined,
+        parent: form.parent || null,
+        order: form.order,
+        isActive: form.isActive,
+        seo: {
+          metaTitle: form.seoMetaTitle || "",
+          metaDescription: form.seoMetaDescription || "",
+          ogTitle: form.seoOgTitle || "",
+          ogDescription: form.seoOgDescription || "",
+        },
+        isBanner: form.isBanner,
+        bannerImage: form.bannerImage || undefined,
+        displayText: form.displayText || "",
       };
 
       const url = editingId
@@ -646,6 +681,20 @@ export default function CategoriesPage() {
             </select>
           </div>
 
+          {/* Display Text */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Display Text
+            </label>
+            <input
+              type="text"
+              value={form.displayText}
+              onChange={(e) => setForm({ ...form, displayText: e.target.value })}
+              placeholder="Text shown on category display"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+            />
+          </div>
+
           {/* Order and isActive row */}
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -677,6 +726,98 @@ export default function CategoriesPage() {
               >
                 {form.isActive ? "Active" : "Inactive"}
               </button>
+            </div>
+          </div>
+
+          {/* Banner Toggle */}
+          <div className="border-t border-gray-100 pt-4">
+            <div className="flex items-center justify-between">
+              <label className="block text-sm font-medium text-gray-700">
+                Category Banner
+              </label>
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, isBanner: !form.isBanner })}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  form.isBanner ? "bg-[#737530]" : "bg-gray-200"
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    form.isBanner ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
+            </div>
+            <p className="text-xs text-gray-400 mt-1">Enable to show a banner image on this category page</p>
+          </div>
+
+          {/* Banner Image - only show when isBanner is true */}
+          {form.isBanner && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Banner Image URL
+              </label>
+              <input
+                type="url"
+                value={form.bannerImage}
+                onChange={(e) => setForm({ ...form, bannerImage: e.target.value })}
+                placeholder="https://example.com/banner.jpg"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+              />
+              {form.bannerImage && (
+                <div className="mt-2 rounded-lg overflow-hidden border border-gray-100">
+                  <img src={form.bannerImage} alt="Banner preview" className="w-full h-32 object-cover" />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SEO Section */}
+          <div className="border-t border-gray-100 pt-4">
+            <p className="text-sm font-medium text-gray-700 mb-3">SEO Settings</p>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">SEO Title</label>
+                <input
+                  type="text"
+                  value={form.seoMetaTitle}
+                  onChange={(e) => setForm({ ...form, seoMetaTitle: e.target.value })}
+                  placeholder="Page title for search engines"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">SEO Description</label>
+                <textarea
+                  value={form.seoMetaDescription}
+                  onChange={(e) => setForm({ ...form, seoMetaDescription: e.target.value })}
+                  rows={2}
+                  placeholder="Meta description for search engines"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">OG Title</label>
+                <input
+                  type="text"
+                  value={form.seoOgTitle}
+                  onChange={(e) => setForm({ ...form, seoOgTitle: e.target.value })}
+                  placeholder="Open Graph title for social sharing"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-500 mb-1">OG Description</label>
+                <textarea
+                  value={form.seoOgDescription}
+                  onChange={(e) => setForm({ ...form, seoOgDescription: e.target.value })}
+                  rows={2}
+                  placeholder="Open Graph description for social sharing"
+                  className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
+                />
+              </div>
             </div>
           </div>
         </form>

@@ -7,6 +7,15 @@ export const categorySchema = z.object({
   parent: z.string().optional().nullable(),
   order: z.number().default(0),
   isActive: z.boolean().default(true),
+  seo: z.object({
+    metaTitle: z.string().optional().or(z.literal("")),
+    metaDescription: z.string().optional().or(z.literal("")),
+    ogTitle: z.string().optional().or(z.literal("")),
+    ogDescription: z.string().optional().or(z.literal("")),
+  }).optional(),
+  isBanner: z.boolean().default(false),
+  bannerImage: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  displayText: z.string().optional().or(z.literal("")),
 });
 
 export type CategoryInput = z.infer<typeof categorySchema>;

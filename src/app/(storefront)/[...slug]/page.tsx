@@ -57,19 +57,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const category = await resolveNestedCategory(segments[0], segments[1]);
     if (!category) return { title: "Not Found | Pretty Petals" };
 
-    const title = category.name;
+    const seo = (category as unknown as Record<string, unknown>).seo as { metaTitle?: string; metaDescription?: string; ogTitle?: string; ogDescription?: string } | undefined;
+    const title = seo?.metaTitle || category.name;
     const description =
+      seo?.metaDescription ||
       category.description ||
       `Shop ${category.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
     const path = getCategoryPath(category as Parameters<typeof getCategoryPath>[0]);
 
     return {
-      title: `${title} | Pretty Petals`,
+      title: seo?.metaTitle ? seo.metaTitle : `${category.name} | Pretty Petals`,
       description,
       alternates: { canonical: `${BASE_URL}${path}` },
       openGraph: {
-        title,
-        description,
+        title: seo?.ogTitle || title,
+        description: seo?.ogDescription || description,
         url: `${BASE_URL}${path}`,
         type: "website",
       },
@@ -93,19 +95,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ]);
 
   if (category) {
-    const title = category.name;
+    const seo = (category as unknown as Record<string, unknown>).seo as { metaTitle?: string; metaDescription?: string; ogTitle?: string; ogDescription?: string } | undefined;
+    const title = seo?.metaTitle || category.name;
     const description =
+      seo?.metaDescription ||
       (category.description as string) ||
       `Shop ${category.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
     const path = getCategoryPath(category as Parameters<typeof getCategoryPath>[0]);
 
     return {
-      title: `${title} | Pretty Petals`,
+      title: seo?.metaTitle ? seo.metaTitle : `${category.name as string} | Pretty Petals`,
       description,
       alternates: { canonical: `${BASE_URL}${path}` },
       openGraph: {
-        title,
-        description,
+        title: seo?.ogTitle || title,
+        description: seo?.ogDescription || description,
         url: `${BASE_URL}${path}`,
         type: "website",
       },

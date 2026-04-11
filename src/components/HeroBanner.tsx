@@ -9,7 +9,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const banners = [
+interface BannerItem {
+  id: string | number;
+  tag: string;
+  title: string;
+  subtitle: string;
+  cta: { text: string; href: string };
+  image: string;
+}
+
+const fallbackBanners: BannerItem[] = [
   {
     id: 1,
     tag: "Handcrafted With Love",
@@ -89,7 +98,8 @@ function FloatingPetals() {
   );
 }
 
-export default function HeroBanner() {
+export default function HeroBanner({ banners: propBanners }: { banners?: BannerItem[] } = {}) {
+  const banners = propBanners && propBanners.length > 0 ? propBanners : fallbackBanners;
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const heroRef = useRef<HTMLElement>(null);

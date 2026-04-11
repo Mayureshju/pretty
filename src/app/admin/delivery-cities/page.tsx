@@ -59,6 +59,11 @@ export default function DeliveryCitiesPage() {
     null
   );
 
+  // Global blocked dates state
+  const [globalBlockedDates, setGlobalBlockedDates] = useState<string[]>([]);
+  const [newGlobalDate, setNewGlobalDate] = useState("");
+  const [savingGlobal, setSavingGlobal] = useState(false);
+
   const fetchCities = useCallback(async () => {
     try {
       const res = await fetch("/api/admin/delivery-cities");
@@ -72,9 +77,62 @@ export default function DeliveryCitiesPage() {
     }
   }, []);
 
+  const fetchGlobalSettings = useCallback(async () => {
+    try {
+      const res = await fetch("/api/admin/global-settings");
+      if (!res.ok) return;
+      const data = await res.json();
+      setGlobalBlockedDates(
+        (data.blockedDeliveryDates || []).map((d: string) => new Date(d).toISOString().split("T")[0])
+      );
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   useEffect(() => {
     fetchCities();
-  }, [fetchCities]);
+    fetchGlobalSettings();
+  }, [fetchCities, fetchGlobalSettings]);
+
+  async function addGlobalBlockedDate() {
+    if (!newGlobalDate || globalBlockedDates.includes(newGlobalDate)) return;
+    const updated = [...globalBlockedDates, newGlobalDate].sort();
+    setSavingGlobal(true);
+    try {
+      const res = await fetch("/api/admin/global-settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ blockedDeliveryDates: updated }),
+      });
+      if (res.ok) {
+        setGlobalBlockedDates(updated);
+        setNewGlobalDate("");
+        toast.success("Blocked date added for all cities");
+      }
+    } catch {
+      toast.error("Failed to save");
+    } finally {
+      setSavingGlobal(false);
+    }
+  }
+
+  async function removeGlobalBlockedDate(date: string) {
+    const updated = globalBlockedDates.filter((d) => d !== date);
+    try {
+      const res = await fetch("/api/admin/global-settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ blockedDeliveryDates: updated }),
+      });
+      if (res.ok) {
+        setGlobalBlockedDates(updated);
+        toast.success("Blocked date removed");
+      }
+    } catch {
+      toast.error("Failed to save");
+    }
+  }
 
   function openAddModal() {
     setEditingId(null);
@@ -219,6 +277,56 @@ export default function DeliveryCitiesPage() {
           </svg>
           Add City
         </button>
+      </div>
+
+      {/* Global Blocked Delivery Dates */}
+      <div className="bg-white rounded-xl border border-gray-100 p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EA1E61" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+            <line x1="9" y1="16" x2="15" y2="16" />
+          </svg>
+          <h2 className="text-sm font-semibold text-[#1C2120]">Blocked Delivery Dates (All Cities)</h2>
+        </div>
+        <p className="text-xs text-gray-500 mb-3">
+          These dates will block delivery across all cities. No need to update each city separately.
+        </p>
+        <div className="flex items-center gap-2 mb-3">
+          <input
+            type="date"
+            value={newGlobalDate}
+            onChange={(e) => setNewGlobalDate(e.target.value)}
+            className="border border-gray-200 rounded-lg px-3 py-2 text-sm focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none"
+          />
+          <button
+            onClick={addGlobalBlockedDate}
+            disabled={!newGlobalDate || savingGlobal}
+            className="px-3 py-2 bg-[#737530] text-white text-sm rounded-lg hover:bg-[#4C4D27] transition-colors disabled:opacity-50"
+          >
+            Add
+          </button>
+        </div>
+        {globalBlockedDates.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {globalBlockedDates.map((date) => (
+              <span
+                key={date}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 border border-red-100 text-red-700 rounded-lg text-xs font-medium"
+              >
+                {new Date(date + "T00:00:00").toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                <button
+                  onClick={() => removeGlobalBlockedDate(date)}
+                  className="text-red-400 hover:text-red-600 transition-colors"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Content */}

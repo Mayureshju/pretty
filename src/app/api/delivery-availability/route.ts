@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import DeliveryCity from "@/models/DeliveryCity";
+import GlobalSettings from "@/models/GlobalSettings";
 
 export async function GET(request: NextRequest) {
   try {
@@ -58,11 +59,18 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Check blocked dates
+    // Check blocked dates (per-city + global)
     const todayIST = istTime.toISOString().split("T")[0]; // "2026-04-04"
-    const blockedDates = (deliveryCity.blockedDates || []).map(
+    const cityBlockedDates = (deliveryCity.blockedDates || []).map(
       (d: Date) => new Date(d).toISOString().split("T")[0]
     );
+
+    const globalSettings = await GlobalSettings.findOne({ key: "global" }).lean();
+    const globalBlockedDates = (globalSettings?.blockedDeliveryDates || []).map(
+      (d: Date) => new Date(d).toISOString().split("T")[0]
+    );
+
+    const blockedDates = [...new Set([...cityBlockedDates, ...globalBlockedDates])];
 
     if (blockedDates.includes(todayIST)) {
       sameDayAvailable = false;

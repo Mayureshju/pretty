@@ -10,6 +10,15 @@ export interface ICategory extends Document {
   isActive: boolean;
   productCount: number;
   wpTermId?: number;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+  };
+  isBanner: boolean;
+  bannerImage?: string;
+  displayText?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -25,6 +34,15 @@ const CategorySchema = new Schema<ICategory>(
     isActive: { type: Boolean, default: true },
     productCount: { type: Number, default: 0 },
     wpTermId: { type: Number },
+    seo: {
+      metaTitle: { type: String },
+      metaDescription: { type: String },
+      ogTitle: { type: String },
+      ogDescription: { type: String },
+    },
+    isBanner: { type: Boolean, default: false },
+    bannerImage: { type: String },
+    displayText: { type: String },
   },
   { timestamps: true }
 );
