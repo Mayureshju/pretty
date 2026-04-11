@@ -10,6 +10,7 @@ interface ImageUploaderProps {
   onAltChange?: (alt: string) => void;
   onRemove: () => void;
   compact?: boolean;
+  folder?: string;
 }
 
 const inputClass =
@@ -22,6 +23,7 @@ export default function ImageUploader({
   onAltChange,
   onRemove,
   compact = false,
+  folder,
 }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [s3Key, setS3Key] = useState<string | null>(null);
@@ -43,6 +45,7 @@ export default function ImageUploader({
     try {
       const formData = new FormData();
       formData.append("file", file);
+      if (folder) formData.append("folder", folder);
 
       const res = await fetch("/api/admin/upload", {
         method: "POST",

@@ -29,10 +29,14 @@ export async function POST(request: Request) {
       return errorResponse("File size must be under 5MB", 400);
     }
 
+    const folder = (formData.get("folder") as string) || "products";
+    const allowedFolders = ["products", "banners", "categories"];
+    const safeFolder = allowedFolders.includes(folder) ? folder : "products";
+
     const sanitizedName = file.name
       .replace(/[^a-zA-Z0-9._-]/g, "-")
       .toLowerCase();
-    const key = `products/${Date.now()}-${sanitizedName}`;
+    const key = `${safeFolder}/${Date.now()}-${sanitizedName}`;
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
@@ -68,7 +72,8 @@ export async function DELETE(request: Request) {
       return errorResponse("Invalid key", 400);
     }
 
-    if (!key.startsWith("products/")) {
+    const validPrefixes = ["products/", "banners/", "categories/"];
+    if (!validPrefixes.some((p) => key.startsWith(p))) {
       return errorResponse("Invalid key prefix", 400);
     }
 

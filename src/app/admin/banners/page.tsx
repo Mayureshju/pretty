@@ -8,6 +8,7 @@ import EmptyState from "@/components/admin/shared/EmptyState";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
 import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import Modal from "@/components/admin/shared/Modal";
+import ImageUploader from "@/components/admin/shared/ImageUploader";
 
 interface BannerItem {
   _id: string;
@@ -393,65 +394,34 @@ export default function AdminBannersPage() {
             />
           </div>
 
-          {/* Desktop Image URL */}
+          {/* Desktop Image */}
           <div>
             <label className={labelClass}>
               Desktop Image <span className="text-red-500">*</span>
             </label>
             <p className="text-[11px] text-gray-400 mb-1.5">
-              Recommended: 1440 x 520 px (landscape). JPEG/WebP, max 2MB.
+              Recommended: 1440 x 520 px (landscape). JPEG/WebP, max 5MB.
             </p>
-            <input
-              type="url"
+            <ImageUploader
               value={form.image}
-              onChange={(e) => setForm({ ...form, image: e.target.value })}
-              className={inputClass}
-              placeholder="https://example.com/desktop-banner.jpg"
-              required
+              onUrlChange={(url) => setForm({ ...form, image: url })}
+              onRemove={() => setForm({ ...form, image: "" })}
+              folder="banners"
             />
-            {form.image && (
-              <div className="mt-2 aspect-video relative bg-gray-100 rounded-lg overflow-hidden max-h-40">
-                <Image
-                  src={form.image}
-                  alt="Desktop preview"
-                  fill
-                  className="object-cover"
-                  sizes="400px"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
-              </div>
-            )}
           </div>
 
-          {/* Mobile Image URL */}
+          {/* Mobile Image */}
           <div>
             <label className={labelClass}>Mobile Image</label>
             <p className="text-[11px] text-gray-400 mb-1.5">
               Recommended: 768 x 480 px (taller). Falls back to desktop image if empty.
             </p>
-            <input
-              type="url"
+            <ImageUploader
               value={form.mobileImage}
-              onChange={(e) => setForm({ ...form, mobileImage: e.target.value })}
-              className={inputClass}
-              placeholder="https://example.com/mobile-banner.jpg"
+              onUrlChange={(url) => setForm({ ...form, mobileImage: url })}
+              onRemove={() => setForm({ ...form, mobileImage: "" })}
+              folder="banners"
             />
-            {form.mobileImage && (
-              <div className="mt-2 aspect-[3/2] relative bg-gray-100 rounded-lg overflow-hidden max-h-32">
-                <Image
-                  src={form.mobileImage}
-                  alt="Mobile preview"
-                  fill
-                  className="object-cover"
-                  sizes="300px"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
-              </div>
-            )}
           </div>
 
           {/* Link */}
