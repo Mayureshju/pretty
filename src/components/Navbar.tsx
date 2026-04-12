@@ -3,218 +3,52 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 
-/* ── Mega menu data per nav item ── */
-type MegaColumn = { title: string; links: { label: string; href: string }[] };
+interface NavCategory {
+  _id: string;
+  name: string;
+  slug: string;
+  productCount: number;
+  children: { _id: string; name: string; slug: string; productCount: number }[];
+}
 
-const megaMenus: Record<string, MegaColumn[]> = {
-  Flowers: [
-    {
-      title: "Collection",
-      links: [
-        { label: "Best Sellers", href: "/flowers/?sort=best-seller" },
-        { label: "Birthday Flowers", href: "/flowers/birthday/" },
-        { label: "Love & Affection", href: "/flowers/valentines-day/" },
-        { label: "Anniversary Flowers", href: "/flowers/anniversary/" },
-        { label: "Bridal Bouquet", href: "/flowers/wedding/" },
-        { label: "Flower Bouquet", href: "/flowers/" },
-        { label: "Green Plants Combos", href: "/plants/" },
-        { label: "Flowers in Vase", href: "/flowers/" },
-        { label: "Flowers in Gift Box", href: "/flowers/" },
-        { label: "Luxury Flowers", href: "/signature/" },
-        { label: "All Flowers", href: "/flowers/" },
-      ],
-    },
-    {
-      title: "Shop By Flower Type",
-      links: [
-        { label: "Rose Bouquet", href: "/flowers/roses/" },
-        { label: "Orchids Bouquet", href: "/flowers/orchids/" },
-        { label: "Mixed Flower Bouquet", href: "/flowers/mixed-flowers/" },
-        { label: "Carnation Bouquet", href: "/flowers/carnations/" },
-        { label: "Lily Bouquet", href: "/flowers/lilies/" },
-        { label: "Sunflower Bouquet", href: "/flowers/" },
-        { label: "Hydrangea Bouquet", href: "/flowers/" },
-      ],
-    },
-    {
-      title: "By Occasions",
-      links: [
-        { label: "Congratulations", href: "/flowers/" },
-        { label: "Get Well Soon", href: "/flowers/get-well-soon/" },
-        { label: "I Am Sorry", href: "/flowers/" },
-        { label: "Cheer Up", href: "/flowers/" },
-        { label: "Thank You", href: "/flowers/" },
-        { label: "Appreciation", href: "/flowers/corporate/" },
-      ],
-    },
-    {
-      title: "Cities",
-      links: [
-        { label: "Flowers To Bangalore", href: "/flowers/" },
-        { label: "Flowers To Chennai", href: "/flowers/" },
-        { label: "Flowers To Delhi", href: "/flowers/" },
-        { label: "Flowers To Gurgaon", href: "/flowers/" },
-        { label: "Flowers To Hyderabad", href: "/flowers/" },
-        { label: "Flowers To Mumbai", href: "/flowers/" },
-        { label: "Flowers To Pune", href: "/flowers/" },
-        { label: "All 620+ Cities", href: "/flowers/" },
-      ],
-    },
-    {
-      title: "Floral Assortments",
-      links: [
-        { label: "Flowers & Cakes", href: "/combos-gifts/" },
-        { label: "Flowers & Chocolates", href: "/combos-gifts/" },
-        { label: "Flowers & Teddy", href: "/combos-gifts/" },
-        { label: "Gift Flowers Combos", href: "/combos-gifts/" },
-      ],
-    },
-    {
-      title: "Blossoms By Hue",
-      links: [
-        { label: "Red Flowers", href: "/flowers/roses/" },
-        { label: "Yellow Flowers", href: "/flowers/" },
-        { label: "White Flowers", href: "/flowers/lilies/" },
-        { label: "Mixed Flowers", href: "/flowers/mixed-flowers/" },
-        { label: "Pink Flowers", href: "/flowers/roses/" },
-        { label: "Orange Roses", href: "/flowers/roses/" },
-      ],
-    },
-  ],
-  Cakes: [
-    {
-      title: "By Flavour",
-      links: [
-        { label: "Chocolate Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Butterscotch Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Red Velvet Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Black Forest Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Pineapple Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Fruit Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Vanilla Cakes", href: "/cakes/premium-cakes/" },
-        { label: "All Cakes", href: "/cakes/" },
-      ],
-    },
-    {
-      title: "By Type",
-      links: [
-        { label: "Designer Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Photo Cakes", href: "/photo-cake/" },
-        { label: "Theme Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Bento Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Jar Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Pinata Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Bomb Cakes", href: "/cakes/premium-cakes/" },
-      ],
-    },
-    {
-      title: "By Occasion",
-      links: [
-        { label: "Birthday Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Anniversary Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Wedding Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Baby Shower Cakes", href: "/cakes/premium-cakes/" },
-        { label: "Valentine Cakes", href: "/cakes/premium-cakes/" },
-      ],
-    },
-    {
-      title: "Cities",
-      links: [
-        { label: "Cakes To Delhi", href: "/cakes/" },
-        { label: "Cakes To Mumbai", href: "/cakes/" },
-        { label: "Cakes To Bangalore", href: "/cakes/" },
-        { label: "Cakes To Hyderabad", href: "/cakes/" },
-        { label: "Cakes To Pune", href: "/cakes/" },
-        { label: "All 620+ Cities", href: "/cakes/" },
-      ],
-    },
-  ],
-  Gifts: [
-    {
-      title: "Gift Ideas",
-      links: [
-        { label: "Photo Gifts", href: "/gifts/" },
-        { label: "Mugs", href: "/gifts/" },
-        { label: "Cushions", href: "/gifts/" },
-        { label: "Home Decor", href: "/gifts/" },
-        { label: "Jewellery", href: "/gifts/" },
-        { label: "Perfumes", href: "/gifts/" },
-        { label: "Soft Toys", href: "/gifts/" },
-      ],
-    },
-    {
-      title: "By Recipient",
-      links: [
-        { label: "Gifts for Him", href: "/gifts/" },
-        { label: "Gifts for Her", href: "/gifts/" },
-        { label: "Gifts for Kids", href: "/gifts/" },
-        { label: "Gifts for Parents", href: "/gifts/" },
-        { label: "Gifts for Friends", href: "/gifts/" },
-      ],
-    },
-    {
-      title: "By Occasion",
-      links: [
-        { label: "Birthday Gifts", href: "/gifts/" },
-        { label: "Anniversary Gifts", href: "/gifts/" },
-        { label: "Wedding Gifts", href: "/gifts/" },
-        { label: "Housewarming Gifts", href: "/gifts/" },
-        { label: "Farewell Gifts", href: "/gifts/" },
-      ],
-    },
-  ],
-  Plants: [
-    {
-      title: "By Type",
-      links: [
-        { label: "Indoor Plants", href: "/plants/" },
-        { label: "Air Purifying", href: "/plants/" },
-        { label: "Flowering Plants", href: "/plants/" },
-        { label: "Succulents", href: "/plants/" },
-        { label: "Bonsai Plants", href: "/plants/" },
-        { label: "Lucky Bamboo", href: "/plants/" },
-        { label: "Cactus", href: "/plants/" },
-      ],
-    },
-    {
-      title: "Planters",
-      links: [
-        { label: "Ceramic Planters", href: "/plants/" },
-        { label: "Metal Planters", href: "/plants/" },
-        { label: "Self Watering", href: "/plants/" },
-        { label: "Terracotta", href: "/plants/" },
-      ],
-    },
-    {
-      title: "By Occasion",
-      links: [
-        { label: "Birthday Plants", href: "/plants/" },
-        { label: "Diwali Plants", href: "/plants/" },
-        { label: "New Year Plants", href: "/plants/" },
-        { label: "Housewarming", href: "/plants/" },
-      ],
-    },
-  ],
-};
-
-const navItems = [
-  { label: "Flowers", href: "/flowers/" },
-  { label: "Cakes", href: "/cakes/" },
-  { label: "Combos", href: "/combos-gifts/" },
-  { label: "Birthday", href: "/flowers/birthday/" },
-  { label: "Anniversary", href: "/flowers/anniversary/" },
-  { label: "Gifts", href: "/gifts/" },
-  { label: "Personalised", href: "/gifts/" },
-  { label: "Plants", href: "/plants/" },
-  { label: "Chocolates", href: "/gifts/" },
-  { label: "Occasions", href: "#" },
-  { label: "International", href: "#" },
+/* Nav items with their slugs — order matters for display */
+const navOrder = [
+  { label: "Flowers", slug: "flowers" },
+  { label: "Cakes", slug: "cakes" },
+  { label: "Combos", slug: "combos-gifts" },
+  { label: "Birthday", slug: "birthday", parentSlug: "flowers" },
+  { label: "Anniversary", slug: "anniversary", parentSlug: "flowers" },
+  { label: "Gifts", slug: "gifts" },
+  { label: "Personalised", slug: "gifts" },
+  { label: "Plants", slug: "plants" },
+  { label: "Chocolates", slug: "gifts" },
+  { label: "Occasions", slug: "" },
+  { label: "International", slug: "" },
 ];
 
+function buildHref(cat: NavCategory | undefined, nav: typeof navOrder[0]): string {
+  if (nav.parentSlug) return `/${nav.parentSlug}/${nav.slug}/`;
+  if (cat) return `/${cat.slug}/`;
+  return "#";
+}
+
+function buildChildHref(parent: NavCategory, child: { slug: string }): string {
+  return `/${parent.slug}/${child.slug}/`;
+}
+
 export default function Navbar() {
+  const [categories, setCategories] = useState<NavCategory[]>([]);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Fetch categories
+  useEffect(() => {
+    fetch("/api/categories/nav")
+      .then((r) => r.json())
+      .then((data: NavCategory[]) => setCategories(data))
+      .catch(() => {});
+  }, []);
 
   const handleEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -241,7 +75,6 @@ export default function Navbar() {
         { opacity: 0, y: -8 },
         { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }
       );
-      // Stagger columns
       const cols = dropdownRef.current.querySelectorAll(".mega-col");
       gsap.fromTo(
         cols,
@@ -251,23 +84,49 @@ export default function Navbar() {
     }
   }, [activeMenu]);
 
-  const currentMenu = activeMenu ? megaMenus[activeMenu] : null;
+  // Find the category matching the active menu
+  function getMenuCategory(): NavCategory | null {
+    if (!activeMenu) return null;
+    const nav = navOrder.find((n) => n.label === activeMenu);
+    if (!nav) return null;
+    // For items like "Birthday" that are children, find the parent "flowers"
+    const parentSlug = nav.parentSlug || nav.slug;
+    return categories.find((c) => c.slug === parentSlug) || null;
+  }
+
+  const menuCategory = getMenuCategory();
+  const hasDropdown = menuCategory && menuCategory.children.length > 0;
+
+  // Split children into columns of ~8 items
+  function getColumns(children: NavCategory["children"]): NavCategory["children"][] {
+    const cols: NavCategory["children"][] = [];
+    const perCol = 8;
+    for (let i = 0; i < children.length; i += perCol) {
+      cols.push(children.slice(i, i + perCol));
+    }
+    return cols;
+  }
 
   return (
     <nav className="bg-white border-b border-[#e5e7eb] sticky top-[60px] md:top-[66px] z-40 hidden md:block">
       <div className="max-w-[1440px] mx-auto px-4">
         <ul className="flex items-center justify-start overflow-x-auto scroll-container">
-          {navItems.map((item) => {
-            const hasMenu = !!megaMenus[item.label];
+          {navOrder.map((item) => {
+            const cat = categories.find((c) => c.slug === item.slug);
+            const parentCat = item.parentSlug
+              ? categories.find((c) => c.slug === item.parentSlug)
+              : cat;
+            const showDropdown = parentCat && parentCat.children.length > 0;
+
             return (
               <li
                 key={item.label}
-                onMouseEnter={() => hasMenu && handleEnter(item.label)}
+                onMouseEnter={() => showDropdown && handleEnter(item.label)}
                 onMouseLeave={handleLeave}
                 className="relative"
               >
                 <a
-                  href={item.href}
+                  href={buildHref(cat, item)}
                   className={`block px-4 lg:px-5 py-2.5 text-[13px] lg:text-[14px] font-normal whitespace-nowrap transition-colors relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:bg-[#737530] after:transition-all ${
                     activeMenu === item.label
                       ? "text-[#737530] after:w-full"
@@ -283,7 +142,7 @@ export default function Navbar() {
       </div>
 
       {/* ── Mega Dropdown ── */}
-      {currentMenu && (
+      {hasDropdown && menuCategory && (
         <div
           ref={dropdownRef}
           onMouseEnter={handleDropdownEnter}
@@ -292,25 +151,39 @@ export default function Navbar() {
           style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.1)" }}
         >
           <div className="max-w-[1440px] mx-auto px-4 py-5">
-            <div
-              className="grid gap-6"
-              style={{
-                gridTemplateColumns: `repeat(${Math.min(currentMenu.length, 6)}, minmax(0, 1fr))`,
-              }}
-            >
-              {currentMenu.map((col) => (
-                <div key={col.title} className="mega-col">
+            <div className="flex gap-8">
+              {/* "All" link + category name */}
+              <div className="mega-col min-w-[160px]">
+                <h4 className="text-[13px] font-semibold text-[#737530] mb-2.5 pb-1.5 border-b border-[#737530]/10">
+                  {menuCategory.name}
+                </h4>
+                <ul className="space-y-1.5">
+                  <li>
+                    <a href={`/${menuCategory.slug}/`}
+                      className="text-[13px] text-[#737530] font-medium hover:text-[#4C4D27] transition-colors block py-0.5">
+                      All {menuCategory.name}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Subcategories in columns */}
+              {getColumns(menuCategory.children.filter((c) => c.productCount > 0)).map((col, colIdx) => (
+                <div key={colIdx} className="mega-col min-w-[160px]">
                   <h4 className="text-[13px] font-semibold text-[#737530] mb-2.5 pb-1.5 border-b border-[#737530]/10">
-                    {col.title}
+                    {colIdx === 0 ? "Subcategories" : "\u00A0"}
                   </h4>
                   <ul className="space-y-1.5">
-                    {col.links.map((link) => (
-                      <li key={link.label}>
+                    {col.map((child) => (
+                      <li key={child._id}>
                         <a
-                          href={link.href}
+                          href={buildChildHref(menuCategory, child)}
                           className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors block py-0.5"
                         >
-                          {link.label}
+                          {child.name}
+                          {child.productCount > 0 && (
+                            <span className="text-[11px] text-[#999] ml-1">({child.productCount})</span>
+                          )}
                         </a>
                       </li>
                     ))}
