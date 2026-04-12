@@ -158,8 +158,22 @@ ProductSchema.pre("save", function () {
       .replace(/(^-|-$)/g, "");
   }
 
-  // Set currentPrice = salePrice || regularPrice
-  if (this.pricing) {
+  // For variable products, set pricing from lowest variant
+  if (this.type === "variable" && this.variants && this.variants.length > 0) {
+    const validVariants = this.variants.filter((v) => v.price > 0);
+    if (validVariants.length > 0) {
+      const getEffective = (v: IProductVariant) =>
+        v.salePrice && v.salePrice > 0 ? v.salePrice : v.price;
+      const lowestVariant = validVariants.reduce((min, v) =>
+        getEffective(v) < getEffective(min) ? v : min
+      );
+      this.pricing.regularPrice = lowestVariant.price;
+      this.pricing.salePrice = lowestVariant.salePrice && lowestVariant.salePrice > 0
+        ? lowestVariant.salePrice : undefined;
+      this.pricing.currentPrice = getEffective(lowestVariant);
+    }
+  } else if (this.pricing) {
+    // Simple products: currentPrice = salePrice || regularPrice
     this.pricing.currentPrice =
       this.pricing.salePrice || this.pricing.regularPrice;
   }

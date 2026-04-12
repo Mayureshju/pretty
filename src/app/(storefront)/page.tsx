@@ -14,6 +14,8 @@ import BlogSection from "@/components/BlogSection";
 import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import Banner from "@/models/Banner";
+import Blog from "@/models/Blog";
+import Category from "@/models/Category";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 
 export const revalidate = 3600;
@@ -71,10 +73,47 @@ async function getBestSellers() {
   });
 }
 
+async function getCakeProducts() {
+  await connectDB();
+  const cakesCat = await Category.findOne({ slug: "cakes" }).lean();
+  const premiumCat = await Category.findOne({ slug: "premium-cakes" }).lean();
+  const categoryIds = [cakesCat?._id, premiumCat?._id].filter(Boolean);
+
+  if (categoryIds.length === 0) return [];
+
+  const products = await Product.find({
+    isActive: true,
+    categories: { $in: categoryIds },
+  })
+    .select("name slug images pricing")
+    .sort({ "metrics.totalSales": -1 })
+    .limit(5)
+    .lean();
+
+  return products.map((p) => ({
+    name: p.name,
+    slug: p.slug,
+    image: p.images?.[0]?.url || "/images/cakes/chocolate.jpg",
+    price: p.pricing?.currentPrice ?? p.pricing?.regularPrice,
+  }));
+}
+
+async function getLatestBlogs() {
+  await connectDB();
+  const blogs = await Blog.find({ isPublished: true })
+    .select("title slug excerpt image")
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean();
+  return blogs;
+}
+
 export default async function Home() {
-  const [heroBanners, bestSellers] = await Promise.all([
+  const [heroBanners, bestSellers, cakeProducts, latestBlogs] = await Promise.all([
     getHeroBanners(),
     getBestSellers(),
+    getCakeProducts(),
+    getLatestBlogs(),
   ]);
 
   return (
@@ -86,12 +125,12 @@ export default async function Home() {
       <OccasionsSection />
       <BestSellers products={JSON.parse(JSON.stringify(bestSellers))} />
       <FeaturedCollection />
-      <CategoryCards />
+      <CategoryCards cakes={JSON.parse(JSON.stringify(cakeProducts))} />
       <ReferBanner />
       <Testimonials />
       <NewsletterCTA />
       <SeoContent />
-      <BlogSection />
+      <BlogSection blogs={JSON.parse(JSON.stringify(latestBlogs))} />
     </>
   );
 }

@@ -7,28 +7,29 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const cakeItems = [
-  { title: "Chocolate", href: "/cakes/premium-cakes/", image: "/images/cakes/chocolate.jpg" },
-  { title: "Butterscotch", href: "/cakes/premium-cakes/", image: "/images/cakes/butterscotch.jpg" },
-  { title: "LUXE", href: "/cakes/premium-cakes/", image: "/images/cakes/luxe.jpg" },
-  { title: "Fresh Fruits", href: "/cakes/premium-cakes/", image: "/images/cakes/fresh-fruits.jpg" },
-  { title: "Cakes With Flowers", href: "/cakes/premium-cakes/", image: "/images/cakes/cakes-with-flowers.jpg" },
-];
+interface CardItem {
+  title: string;
+  href: string;
+  image: string;
+  price?: number;
+}
 
-const giftItems = [
-  { title: "Photo Gifts", href: "/gifts/", image: "/images/gifts/photo-gifts.jpg" },
-  { title: "Soft Toys", href: "/gifts/", image: "/images/gifts/soft-toys.jpg" },
-  { title: "Chocolates", href: "/gifts/", image: "/images/gifts/chocolates.jpg" },
-  { title: "Mugs", href: "/gifts/", image: "/images/gifts/mugs.jpg" },
-  { title: "Cushions", href: "/gifts/", image: "/images/gifts/cushions.jpg" },
+const occasionItems: CardItem[] = [
+  { title: "Birthday", href: "/flowers/birthday/", image: "/images/occasions/birthday.jpg" },
+  { title: "Anniversary", href: "/flowers/anniversary/", image: "/images/occasions/anniversary.jpg" },
+  { title: "Wedding", href: "/flowers/wedding/", image: "/images/occasions/wedding.jpg" },
+  { title: "Congratulations", href: "/flowers/", image: "/images/occasions/congratulations.jpg" },
+  { title: "Housewarming", href: "/flowers/", image: "/images/occasions/housewarming.jpg" },
 ];
 
 function LargeCardRow({
   title,
   items,
+  showPrice,
 }: {
   title: string;
-  items: typeof cakeItems;
+  items: CardItem[];
+  showPrice?: boolean;
 }) {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -68,6 +69,11 @@ function LargeCardRow({
             <p className="text-[13px] md:text-sm font-medium text-[#1C2120] text-center mt-2.5 transition-colors group-hover:text-[#737530]">
               {item.title}
             </p>
+            {showPrice && item.price != null && (
+              <p className="text-[12px] md:text-[13px] text-[#737530] font-semibold text-center mt-0.5">
+                &#8377;{item.price.toLocaleString("en-IN")}
+              </p>
+            )}
           </Link>
         ))}
       </div>
@@ -75,11 +81,33 @@ function LargeCardRow({
   );
 }
 
-export default function CategoryCards() {
+interface CakeProduct {
+  name: string;
+  slug: string;
+  image: string;
+  price: number;
+}
+
+export default function CategoryCards({ cakes }: { cakes?: CakeProduct[] }) {
+  const cakeItems: CardItem[] = cakes && cakes.length > 0
+    ? cakes.map((c) => ({
+        title: c.name,
+        href: `/product/${c.slug}/`,
+        image: c.image,
+        price: c.price,
+      }))
+    : [
+        { title: "Chocolate", href: "/cakes/premium-cakes/", image: "/images/cakes/chocolate.jpg" },
+        { title: "Butterscotch", href: "/cakes/premium-cakes/", image: "/images/cakes/butterscotch.jpg" },
+        { title: "LUXE", href: "/cakes/premium-cakes/", image: "/images/cakes/luxe.jpg" },
+        { title: "Fresh Fruits", href: "/cakes/premium-cakes/", image: "/images/cakes/fresh-fruits.jpg" },
+        { title: "Cakes With Flowers", href: "/cakes/premium-cakes/", image: "/images/cakes/cakes-with-flowers.jpg" },
+      ];
+
   return (
     <section className="max-w-[1440px] mx-auto px-4 py-6 md:py-10 space-y-8 md:space-y-10">
-      <LargeCardRow title="Bakery-Fresh Cakes" items={cakeItems} />
-      <LargeCardRow title="Personalise Your Moments" items={giftItems} />
+      <LargeCardRow title="Bakery-Fresh Cakes" items={cakeItems} showPrice={!!cakes?.length} />
+      <LargeCardRow title="Special Occasions" items={occasionItems} />
     </section>
   );
 }

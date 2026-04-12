@@ -7,34 +7,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const blogs = [
-  {
-    id: 1,
-    title: "The Ultimate Flower Guide for Mumbai: Popular Markets, Favourite Blooms & Gifting Tips",
-    excerpt:
-      "Mumbai moves fast. People are always on the go, plans change quickly, and celebrations often happen in the middle of a packed schedule. Yet, one thing never feels rushed here:",
-    href: "#",
-    image: "/images/blog/flower-guide.jpg",
-  },
-  {
-    id: 2,
-    title: "The Hidden Power of Colors: How Flower Color Influences Their Symbolic Meaning",
-    excerpt:
-      "Flowers have always been a symbol of beauty, nature, and love, but did you know that the meaning behind different flower colors is just as important? Each hue carries its",
-    href: "#",
-    image: "/images/blog/flower-colors.jpg",
-  },
-  {
-    id: 3,
-    title: "Why Marigolds are the Heart of Indian Festivals - Tradition, Symbolism & Science",
-    excerpt:
-      "The first thing you notice during Diwali is the glow. Diyas flicker. Rangoli colours burst across the floor. And everywhere you look, strings of bright orange and yellow marigolds frame",
-    href: "#",
-    image: "/images/blog/marigolds.jpg",
-  },
-];
+interface BlogItem {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  image?: string;
+}
 
-export default function BlogSection() {
+export default function BlogSection({ blogs }: { blogs: BlogItem[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -60,6 +41,8 @@ export default function BlogSection() {
     };
   }, []);
 
+  if (!blogs || blogs.length === 0) return null;
+
   return (
     <section ref={sectionRef} className="max-w-[1440px] mx-auto px-4 py-10 md:py-14">
       <h2 className="text-lg md:text-xl font-semibold text-[#1C2120] mb-5">
@@ -69,14 +52,14 @@ export default function BlogSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
         {blogs.map((blog, i) => (
           <Link
-            key={blog.id}
-            href={blog.href}
+            key={blog._id}
+            href={`/blog/${blog.slug}`}
             ref={(el) => { cardsRef.current[i] = el; }}
             className="group rounded-xl border border-[#E8E8E8] overflow-hidden block"
           >
             <div className="aspect-[16/9] overflow-hidden">
               <img
-                src={blog.image}
+                src={blog.image || "/images/blog/placeholder.jpg"}
                 alt={blog.title}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"

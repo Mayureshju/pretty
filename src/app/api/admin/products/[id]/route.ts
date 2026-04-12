@@ -76,13 +76,34 @@ export async function PUT(
 
     const data = parsed.data;
 
-    // If pricing is updated, recalculate currentPrice
-    if (data.pricing) {
-      const existing = await Product.findById(id).lean();
-      if (!existing) {
-        return notFoundResponse("Product not found");
-      }
+    // Recalculate currentPrice based on product type
+    const existing = await Product.findById(id).lean();
+    if (!existing) {
+      return notFoundResponse("Product not found");
+    }
 
+    type VariantPrice = { price: number; salePrice?: number };
+    const variants = (data as Record<string, unknown>).variants as
+      | VariantPrice[]
+      | undefined;
+    const effectiveVariants: VariantPrice[] = variants ?? existing.variants ?? [];
+    const productType = (data as Record<string, unknown>).type ?? existing.type;
+
+    const validVariants = effectiveVariants.filter((v) => v.price > 0);
+    if (productType === "variable" && validVariants.length > 0) {
+      const getEffective = (v: VariantPrice) =>
+        v.salePrice && v.salePrice > 0 ? v.salePrice : v.price;
+      const lowestVariant = validVariants.reduce((min: VariantPrice, v: VariantPrice) =>
+        getEffective(v) < getEffective(min) ? v : min
+      );
+      (data as Record<string, unknown>).pricing = {
+        ...(data.pricing ?? existing.pricing),
+        regularPrice: lowestVariant.price,
+        salePrice: lowestVariant.salePrice && lowestVariant.salePrice > 0
+          ? lowestVariant.salePrice : undefined,
+        currentPrice: getEffective(lowestVariant),
+      };
+    } else if (data.pricing) {
       const regularPrice =
         data.pricing.regularPrice ?? existing.pricing.regularPrice;
       const salePrice =
