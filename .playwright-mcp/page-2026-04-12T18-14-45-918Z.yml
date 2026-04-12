@@ -1,0 +1,255 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e357]: gifts
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "1 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "1"
+            - generic [ref=e21]: Cart
+          - generic [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+            - generic [ref=e26]: INR
+          - link "Sign In" [ref=e266] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e267]
+            - generic [ref=e270]: Sign In
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - navigation [ref=e55]:
+        - link "Home" [ref=e56] [cursor=pointer]:
+          - /url: /
+        - img [ref=e57]
+        - link "Cakes" [ref=e59] [cursor=pointer]:
+          - /url: /cakes/
+        - img [ref=e60]
+        - generic [ref=e62]: Delightful Belgium Chocolate Cake
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - button "Delightful Belgium Chocolate Cake" [ref=e67] [cursor=pointer]:
+              - img "Delightful Belgium Chocolate Cake" [ref=e68]
+            - img "Delightful Belgium Chocolate Cake" [ref=e70]
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - heading "Delightful Belgium Chocolate Cake" [level=1] [ref=e73]
+              - button [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+            - generic [ref=e78]: ₹ 1,689
+            - generic [ref=e79]:
+              - paragraph [ref=e80]: Make this gift extra special
+              - generic [ref=e81]:
+                - 'button "Cake Varient: 1/2 kg ₹ 1,689" [ref=e82] [cursor=pointer]':
+                  - generic [ref=e83]:
+                    - paragraph [ref=e84]: "Cake Varient: 1/2 kg"
+                    - paragraph [ref=e85]: ₹ 1,689
+                - 'button "Cake Varient: 1 kg ₹ 3,265" [ref=e86] [cursor=pointer]':
+                  - generic [ref=e87]:
+                    - paragraph [ref=e88]: "Cake Varient: 1 kg"
+                    - paragraph [ref=e89]: ₹ 3,265
+                - 'button "Cake Varient: 2 kg ₹ 6,222" [ref=e90] [cursor=pointer]':
+                  - generic [ref=e91]:
+                    - paragraph [ref=e92]: "Cake Varient: 2 kg"
+                    - paragraph [ref=e93]: ₹ 6,222
+            - generic [ref=e94]:
+              - paragraph [ref=e95]: Check Delivery Availability
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - img [ref=e98]
+                  - textbox "Enter 6-digit pincode" [ref=e101]: "999999"
+                - button "Check" [ref=e102] [cursor=pointer]
+              - paragraph [ref=e358]:
+                - img [ref=e359]
+                - text: Sorry, delivery is not available at this pincode
+            - button "Offers Available" [ref=e103] [cursor=pointer]:
+              - generic [ref=e104]:
+                - img [ref=e105]
+                - generic [ref=e108]: Offers Available
+              - img [ref=e109]
+            - generic [ref=e111]:
+              - heading "Description" [level=3] [ref=e112]
+              - paragraph [ref=e113]: Looking for a dessert that will wow your guests? Our Delightful chocolate Cake is the perfect choice. Rich &amp; chocolatey this cake is perfect for any special occasion, from birthdays to anniversaries and everything in between. The moist chocolate cake and the smooth texture will leave your taste buds yearning for more. Whether you want to impress your guests or just treat yourself, our Delightful Chocolate Cake is the perfect choice.
+            - generic [ref=e114]:
+              - paragraph [ref=e115]: SKU Number
+              - paragraph [ref=e116]: "722833"
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - img [ref=e120]
+            - paragraph [ref=e125]: 20+ Mn Smiles
+            - paragraph [ref=e126]: Delivered
+          - generic [ref=e127]:
+            - img [ref=e129]
+            - paragraph [ref=e132]: 20000+
+            - paragraph [ref=e133]: Pincodes Covered
+          - generic [ref=e134]:
+            - img [ref=e136]
+            - paragraph [ref=e141]: 620+ Cities Enjoying
+            - paragraph [ref=e142]: same-day delivery
+        - generic [ref=e143]:
+          - heading "Similar Products" [level=2] [ref=e144]
+          - generic [ref=e145]:
+            - link "Chocolate Caramel Cake Chocolate Caramel Cake ₹ 1,625" [ref=e146] [cursor=pointer]:
+              - /url: /product/chocolate-caramel-birthday-cake/
+              - img "Chocolate Caramel Cake" [ref=e148]
+              - generic [ref=e149]:
+                - heading "Chocolate Caramel Cake" [level=3] [ref=e150]
+                - generic [ref=e152]: ₹ 1,625
+            - link "Rich Chocolate Cake Rich Chocolate Cake ₹ 1,680" [ref=e153] [cursor=pointer]:
+              - /url: /product/tasty-chocolate-cake/
+              - img "Rich Chocolate Cake" [ref=e155]
+              - generic [ref=e156]:
+                - heading "Rich Chocolate Cake" [level=3] [ref=e157]
+                - generic [ref=e159]: ₹ 1,680
+            - link "Divine Caramel Cake Divine Caramel Cake ₹ 1,784" [ref=e160] [cursor=pointer]:
+              - /url: /product/divine-caramel-cake/
+              - img "Divine Caramel Cake" [ref=e162]
+              - generic [ref=e163]:
+                - heading "Divine Caramel Cake" [level=3] [ref=e164]
+                - generic [ref=e166]: ₹ 1,784
+            - link "Choco Orange Cheese Cake Choco Orange Cheese Cake ₹ 2,745" [ref=e167] [cursor=pointer]:
+              - /url: /product/choco-orange-cake/
+              - img "Choco Orange Cheese Cake" [ref=e169]
+              - generic [ref=e170]:
+                - heading "Choco Orange Cheese Cake" [level=3] [ref=e171]
+                - generic [ref=e173]: ₹ 2,745
+      - generic [ref=e175]:
+        - button "ADD TO CART" [ref=e176] [cursor=pointer]
+        - button "BUY NOW | ₹ 1,689" [ref=e177] [cursor=pointer]
+    - contentinfo [ref=e178]:
+      - generic [ref=e180]:
+        - list [ref=e181]:
+          - listitem [ref=e182]:
+            - link "About Us" [ref=e183] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e184]:
+            - link "Delivery & Refund Policy" [ref=e185] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e186]:
+            - link "Terms and Conditions" [ref=e187] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e188]:
+            - link "Privacy Policy" [ref=e189] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e190]:
+          - listitem [ref=e191]:
+            - link "Blog" [ref=e192] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e193]:
+            - link "Quotes" [ref=e194] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e195]:
+            - link "Sitemap" [ref=e196] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e197]:
+            - link "Retail Stores" [ref=e198] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e199]:
+          - listitem [ref=e200]:
+            - link "Corporate Gifts" [ref=e201] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e202]:
+            - link "FAQ" [ref=e203] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e204]:
+            - link "Contact Us" [ref=e205] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e206]:
+            - paragraph [ref=e207]: Delivery Cities
+            - list [ref=e208]:
+              - listitem [ref=e209]:
+                - link "Flowers in Mumbai" [ref=e210] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e211]:
+                - link "Flowers in Thane" [ref=e212] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e213]:
+                - link "Flowers in Navi Mumbai" [ref=e214] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e215]:
+          - link "Pretty Petals" [ref=e216] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e217]
+          - paragraph [ref=e218]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e219]
+          - generic [ref=e220]:
+            - link "Facebook" [ref=e221] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e222]
+            - link "Twitter" [ref=e224] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e225]
+            - link "YouTube" [ref=e227] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e228]
+            - link "Pinterest" [ref=e230] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e231]
+            - link "Instagram" [ref=e233] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e234]
+            - link "LinkedIn" [ref=e236] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e237]
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]: PRETTY PETALS
+          - generic [ref=e243]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e244]:
+          - generic [ref=e245]: "We Accept:"
+          - generic [ref=e246]: Visa
+          - generic [ref=e247]: MC
+          - generic [ref=e248]: Amex
+          - generic [ref=e249]: UPI
+          - generic [ref=e250]: PayPal
+          - generic [ref=e251]: Paytm
+    - link [ref=e252] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e253]
+    - button [ref=e344] [cursor=pointer]:
+      - img [ref=e345]
+  - button "Open Next.js Dev Tools" [ref=e260] [cursor=pointer]:
+    - img [ref=e261]
+  - alert [ref=e264]

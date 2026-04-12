@@ -1,0 +1,219 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e7]:
+          - button [ref=e8] [cursor=pointer]:
+            - img [ref=e9]
+          - link "1" [ref=e12] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e13]:
+              - img [ref=e14]
+              - generic [ref=e17]: "1"
+          - button [ref=e18] [cursor=pointer]:
+            - img [ref=e19]
+      - generic [ref=e22]:
+        - img [ref=e23]
+        - generic [ref=e26]: Search for
+        - generic [ref=e255]: plants
+    - main [ref=e28]:
+      - navigation [ref=e31]:
+        - link "Home" [ref=e32] [cursor=pointer]:
+          - /url: /
+        - img [ref=e33]
+        - link "Cakes" [ref=e35] [cursor=pointer]:
+          - /url: /cakes/
+        - img [ref=e36]
+        - generic [ref=e38]: Choco Orange Cheese Cake
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - button "Choco Orange Cheese Cake" [ref=e43] [cursor=pointer]:
+              - img "Choco Orange Cheese Cake" [ref=e44]
+            - img "Choco Orange Cheese Cake" [ref=e46]
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - heading "Choco Orange Cheese Cake" [level=1] [ref=e49]
+              - button [ref=e50] [cursor=pointer]:
+                - img [ref=e51]
+            - generic [ref=e54]: ₹ 2,745
+            - generic [ref=e55]:
+              - paragraph [ref=e56]: Make this gift extra special
+              - generic [ref=e57]:
+                - 'button "Cake Varient: 1/2 kg ₹ 2,745" [ref=e58] [cursor=pointer]':
+                  - generic [ref=e59]:
+                    - paragraph [ref=e60]: "Cake Varient: 1/2 kg"
+                    - paragraph [ref=e61]: ₹ 2,745
+                - 'button "Cake Varient: 1 kg ₹ 4,888" [ref=e62] [cursor=pointer]':
+                  - generic [ref=e63]:
+                    - paragraph [ref=e64]: "Cake Varient: 1 kg"
+                    - paragraph [ref=e65]: ₹ 4,888
+                - 'button "Cake Varient: 2 kg ₹ 8,888" [ref=e66] [cursor=pointer]':
+                  - generic [ref=e67]:
+                    - paragraph [ref=e68]: "Cake Varient: 2 kg"
+                    - paragraph [ref=e69]: ₹ 8,888
+            - generic [ref=e70]:
+              - paragraph [ref=e71]: Check Delivery Availability
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - img [ref=e74]
+                  - textbox "Enter 6-digit pincode" [ref=e77]
+                - button "Check" [ref=e78] [cursor=pointer]
+            - generic [ref=e79]:
+              - paragraph [ref=e80]: Select Delivery Date
+              - generic [ref=e82] [cursor=pointer]:
+                - img [ref=e83]
+                - textbox "Select delivery date" [ref=e87]: Mon, 13 Apr 2026
+              - generic [ref=e88]:
+                - img [ref=e89]
+                - generic [ref=e92]: Delivery on Mon, 13 Apr
+            - button "Offers Available" [ref=e93] [cursor=pointer]:
+              - generic [ref=e94]:
+                - img [ref=e95]
+                - generic [ref=e98]: Offers Available
+              - img [ref=e99]
+            - generic [ref=e101]:
+              - heading "Description" [level=3] [ref=e102]
+              - paragraph [ref=e103]: Experience dessert luxury with our Choco Orange Cheesecake – velvety cream cheese infused with fine cocoa and fresh orange juice for a flavor that’s both rich and refreshingly vibrant. A luscious cheesecake crafted with premium cocoa and fresh orange zest, blending rich chocolate decadence with a burst of citrus freshness in every bite.
+            - generic [ref=e104]:
+              - paragraph [ref=e105]: SKU Number
+              - paragraph [ref=e106]: "34787"
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - img [ref=e110]
+            - paragraph [ref=e115]: 20+ Mn Smiles
+            - paragraph [ref=e116]: Delivered
+          - generic [ref=e117]:
+            - img [ref=e119]
+            - paragraph [ref=e122]: 20000+
+            - paragraph [ref=e123]: Pincodes Covered
+          - generic [ref=e124]:
+            - img [ref=e126]
+            - paragraph [ref=e131]: 620+ Cities Enjoying
+            - paragraph [ref=e132]: same-day delivery
+        - generic [ref=e133]:
+          - heading "Similar Products" [level=2] [ref=e134]
+          - generic [ref=e135]:
+            - link "Chocolate Caramel Cake Chocolate Caramel Cake ₹ 1,625" [ref=e136] [cursor=pointer]:
+              - /url: /product/chocolate-caramel-birthday-cake/
+              - img "Chocolate Caramel Cake" [ref=e138]
+              - generic [ref=e139]:
+                - heading "Chocolate Caramel Cake" [level=3] [ref=e140]
+                - generic [ref=e142]: ₹ 1,625
+            - link "Delightful Belgium Chocolate Cake Delightful Belgium Chocolate Cake ₹ 1,689" [ref=e143] [cursor=pointer]:
+              - /url: /product/delightful-birthday-chocolate-cake/
+              - img "Delightful Belgium Chocolate Cake" [ref=e145]
+              - generic [ref=e146]:
+                - heading "Delightful Belgium Chocolate Cake" [level=3] [ref=e147]
+                - generic [ref=e149]: ₹ 1,689
+            - link "Rich Chocolate Cake Rich Chocolate Cake ₹ 1,680" [ref=e150] [cursor=pointer]:
+              - /url: /product/tasty-chocolate-cake/
+              - img "Rich Chocolate Cake" [ref=e152]
+              - generic [ref=e153]:
+                - heading "Rich Chocolate Cake" [level=3] [ref=e154]
+                - generic [ref=e156]: ₹ 1,680
+            - link "Divine Caramel Cake Divine Caramel Cake ₹ 1,784" [ref=e157] [cursor=pointer]:
+              - /url: /product/divine-caramel-cake/
+              - img "Divine Caramel Cake" [ref=e159]
+              - generic [ref=e160]:
+                - heading "Divine Caramel Cake" [level=3] [ref=e161]
+                - generic [ref=e163]: ₹ 1,784
+      - generic [ref=e165]:
+        - button "ADD TO CART" [ref=e166] [cursor=pointer]
+        - button "BUY NOW | ₹ 2,745" [ref=e167] [cursor=pointer]
+    - contentinfo [ref=e168]:
+      - generic [ref=e170]:
+        - list [ref=e171]:
+          - listitem [ref=e172]:
+            - link "About Us" [ref=e173] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e174]:
+            - link "Delivery & Refund Policy" [ref=e175] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e176]:
+            - link "Terms and Conditions" [ref=e177] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e178]:
+            - link "Privacy Policy" [ref=e179] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e180]:
+          - listitem [ref=e181]:
+            - link "Blog" [ref=e182] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e183]:
+            - link "Quotes" [ref=e184] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e185]:
+            - link "Sitemap" [ref=e186] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e187]:
+            - link "Retail Stores" [ref=e188] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e189]:
+          - listitem [ref=e190]:
+            - link "Corporate Gifts" [ref=e191] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e192]:
+            - link "FAQ" [ref=e193] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e194]:
+            - link "Contact Us" [ref=e195] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e196]:
+            - paragraph [ref=e197]: Delivery Cities
+            - list [ref=e198]:
+              - listitem [ref=e199]:
+                - link "Flowers in Mumbai" [ref=e200] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e201]:
+                - link "Flowers in Thane" [ref=e202] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e203]:
+                - link "Flowers in Navi Mumbai" [ref=e204] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e205]:
+          - link "Pretty Petals" [ref=e206] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e207]
+          - paragraph [ref=e208]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e209]
+          - generic [ref=e210]:
+            - link "Facebook" [ref=e211] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e212]
+            - link "Twitter" [ref=e214] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e215]
+            - link "YouTube" [ref=e217] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e218]
+            - link "Pinterest" [ref=e220] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e221]
+            - link "Instagram" [ref=e223] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e224]
+            - link "LinkedIn" [ref=e226] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e227]
+      - generic [ref=e230]:
+        - generic [ref=e231]:
+          - generic [ref=e232]: PRETTY PETALS
+          - generic [ref=e233]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e234]:
+          - generic [ref=e235]: "We Accept:"
+          - generic [ref=e236]: Visa
+          - generic [ref=e237]: MC
+          - generic [ref=e238]: Amex
+          - generic [ref=e239]: UPI
+          - generic [ref=e240]: PayPal
+          - generic [ref=e241]: Paytm
+    - link [ref=e242] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e243]
+  - button "Open Next.js Dev Tools" [ref=e250] [cursor=pointer]:
+    - img [ref=e251]
+  - alert [ref=e254]

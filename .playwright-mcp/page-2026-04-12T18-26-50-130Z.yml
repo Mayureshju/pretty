@@ -1,0 +1,329 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e288]: cakes
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "1 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "1"
+            - generic [ref=e21]: Cart
+          - generic [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+            - generic [ref=e26]: INR
+          - link "Sign In" [ref=e27] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e28]
+            - generic [ref=e31]: Sign In
+    - navigation [ref=e32]:
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - link "Flowers" [ref=e36] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e37]:
+          - link "Cakes" [ref=e38] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e39]:
+          - link "Combos" [ref=e40] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e41]:
+          - link "Birthday" [ref=e42] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e43]:
+          - link "Anniversary" [ref=e44] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e45]:
+          - link "Gifts" [ref=e46] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e47]:
+          - link "Personalised" [ref=e48] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e49]:
+          - link "Plants" [ref=e50] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e51]:
+          - link "Chocolates" [ref=e52] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e53]:
+          - link "Occasions" [ref=e54] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e55]:
+          - link "International" [ref=e56] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e57]:
+      - navigation [ref=e60]:
+        - link "Home" [ref=e61] [cursor=pointer]:
+          - /url: /
+        - img [ref=e62]
+        - link "Cakes" [ref=e64] [cursor=pointer]:
+          - /url: /cakes/
+        - img [ref=e65]
+        - generic [ref=e67]: Choco Orange Cheese Cake
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - button "Choco Orange Cheese Cake" [ref=e72] [cursor=pointer]:
+              - img "Choco Orange Cheese Cake" [ref=e73]
+            - img "Choco Orange Cheese Cake" [ref=e75]
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - heading "Choco Orange Cheese Cake" [level=1] [ref=e78]
+              - button [ref=e79] [cursor=pointer]:
+                - img [ref=e80]
+            - generic [ref=e83]: ₹ 2,745
+            - generic [ref=e84]:
+              - paragraph [ref=e85]: Make this gift extra special
+              - generic [ref=e86]:
+                - 'button "Cake Varient: 1/2 kg ₹ 2,745" [ref=e87] [cursor=pointer]':
+                  - generic [ref=e88]:
+                    - paragraph [ref=e89]: "Cake Varient: 1/2 kg"
+                    - paragraph [ref=e90]: ₹ 2,745
+                - 'button "Cake Varient: 1 kg ₹ 4,888" [ref=e91] [cursor=pointer]':
+                  - generic [ref=e92]:
+                    - paragraph [ref=e93]: "Cake Varient: 1 kg"
+                    - paragraph [ref=e94]: ₹ 4,888
+                - 'button "Cake Varient: 2 kg ₹ 8,888" [ref=e95] [cursor=pointer]':
+                  - generic [ref=e96]:
+                    - paragraph [ref=e97]: "Cake Varient: 2 kg"
+                    - paragraph [ref=e98]: ₹ 8,888
+            - generic [ref=e99]:
+              - paragraph [ref=e100]: Check Delivery Availability
+              - generic [ref=e101]:
+                - generic [ref=e102]:
+                  - img [ref=e103]
+                  - textbox "Enter 6-digit pincode" [ref=e106]
+                - button "Check" [ref=e107] [cursor=pointer]
+            - generic [ref=e108]:
+              - paragraph [ref=e109]: Select Delivery Date
+              - generic [ref=e111] [cursor=pointer]:
+                - img [ref=e112]
+                - textbox "Select delivery date" [active] [ref=e116]: Sun, 12 Apr 2026
+                - dialog "Choose Date" [ref=e292]:
+                  - alert [ref=e293]
+                  - button "Next Month" [ref=e294]:
+                    - generic: Next Month
+                  - generic [ref=e295]:
+                    - heading "April 2026" [level=2] [ref=e297]
+                    - table [ref=e298]:
+                      - rowgroup [ref=e299]:
+                        - row "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" [ref=e300]:
+                          - columnheader "Sunday" [ref=e301]:
+                            - generic [ref=e302]: Sunday
+                            - text: Su
+                          - columnheader "Monday" [ref=e303]:
+                            - generic [ref=e304]: Monday
+                            - text: Mo
+                          - columnheader "Tuesday" [ref=e305]:
+                            - generic [ref=e306]: Tuesday
+                            - text: Tu
+                          - columnheader "Wednesday" [ref=e307]:
+                            - generic [ref=e308]: Wednesday
+                            - text: We
+                          - columnheader "Thursday" [ref=e309]:
+                            - generic [ref=e310]: Thursday
+                            - text: Th
+                          - columnheader "Friday" [ref=e311]:
+                            - generic [ref=e312]: Friday
+                            - text: Fr
+                          - columnheader "Saturday" [ref=e313]:
+                            - generic [ref=e314]: Saturday
+                            - text: Sa
+                      - rowgroup "Month April, 2026" [ref=e315]:
+                        - row "Not available Sunday, March 29th, 2026 Not available Monday, March 30th, 2026 Not available Tuesday, March 31st, 2026 Not available Wednesday, April 1st, 2026 Not available Thursday, April 2nd, 2026 Not available Friday, April 3rd, 2026 Not available Saturday, April 4th, 2026" [ref=e316]:
+                          - gridcell "Not available Sunday, March 29th, 2026" [disabled] [ref=e317]: "29"
+                          - gridcell "Not available Monday, March 30th, 2026" [disabled] [ref=e318]: "30"
+                          - gridcell "Not available Tuesday, March 31st, 2026" [disabled] [ref=e319]: "31"
+                          - gridcell "Not available Wednesday, April 1st, 2026" [disabled] [ref=e320]: "1"
+                          - gridcell "Not available Thursday, April 2nd, 2026" [disabled] [ref=e321]: "2"
+                          - gridcell "Not available Friday, April 3rd, 2026" [disabled] [ref=e322]: "3"
+                          - gridcell "Not available Saturday, April 4th, 2026" [disabled] [ref=e323]: "4"
+                        - row "Not available Sunday, April 5th, 2026 Not available Monday, April 6th, 2026 Not available Tuesday, April 7th, 2026 Not available Wednesday, April 8th, 2026 Not available Thursday, April 9th, 2026 Not available Friday, April 10th, 2026 Not available Saturday, April 11th, 2026" [ref=e324]:
+                          - gridcell "Not available Sunday, April 5th, 2026" [disabled] [ref=e325]: "5"
+                          - gridcell "Not available Monday, April 6th, 2026" [disabled] [ref=e326]: "6"
+                          - gridcell "Not available Tuesday, April 7th, 2026" [disabled] [ref=e327]: "7"
+                          - gridcell "Not available Wednesday, April 8th, 2026" [disabled] [ref=e328]: "8"
+                          - gridcell "Not available Thursday, April 9th, 2026" [disabled] [ref=e329]: "9"
+                          - gridcell "Not available Friday, April 10th, 2026" [disabled] [ref=e330]: "10"
+                          - gridcell "Not available Saturday, April 11th, 2026" [disabled] [ref=e331]: "11"
+                        - row "Choose Sunday, April 12th, 2026 Choose Monday, April 13th, 2026 Choose Tuesday, April 14th, 2026 Choose Wednesday, April 15th, 2026 Choose Thursday, April 16th, 2026 Choose Friday, April 17th, 2026 Choose Saturday, April 18th, 2026" [ref=e332]:
+                          - gridcell "Choose Sunday, April 12th, 2026" [selected] [ref=e333]: "12"
+                          - gridcell "Choose Monday, April 13th, 2026" [ref=e334]: "13"
+                          - gridcell "Choose Tuesday, April 14th, 2026" [ref=e335]: "14"
+                          - gridcell "Choose Wednesday, April 15th, 2026" [ref=e336]: "15"
+                          - gridcell "Choose Thursday, April 16th, 2026" [ref=e337]: "16"
+                          - gridcell "Choose Friday, April 17th, 2026" [ref=e338]: "17"
+                          - gridcell "Choose Saturday, April 18th, 2026" [ref=e339]: "18"
+                        - row "Choose Sunday, April 19th, 2026 Choose Monday, April 20th, 2026 Choose Tuesday, April 21st, 2026 Choose Wednesday, April 22nd, 2026 Choose Thursday, April 23rd, 2026 Choose Friday, April 24th, 2026 Choose Saturday, April 25th, 2026" [ref=e340]:
+                          - gridcell "Choose Sunday, April 19th, 2026" [ref=e341]: "19"
+                          - gridcell "Choose Monday, April 20th, 2026" [ref=e342]: "20"
+                          - gridcell "Choose Tuesday, April 21st, 2026" [ref=e343]: "21"
+                          - gridcell "Choose Wednesday, April 22nd, 2026" [ref=e344]: "22"
+                          - gridcell "Choose Thursday, April 23rd, 2026" [ref=e345]: "23"
+                          - gridcell "Choose Friday, April 24th, 2026" [ref=e346]: "24"
+                          - gridcell "Choose Saturday, April 25th, 2026" [ref=e347]: "25"
+                        - row "Choose Sunday, April 26th, 2026 Choose Monday, April 27th, 2026 Choose Tuesday, April 28th, 2026 Choose Wednesday, April 29th, 2026 Choose Thursday, April 30th, 2026 Choose Friday, May 1st, 2026 Choose Saturday, May 2nd, 2026" [ref=e348]:
+                          - gridcell "Choose Sunday, April 26th, 2026" [ref=e349]: "26"
+                          - gridcell "Choose Monday, April 27th, 2026" [ref=e350]: "27"
+                          - gridcell "Choose Tuesday, April 28th, 2026" [ref=e351]: "28"
+                          - gridcell "Choose Wednesday, April 29th, 2026" [ref=e352]: "29"
+                          - gridcell "Choose Thursday, April 30th, 2026" [ref=e353]: "30"
+                          - gridcell "Choose Friday, May 1st, 2026" [ref=e354]: "1"
+                          - gridcell "Choose Saturday, May 2nd, 2026" [ref=e355]: "2"
+              - generic [ref=e117]:
+                - img [ref=e118]
+                - generic [ref=e121]: Delivery on Sun, 12 Apr
+            - button "Offers Available" [ref=e122] [cursor=pointer]:
+              - generic [ref=e123]:
+                - img [ref=e124]
+                - generic [ref=e127]: Offers Available
+              - img [ref=e128]
+            - generic [ref=e130]:
+              - heading "Description" [level=3] [ref=e131]
+              - paragraph [ref=e132]: Experience dessert luxury with our Choco Orange Cheesecake – velvety cream cheese infused with fine cocoa and fresh orange juice for a flavor that’s both rich and refreshingly vibrant. A luscious cheesecake crafted with premium cocoa and fresh orange zest, blending rich chocolate decadence with a burst of citrus freshness in every bite.
+            - generic [ref=e133]:
+              - paragraph [ref=e134]: SKU Number
+              - paragraph [ref=e135]: "34787"
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - img [ref=e139]
+            - paragraph [ref=e144]: 20+ Mn Smiles
+            - paragraph [ref=e145]: Delivered
+          - generic [ref=e146]:
+            - img [ref=e148]
+            - paragraph [ref=e151]: 20000+
+            - paragraph [ref=e152]: Pincodes Covered
+          - generic [ref=e153]:
+            - img [ref=e155]
+            - paragraph [ref=e160]: 620+ Cities Enjoying
+            - paragraph [ref=e161]: same-day delivery
+        - generic [ref=e162]:
+          - heading "Similar Products" [level=2] [ref=e163]
+          - generic [ref=e164]:
+            - link "Chocolate Caramel Cake Chocolate Caramel Cake ₹ 1,625" [ref=e165] [cursor=pointer]:
+              - /url: /product/chocolate-caramel-birthday-cake/
+              - img "Chocolate Caramel Cake" [ref=e167]
+              - generic [ref=e168]:
+                - heading "Chocolate Caramel Cake" [level=3] [ref=e169]
+                - generic [ref=e171]: ₹ 1,625
+            - link "Delightful Belgium Chocolate Cake Delightful Belgium Chocolate Cake ₹ 1,689" [ref=e172] [cursor=pointer]:
+              - /url: /product/delightful-birthday-chocolate-cake/
+              - img "Delightful Belgium Chocolate Cake" [ref=e174]
+              - generic [ref=e175]:
+                - heading "Delightful Belgium Chocolate Cake" [level=3] [ref=e176]
+                - generic [ref=e178]: ₹ 1,689
+            - link "Rich Chocolate Cake Rich Chocolate Cake ₹ 1,680" [ref=e179] [cursor=pointer]:
+              - /url: /product/tasty-chocolate-cake/
+              - img "Rich Chocolate Cake" [ref=e181]
+              - generic [ref=e182]:
+                - heading "Rich Chocolate Cake" [level=3] [ref=e183]
+                - generic [ref=e185]: ₹ 1,680
+            - link "Divine Caramel Cake Divine Caramel Cake ₹ 1,784" [ref=e186] [cursor=pointer]:
+              - /url: /product/divine-caramel-cake/
+              - img "Divine Caramel Cake" [ref=e188]
+              - generic [ref=e189]:
+                - heading "Divine Caramel Cake" [level=3] [ref=e190]
+                - generic [ref=e192]: ₹ 1,784
+      - generic [ref=e194]:
+        - button "ADD TO CART" [ref=e195] [cursor=pointer]
+        - button "BUY NOW | ₹ 2,745" [ref=e196] [cursor=pointer]
+    - contentinfo [ref=e197]:
+      - generic [ref=e199]:
+        - list [ref=e200]:
+          - listitem [ref=e201]:
+            - link "About Us" [ref=e202] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e203]:
+            - link "Delivery & Refund Policy" [ref=e204] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e205]:
+            - link "Terms and Conditions" [ref=e206] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e207]:
+            - link "Privacy Policy" [ref=e208] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e209]:
+          - listitem [ref=e210]:
+            - link "Blog" [ref=e211] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e212]:
+            - link "Quotes" [ref=e213] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e214]:
+            - link "Sitemap" [ref=e215] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e216]:
+            - link "Retail Stores" [ref=e217] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e218]:
+          - listitem [ref=e219]:
+            - link "Corporate Gifts" [ref=e220] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e221]:
+            - link "FAQ" [ref=e222] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e223]:
+            - link "Contact Us" [ref=e224] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e225]:
+            - paragraph [ref=e226]: Delivery Cities
+            - list [ref=e227]:
+              - listitem [ref=e228]:
+                - link "Flowers in Mumbai" [ref=e229] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e230]:
+                - link "Flowers in Thane" [ref=e231] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e232]:
+                - link "Flowers in Navi Mumbai" [ref=e233] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e234]:
+          - link "Pretty Petals" [ref=e235] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e236]
+          - paragraph [ref=e237]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e238]
+          - generic [ref=e239]:
+            - link "Facebook" [ref=e240] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e241]
+            - link "Twitter" [ref=e243] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e244]
+            - link "YouTube" [ref=e246] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e247]
+            - link "Pinterest" [ref=e249] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e250]
+            - link "Instagram" [ref=e252] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e253]
+            - link "LinkedIn" [ref=e255] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e256]
+      - generic [ref=e259]:
+        - generic [ref=e260]:
+          - generic [ref=e261]: PRETTY PETALS
+          - generic [ref=e262]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e263]:
+          - generic [ref=e264]: "We Accept:"
+          - generic [ref=e265]: Visa
+          - generic [ref=e266]: MC
+          - generic [ref=e267]: Amex
+          - generic [ref=e268]: UPI
+          - generic [ref=e269]: PayPal
+          - generic [ref=e270]: Paytm
+    - link [ref=e271] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e272]
+  - button "Open Next.js Dev Tools" [ref=e279] [cursor=pointer]:
+    - img [ref=e280]
+  - alert [ref=e283]

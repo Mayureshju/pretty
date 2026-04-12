@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -116,6 +116,27 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const imgContainerRef = useRef<HTMLDivElement>(null);
 
+  // Pincode & Delivery
+  const [pincode, setPincode] = useState("");
+  const [pincodeChecking, setPincodeChecking] = useState(false);
+  const [pincodeResult, setPincodeResult] = useState<{
+    city: string;
+    state?: string;
+    sameDayAvailable: boolean;
+    blockedDates: string[];
+    deliveryCharge: number;
+    freeDeliveryAbove: number | null;
+    estimatedTime: string | null;
+    deliveryDays: number;
+  } | null>(null);
+  const [pincodeError, setPincodeError] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
+
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -140,6 +161,123 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   function handleBuyNow() {
     handleAddToCart();
     router.push("/cart/");
+  }
+
+  async function checkPincode() {
+    const code = pincode.trim();
+    if (!/^\d{6}$/.test(code)) {
+      setPincodeError("Enter a valid 6-digit pincode");
+      setPincodeResult(null);
+      setSelectedDate(null);
+      return;
+    }
+    setPincodeChecking(true);
+    setPincodeError("");
+    setPincodeResult(null);
+    setSelectedDate(null);
+    try {
+      const res = await fetch(`/api/delivery-availability?pincode=${code}`);
+      if (!res.ok) {
+        setPincodeError("Sorry, delivery is not available at this pincode");
+        return;
+      }
+      const data = await res.json();
+      setPincodeResult(data);
+    } catch {
+      setPincodeError("Something went wrong. Please try again.");
+    } finally {
+      setPincodeChecking(false);
+    }
+  }
+
+  // Compute min date and blocked dates for the date picker
+  const minDeliveryDate = useMemo(() => {
+    const now = new Date();
+    const istOffset = 5.5 * 60;
+    const istTime = new Date(now.getTime() + istOffset * 60 * 1000);
+    if (pincodeResult && !pincodeResult.sameDayAvailable) {
+      istTime.setDate(istTime.getDate() + 1);
+    }
+    return new Date(istTime.getUTCFullYear(), istTime.getUTCMonth(), istTime.getUTCDate());
+  }, [pincodeResult]);
+
+  const blockedSet = useMemo(() => {
+    if (!pincodeResult) return new Set<string>();
+    return new Set(pincodeResult.blockedDates);
+  }, [pincodeResult]);
+
+  // Auto-select default date on mount and when pincode result arrives
+  useEffect(() => {
+    const d = new Date(minDeliveryDate);
+    for (let i = 0; i < 30; i++) {
+      const iso = d.toISOString().split("T")[0];
+      if (!blockedSet.has(iso)) {
+        setSelectedDate(new Date(d));
+        setCalendarMonth(new Date(d.getFullYear(), d.getMonth(), 1));
+        break;
+      }
+      d.setDate(d.getDate() + 1);
+    }
+  }, [pincodeResult, minDeliveryDate, blockedSet]);
+
+  function formatDisplayDate(date: Date) {
+    return date.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" });
+  }
+
+  function toISO(date: Date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  function isDayAvailable(day: number) {
+    const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
+    if (date < minDeliveryDate) return false;
+    return !blockedSet.has(toISO(date));
+  }
+
+  function isDaySelected(day: number) {
+    if (!selectedDate) return false;
+    return (
+      selectedDate.getDate() === day &&
+      selectedDate.getMonth() === calendarMonth.getMonth() &&
+      selectedDate.getFullYear() === calendarMonth.getFullYear()
+    );
+  }
+
+  function isToday(day: number) {
+    const now = new Date();
+    return (
+      now.getDate() === day &&
+      now.getMonth() === calendarMonth.getMonth() &&
+      now.getFullYear() === calendarMonth.getFullYear()
+    );
+  }
+
+  function getCalendarDays(): (number | null)[] {
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const days: (number | null)[] = [];
+    for (let i = 0; i < firstDay; i++) days.push(null);
+    for (let d = 1; d <= daysInMonth; d++) days.push(d);
+    return days;
+  }
+
+  function selectDay(day: number) {
+    const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
+    setSelectedDate(date);
+    setShowCalendar(false);
+  }
+
+  function prevMonth() {
+    setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() - 1, 1));
+  }
+
+  function nextMonth() {
+    setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 1));
   }
 
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -172,10 +310,10 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
 
   useEffect(() => {
     if (galleryRef.current) {
-      gsap.fromTo(galleryRef.current, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" });
+      gsap.fromTo(galleryRef.current, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out", clearProps: "transform" });
     }
     if (infoRef.current) {
-      gsap.fromTo(infoRef.current.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power3.out", delay: 0.15 });
+      gsap.fromTo(infoRef.current.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power3.out", delay: 0.15, clearProps: "transform" });
     }
     if (similarRef.current) {
       const cards = similarRef.current.querySelectorAll(".sim-card");
@@ -384,20 +522,170 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               </div>
             )}
 
-            {/* Delivery Location */}
+            {/* Pincode Checker */}
             <div className="mt-5 p-4 rounded-xl border border-gray-200">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-medium text-[#1C2120]">Select Area / Location</p>
-                <button className="text-xs font-medium text-[#737530] flex items-center gap-1 cursor-pointer">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
-                  Use My Location
+              <p className="text-sm font-medium text-[#1C2120] mb-2">Check Delivery Availability</p>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center flex-1 border border-gray-200 rounded-lg px-3 py-2.5 focus-within:border-[#737530] transition-colors">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0 mr-2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={6}
+                    value={pincode}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, "");
+                      setPincode(val);
+                      if (pincodeError) setPincodeError("");
+                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") checkPincode(); }}
+                    placeholder="Enter 6-digit pincode"
+                    className="flex-1 text-sm text-[#464646] outline-none bg-transparent placeholder:text-gray-400"
+                  />
+                </div>
+                <button
+                  onClick={checkPincode}
+                  disabled={pincodeChecking}
+                  className="px-4 py-2.5 rounded-lg bg-[#737530] text-white text-sm font-medium hover:bg-[#4C4D27] transition-colors disabled:opacity-50 cursor-pointer shrink-0"
+                >
+                  {pincodeChecking ? "Checking..." : "Check"}
                 </button>
               </div>
-              <div className="flex items-center border border-gray-200 rounded-lg px-3 py-2.5">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0 mr-2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
-                <input type="text" placeholder="Select Area / Location" className="flex-1 text-sm text-[#464646] outline-none bg-transparent placeholder:text-gray-400" />
-              </div>
+
+              {pincodeError && (
+                <p className="text-xs text-[#EA1E61] mt-2 flex items-center gap-1">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M15 9l-6 6M9 9l6 6" /></svg>
+                  {pincodeError}
+                </p>
+              )}
+
+              {pincodeResult && (
+                <div className="mt-3 space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-[#4CAF50]">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+                    <span className="font-medium">
+                      Delivery available to {pincodeResult.city}{pincodeResult.state ? `, ${pincodeResult.state}` : ""}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-[#464646]">
+                    {pincodeResult.estimatedTime && (
+                      <span className="flex items-center gap-1">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+                        {pincodeResult.estimatedTime}
+                      </span>
+                    )}
+                    <span className="flex items-center gap-1">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2"><rect x="1" y="3" width="15" height="13" rx="1" /><path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" /></svg>
+                      {pincodeResult.deliveryCharge === 0
+                        ? "Free Delivery"
+                        : `Delivery: ₹${pincodeResult.deliveryCharge}`}
+                    </span>
+                    {pincodeResult.sameDayAvailable && (
+                      <span className="text-[#4CAF50] font-medium">Same-day available</span>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
+
+            {/* Delivery Date */}
+            <div className="mt-3 p-4 rounded-xl border border-gray-200">
+              <p className="text-sm font-medium text-[#1C2120] mb-2">Select Delivery Date</p>
+              <button
+                onClick={() => setShowCalendar(true)}
+                className="w-full flex items-center border border-gray-200 rounded-lg px-3 py-2.5 hover:border-[#737530] transition-colors cursor-pointer bg-white"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0 mr-2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+                <span className={`flex-1 text-left text-sm ${selectedDate ? "text-[#464646]" : "text-gray-400"}`}>
+                  {selectedDate ? formatDisplayDate(selectedDate) : "Select delivery date"}
+                </span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0"><path d="M6 9l6 6 6-6" /></svg>
+              </button>
+
+              {selectedDate && (
+                <div className="mt-2 flex items-center gap-2 px-3 py-2 rounded-lg bg-[#737530]/5 border border-[#737530]/20">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" />
+                  </svg>
+                  <span className="text-sm font-medium text-[#737530]">
+                    Delivery on {formatDisplayDate(selectedDate)}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Calendar Modal */}
+            {showCalendar && (
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+                style={{ backgroundColor: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
+                onClick={() => setShowCalendar(false)}>
+                <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[380px] overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}>
+                  {/* Header */}
+                  <div className="flex items-center justify-between px-5 pt-5 pb-3">
+                    <h3 className="text-xs font-bold tracking-widest text-[#464646] uppercase">Select Delivery Date</h3>
+                    <button onClick={() => setShowCalendar(false)}
+                      className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                    </button>
+                  </div>
+
+                  {/* Month Navigation */}
+                  <div className="flex items-center justify-between px-5 pb-4">
+                    <button onClick={prevMonth}
+                      className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+                    </button>
+                    <span className="text-sm font-semibold text-[#1C2120]">
+                      {calendarMonth.toLocaleDateString("en-IN", { month: "long", year: "numeric" })}
+                    </span>
+                    <button onClick={nextMonth}
+                      className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
+                    </button>
+                  </div>
+
+                  {/* Day Headers */}
+                  <div className="grid grid-cols-7 px-4">
+                    {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                      <div key={i} className="text-center text-[11px] font-semibold text-[#999] py-2">{d}</div>
+                    ))}
+                  </div>
+
+                  {/* Day Grid */}
+                  <div className="grid grid-cols-7 px-4 pb-5">
+                    {getCalendarDays().map((day, idx) => {
+                      if (day === null) return <div key={`e-${idx}`} />;
+                      const available = isDayAvailable(day);
+                      const selected = isDaySelected(day);
+                      const today = isToday(day);
+
+                      return (
+                        <div key={`d-${day}`} className="flex items-center justify-center py-[5px]">
+                          <button
+                            disabled={!available}
+                            onClick={() => selectDay(day)}
+                            className={`w-9 h-9 rounded-full text-[13px] font-medium transition-all cursor-pointer flex items-center justify-center
+                              ${selected
+                                ? "bg-[#737530] text-white font-bold shadow-md"
+                                : today && available
+                                  ? "bg-[#737530]/10 text-[#737530] font-bold ring-1 ring-[#737530]/30"
+                                  : available
+                                    ? "text-[#1C2120] hover:bg-[#737530]/8"
+                                    : "text-[#d1d5db] cursor-not-allowed"
+                              }`}
+                          >
+                            {day}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Offers */}
             <button

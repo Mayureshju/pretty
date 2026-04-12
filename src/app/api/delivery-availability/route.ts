@@ -76,6 +76,15 @@ export async function GET(request: NextRequest) {
       sameDayAvailable = false;
     }
 
+    // Find pincode-specific delivery days
+    let deliveryDays = 0;
+    if (pincode && deliveryCity.pincodes) {
+      const pincodeEntry = deliveryCity.pincodes.find(
+        (p: { code: string; deliveryDays: number }) => p.code === pincode
+      );
+      if (pincodeEntry) deliveryDays = pincodeEntry.deliveryDays;
+    }
+
     return Response.json({
       city: deliveryCity.city,
       state: deliveryCity.state,
@@ -85,6 +94,7 @@ export async function GET(request: NextRequest) {
       deliveryCharge: deliveryCity.baseCharge,
       freeDeliveryAbove: deliveryCity.freeDeliveryAbove || null,
       estimatedTime: deliveryCity.estimatedTime || null,
+      deliveryDays,
     });
   } catch (err) {
     console.error("GET /api/delivery-availability error:", err);
