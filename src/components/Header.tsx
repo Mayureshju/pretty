@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useUser, useClerk, UserButton, Show } from "@clerk/nextjs";
 import { getCartCount } from "@/lib/cart";
+import { getWishlist } from "@/lib/wishlist";
 
 const searchTerms = ["flowers", "cakes", "plants", "gifts", "combos"];
 
@@ -23,12 +24,19 @@ export default function Header() {
   const [termIdx, setTermIdx] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0);
 
   useEffect(() => {
     setCartCount(getCartCount());
-    const handler = () => setCartCount(getCartCount());
-    window.addEventListener("cart-updated", handler);
-    return () => window.removeEventListener("cart-updated", handler);
+    setWishlistCount(getWishlist().length);
+    const cartHandler = () => setCartCount(getCartCount());
+    const wishlistHandler = () => setWishlistCount(getWishlist().length);
+    window.addEventListener("cart-updated", cartHandler);
+    window.addEventListener("wishlist-updated", wishlistHandler);
+    return () => {
+      window.removeEventListener("cart-updated", cartHandler);
+      window.removeEventListener("wishlist-updated", wishlistHandler);
+    };
   }, []);
 
   useEffect(() => {
@@ -90,13 +98,15 @@ export default function Header() {
               <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors hidden md:block">Cart</span>
             </a>
 
-            <div className="hidden md:flex flex-col items-center gap-0.5 cursor-pointer group min-w-[28px]">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="1.5" className="group-hover:stroke-[#737530] transition-colors">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M7 9h10M7 12h6M9.5 15l3-6" strokeLinecap="round" />
-              </svg>
-              <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors">INR</span>
-            </div>
+            <a href="/wishlist/" className="hidden md:flex flex-col items-center gap-0.5 cursor-pointer group min-w-[28px] relative">
+              <div className="relative">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="1.5" className="group-hover:stroke-[#737530] transition-colors">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg>
+                {wishlistCount > 0 && <span className="absolute -top-1.5 -right-2 text-[9px] font-bold text-white rounded-full w-4 h-4 flex items-center justify-center bg-[#EA3761]">{wishlistCount}</span>}
+              </div>
+              <span className="text-[10px] text-[#464646] group-hover:text-[#737530] transition-colors">Wishlist</span>
+            </a>
 
             <Show when="signed-in">
               <div className="hidden md:flex flex-col items-center gap-0.5 min-w-[36px]">
@@ -165,6 +175,10 @@ export default function Header() {
               </button>
             </div>
             <nav className="p-4">
+              <a href="/wishlist/" className="flex items-center gap-2 py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>
+                Wishlist {wishlistCount > 0 && <span className="text-[10px] font-bold text-white bg-[#EA3761] rounded-full w-4 h-4 flex items-center justify-center">{wishlistCount}</span>}
+              </a>
               <a href="/trackorder" className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">Track Order</a>
               <Show when="signed-in">
                 <a href="/account" className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors">My Account</a>

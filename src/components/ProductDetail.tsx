@@ -7,6 +7,7 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import { addToCart } from "@/lib/cart";
 import { saveDeliveryInfo, updateSelectedDate } from "@/lib/delivery-store";
+import { isInWishlist, toggleWishlist as toggleWishlistLib } from "@/lib/wishlist";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -111,7 +112,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   const router = useRouter();
   const [activeImg, setActiveImg] = useState(0);
   const [activeVariant, setActiveVariant] = useState(0);
-  const [wishlisted, setWishlisted] = useState(false);
+  const [wishlisted, setWishlisted] = useState(() => isInWishlist(product._id));
   const [showOffers, setShowOffers] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
   const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
@@ -442,7 +443,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                 {product.name}
               </h1>
               <button
-                onClick={() => setWishlisted(!wishlisted)}
+                onClick={() => { const result = toggleWishlistLib(product._id); setWishlisted(result.wishlisted); }}
                 className="shrink-0 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#737530] transition-colors cursor-pointer"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill={wishlisted ? "#737530" : "none"} stroke={wishlisted ? "#737530" : "#888"} strokeWidth="1.8">

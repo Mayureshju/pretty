@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getWishlist, toggleWishlist as toggleWishlistLib } from "@/lib/wishlist";
 // Sale pricing is computed server-side and passed via activeSales prop
 
 gsap.registerPlugin(ScrollTrigger);
@@ -120,7 +121,7 @@ export default function CategoryPage({
   const [showSort, setShowSort] = useState(false);
   const [priceRange, setPriceRange] = useState("all");
   const [minRating, setMinRating] = useState(0);
-  const [wishlist, setWishlist] = useState<string[]>([]);
+  const [wishlist, setWishlist] = useState<string[]>(() => getWishlist());
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(initialProducts.length < totalProducts);
@@ -128,7 +129,8 @@ export default function CategoryPage({
   const headerRef = useRef<HTMLDivElement>(null);
 
   const toggleWishlist = (id: string) => {
-    setWishlist((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
+    const result = toggleWishlistLib(id);
+    setWishlist(result.list);
   };
 
   // Scroll animation
