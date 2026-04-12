@@ -31,6 +31,18 @@ export default function CartPage() {
   const emptyRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  /* ── Guest email ── */
+  const [guestEmail, setGuestEmail] = useState("");
+
+  /* ── Coupon state ── */
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+  const [couponMessage, setCouponMessage] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [couponLoading, setCouponLoading] = useState(false);
+
+
   /* Load cart on mount and listen for updates */
   useEffect(() => {
     setCartItems(getCart());
@@ -87,6 +99,58 @@ export default function CartPage() {
     },
     []
   );
+
+  /* ── Coupon handlers ── */
+  const handleApplyCoupon = useCallback(async () => {
+    if (!couponCode.trim()) return;
+    setCouponLoading(true);
+    setCouponError("");
+    setCouponMessage("");
+    try {
+      const res = await fetch("/api/coupons/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: couponCode.trim(),
+          subtotal: cartItems.reduce((s, i) => s + i.price * i.quantity, 0),
+        }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        setDiscount(data.discount);
+        setCouponApplied(true);
+        setCouponMessage(data.message);
+        setCouponError("");
+        toast.success(data.message);
+      } else {
+        setDiscount(0);
+        setCouponApplied(false);
+        setCouponError(data.message);
+        setCouponMessage("");
+      }
+    } catch {
+      setCouponError("Failed to validate coupon");
+    } finally {
+      setCouponLoading(false);
+    }
+  }, [couponCode, cartItems]);
+
+  const handleRemoveCoupon = useCallback(() => {
+    setCouponCode("");
+    setDiscount(0);
+    setCouponApplied(false);
+    setCouponMessage("");
+    setCouponError("");
+  }, []);
+
+  const handleGuestCheckout = useCallback(() => {
+    const email = guestEmail.trim();
+    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      router.push(`/checkout/?mode=guest&email=${encodeURIComponent(email)}`);
+    } else {
+      router.push("/checkout/?mode=guest");
+    }
+  }, [guestEmail, router]);
 
   /* Computed totals */
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -292,41 +356,104 @@ export default function CartPage() {
           })}
         </div>
 
-        {/* ── Right: Bill Summary ── */}
-        <div className="lg:w-[340px] shrink-0">
-          <div
-            className="bg-white rounded-xl border border-gray-200 p-5 lg:sticky lg:top-[120px]"
-            style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}
-          >
+        {/* ── Right: Sidebar ── */}
+        <div className="lg:w-[380px] shrink-0 space-y-4">
+
+          {/* Coupon */}
+          <div className="bg-white rounded-xl border border-gray-200 p-5" style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}>
+            <div className="flex items-center gap-2 mb-3">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#737530" /></svg>
+              <h3 className="text-sm font-semibold text-[#1C2120]">Apply Coupon</h3>
+            </div>
+            {couponApplied ? (
+              <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#737530]/5 border border-[#737530]/20">
+                <div className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><path d="M22 4L12 14.01l-3-3" /></svg>
+                  <span className="text-sm font-medium text-[#737530]">{couponMessage}</span>
+                </div>
+                <button onClick={handleRemoveCoupon} className="text-xs text-[#888] hover:text-[#E74C3C] cursor-pointer font-medium">Remove</button>
+              </div>
+            ) : (
+              <>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={couponCode}
+                    onChange={(e) => { setCouponCode(e.target.value.toUpperCase()); setCouponError(""); }}
+                    onKeyDown={(e) => e.key === "Enter" && handleApplyCoupon()}
+                    placeholder="Enter coupon code"
+                    className="flex-1 border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors uppercase placeholder:normal-case"
+                  />
+                  <button
+                    onClick={handleApplyCoupon}
+                    disabled={couponLoading || !couponCode.trim()}
+                    className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer disabled:opacity-50 shrink-0"
+                  >
+                    {couponLoading ? "..." : "Apply"}
+                  </button>
+                </div>
+                {couponError && <p className="text-xs text-[#EA1E61] mt-2">{couponError}</p>}
+              </>
+            )}
+          </div>
+
+          {/* Bill Summary + Checkout */}
+          <div className="bg-white rounded-xl border border-gray-200 p-5 lg:sticky lg:top-[120px]" style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}>
             <h3 className="text-lg font-semibold text-[#1C2120] mb-4">Bill Summary</h3>
 
-            <div className="flex items-center justify-between text-sm mb-3">
+            <div className="flex items-center justify-between text-sm mb-2.5">
               <span className="text-[#464646]">Subtotal ({totalItems} item{totalItems !== 1 ? "s" : ""})</span>
               <span className="font-semibold text-[#1C2120]">&#8377; {subtotal.toLocaleString()}</span>
             </div>
 
-            <div className="flex items-center justify-between text-sm mb-3">
+            {discount > 0 && (
+              <div className="flex items-center justify-between text-sm mb-2.5">
+                <span className="text-[#4CAF50]">Coupon Discount</span>
+                <span className="font-semibold text-[#4CAF50]">- &#8377; {discount.toLocaleString()}</span>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between text-sm mb-2.5">
               <span className="text-[#464646]">Delivery</span>
               <span className="text-sm text-[#888]">Calculated at checkout</span>
             </div>
 
-            <div className="border-t border-gray-100 pt-3 mt-3">
+            <div className="border-t border-gray-100 pt-3 mt-2 mb-5">
               <div className="flex items-center justify-between">
                 <span className="text-base font-bold text-[#1C2120]">Total</span>
-                <span className="text-xl font-bold text-[#1C2120]">&#8377; {subtotal.toLocaleString()}</span>
+                <span className="text-xl font-bold text-[#1C2120]">&#8377; {(subtotal - discount).toLocaleString()}</span>
               </div>
             </div>
 
-            <button
-              onClick={() => router.push("/checkout/")}
-              className="w-full mt-5 py-3.5 bg-[#737530] text-white text-sm font-bold rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer tracking-wide"
-            >
-              PROCEED TO CHECKOUT
-            </button>
+            {/* Checkout Options */}
+            <div className="space-y-2.5">
+              <input
+                type="email"
+                value={guestEmail}
+                onChange={(e) => setGuestEmail(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleGuestCheckout()}
+                placeholder="Enter your email"
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors"
+              />
+              <button
+                onClick={handleGuestCheckout}
+                className="w-full py-3 bg-[#737530] text-white text-sm font-bold rounded-lg hover:bg-[#4C4D27] transition-colors cursor-pointer tracking-wide"
+              >
+                CONTINUE AS GUEST
+              </button>
 
-            <p className="text-xs text-[#888] text-center mt-3">
-              Have a Coupon Code? Apply at checkout.
-            </p>
+              <a href="/sign-in?redirect_url=/checkout/"
+                className="w-full py-3 flex items-center justify-center gap-2 border-2 border-[#737530] text-[#737530] text-sm font-bold rounded-lg hover:bg-[#737530]/5 transition-colors cursor-pointer tracking-wide">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3" /></svg>
+                SIGN IN
+              </a>
+
+              <a href="/sign-up?redirect_url=/checkout/"
+                className="w-full py-3 flex items-center justify-center gap-2 border border-gray-200 text-[#464646] text-sm font-medium rounded-lg hover:border-[#737530] hover:text-[#737530] transition-colors cursor-pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="8.5" cy="7" r="4" /><path d="M20 8v6M23 11h-6" /></svg>
+                CREATE ACCOUNT
+              </a>
+            </div>
           </div>
         </div>
       </div>

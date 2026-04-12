@@ -120,7 +120,7 @@ function CheckoutInner() {
     setMounted(true);
   }, [router]);
 
-  /* ── Auto-skip gate for signed-in users ── */
+  /* ── Auto-skip gate for signed-in users or guest mode from cart ── */
   useEffect(() => {
     if (!isLoaded) return;
     if (isSignedIn && user) {
@@ -128,8 +128,12 @@ function CheckoutInner() {
       setEmail(user.primaryEmailAddress?.emailAddress || "");
       setPhone(user.phoneNumbers?.[0]?.phoneNumber?.replace(/^\+91/, "") || "");
       setCheckoutMode("form");
+    } else if (searchParams.get("mode") === "guest") {
+      const guestEmailParam = searchParams.get("email");
+      if (guestEmailParam) setEmail(decodeURIComponent(guestEmailParam));
+      setCheckoutMode("form");
     }
-  }, [isLoaded, isSignedIn, user]);
+  }, [isLoaded, isSignedIn, user, searchParams]);
 
   /* ── Check for payment_failed in URL ── */
   useEffect(() => {
