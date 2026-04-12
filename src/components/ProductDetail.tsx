@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { addToCart } from "@/lib/cart";
+import { saveDeliveryInfo, updateSelectedDate } from "@/lib/delivery-store";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -183,6 +184,18 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
       }
       const data = await res.json();
       setPincodeResult(data);
+      saveDeliveryInfo({
+        pincode: code,
+        city: data.city,
+        state: data.state,
+        sameDayAvailable: data.sameDayAvailable,
+        blockedDates: data.blockedDates,
+        deliveryCharge: data.deliveryCharge,
+        freeDeliveryAbove: data.freeDeliveryAbove,
+        estimatedTime: data.estimatedTime,
+        deliveryDays: data.deliveryDays,
+        selectedDate: null,
+      });
     } catch {
       setPincodeError("Something went wrong. Please try again.");
     } finally {
@@ -270,6 +283,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
     setSelectedDate(date);
     setShowCalendar(false);
+    updateSelectedDate(toISO(date));
   }
 
   function prevMonth() {

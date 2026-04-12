@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, Suspense } from "react";
+import { useState, useEffect, useRef, useMemo, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
 import gsap from "gsap";
 import { getCart, CartItem } from "@/lib/cart";
+import { getSavedDelivery } from "@/lib/delivery-store";
 
 /* ── Delivery API response shape ── */
 interface DeliveryInfo {
@@ -53,6 +54,11 @@ function CheckoutInner() {
   const [deliveryLoading, setDeliveryLoading] = useState(false);
   const [deliveryError, setDeliveryError] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
 
   /* ── Coupon ── */
   const [couponCode, setCouponCode] = useState("");
@@ -109,7 +115,7 @@ function CheckoutInner() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
 
-  /* ── Init: load cart, check for error param ── */
+  /* ── Init: load cart, restore saved delivery ── */
   useEffect(() => {
     const items = getCart();
     if (items.length === 0) {
@@ -118,6 +124,17 @@ function CheckoutInner() {
     }
     setCartItems(items);
     setMounted(true);
+
+    // Restore saved delivery info from product page
+    const saved = getSavedDelivery();
+    if (saved) {
+      setPincode(saved.pincode);
+      if (saved.selectedDate) {
+        setDeliveryDate(saved.selectedDate);
+        const d = new Date(saved.selectedDate + "T00:00:00");
+        setCalendarMonth(new Date(d.getFullYear(), d.getMonth(), 1));
+      }
+    }
   }, [router]);
 
   /* ── Auto-skip gate for signed-in users or guest mode from cart ── */
@@ -193,27 +210,70 @@ function CheckoutInner() {
     return () => controller.abort();
   }, [pincode]);
 
-  /* ── Compute available delivery dates ── */
-  const getAvailableDates = (): string[] => {
-    const dates: string[] = [];
-    const blocked = new Set(deliveryInfo?.blockedDates || []);
-
-    // Start from today or tomorrow based on same-day availability
+  /* ── Calendar helpers ── */
+  const minDeliveryDate = useMemo(() => {
     const now = new Date();
     const istOffset = 5.5 * 60;
     const istTime = new Date(now.getTime() + istOffset * 60 * 1000);
-    const startOffset = deliveryInfo?.sameDayAvailable ? 0 : 1;
-
-    for (let i = startOffset; i < startOffset + 14; i++) {
-      const d = new Date(istTime);
-      d.setDate(d.getDate() + i);
-      const iso = d.toISOString().split("T")[0];
-      if (!blocked.has(iso)) {
-        dates.push(iso);
-      }
+    if (deliveryInfo && !deliveryInfo.sameDayAvailable) {
+      istTime.setDate(istTime.getDate() + 1);
     }
-    return dates;
-  };
+    return new Date(istTime.getUTCFullYear(), istTime.getUTCMonth(), istTime.getUTCDate());
+  }, [deliveryInfo]);
+
+  const blockedSet = useMemo(() => {
+    if (!deliveryInfo) return new Set<string>();
+    return new Set(deliveryInfo.blockedDates);
+  }, [deliveryInfo]);
+
+  function toISO(date: Date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+
+  function isDayAvailable(day: number) {
+    const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
+    if (date < minDeliveryDate) return false;
+    return !blockedSet.has(toISO(date));
+  }
+
+  function isDaySelected(day: number) {
+    if (!deliveryDate) return false;
+    const sel = new Date(deliveryDate + "T00:00:00");
+    return (
+      sel.getDate() === day &&
+      sel.getMonth() === calendarMonth.getMonth() &&
+      sel.getFullYear() === calendarMonth.getFullYear()
+    );
+  }
+
+  function isTodayDay(day: number) {
+    const now = new Date();
+    return (
+      now.getDate() === day &&
+      now.getMonth() === calendarMonth.getMonth() &&
+      now.getFullYear() === calendarMonth.getFullYear()
+    );
+  }
+
+  function getCalendarDays(): (number | null)[] {
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const days: (number | null)[] = [];
+    for (let i = 0; i < firstDay; i++) days.push(null);
+    for (let d = 1; d <= daysInMonth; d++) days.push(d);
+    return days;
+  }
+
+  function selectCalendarDay(day: number) {
+    const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
+    setDeliveryDate(toISO(date));
+    setShowCalendar(false);
+  }
 
   /* ── Totals ── */
   const subtotal = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
@@ -361,8 +421,6 @@ function CheckoutInner() {
       </div>
     );
   }
-
-  const availableDates = deliveryInfo ? getAvailableDates() : [];
 
   return (
     <>
@@ -624,27 +682,24 @@ function CheckoutInner() {
                 )}
 
                 {/* Delivery date selector */}
-                {deliveryInfo && availableDates.length > 0 && (
+                {deliveryInfo && (
                   <div>
                     <label className="block text-sm font-medium text-[#464646] mb-1.5">
                       Delivery Date <span className="text-[#EA1E61]">*</span>
                     </label>
-                    <div className="flex gap-2 overflow-x-auto scroll-container pb-2">
-                      {availableDates.map((date) => (
-                        <button
-                          key={date}
-                          type="button"
-                          onClick={() => setDeliveryDate(date)}
-                          className={`shrink-0 px-4 py-2.5 rounded-lg border text-sm font-medium transition-colors cursor-pointer ${
-                            deliveryDate === date
-                              ? "bg-[#737530] text-white border-[#737530]"
-                              : "bg-white text-[#464646] border-gray-200 hover:border-[#737530]"
-                          }`}
-                        >
-                          {formatDate(date)}
-                        </button>
-                      ))}
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowCalendar(true)}
+                      className={`w-full flex items-center border rounded-lg px-3 py-2.5 hover:border-[#737530] transition-colors cursor-pointer bg-white ${errors.deliveryDate ? "border-[#EA1E61]" : "border-gray-200"}`}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0 mr-2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+                      </svg>
+                      <span className={`flex-1 text-left text-sm ${deliveryDate ? "text-[#464646]" : "text-gray-400"}`}>
+                        {deliveryDate ? formatDate(deliveryDate) : "Select delivery date"}
+                      </span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className="shrink-0"><path d="M6 9l6 6 6-6" /></svg>
+                    </button>
                     {errors.deliveryDate && (
                       <p className="text-xs text-[#EA1E61] mt-1">{errors.deliveryDate}</p>
                     )}
@@ -826,6 +881,78 @@ function CheckoutInner() {
           </div>
         </div>}
       </div>
+
+      {/* Calendar Modal */}
+      {showCalendar && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+          style={{ backgroundColor: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}
+          onClick={() => setShowCalendar(false)}>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[380px] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 pt-5 pb-3">
+              <h3 className="text-xs font-bold tracking-widest text-[#464646] uppercase">Select Delivery Date</h3>
+              <button type="button" onClick={() => setShowCalendar(false)}
+                className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* Month Navigation */}
+            <div className="flex items-center justify-between px-5 pb-4">
+              <button type="button" onClick={() => setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() - 1, 1))}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+              <span className="text-sm font-semibold text-[#1C2120]">
+                {calendarMonth.toLocaleDateString("en-IN", { month: "long", year: "numeric" })}
+              </span>
+              <button type="button" onClick={() => setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 1))}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
+              </button>
+            </div>
+
+            {/* Day Headers */}
+            <div className="grid grid-cols-7 px-4">
+              {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+                <div key={i} className="text-center text-[11px] font-semibold text-[#999] py-2">{d}</div>
+              ))}
+            </div>
+
+            {/* Day Grid */}
+            <div className="grid grid-cols-7 px-4 pb-5">
+              {getCalendarDays().map((day, idx) => {
+                if (day === null) return <div key={`e-${idx}`} />;
+                const available = isDayAvailable(day);
+                const selected = isDaySelected(day);
+                const today = isTodayDay(day);
+
+                return (
+                  <div key={`d-${day}`} className="flex items-center justify-center py-[5px]">
+                    <button
+                      type="button"
+                      disabled={!available}
+                      onClick={() => selectCalendarDay(day)}
+                      className={`w-9 h-9 rounded-full text-[13px] font-medium transition-all cursor-pointer flex items-center justify-center
+                        ${selected
+                          ? "bg-[#737530] text-white font-bold shadow-md"
+                          : today && available
+                            ? "bg-[#737530]/10 text-[#737530] font-bold ring-1 ring-[#737530]/30"
+                            : available
+                              ? "text-[#1C2120] hover:bg-[#737530]/8"
+                              : "text-[#d1d5db] cursor-not-allowed"
+                        }`}
+                    >
+                      {day}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

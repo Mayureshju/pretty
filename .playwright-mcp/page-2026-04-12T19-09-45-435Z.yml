@@ -1,0 +1,235 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e245]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "1 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "1"
+            - generic [ref=e21]: Cart
+          - generic [ref=e22] [cursor=pointer]:
+            - img [ref=e23]
+            - generic [ref=e26]: INR
+          - link "Sign In" [ref=e143] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e144]
+            - generic [ref=e147]: Sign In
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - heading "Checkout" [level=1] [ref=e54]
+        - generic [ref=e148]:
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - heading "Customer Information" [level=2] [ref=e151]:
+                - img [ref=e152]
+                - text: Customer Information
+              - generic [ref=e155]:
+                - generic [ref=e156]:
+                  - generic [ref=e157]: Full Name *
+                  - textbox "Enter your full name" [ref=e158]
+                - generic [ref=e159]:
+                  - generic [ref=e160]: Email *
+                  - textbox "your@email.com" [ref=e161]
+                - generic [ref=e162]:
+                  - generic [ref=e163]: Phone *
+                  - textbox "10-digit mobile number" [ref=e164]
+            - generic [ref=e165]:
+              - heading "Delivery Address" [level=2] [ref=e166]:
+                - img [ref=e167]
+                - text: Delivery Address
+              - generic [ref=e170]:
+                - generic [ref=e171]:
+                  - generic [ref=e172]: Address *
+                  - textbox "Enter complete delivery address" [ref=e173]
+                - generic [ref=e174]:
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: Pincode *
+                    - textbox "6-digit pincode" [active] [ref=e178]: "400001"
+                  - generic [ref=e179]:
+                    - generic [ref=e180]: City
+                    - textbox "Auto-filled" [ref=e181]: Mumbai
+                  - generic [ref=e182]:
+                    - generic [ref=e183]: State
+                    - textbox "Auto-filled" [ref=e184]: Maharashtra
+                - generic [ref=e228]:
+                  - generic [ref=e229]:
+                    - img [ref=e230]
+                    - text: Delivery available
+                  - generic [ref=e233]: Est. 2-4 hours
+                  - generic [ref=e234]: "Charge: FREE"
+                  - generic [ref=e235]: Same Day
+                - generic [ref=e236]:
+                  - generic [ref=e237]: Delivery Date *
+                  - button "Select delivery date" [ref=e238] [cursor=pointer]:
+                    - img [ref=e239]
+                    - generic [ref=e242]: Select delivery date
+                    - img [ref=e243]
+            - generic [ref=e185]:
+              - heading "Payment" [level=2] [ref=e186]:
+                - img [ref=e187]
+                - text: Payment
+              - generic [ref=e189]:
+                - img [ref=e191]
+                - generic [ref=e193]:
+                  - paragraph [ref=e194]: Pay with PayU
+                  - paragraph [ref=e195]: Credit/Debit Card, UPI, Net Banking, Wallets
+              - button "PAY NOW — ₹ 1,595" [ref=e196] [cursor=pointer]
+          - generic [ref=e198]:
+            - heading "Order Summary (1 items)" [level=2] [ref=e199]
+            - generic [ref=e201]:
+              - img "Pastel Pink Bunch" [ref=e203]
+              - generic [ref=e204]:
+                - paragraph [ref=e205]: Pastel Pink Bunch
+                - generic [ref=e206]:
+                  - generic [ref=e207]: "Qty: 1"
+                  - generic [ref=e208]: ₹ 1,595
+            - generic [ref=e209]:
+              - generic [ref=e211]:
+                - textbox "Coupon code" [ref=e212]
+                - button "Apply" [disabled] [ref=e213]
+              - generic [ref=e214]:
+                - generic [ref=e215]: Subtotal
+                - generic [ref=e216]: ₹ 1,595
+              - generic [ref=e217]:
+                - generic [ref=e218]: Delivery Charge
+                - generic [ref=e219]: FREE
+              - generic [ref=e221]:
+                - generic [ref=e222]: Total
+                - generic [ref=e223]: ₹ 1,595
+    - contentinfo [ref=e55]:
+      - generic [ref=e57]:
+        - list [ref=e58]:
+          - listitem [ref=e59]:
+            - link "About Us" [ref=e60] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e61]:
+            - link "Delivery & Refund Policy" [ref=e62] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e63]:
+            - link "Terms and Conditions" [ref=e64] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e65]:
+            - link "Privacy Policy" [ref=e66] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e67]:
+          - listitem [ref=e68]:
+            - link "Blog" [ref=e69] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e70]:
+            - link "Quotes" [ref=e71] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e72]:
+            - link "Sitemap" [ref=e73] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e74]:
+            - link "Retail Stores" [ref=e75] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e76]:
+          - listitem [ref=e77]:
+            - link "Corporate Gifts" [ref=e78] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e79]:
+            - link "FAQ" [ref=e80] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e81]:
+            - link "Contact Us" [ref=e82] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e83]:
+            - paragraph [ref=e84]: Delivery Cities
+            - list [ref=e85]:
+              - listitem [ref=e86]:
+                - link "Flowers in Mumbai" [ref=e87] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e88]:
+                - link "Flowers in Thane" [ref=e89] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e90]:
+                - link "Flowers in Navi Mumbai" [ref=e91] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e92]:
+          - link "Pretty Petals" [ref=e93] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e94]
+          - paragraph [ref=e95]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e96]
+          - generic [ref=e97]:
+            - link "Facebook" [ref=e98] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e99]
+            - link "Twitter" [ref=e101] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e102]
+            - link "YouTube" [ref=e104] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e105]
+            - link "Pinterest" [ref=e107] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e108]
+            - link "Instagram" [ref=e110] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e111]
+            - link "LinkedIn" [ref=e113] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e114]
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - generic [ref=e119]: PRETTY PETALS
+          - generic [ref=e120]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e121]:
+          - generic [ref=e122]: "We Accept:"
+          - generic [ref=e123]: Visa
+          - generic [ref=e124]: MC
+          - generic [ref=e125]: Amex
+          - generic [ref=e126]: UPI
+          - generic [ref=e127]: PayPal
+          - generic [ref=e128]: Paytm
+    - link [ref=e129] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e130]
+  - button "Open Next.js Dev Tools" [ref=e137] [cursor=pointer]:
+    - img [ref=e138]
+  - alert [ref=e141]
