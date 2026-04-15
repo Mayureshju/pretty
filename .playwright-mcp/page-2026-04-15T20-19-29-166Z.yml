@@ -1,0 +1,318 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - main [ref=e53]:
+        - generic [ref=e54]:
+          - img "Pretty Petals — fresh flower arrangements" [ref=e55]
+          - generic [ref=e57]:
+            - paragraph [ref=e58]: Your Trusted Florist for
+            - heading "Same-Day Flower Delivery in Mumbai" [level=1] [ref=e59]:
+              - text: Same-Day Flower
+              - text: Delivery in Mumbai
+        - generic [ref=e60]:
+          - paragraph [ref=e61]: "At Pretty Petals, we don't just deliver flowers — we deliver emotions, thoughtfully handcrafted into every bouquet. As a growing and trusted name in online flower delivery in Mumbai, our mission is simple:"
+          - paragraph [ref=e62]: Make every moment special with fresh, elegant, and meaningful floral arrangements.
+          - paragraph [ref=e63]: Whether it's a birthday surprise, anniversary celebration, wedding, or a simple gesture of love, we ensure your feelings are delivered beautifully and on time.
+        - generic [ref=e65]:
+          - img "Indian florist hand-crafting a bouquet with pink roses and white lilies" [ref=e67]
+          - generic [ref=e68]:
+            - heading "Our Story — From Passion to Petal-Perfect Gifting" [level=2] [ref=e69]
+            - paragraph [ref=e70]: Pretty Petals was born from a deep passion for flowers and meaningful gifting. What started as a small initiative to create personalized floral arrangements has now evolved into a premium florist brand in Mumbai, serving hundreds of happy customers across the city.
+            - paragraph [ref=e71]: "We noticed a gap in the market — most online flower delivery platforms were transactional, lacking personalization and emotional connection. That's when Pretty Petals stepped in to redefine floral gifting with:"
+            - list [ref=e72]:
+              - listitem [ref=e73]:
+                - generic [ref=e74]: 💖
+                - text: Custom-designed bouquets
+              - listitem [ref=e75]:
+                - generic [ref=e76]: 🚚
+                - text: Reliable same-day delivery
+              - listitem [ref=e77]:
+                - generic [ref=e78]: 🌿
+                - text: Fresh, handpicked flowers sourced daily
+            - paragraph [ref=e79]: Today, we proudly stand as a brand that blends creativity, quality, and customer trust.
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - heading "Delivering Emotions, One Bouquet at a Time" [level=2] [ref=e82]
+            - paragraph [ref=e83]: At Pretty Petals, we don't just deliver flowers — we deliver emotions, thoughtfully handcrafted into every bouquet. Whether it's a birthday surprise, anniversary celebration, wedding, or a simple gesture of love, we ensure your feelings are delivered beautifully and on time.
+          - img "Beautiful bouquet being delivered" [ref=e85]
+        - generic [ref=e87]:
+          - heading "The Perfect Surprise" [level=2] [ref=e88]
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - img [ref=e91]
+              - generic [ref=e95]: Custom Bouquets
+            - generic [ref=e96]:
+              - img [ref=e97]
+              - generic [ref=e102]: Same-Day Delivery
+            - generic [ref=e103]:
+              - img [ref=e104]
+              - generic [ref=e107]: Personalised for Them
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - img "Pretty Petals vision — celebrating the joy of giving" [ref=e111]
+            - heading "Vision" [level=3] [ref=e112]
+            - paragraph [ref=e113]: Be Mumbai's most trusted florist brand — celebrating the joy of giving through fresh flowers and heartfelt gifting experiences.
+          - generic [ref=e114]:
+            - img "Pretty Petals mission — premium quality and people-first approach" [ref=e116]
+            - heading "Mission" [level=3] [ref=e117]
+            - paragraph [ref=e118]: Wow every customer, every time — through premium quality flowers, reliable same-day delivery, transparent pricing, and a genuinely people-first approach.
+        - generic [ref=e119]:
+          - img "Pretty Petals — rooted in love, growing with you" [ref=e120]
+          - generic [ref=e122]:
+            - heading "Rooted in Love, Growing With You" [level=2] [ref=e123]
+            - paragraph [ref=e124]: From our first bouquet to thousands of deliveries, every petal carries our promise of freshness and care.
+        - generic [ref=e125]:
+          - heading "Our Expertise" [level=2] [ref=e126]
+          - paragraph [ref=e127]: Crafted by Professional Florists
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - generic [ref=e130]:
+                - img "Occasion-based floral arrangements" [ref=e131]
+                - heading "Occasion-Based Floral Arrangements" [level=3] [ref=e133]
+              - list [ref=e135]:
+                - listitem [ref=e136]:
+                  - generic [ref=e137]: ✓
+                  - text: Birthday flowers
+                - listitem [ref=e138]:
+                  - generic [ref=e139]: ✓
+                  - text: Anniversary bouquets
+                - listitem [ref=e140]:
+                  - generic [ref=e141]: ✓
+                  - text: Romantic flower gifts
+                - listitem [ref=e142]:
+                  - generic [ref=e143]: ✓
+                  - text: Wedding and event floral decor
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - img "Flower and gift combos" [ref=e146]
+                - heading "Flower & Gift Combos" [level=3] [ref=e148]
+              - list [ref=e150]:
+                - listitem [ref=e151]:
+                  - generic [ref=e152]: ✓
+                  - text: Flowers with cakes
+                - listitem [ref=e153]:
+                  - generic [ref=e154]: ✓
+                  - text: Flowers with chocolates
+                - listitem [ref=e155]:
+                  - generic [ref=e156]: ✓
+                  - text: Luxury gifting hampers
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - img "Custom floral designs" [ref=e159]
+                - heading "Custom Floral Designs" [level=3] [ref=e161]
+              - paragraph [ref=e163]: Looking for something unique? We specialize in custom bouquet creation, allowing you to design flowers based on your preferences, budget, and occasion.
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - heading "Our Delivery Network — Fast, Reliable & On-Time" [level=2] [ref=e167]
+            - paragraph [ref=e168]: "We provide same-day flower delivery in Mumbai, including:"
+            - generic [ref=e169]:
+              - generic [ref=e170]: Mumbai
+              - generic [ref=e171]: Thane
+              - generic [ref=e172]: Navi Mumbai
+            - paragraph [ref=e173]: "Our logistics system ensures:"
+            - list [ref=e174]:
+              - listitem [ref=e175]:
+                - generic [ref=e176]: ⏱
+                - text: Timely deliveries
+              - listitem [ref=e177]:
+                - generic [ref=e178]: 📦
+                - text: Safe handling of delicate flowers
+              - listitem [ref=e179]:
+                - generic [ref=e180]: 🌸
+                - text: Freshness guaranteed
+          - img "Same-day flower delivery in Mumbai" [ref=e182]
+        - generic [ref=e184]:
+          - generic [ref=e185]:
+            - generic [ref=e186]: 500+
+            - generic [ref=e187]: Bouquets Crafted
+          - generic [ref=e188]:
+            - generic [ref=e189]: "3"
+            - generic [ref=e190]: Cities Served
+          - generic [ref=e191]:
+            - generic [ref=e192]: 100%
+            - generic [ref=e193]: Fresh Flowers
+          - generic [ref=e194]:
+            - generic [ref=e195]: 100%
+            - generic [ref=e196]: Smiles Delivered
+        - generic [ref=e197]:
+          - heading "Why Choose Pretty Petals?" [level=2] [ref=e198]
+          - paragraph [ref=e199]: Here's what makes us different from other florists
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - img [ref=e202]
+              - heading "Freshness You Can Trust" [level=3] [ref=e204]
+              - paragraph [ref=e205]: We source flowers daily to ensure every bouquet looks vibrant and lasts longer.
+            - generic [ref=e206]:
+              - img [ref=e207]
+              - heading "Personalized Gifting Experience" [level=3] [ref=e210]
+              - paragraph [ref=e211]: Unlike generic platforms, we focus on customization and emotional value.
+            - generic [ref=e212]:
+              - img [ref=e213]
+              - heading "Transparent Pricing" [level=3] [ref=e216]
+              - paragraph [ref=e217]: No hidden charges — what you see is what you pay.
+            - generic [ref=e218]:
+              - img [ref=e219]
+              - heading "Customer-First Approach" [level=3] [ref=e222]
+              - paragraph [ref=e223]: From order placement to delivery, we prioritize your experience at every step.
+            - generic [ref=e224]:
+              - img [ref=e225]
+              - heading "Real Local Florist in Mumbai" [level=3] [ref=e229]
+              - paragraph [ref=e230]: We are not just an aggregator — we are a hands-on florist brand, ensuring quality control.
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - img [ref=e234]
+            - generic [ref=e239]: Same-Day Delivery across Mumbai
+          - generic [ref=e240]:
+            - img [ref=e241]
+            - generic [ref=e244]: 100% Safe & Secure Payments
+    - contentinfo [ref=e245]:
+      - generic [ref=e247]:
+        - list [ref=e248]:
+          - listitem [ref=e249]:
+            - link "About Us" [ref=e250] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e251]:
+            - link "Delivery & Refund Policy" [ref=e252] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e253]:
+            - link "Terms and Conditions" [ref=e254] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e255]:
+            - link "Privacy Policy" [ref=e256] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e257]:
+          - listitem [ref=e258]:
+            - link "Blog" [ref=e259] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e260]:
+            - link "Quotes" [ref=e261] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e262]:
+            - link "Offers" [ref=e263] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e264]:
+            - link "Sitemap" [ref=e265] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e266]:
+            - link "Retail Stores" [ref=e267] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e268]:
+          - listitem [ref=e269]:
+            - link "Corporate Gifts" [ref=e270] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e271]:
+            - link "FAQ" [ref=e272] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e273]:
+            - link "Contact Us" [ref=e274] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e275]:
+            - paragraph [ref=e276]: Delivery Cities
+            - list [ref=e277]:
+              - listitem [ref=e278]:
+                - link "Flowers in Mumbai" [ref=e279] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e280]:
+                - link "Flowers in Thane" [ref=e281] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e282]:
+                - link "Flowers in Navi Mumbai" [ref=e283] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e284]:
+          - link "Pretty Petals" [ref=e285] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e286]
+          - paragraph [ref=e287]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e288]
+          - generic [ref=e289]:
+            - link "Facebook" [ref=e290] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e291]
+            - link "Twitter" [ref=e293] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e294]
+            - link "YouTube" [ref=e296] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e297]
+            - link "Pinterest" [ref=e299] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e300]
+            - link "Instagram" [ref=e302] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e303]
+            - link "LinkedIn" [ref=e305] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e306]
+      - generic [ref=e309]:
+        - generic [ref=e310]:
+          - generic [ref=e311]: PRETTY PETALS
+          - generic [ref=e312]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e313]:
+          - generic [ref=e314]: "We Accept:"
+          - generic [ref=e315]: Visa
+          - generic [ref=e316]: MC
+          - generic [ref=e317]: Amex
+          - generic [ref=e318]: UPI
+          - generic [ref=e319]: PayPal
+          - generic [ref=e320]: Paytm
+    - link [ref=e321] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e322]
+  - button "Open Next.js Dev Tools" [ref=e329] [cursor=pointer]:
+    - img [ref=e330]
+  - alert [ref=e333]

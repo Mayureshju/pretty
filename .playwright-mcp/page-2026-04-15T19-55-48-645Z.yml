@@ -1,0 +1,749 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - main [ref=e53]:
+        - generic [ref=e55]:
+          - heading "Blog" [level=1] [ref=e56]
+          - paragraph [ref=e57]: Tips, inspiration, and stories from our florists
+          - generic [ref=e58]:
+            - link "Home" [ref=e59] [cursor=pointer]:
+              - /url: /
+            - generic [ref=e60]: /
+            - generic [ref=e61]: Blog
+        - generic [ref=e63]:
+          - 'link "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life Read More → 7 Mar 2026" [ref=e64] [cursor=pointer]':
+            - /url: /womens-day-flower-delivery-in-mumbai/
+            - 'img "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life" [ref=e66]'
+            - generic [ref=e67]:
+              - 'heading "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life" [level=3] [ref=e68]'
+              - paragraph
+              - generic [ref=e69]:
+                - generic [ref=e70]: Read More →
+                - time [ref=e71]: 7 Mar 2026
+          - link "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals Read More → 11 Feb 2026" [ref=e72] [cursor=pointer]:
+            - /url: /promise-day-gifts-flowers-in-mumbai/
+            - img "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals" [ref=e74]
+            - generic [ref=e75]:
+              - heading "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals" [level=3] [ref=e76]
+              - paragraph
+              - generic [ref=e77]:
+                - generic [ref=e78]: Read More →
+                - time [ref=e79]: 11 Feb 2026
+          - link "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals Read More → 10 Feb 2026" [ref=e80] [cursor=pointer]:
+            - /url: /teddy-day-send-cute-teddy-flowers-online/
+            - img "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals" [ref=e82]
+            - generic [ref=e83]:
+              - heading "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals" [level=3] [ref=e84]
+              - paragraph
+              - generic [ref=e85]:
+                - generic [ref=e86]: Read More →
+                - time [ref=e87]: 10 Feb 2026
+          - 'link "Same-Day Valentine’s Flower Delivery in Mumbai: Last-Minute Gift Guide Same-Day Valentine’s Flower Delivery in Mumbai: Last-Minute Gift Guide Read More → 28 Jan 2026" [ref=e88] [cursor=pointer]':
+            - /url: /same-day-valentine-flower-delivery-mumbai/
+            - 'img "Same-Day Valentine’s Flower Delivery in Mumbai: Last-Minute Gift Guide" [ref=e90]'
+            - generic [ref=e91]:
+              - 'heading "Same-Day Valentine’s Flower Delivery in Mumbai: Last-Minute Gift Guide" [level=3] [ref=e92]'
+              - paragraph
+              - generic [ref=e93]:
+                - generic [ref=e94]: Read More →
+                - time [ref=e95]: 28 Jan 2026
+          - 'link "Complete Valentine’s Week Gifting Guide: Flowers for Every Day & Every Emotion Complete Valentine’s Week Gifting Guide: Flowers for Every Day & Every Emotion Read More → 16 Jan 2026" [ref=e96] [cursor=pointer]':
+            - /url: /complete-valentine-week-gifting-guide/
+            - 'img "Complete Valentine’s Week Gifting Guide: Flowers for Every Day & Every Emotion" [ref=e98]'
+            - generic [ref=e99]:
+              - 'heading "Complete Valentine’s Week Gifting Guide: Flowers for Every Day & Every Emotion" [level=3] [ref=e100]'
+              - paragraph
+              - generic [ref=e101]:
+                - generic [ref=e102]: Read More →
+                - time [ref=e103]: 16 Jan 2026
+          - 'link "The Ultimate Festive Guide: Best Flowers for Christmas & New Year in Mumbai The Ultimate Festive Guide: Best Flowers for Christmas & New Year in Mumbai Read More → 23 Dec 2025" [ref=e104] [cursor=pointer]':
+            - /url: /best-flowers-for-christmas-and-new-year-in-mumbai/
+            - 'img "The Ultimate Festive Guide: Best Flowers for Christmas & New Year in Mumbai" [ref=e106]'
+            - generic [ref=e107]:
+              - 'heading "The Ultimate Festive Guide: Best Flowers for Christmas & New Year in Mumbai" [level=3] [ref=e108]'
+              - paragraph
+              - generic [ref=e109]:
+                - generic [ref=e110]: Read More →
+                - time [ref=e111]: 23 Dec 2025
+          - 'link "Best Christmas Gift Ideas: Why Flowers Never Go Out of Style Best Christmas Gift Ideas: Why Flowers Never Go Out of Style Read More → 5 Dec 2025" [ref=e112] [cursor=pointer]':
+            - /url: /best-christmas-gift-ideas/
+            - 'img "Best Christmas Gift Ideas: Why Flowers Never Go Out of Style" [ref=e114]'
+            - generic [ref=e115]:
+              - 'heading "Best Christmas Gift Ideas: Why Flowers Never Go Out of Style" [level=3] [ref=e116]'
+              - paragraph
+              - generic [ref=e117]:
+                - generic [ref=e118]: Read More →
+                - time [ref=e119]: 5 Dec 2025
+          - link "How to Decorate Your Christmas Tree with Fresh Flowers and Bouquets? How to Decorate Your Christmas Tree with Fresh Flowers and Bouquets? Read More → 5 Nov 2025" [ref=e120] [cursor=pointer]:
+            - /url: /how-to-decorate-christmas-tree-with-fresh-flowers/
+            - img "How to Decorate Your Christmas Tree with Fresh Flowers and Bouquets?" [ref=e122]
+            - generic [ref=e123]:
+              - heading "How to Decorate Your Christmas Tree with Fresh Flowers and Bouquets?" [level=3] [ref=e124]
+              - paragraph
+              - generic [ref=e125]:
+                - generic [ref=e126]: Read More →
+                - time [ref=e127]: 5 Nov 2025
+          - link "Top Flower Picks for Navratri & Durga Puja Celebrations in Mumbai Top Flower Picks for Navratri & Durga Puja Celebrations in Mumbai Read More → 30 Sept 2025" [ref=e128] [cursor=pointer]:
+            - /url: /top-flower-for-navratri-durga-puja-celebrations-in-mumbai/
+            - img "Top Flower Picks for Navratri & Durga Puja Celebrations in Mumbai" [ref=e130]
+            - generic [ref=e131]:
+              - heading "Top Flower Picks for Navratri & Durga Puja Celebrations in Mumbai" [level=3] [ref=e132]
+              - paragraph
+              - generic [ref=e133]:
+                - generic [ref=e134]: Read More →
+                - time [ref=e135]: 30 Sept 2025
+          - link "How to Decorate Your Home with Flowers for Ganesh Chaturthi 2025? How to Decorate Your Home with Flowers for Ganesh Chaturthi 2025? Read More → 26 Aug 2025" [ref=e136] [cursor=pointer]:
+            - /url: /how-to-decorate-home-with-flowers-for-ganesh-chaturthi/
+            - img "How to Decorate Your Home with Flowers for Ganesh Chaturthi 2025?" [ref=e138]
+            - generic [ref=e139]:
+              - heading "How to Decorate Your Home with Flowers for Ganesh Chaturthi 2025?" [level=3] [ref=e140]
+              - paragraph
+              - generic [ref=e141]:
+                - generic [ref=e142]: Read More →
+                - time [ref=e143]: 26 Aug 2025
+          - link "Top 7 Flower Bouquets to Gift Your Sister on Raksha Bandhan 2025 Top 7 Flower Bouquets to Gift Your Sister on Raksha Bandhan 2025 Read More → 31 Jul 2025" [ref=e144] [cursor=pointer]:
+            - /url: /7-flower-bouquets-to-gift-sister-on-rakhi/
+            - img "Top 7 Flower Bouquets to Gift Your Sister on Raksha Bandhan 2025" [ref=e146]
+            - generic [ref=e147]:
+              - heading "Top 7 Flower Bouquets to Gift Your Sister on Raksha Bandhan 2025" [level=3] [ref=e148]
+              - paragraph
+              - generic [ref=e149]:
+                - generic [ref=e150]: Read More →
+                - time [ref=e151]: 31 Jul 2025
+          - 'link "Preserve Your Special Bouquet: Tips & Tricks from Pretty Petals Florists in Mumbai Preserve Your Special Bouquet: Tips & Tricks from Pretty Petals Florists in Mumbai Read More → 26 Jun 2025" [ref=e152] [cursor=pointer]':
+            - /url: /tips-tricks-from-pretty-petals-florists-in-mumbai/
+            - 'img "Preserve Your Special Bouquet: Tips & Tricks from Pretty Petals Florists in Mumbai" [ref=e154]'
+            - generic [ref=e155]:
+              - 'heading "Preserve Your Special Bouquet: Tips & Tricks from Pretty Petals Florists in Mumbai" [level=3] [ref=e156]'
+              - paragraph
+              - generic [ref=e157]:
+                - generic [ref=e158]: Read More →
+                - time [ref=e159]: 26 Jun 2025
+          - 'link "Father’s Day Gifting Guide: Fresh Flowers, Personalized Notes & More Father’s Day Gifting Guide: Fresh Flowers, Personalized Notes & More Read More → 26 May 2025" [ref=e160] [cursor=pointer]':
+            - /url: /fathers-day-gifting-guide/
+            - 'img "Father’s Day Gifting Guide: Fresh Flowers, Personalized Notes & More" [ref=e162]'
+            - generic [ref=e163]:
+              - 'heading "Father’s Day Gifting Guide: Fresh Flowers, Personalized Notes & More" [level=3] [ref=e164]'
+              - paragraph
+              - generic [ref=e165]:
+                - generic [ref=e166]: Read More →
+                - time [ref=e167]: 26 May 2025
+          - 'link "Happy Mother’s Day 2025: Best Flower Bouquet Ideas to Surprise Your Mom in Mumbai Happy Mother’s Day 2025: Best Flower Bouquet Ideas to Surprise Your Mom in Mumbai Read More → 29 Apr 2025" [ref=e168] [cursor=pointer]':
+            - /url: /happy-mothers-day-2025-flower-bouquet-ideas-mumbai/
+            - 'img "Happy Mother’s Day 2025: Best Flower Bouquet Ideas to Surprise Your Mom in Mumbai" [ref=e170]'
+            - generic [ref=e171]:
+              - 'heading "Happy Mother’s Day 2025: Best Flower Bouquet Ideas to Surprise Your Mom in Mumbai" [level=3] [ref=e172]'
+              - paragraph
+              - generic [ref=e173]:
+                - generic [ref=e174]: Read More →
+                - time [ref=e175]: 29 Apr 2025
+          - 'link "Eco-Friendly Flower Delivery in Navi Mumbai: Sustainable & Fresh Floral Choices Eco-Friendly Flower Delivery in Navi Mumbai: Sustainable & Fresh Floral Choices Read More → 31 Mar 2025" [ref=e176] [cursor=pointer]':
+            - /url: /eco-friendly-flower-delivery-in-navi-mumbai/
+            - 'img "Eco-Friendly Flower Delivery in Navi Mumbai: Sustainable & Fresh Floral Choices" [ref=e178]'
+            - generic [ref=e179]:
+              - 'heading "Eco-Friendly Flower Delivery in Navi Mumbai: Sustainable & Fresh Floral Choices" [level=3] [ref=e180]'
+              - paragraph
+              - generic [ref=e181]:
+                - generic [ref=e182]: Read More →
+                - time [ref=e183]: 31 Mar 2025
+          - link "Celebrate Special Occasions with Online Flower Delivery in Mumbai – Unique Gifting Ideas Celebrate Special Occasions with Online Flower Delivery in Mumbai – Unique Gifting Ideas Read More → 31 Mar 2025" [ref=e184] [cursor=pointer]:
+            - /url: /online-flower-delivery-mumbai-gift-ideas/
+            - img "Celebrate Special Occasions with Online Flower Delivery in Mumbai – Unique Gifting Ideas" [ref=e186]
+            - generic [ref=e187]:
+              - heading "Celebrate Special Occasions with Online Flower Delivery in Mumbai – Unique Gifting Ideas" [level=3] [ref=e188]
+              - paragraph
+              - generic [ref=e189]:
+                - generic [ref=e190]: Read More →
+                - time [ref=e191]: 31 Mar 2025
+          - link "How to Choose the Best Florist in Thane for Every Occasion? How to Choose the Best Florist in Thane for Every Occasion? Read More → 5 Mar 2025" [ref=e192] [cursor=pointer]:
+            - /url: /best-florist-in-thane-for-every-occasion/
+            - img "How to Choose the Best Florist in Thane for Every Occasion?" [ref=e194]
+            - generic [ref=e195]:
+              - heading "How to Choose the Best Florist in Thane for Every Occasion?" [level=3] [ref=e196]
+              - paragraph
+              - generic [ref=e197]:
+                - generic [ref=e198]: Read More →
+                - time [ref=e199]: 5 Mar 2025
+          - link "Celebrate Women’s Day with Flowers & Gifts in Mumbai – 10% Off at Pretty Petals Celebrate Women’s Day with Flowers & Gifts in Mumbai – 10% Off at Pretty Petals Read More → 5 Mar 2025" [ref=e200] [cursor=pointer]:
+            - /url: /womens-day-flower-delivery-mumbai/
+            - img "Celebrate Women’s Day with Flowers & Gifts in Mumbai – 10% Off at Pretty Petals" [ref=e202]
+            - generic [ref=e203]:
+              - heading "Celebrate Women’s Day with Flowers & Gifts in Mumbai – 10% Off at Pretty Petals" [level=3] [ref=e204]
+              - paragraph
+              - generic [ref=e205]:
+                - generic [ref=e206]: Read More →
+                - time [ref=e207]: 5 Mar 2025
+          - 'link "Vasant Panchami Flower Gifting Ideas: Celebrate the Festival of Knowledge with Pretty Petals Vasant Panchami Flower Gifting Ideas: Celebrate the Festival of Knowledge with Pretty Petals Read More → 28 Jan 2025" [ref=e208] [cursor=pointer]':
+            - /url: /vasant-panchami-flower-gifting-ideas-mumbai/
+            - 'img "Vasant Panchami Flower Gifting Ideas: Celebrate the Festival of Knowledge with Pretty Petals" [ref=e210]'
+            - generic [ref=e211]:
+              - 'heading "Vasant Panchami Flower Gifting Ideas: Celebrate the Festival of Knowledge with Pretty Petals" [level=3] [ref=e212]'
+              - paragraph
+              - generic [ref=e213]:
+                - generic [ref=e214]: Read More →
+                - time [ref=e215]: 28 Jan 2025
+          - link "Celebrate Valentine’s Week with the Perfect Flowers for Every Day Celebrate Valentine’s Week with the Perfect Flowers for Every Day Read More → 28 Jan 2025" [ref=e216] [cursor=pointer]:
+            - /url: /valentines-week-flowers-delivery-mumbai/
+            - img "Celebrate Valentine’s Week with the Perfect Flowers for Every Day" [ref=e218]
+            - generic [ref=e219]:
+              - heading "Celebrate Valentine’s Week with the Perfect Flowers for Every Day" [level=3] [ref=e220]
+              - paragraph
+              - generic [ref=e221]:
+                - generic [ref=e222]: Read More →
+                - time [ref=e223]: 28 Jan 2025
+          - 'link "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai Read More → 28 Dec 2024" [ref=e224] [cursor=pointer]':
+            - /url: /new-year-flowers-delivery-mumbai-2025/
+            - 'img "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai" [ref=e226]'
+            - generic [ref=e227]:
+              - 'heading "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai" [level=3] [ref=e228]'
+              - paragraph
+              - generic [ref=e229]:
+                - generic [ref=e230]: Read More →
+                - time [ref=e231]: 28 Dec 2024
+          - 'link "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai Read More → 23 Dec 2024" [ref=e232] [cursor=pointer]':
+            - /url: /welcome-the-new-year-with-fresh-flowers-perfect-bouquets-for-celebrations-in-mumbai/
+            - 'img "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai" [ref=e234]'
+            - generic [ref=e235]:
+              - 'heading "Welcome the New Year with Fresh Flowers: Perfect Bouquets for Celebrations in Mumbai" [level=3] [ref=e236]'
+              - paragraph
+              - generic [ref=e237]:
+                - generic [ref=e238]: Read More →
+                - time [ref=e239]: 23 Dec 2024
+          - 'link "Seasonal Wedding Flowers in Mumbai: A Month-by-Month Guide Seasonal Wedding Flowers in Mumbai: A Month-by-Month Guide Read More → 7 Dec 2024" [ref=e240] [cursor=pointer]':
+            - /url: /seasonal-wedding-flowers-in-mumbai-a-month-by-month-guide/
+            - 'img "Seasonal Wedding Flowers in Mumbai: A Month-by-Month Guide" [ref=e242]'
+            - generic [ref=e243]:
+              - 'heading "Seasonal Wedding Flowers in Mumbai: A Month-by-Month Guide" [level=3] [ref=e244]'
+              - paragraph
+              - generic [ref=e245]:
+                - generic [ref=e246]: Read More →
+                - time [ref=e247]: 7 Dec 2024
+          - 'link "Celebrate Christmas with Pretty Petals: Flowers, Cakes, and Stunning Decorations Celebrate Christmas with Pretty Petals: Flowers, Cakes, and Stunning Decorations Read More → 7 Dec 2024" [ref=e248] [cursor=pointer]':
+            - /url: /celebrate-christmas-with-pretty-petals-flowers-cakes-and-stunning-decorations/
+            - 'img "Celebrate Christmas with Pretty Petals: Flowers, Cakes, and Stunning Decorations" [ref=e250]'
+            - generic [ref=e251]:
+              - 'heading "Celebrate Christmas with Pretty Petals: Flowers, Cakes, and Stunning Decorations" [level=3] [ref=e252]'
+              - paragraph
+              - generic [ref=e253]:
+                - generic [ref=e254]: Read More →
+                - time [ref=e255]: 7 Dec 2024
+          - link "How to Use Fresh Flowers for Stunning Diwali Decorations in Mumbai? How to Use Fresh Flowers for Stunning Diwali Decorations in Mumbai? Read More → 5 Nov 2024" [ref=e256] [cursor=pointer]:
+            - /url: /how-to-use-fresh-flowers-for-stunning-diwali-decorations-in-mumbai/
+            - img "How to Use Fresh Flowers for Stunning Diwali Decorations in Mumbai?" [ref=e258]
+            - generic [ref=e259]:
+              - heading "How to Use Fresh Flowers for Stunning Diwali Decorations in Mumbai?" [level=3] [ref=e260]
+              - paragraph
+              - generic [ref=e261]:
+                - generic [ref=e262]: Read More →
+                - time [ref=e263]: 5 Nov 2024
+          - link "Corporate Diwali Gift Ideas for Employees Corporate Diwali Gift Ideas for Employees Read More → 1 Nov 2024" [ref=e264] [cursor=pointer]:
+            - /url: /corporate-diwali-gift-ideas-for-employees/
+            - img "Corporate Diwali Gift Ideas for Employees" [ref=e266]
+            - generic [ref=e267]:
+              - heading "Corporate Diwali Gift Ideas for Employees" [level=3] [ref=e268]
+              - paragraph
+              - generic [ref=e269]:
+                - generic [ref=e270]: Read More →
+                - time [ref=e271]: 1 Nov 2024
+          - 'link "Celebrate World Smile Day with Fresh Flowers: The Perfect Gift to Brighten Someone’s Day Celebrate World Smile Day with Fresh Flowers: The Perfect Gift to Brighten Someone’s Day Read More → 3 Oct 2024" [ref=e272] [cursor=pointer]':
+            - /url: /celebrate-world-smile-day-with-fresh-flowers/
+            - 'img "Celebrate World Smile Day with Fresh Flowers: The Perfect Gift to Brighten Someone’s Day" [ref=e274]'
+            - generic [ref=e275]:
+              - 'heading "Celebrate World Smile Day with Fresh Flowers: The Perfect Gift to Brighten Someone’s Day" [level=3] [ref=e276]'
+              - paragraph
+              - generic [ref=e277]:
+                - generic [ref=e278]: Read More →
+                - time [ref=e279]: 3 Oct 2024
+          - 'link "Top Flower Bouquets to Gift on National Boyfriend Day: Make Him Smile with Beautiful Blooms Top Flower Bouquets to Gift on National Boyfriend Day: Make Him Smile with Beautiful Blooms Read More → 3 Oct 2024" [ref=e280] [cursor=pointer]':
+            - /url: /top-flower-bouquets-to-gift-on-national-boyfriend-day/
+            - 'img "Top Flower Bouquets to Gift on National Boyfriend Day: Make Him Smile with Beautiful Blooms" [ref=e282]'
+            - generic [ref=e283]:
+              - 'heading "Top Flower Bouquets to Gift on National Boyfriend Day: Make Him Smile with Beautiful Blooms" [level=3] [ref=e284]'
+              - paragraph
+              - generic [ref=e285]:
+                - generic [ref=e286]: Read More →
+                - time [ref=e287]: 3 Oct 2024
+          - link "Best Housewarming Flowers for New Homes in Mumbai Best Housewarming Flowers for New Homes in Mumbai Read More → 31 Aug 2024" [ref=e288] [cursor=pointer]:
+            - /url: /best-housewarming-flowers-in-mumbai/
+            - img "Best Housewarming Flowers for New Homes in Mumbai" [ref=e290]
+            - generic [ref=e291]:
+              - heading "Best Housewarming Flowers for New Homes in Mumbai" [level=3] [ref=e292]
+              - paragraph
+              - generic [ref=e293]:
+                - generic [ref=e294]: Read More →
+                - time [ref=e295]: 31 Aug 2024
+          - 'link "Ganesh Chaturthi Floral Decorations: Traditional Flower Ideas for Your Home Ganesh Chaturthi Floral Decorations: Traditional Flower Ideas for Your Home Read More → 31 Aug 2024" [ref=e296] [cursor=pointer]':
+            - /url: /ganesh-chaturthi-floral-decorations-for-your-home/
+            - 'img "Ganesh Chaturthi Floral Decorations: Traditional Flower Ideas for Your Home" [ref=e298]'
+            - generic [ref=e299]:
+              - 'heading "Ganesh Chaturthi Floral Decorations: Traditional Flower Ideas for Your Home" [level=3] [ref=e300]'
+              - paragraph
+              - generic [ref=e301]:
+                - generic [ref=e302]: Read More →
+                - time [ref=e303]: 31 Aug 2024
+          - link "Where to Find Unique Birthday Blooms in Mumbai? Where to Find Unique Birthday Blooms in Mumbai? Read More → 25 Jul 2024" [ref=e304] [cursor=pointer]:
+            - /url: /where-to-find-unique-birthday-blooms-in-mumbai/
+            - img "Where to Find Unique Birthday Blooms in Mumbai?" [ref=e306]
+            - generic [ref=e307]:
+              - heading "Where to Find Unique Birthday Blooms in Mumbai?" [level=3] [ref=e308]
+              - paragraph
+              - generic [ref=e309]:
+                - generic [ref=e310]: Read More →
+                - time [ref=e311]: 25 Jul 2024
+          - 'link "Rakhi Gift Guide: Top Picks for Your Sister from Pretty Petals Rakhi Gift Guide: Top Picks for Your Sister from Pretty Petals Read More → 25 Jul 2024" [ref=e312] [cursor=pointer]':
+            - /url: /rakhi-gift-guide-for-sister-from-pretty-petals/
+            - 'img "Rakhi Gift Guide: Top Picks for Your Sister from Pretty Petals" [ref=e314]'
+            - generic [ref=e315]:
+              - 'heading "Rakhi Gift Guide: Top Picks for Your Sister from Pretty Petals" [level=3] [ref=e316]'
+              - paragraph
+              - generic [ref=e317]:
+                - generic [ref=e318]: Read More →
+                - time [ref=e319]: 25 Jul 2024
+          - link "Best Flower Shops in Mumbai for Anniversary Bouquets Best Flower Shops in Mumbai for Anniversary Bouquets Read More → 20 Jun 2024" [ref=e320] [cursor=pointer]:
+            - /url: /best-flower-shops-in-mumbai-for-anniversary-bouquets/
+            - img "Best Flower Shops in Mumbai for Anniversary Bouquets" [ref=e322]
+            - generic [ref=e323]:
+              - heading "Best Flower Shops in Mumbai for Anniversary Bouquets" [level=3] [ref=e324]
+              - paragraph
+              - generic [ref=e325]:
+                - generic [ref=e326]: Read More →
+                - time [ref=e327]: 20 Jun 2024
+          - 'link "Father''s Day 2024 Gift Ideas: Date, History Father''s Day 2024 Gift Ideas: Date, History Read More → 14 Jun 2024" [ref=e328] [cursor=pointer]':
+            - /url: /fathers-day-2024-gift-ideas/
+            - 'img "Father''s Day 2024 Gift Ideas: Date, History" [ref=e330]'
+            - generic [ref=e331]:
+              - 'heading "Father''s Day 2024 Gift Ideas: Date, History" [level=3] [ref=e332]'
+              - paragraph
+              - generic [ref=e333]:
+                - generic [ref=e334]: Read More →
+                - time [ref=e335]: 14 Jun 2024
+          - 'link "Top Birthday Flowers to Gift in Mumbai: A Local’s Guide Top Birthday Flowers to Gift in Mumbai: A Local’s Guide Read More → 27 May 2024" [ref=e336] [cursor=pointer]':
+            - /url: /top-birthday-flowers-to-gift-in-mumbai/
+            - 'img "Top Birthday Flowers to Gift in Mumbai: A Local’s Guide" [ref=e338]'
+            - generic [ref=e339]:
+              - 'heading "Top Birthday Flowers to Gift in Mumbai: A Local’s Guide" [level=3] [ref=e340]'
+              - paragraph
+              - generic [ref=e341]:
+                - generic [ref=e342]: Read More →
+                - time [ref=e343]: 27 May 2024
+          - link "Trending Wedding Flower Colours for 2024 Trending Wedding Flower Colours for 2024 Read More → 27 May 2024" [ref=e344] [cursor=pointer]:
+            - /url: /trending-wedding-flower-colours-for-2024/
+            - img "Trending Wedding Flower Colours for 2024" [ref=e346]
+            - generic [ref=e347]:
+              - heading "Trending Wedding Flower Colours for 2024" [level=3] [ref=e348]
+              - paragraph
+              - generic [ref=e349]:
+                - generic [ref=e350]: Read More →
+                - time [ref=e351]: 27 May 2024
+          - 'link "DIY Wedding Flower Arrangements: Tips and Tricks DIY Wedding Flower Arrangements: Tips and Tricks Read More → 26 Apr 2024" [ref=e352] [cursor=pointer]':
+            - /url: /wedding-flower-arrangements/
+            - 'img "DIY Wedding Flower Arrangements: Tips and Tricks" [ref=e354]'
+            - generic [ref=e355]:
+              - 'heading "DIY Wedding Flower Arrangements: Tips and Tricks" [level=3] [ref=e356]'
+              - paragraph
+              - generic [ref=e357]:
+                - generic [ref=e358]: Read More →
+                - time [ref=e359]: 26 Apr 2024
+          - link "Best Flowers for Mother's Day Best Flowers for Mother's Day Read More → 26 Apr 2024" [ref=e360] [cursor=pointer]:
+            - /url: /best-flowers-for-mothers-day/
+            - img "Best Flowers for Mother's Day" [ref=e362]
+            - generic [ref=e363]:
+              - heading "Best Flowers for Mother's Day" [level=3] [ref=e364]
+              - paragraph
+              - generic [ref=e365]:
+                - generic [ref=e366]: Read More →
+                - time [ref=e367]: 26 Apr 2024
+          - link "Where Holi is Played with Flowers? Where Holi is Played with Flowers? Read More → 29 Mar 2024" [ref=e368] [cursor=pointer]:
+            - /url: /where-holi-is-played-with-flowers/
+            - img "Where Holi is Played with Flowers?" [ref=e370]
+            - generic [ref=e371]:
+              - heading "Where Holi is Played with Flowers?" [level=3] [ref=e372]
+              - paragraph
+              - generic [ref=e373]:
+                - generic [ref=e374]: Read More →
+                - time [ref=e375]: 29 Mar 2024
+          - link "5 Reasons Why Flowers Make for the Perfect Anniversary Gifts 5 Reasons Why Flowers Make for the Perfect Anniversary Gifts Read More → 29 Mar 2024" [ref=e376] [cursor=pointer]:
+            - /url: /why-flowers-the-perfect-anniversary-gifts/
+            - img "5 Reasons Why Flowers Make for the Perfect Anniversary Gifts" [ref=e378]
+            - generic [ref=e379]:
+              - heading "5 Reasons Why Flowers Make for the Perfect Anniversary Gifts" [level=3] [ref=e380]
+              - paragraph
+              - generic [ref=e381]:
+                - generic [ref=e382]: Read More →
+                - time [ref=e383]: 29 Mar 2024
+          - 'link "Personalized Anniversary Bouquets: A Gift to Remember Personalized Anniversary Bouquets: A Gift to Remember Read More → 23 Feb 2024" [ref=e384] [cursor=pointer]':
+            - /url: /anniversary-flower-bouquets/
+            - 'img "Personalized Anniversary Bouquets: A Gift to Remember" [ref=e386]'
+            - generic [ref=e387]:
+              - 'heading "Personalized Anniversary Bouquets: A Gift to Remember" [level=3] [ref=e388]'
+              - paragraph
+              - generic [ref=e389]:
+                - generic [ref=e390]: Read More →
+                - time [ref=e391]: 23 Feb 2024
+          - 'link "The Language of Flowers: Picking Blooms for a Birthday Message The Language of Flowers: Picking Blooms for a Birthday Message Read More → 22 Feb 2024" [ref=e392] [cursor=pointer]':
+            - /url: /language-of-birthday-flowers/
+            - 'img "The Language of Flowers: Picking Blooms for a Birthday Message" [ref=e394]'
+            - generic [ref=e395]:
+              - 'heading "The Language of Flowers: Picking Blooms for a Birthday Message" [level=3] [ref=e396]'
+              - paragraph
+              - generic [ref=e397]:
+                - generic [ref=e398]: Read More →
+                - time [ref=e399]: 22 Feb 2024
+          - link "Unique Valentine's Day Flowers Ideas to Impress Your Loved One Unique Valentine's Day Flowers Ideas to Impress Your Loved One Read More → 23 Jan 2024" [ref=e400] [cursor=pointer]:
+            - /url: /valentines-day-flowers-to-impress-your-loved/
+            - img "Unique Valentine's Day Flowers Ideas to Impress Your Loved One" [ref=e402]
+            - generic [ref=e403]:
+              - heading "Unique Valentine's Day Flowers Ideas to Impress Your Loved One" [level=3] [ref=e404]
+              - paragraph
+              - generic [ref=e405]:
+                - generic [ref=e406]: Read More →
+                - time [ref=e407]: 23 Jan 2024
+          - link "Top 10 Birthday Flowers That Suit Every Personality Top 10 Birthday Flowers That Suit Every Personality Read More → 23 Jan 2024" [ref=e408] [cursor=pointer]:
+            - /url: /10-birthday-flowers-that-suit-every-personality/
+            - img "Top 10 Birthday Flowers That Suit Every Personality" [ref=e410]
+            - generic [ref=e411]:
+              - heading "Top 10 Birthday Flowers That Suit Every Personality" [level=3] [ref=e412]
+              - paragraph
+              - generic [ref=e413]:
+                - generic [ref=e414]: Read More →
+                - time [ref=e415]: 23 Jan 2024
+          - 'link "Bouquet Bliss: Exploring the Best in Online Flower Deliveries Bouquet Bliss: Exploring the Best in Online Flower Deliveries Read More → 15 Jan 2024" [ref=e416] [cursor=pointer]':
+            - /url: /bouquet-bliss-exploring-the-best-in-online-flower-deliveries/
+            - 'img "Bouquet Bliss: Exploring the Best in Online Flower Deliveries" [ref=e418]'
+            - generic [ref=e419]:
+              - 'heading "Bouquet Bliss: Exploring the Best in Online Flower Deliveries" [level=3] [ref=e420]'
+              - paragraph
+              - generic [ref=e421]:
+                - generic [ref=e422]: Read More →
+                - time [ref=e423]: 15 Jan 2024
+          - 'link "Petals and Clicks: The Rise of Online Flower Shopping Petals and Clicks: The Rise of Online Flower Shopping Read More → 15 Jan 2024" [ref=e424] [cursor=pointer]':
+            - /url: /petals-and-clicks-the-rise-of-online-flower-shopping/
+            - 'img "Petals and Clicks: The Rise of Online Flower Shopping" [ref=e426]'
+            - generic [ref=e427]:
+              - 'heading "Petals and Clicks: The Rise of Online Flower Shopping" [level=3] [ref=e428]'
+              - paragraph
+              - generic [ref=e429]:
+                - generic [ref=e430]: Read More →
+                - time [ref=e431]: 15 Jan 2024
+          - link "Top 10 Most Popular Flowers for Online Delivery Top 10 Most Popular Flowers for Online Delivery Read More → 30 Nov 2023" [ref=e432] [cursor=pointer]:
+            - /url: /top-10-most-popular-flowers-for-online-delivery/
+            - img "Top 10 Most Popular Flowers for Online Delivery" [ref=e434]
+            - generic [ref=e435]:
+              - heading "Top 10 Most Popular Flowers for Online Delivery" [level=3] [ref=e436]
+              - paragraph
+              - generic [ref=e437]:
+                - generic [ref=e438]: Read More →
+                - time [ref=e439]: 30 Nov 2023
+          - 'link "Flowers on a Budget: Tips for Affordable Online Flower Shopping Flowers on a Budget: Tips for Affordable Online Flower Shopping Read More → 29 Nov 2023" [ref=e440] [cursor=pointer]':
+            - /url: /flowers-on-a-budget-online-flower-shopping/
+            - 'img "Flowers on a Budget: Tips for Affordable Online Flower Shopping" [ref=e442]'
+            - generic [ref=e443]:
+              - 'heading "Flowers on a Budget: Tips for Affordable Online Flower Shopping" [level=3] [ref=e444]'
+              - paragraph
+              - generic [ref=e445]:
+                - generic [ref=e446]: Read More →
+                - time [ref=e447]: 29 Nov 2023
+          - 'link "Eco-Friendly Flower Delivery: Sustainable Choices for a Greener Planet Eco-Friendly Flower Delivery: Sustainable Choices for a Greener Planet Read More → 26 Oct 2023" [ref=e448] [cursor=pointer]':
+            - /url: /eco-friendly-flower-delivery/
+            - 'img "Eco-Friendly Flower Delivery: Sustainable Choices for a Greener Planet" [ref=e450]'
+            - generic [ref=e451]:
+              - 'heading "Eco-Friendly Flower Delivery: Sustainable Choices for a Greener Planet" [level=3] [ref=e452]'
+              - paragraph
+              - generic [ref=e453]:
+                - generic [ref=e454]: Read More →
+                - time [ref=e455]: 26 Oct 2023
+          - 'link "Anniversary Flowers: Celebrating Love and Milestones with Blooms Anniversary Flowers: Celebrating Love and Milestones with Blooms Read More → 26 Oct 2023" [ref=e456] [cursor=pointer]':
+            - /url: /anniversary-flowers-delivery/
+            - 'img "Anniversary Flowers: Celebrating Love and Milestones with Blooms" [ref=e458]'
+            - generic [ref=e459]:
+              - 'heading "Anniversary Flowers: Celebrating Love and Milestones with Blooms" [level=3] [ref=e460]'
+              - paragraph
+              - generic [ref=e461]:
+                - generic [ref=e462]: Read More →
+                - time [ref=e463]: 26 Oct 2023
+          - 'link "Festival Flowers: Adding Floral Magic to Your Holiday Celebrations Festival Flowers: Adding Floral Magic to Your Holiday Celebrations Read More → 4 Oct 2023" [ref=e464] [cursor=pointer]':
+            - /url: /festival-flowers-your-holiday-celebrations/
+            - 'img "Festival Flowers: Adding Floral Magic to Your Holiday Celebrations" [ref=e466]'
+            - generic [ref=e467]:
+              - 'heading "Festival Flowers: Adding Floral Magic to Your Holiday Celebrations" [level=3] [ref=e468]'
+              - paragraph
+              - generic [ref=e469]:
+                - generic [ref=e470]: Read More →
+                - time [ref=e471]: 4 Oct 2023
+          - link "Why Online Flower Delivery is the Future of Gifting? Why Online Flower Delivery is the Future of Gifting? Read More → 4 Oct 2023" [ref=e472] [cursor=pointer]:
+            - /url: /online-flower-delivery-is-future-of-gifting/
+            - img "Why Online Flower Delivery is the Future of Gifting?" [ref=e474]
+            - generic [ref=e475]:
+              - heading "Why Online Flower Delivery is the Future of Gifting?" [level=3] [ref=e476]
+              - paragraph
+              - generic [ref=e477]:
+                - generic [ref=e478]: Read More →
+                - time [ref=e479]: 4 Oct 2023
+          - link "10 Popular Flowers That Represent Friendship 10 Popular Flowers That Represent Friendship Read More → 29 Aug 2023" [ref=e480] [cursor=pointer]:
+            - /url: /flowers-that-represent-friendship/
+            - img "10 Popular Flowers That Represent Friendship" [ref=e482]
+            - generic [ref=e483]:
+              - heading "10 Popular Flowers That Represent Friendship" [level=3] [ref=e484]
+              - paragraph
+              - generic [ref=e485]:
+                - generic [ref=e486]: Read More →
+                - time [ref=e487]: 29 Aug 2023
+          - link "Step-by-Step Guide to Order Flowers Online Step-by-Step Guide to Order Flowers Online Read More → 29 Aug 2023" [ref=e488] [cursor=pointer]:
+            - /url: /guide-for-order-online-flowers/
+            - img "Step-by-Step Guide to Order Flowers Online" [ref=e490]
+            - generic [ref=e491]:
+              - heading "Step-by-Step Guide to Order Flowers Online" [level=3] [ref=e492]
+              - paragraph
+              - generic [ref=e493]:
+                - generic [ref=e494]: Read More →
+                - time [ref=e495]: 29 Aug 2023
+          - link "Flower Gifting Ideas on Raksha Bandhan Flower Gifting Ideas on Raksha Bandhan Read More → 24 Jul 2023" [ref=e496] [cursor=pointer]:
+            - /url: /flower-gift-for-raksha-bandan/
+            - img "Flower Gifting Ideas on Raksha Bandhan" [ref=e498]
+            - generic [ref=e499]:
+              - heading "Flower Gifting Ideas on Raksha Bandhan" [level=3] [ref=e500]
+              - paragraph
+              - generic [ref=e501]:
+                - generic [ref=e502]: Read More →
+                - time [ref=e503]: 24 Jul 2023
+          - link "Which Flowers to Give for Housewarming Ceremony? Which Flowers to Give for Housewarming Ceremony? Read More → 24 Jul 2023" [ref=e504] [cursor=pointer]:
+            - /url: /flowers-gifts-housewarming-ceremony/
+            - img "Which Flowers to Give for Housewarming Ceremony?" [ref=e506]
+            - generic [ref=e507]:
+              - heading "Which Flowers to Give for Housewarming Ceremony?" [level=3] [ref=e508]
+              - paragraph
+              - generic [ref=e509]:
+                - generic [ref=e510]: Read More →
+                - time [ref=e511]: 24 Jul 2023
+          - link "5 Flower Gifts to Impress Your Father, this “Father’s Day”! 5 Flower Gifts to Impress Your Father, this “Father’s Day”! Read More → 27 Jun 2023" [ref=e512] [cursor=pointer]:
+            - /url: /flowers-for-fathers-day/
+            - img "5 Flower Gifts to Impress Your Father, this “Father’s Day”!" [ref=e514]
+            - generic [ref=e515]:
+              - heading "5 Flower Gifts to Impress Your Father, this “Father’s Day”!" [level=3] [ref=e516]
+              - paragraph
+              - generic [ref=e517]:
+                - generic [ref=e518]: Read More →
+                - time [ref=e519]: 27 Jun 2023
+          - link "Top-10 - “World’s Most Beautiful Flowers Names” Top-10 - “World’s Most Beautiful Flowers Names” Read More → 27 Jun 2023" [ref=e520] [cursor=pointer]:
+            - /url: /most-beautiful-flowers-in-the-world/
+            - img "Top-10 - “World’s Most Beautiful Flowers Names”" [ref=e522]
+            - generic [ref=e523]:
+              - heading "Top-10 - “World’s Most Beautiful Flowers Names”" [level=3] [ref=e524]
+              - paragraph
+              - generic [ref=e525]:
+                - generic [ref=e526]: Read More →
+                - time [ref=e527]: 27 Jun 2023
+          - 'link "Blooming Love: Unique Wedding Flower Gift Ideas to Celebrate the Perfect Union Blooming Love: Unique Wedding Flower Gift Ideas to Celebrate the Perfect Union Read More → 30 May 2023" [ref=e528] [cursor=pointer]':
+            - /url: /unique-wedding-flower-gift-ideas/
+            - 'img "Blooming Love: Unique Wedding Flower Gift Ideas to Celebrate the Perfect Union" [ref=e530]'
+            - generic [ref=e531]:
+              - 'heading "Blooming Love: Unique Wedding Flower Gift Ideas to Celebrate the Perfect Union" [level=3] [ref=e532]'
+              - paragraph
+              - generic [ref=e533]:
+                - generic [ref=e534]: Read More →
+                - time [ref=e535]: 30 May 2023
+          - link "Mother’s Day Gift Guide for Moms Who Want Nothing Mother’s Day Gift Guide for Moms Who Want Nothing Read More → 26 May 2023" [ref=e536] [cursor=pointer]:
+            - /url: /mothers-day-gift-guide/
+            - img "Mother’s Day Gift Guide for Moms Who Want Nothing" [ref=e538]
+            - generic [ref=e539]:
+              - heading "Mother’s Day Gift Guide for Moms Who Want Nothing" [level=3] [ref=e540]
+              - paragraph
+              - generic [ref=e541]:
+                - generic [ref=e542]: Read More →
+                - time [ref=e543]: 26 May 2023
+          - link "5 Amazing Benefits Of Buying Online Cake In Mumbai 5 Amazing Benefits Of Buying Online Cake In Mumbai Read More → 28 Apr 2023" [ref=e544] [cursor=pointer]:
+            - /url: /benefits-buying-online-cake-mumbai/
+            - img "5 Amazing Benefits Of Buying Online Cake In Mumbai" [ref=e546]
+            - generic [ref=e547]:
+              - heading "5 Amazing Benefits Of Buying Online Cake In Mumbai" [level=3] [ref=e548]
+              - paragraph
+              - generic [ref=e549]:
+                - generic [ref=e550]: Read More →
+                - time [ref=e551]: 28 Apr 2023
+          - link "7 Reasons to Choose Online Ordering for Your Floral Needs 7 Reasons to Choose Online Ordering for Your Floral Needs India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. .. Read More → 26 Apr 2023" [ref=e552] [cursor=pointer]:
+            - /url: /benefits-of-choosing-online-flower-delivery-services/
+            - img "7 Reasons to Choose Online Ordering for Your Floral Needs" [ref=e554]
+            - generic [ref=e555]:
+              - heading "7 Reasons to Choose Online Ordering for Your Floral Needs" [level=3] [ref=e556]
+              - paragraph [ref=e557]: India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. ..
+              - generic [ref=e558]:
+                - generic [ref=e559]: Read More →
+                - time [ref=e560]: 26 Apr 2023
+          - link "How to Choose the Perfect Summer Flower Bouquet for Any Occasion How to Choose the Perfect Summer Flower Bouquet for Any Occasion India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. .. Read More → 24 Mar 2023" [ref=e561] [cursor=pointer]:
+            - /url: /top-summer-flowers/
+            - img "How to Choose the Perfect Summer Flower Bouquet for Any Occasion" [ref=e563]
+            - generic [ref=e564]:
+              - heading "How to Choose the Perfect Summer Flower Bouquet for Any Occasion" [level=3] [ref=e565]
+              - paragraph [ref=e566]: India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. ..
+              - generic [ref=e567]:
+                - generic [ref=e568]: Read More →
+                - time [ref=e569]: 24 Mar 2023
+          - link "How to Choose the Perfect Flower Bouquet for Corporate Gifting How to Choose the Perfect Flower Bouquet for Corporate Gifting Good employees are the building blocks for successful corporates. So, each company want to value employees’ hard work in certain ways, either by providing bonuses or giving gifts on special occasions. Read More → 4 Mar 2023" [ref=e570] [cursor=pointer]:
+            - /url: /corporate-gifting/
+            - img "How to Choose the Perfect Flower Bouquet for Corporate Gifting" [ref=e572]
+            - generic [ref=e573]:
+              - heading "How to Choose the Perfect Flower Bouquet for Corporate Gifting" [level=3] [ref=e574]
+              - paragraph [ref=e575]: Good employees are the building blocks for successful corporates. So, each company want to value employees’ hard work in certain ways, either by providing bonuses or giving gifts on special occasions.
+              - generic [ref=e576]:
+                - generic [ref=e577]: Read More →
+                - time [ref=e578]: 4 Mar 2023
+          - 'link "Corporate Events Made Special: A Comprehensive Guide to Online Flower Delivery for Businesses Corporate Events Made Special: A Comprehensive Guide to Online Flower Delivery for Businesses India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. .. Read More → 4 Mar 2023" [ref=e579] [cursor=pointer]':
+            - /url: /flower-delivery-for-corporate-events/
+            - 'img "Corporate Events Made Special: A Comprehensive Guide to Online Flower Delivery for Businesses" [ref=e581]'
+            - generic [ref=e582]:
+              - 'heading "Corporate Events Made Special: A Comprehensive Guide to Online Flower Delivery for Businesses" [level=3] [ref=e583]'
+              - paragraph [ref=e584]: India is a great country with versatile land which is a home to a zillion gorgeous summer flowers. ..
+              - generic [ref=e585]:
+                - generic [ref=e586]: Read More →
+                - time [ref=e587]: 4 Mar 2023
+    - contentinfo [ref=e588]:
+      - generic [ref=e590]:
+        - list [ref=e591]:
+          - listitem [ref=e592]:
+            - link "About Us" [ref=e593] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e594]:
+            - link "Delivery & Refund Policy" [ref=e595] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e596]:
+            - link "Terms and Conditions" [ref=e597] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e598]:
+            - link "Privacy Policy" [ref=e599] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e600]:
+          - listitem [ref=e601]:
+            - link "Blog" [ref=e602] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e603]:
+            - link "Quotes" [ref=e604] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e605]:
+            - link "Offers" [ref=e606] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e607]:
+            - link "Sitemap" [ref=e608] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e609]:
+            - link "Retail Stores" [ref=e610] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e611]:
+          - listitem [ref=e612]:
+            - link "Corporate Gifts" [ref=e613] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e614]:
+            - link "FAQ" [ref=e615] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e616]:
+            - link "Contact Us" [ref=e617] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e618]:
+            - paragraph [ref=e619]: Delivery Cities
+            - list [ref=e620]:
+              - listitem [ref=e621]:
+                - link "Flowers in Mumbai" [ref=e622] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e623]:
+                - link "Flowers in Thane" [ref=e624] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e625]:
+                - link "Flowers in Navi Mumbai" [ref=e626] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e627]:
+          - link "Pretty Petals" [ref=e628] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e629]
+          - paragraph [ref=e630]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e631]
+          - generic [ref=e632]:
+            - link "Facebook" [ref=e633] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e634]
+            - link "Twitter" [ref=e636] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e637]
+            - link "YouTube" [ref=e639] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e640]
+            - link "Pinterest" [ref=e642] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e643]
+            - link "Instagram" [ref=e645] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e646]
+            - link "LinkedIn" [ref=e648] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e649]
+      - generic [ref=e652]:
+        - generic [ref=e653]:
+          - generic [ref=e654]: PRETTY PETALS
+          - generic [ref=e655]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e656]:
+          - generic [ref=e657]: "We Accept:"
+          - generic [ref=e658]: Visa
+          - generic [ref=e659]: MC
+          - generic [ref=e660]: Amex
+          - generic [ref=e661]: UPI
+          - generic [ref=e662]: PayPal
+          - generic [ref=e663]: Paytm
+    - link [ref=e664] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e665]
+  - button "Open Next.js Dev Tools" [ref=e672] [cursor=pointer]:
+    - img [ref=e673]
+  - alert [ref=e676]

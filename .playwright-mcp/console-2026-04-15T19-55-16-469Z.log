@@ -1,0 +1,665 @@
+[     993ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[     998ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1041ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1198ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="(storefront)/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="(storefron...">
+                    <SegmentTrieNode>
+                    <Home>
+                      <HeroBanner banners={[...]}>
+                        <section ref={{current:null}} className="relative w...">
+                          <div>
+                          <div>
+                          <div>
+                          <div>
+                          <div>
+                          <FloatingPetals>
+                            <div className="absolute i...">
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "87.6730920550711%"
+-                                 left: "3.32833%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 14.076769096705837
+-                                 width: "9.78744px"
++                                 height: 18.29979982571759
+-                                 height: "12.7237px"
++                                 opacity: 0.151504870800445
+-                                 opacity: "0.171946"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(251.2860478273937deg)"
+-                                 transform: "rotate(51.3136deg)"
++                                 animation: "petalDrift 15.640128418807151s 6.410252326386838s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "15.1627s, 7.93925s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "9.6559s, 9.6559s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "9.508071651907734%"
+-                                 left: "81.0133%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 12.634486645011332
+-                                 width: "11.7133px"
++                                 height: 16.424832638514733
+-                                 height: "15.2273px"
++                                 opacity: 0.10238294820935809
+-                                 opacity: "0.12347"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(203.72790659166603deg)"
+-                                 transform: "rotate(328.227deg)"
++                                 animation: "petalDrift 21.015368582982596s 2.2861913828000278s linear infinite, peta..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "15.3545s, 6.34625s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "6.39789s, 6.39789s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "51.16788387817418%"
+-                                 left: "78.8391%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 7.4658106683416925
+-                                 width: "11.8427px"
++                                 height: 9.7055538688442
+-                                 height: "15.3955px"
++                                 opacity: 0.13279892474510258
+-                                 opacity: "0.133903"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(347.97744811770536deg)"
+-                                 transform: "rotate(219.1deg)"
++                                 animation: "petalDrift 22.948277054377748s 2.4501821281588216s linear infinite, peta..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "18.4527s, 6.12646s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "5.45212s, 5.45212s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "55.84129091491757%"
+-                                 left: "54.3767%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 11.0935214914538
+-                                 width: "9.2565px"
++                                 height: 14.42157793888994
+-                                 height: "12.0334px"
++                                 opacity: 0.17690851146355224
+-                                 opacity: "0.175627"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(165.3008217476972deg)"
+-                                 transform: "rotate(118.329deg)"
++                                 animation: "petalDrift 20.852611263749044s 10.166208887596056s linear infinite, peta..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "17.5669s, 5.50739s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "7.84649s, 7.84649s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "88.43493014959664%"
+-                                 left: "21.4731%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 8.61622887401244
+-                                 width: "6.00713px"
++                                 height: 11.201097536216173
+-                                 height: "7.80926px"
++                                 opacity: 0.1560069496342616
+-                                 opacity: "0.123605"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(32.04934797710618deg)"
+-                                 transform: "rotate(176.1deg)"
++                                 animation: "petalDrift 15.197850073015264s 10.930963807006606s linear infinite, peta..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "20.4606s, 7.49297s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "6.62822s, 6.62822s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "68.20971970804291%"
+-                                 left: "94.8762%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 6.14294269787925
+-                                 width: "11.3007px"
++                                 height: 7.9858255072430255
+-                                 height: "14.6909px"
++                                 opacity: 0.14395228311201386
+-                                 opacity: "0.102603"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(357.93674305136454deg)"
+-                                 transform: "rotate(71.2278deg)"
++                                 animation: "petalDrift 18.144620019668814s 8.35322514032536s linear infinite, petalS..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "22.9457s, 5.13321s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "1.77267s, 1.77267s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "1.039938405650187%"
+-                                 left: "76.5433%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 13.072501958370339
+-                                 width: "12.7093px"
++                                 height: 16.99425254588144
+-                                 height: "16.5221px"
++                                 opacity: 0.10464841979682575
+-                                 opacity: "0.151952"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(234.21093051350482deg)"
+-                                 transform: "rotate(115.858deg)"
++                                 animation: "petalDrift 18.296614654448167s 8.892338346084687s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "23.537s, 5.40753s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "7.93564s, 7.93564s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "54.64035939434916%"
+-                                 left: "36.8075%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 8.884101881396774
+-                                 width: "10.0388px"
++                                 height: 11.549332445815805
+-                                 height: "13.0505px"
++                                 opacity: 0.08852310259055965
+-                                 opacity: "0.121139"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(207.53568384953408deg)"
+-                                 transform: "rotate(95.8917deg)"
++                                 animation: "petalDrift 18.376878023285315s 10.52043111521705s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "20.3692s, 5.14013s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "9.07736s, 9.07736s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "72.5518089018617%"
+-                                 left: "95.8415%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 8.956248334456099
+-                                 width: "12.5118px"
++                                 height: 11.643122834792928
+-                                 height: "16.2653px"
++                                 opacity: 0.158447162134012
+-                                 opacity: "0.165501"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(146.45105993123929deg)"
+-                                 transform: "rotate(189.888deg)"
++                                 animation: "petalDrift 21.28691216199313s 11.956797002176227s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "20.8781s, 4.45729s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "1.67847s, 1.67847s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "48.07327195391641%"
+-                                 left: "33.9874%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 15.276619836405153
+-                                 width: "11.0212px"
++                                 height: 19.8596057873267
+-                                 height: "14.3275px"
++                                 opacity: 0.08216801422551628
+-                                 opacity: "0.116771"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(145.24263608545482deg)"
+-                                 transform: "rotate(71.2946deg)"
++                                 animation: "petalDrift 16.95132019514832s 8.013051199545757s linear infinite, petalS..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "21.0415s, 7.73053s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "6.01339s, 6.01339s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "50.70718431714876%"
+-                                 left: "30.819%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 10.114887614431685
+-                                 width: "6.29791px"
++                                 height: 13.149353898761191
+-                                 height: "8.18728px"
++                                 opacity: 0.1010603473200627
+-                                 opacity: "0.118537"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(146.3329925865496deg)"
+-                                 transform: "rotate(270.038deg)"
++                                 animation: "petalDrift 21.37778225972408s 5.6760168508076685s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "18.341s, 7.51933s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "1.60669s, 1.60669s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "98.2026334075366%"
+-                                 left: "55.5782%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 14.822255044327893
+-                                 width: "10.8947px"
++                                 height: 19.26893155762626
+-                                 height: "14.1631px"
++                                 opacity: 0.11360770222422792
+-                                 opacity: "0.114575"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(40.9831085323883deg)"
+-                                 transform: "rotate(15.6975deg)"
++                                 animation: "petalDrift 21.214074934782456s 9.696853411609958s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "17.6135s, 4.45654s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "11.9606s, 11.9606s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "74.35435646126945%"
+-                                 left: "91.1597%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 8.33711026385176
+-                                 width: "8.26694px"
++                                 height: 10.838243343007287
+-                                 height: "10.747px"
++                                 opacity: 0.12189988763763723
+-                                 opacity: "0.13128"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(73.12388407462836deg)"
+-                                 transform: "rotate(293.657deg)"
++                                 animation: "petalDrift 19.87505306249608s 1.1696546462529378s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "22.8614s, 7.45416s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "10.1891s, 10.1891s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                              <div
+                                className="absolute"
+                                style={{
++                                 left: "20.22068488877291%"
+-                                 left: "64.1325%"
++                                 top: "-20px"
+-                                 top: "-20px"
++                                 width: 8.488402767713678
+-                                 width: "14.5312px"
++                                 height: 11.034923598027783
+-                                 height: "18.8906px"
++                                 opacity: 0.15833673502012907
+-                                 opacity: "0.158464"
++                                 borderRadius: "50% 0 50% 50%"
++                                 background: "linear-gradient(135deg, var(--accent-rose), var(--primary-light))"
++                                 transform: "rotate(237.52430705986052deg)"
+-                                 transform: "rotate(64.0961deg)"
++                                 animation: "petalDrift 17.309614813517474s 2.402341388056992s linear infinite, petal..."
+-                                 border-top-left-radius: "50%"
+-                                 border-top-right-radius: "0px"
+-                                 border-bottom-right-radius: "50%"
+-                                 border-bottom-left-radius: "50%"
+-                                 background-image: ""
+-                                 background-position-x: ""
+-                                 background-position-y: ""
+-                                 background-size: ""
+-                                 background-repeat: ""
+-                                 background-attachment: ""
+-                                 background-origin: ""
+-                                 background-clip: ""
+-                                 background-color: ""
+-                                 animation-duration: "15.027s, 5.47771s"
+-                                 animation-timing-function: "linear, ease-in-out"
+-                                 animation-delay: "9.60494s, 9.60494s"
+-                                 animation-iteration-count: "infinite, infinite"
+-                                 animation-direction: "normal, normal"
+-                                 animation-fill-mode: "none, none"
+-                                 animation-play-state: "running, running"
+-                                 animation-name: "petalDrift, petalSway"
+-                                 animation-timeline: "auto"
+-                                 animation-range-start: "normal"
+-                                 animation-range-end: "normal"
+                                }}
+                              >
+                          ...
+                      ...
+                  ...
+                ...
+ @ :0
+[    1399ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1420ms] [LOG] [Fast Refresh] done in 124ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1500ms] [WARNING] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    2025ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    2055ms] [LOG] [Fast Refresh] done in 135ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[   15627ms] [WARNING] Image with src "https://pretty-petals-web.s3.eu-central-1.amazonaws.com/banners/desktop-3-1775915468144.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[   29246ms] [WARNING] Image with src "https://pretty-petals-web.s3.eu-central-1.amazonaws.com/banners/desktop-5-1775915468144.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441

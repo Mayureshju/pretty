@@ -1,0 +1,33 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]
+    - navigation [ref=e27]:
+      - list [ref=e29]
+    - main [ref=e52]:
+      - generic [ref=e53]
+      - generic [ref=e114]
+      - generic [ref=e147]
+      - generic [ref=e175]
+      - generic [ref=e182]
+      - generic [ref=e225]
+      - generic [ref=e344]
+      - generic [ref=e379]
+      - generic [ref=e432]
+      - generic [ref=e442]
+      - generic [ref=e495]
+      - generic [ref=e502]
+      - generic [ref=e507]
+    - contentinfo [ref=e528]:
+      - generic [ref=e530]
+      - generic [ref=e592]
+    - link [ref=e604] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e605]
+  - generic [ref=e611] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e612]:
+      - img [ref=e613]
+    - generic [ref=e616]:
+      - button "Open issues overlay" [ref=e617]
+      - button "Collapse issues badge" [ref=e622]
+  - alert [ref=e625]

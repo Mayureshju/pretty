@@ -5,6 +5,7 @@ import Coupon from "@/models/Coupon";
 import User from "@/models/User";
 import GuestUser from "@/models/GuestUser";
 import { sendOrderConfirmationEmail } from "@/lib/email";
+import { sendOrderConfirmedWhatsApp } from "@/lib/whatsapp";
 
 /**
  * Shared order confirmation logic used by both PayU success redirect and webhook.
@@ -82,6 +83,9 @@ export async function confirmOrderPayment(
 
   // Send confirmation email (fire-and-forget)
   sendOrderConfirmationEmail(order).catch(() => {});
+
+  // Send WhatsApp confirmation (fire-and-forget)
+  sendOrderConfirmedWhatsApp(order).catch(() => {});
 
   return order;
 }

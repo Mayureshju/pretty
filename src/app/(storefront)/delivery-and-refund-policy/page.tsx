@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Delivery & Refund Policy | Pretty Petals",
-  description:
-    "Learn about Pretty Petals delivery timelines, refund process, cancellation policy, and substitution guidelines.",
-  alternates: { canonical: "https://www.prettypetals.com/delivery-and-refund-policy/" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("delivery-and-refund-policy", {
+    title: "Delivery & Refund Policy | Pretty Petals",
+    description:
+      "Learn about Pretty Petals delivery timelines, refund process, cancellation policy, and substitution guidelines.",
+  });
+}
 
 export default function DeliveryAndRefundPolicyPage() {
   return (

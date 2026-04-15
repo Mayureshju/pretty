@@ -1,0 +1,311 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - main [ref=e53]:
+        - generic [ref=e55]:
+          - heading "Flower Quotes & Wishes" [level=1] [ref=e56]
+          - paragraph [ref=e57]: Find the perfect words to pair with your bouquet
+          - generic [ref=e58]:
+            - link "Home" [ref=e59] [cursor=pointer]:
+              - /url: /
+            - generic [ref=e60]: /
+            - generic [ref=e61]: Quotes
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - heading "Anniversary Messages" [level=2] [ref=e67]
+              - generic [ref=e68]:
+                - generic [ref=e69]:
+                  - generic [ref=e70]: “
+                  - paragraph [ref=e71]: “Love grows more tremendously full, swift, poignant, as the years multiply.”
+                  - paragraph [ref=e72]: — Zane Grey
+                - generic [ref=e73]:
+                  - generic [ref=e74]: “
+                  - paragraph [ref=e75]: “A successful marriage requires falling in love many times, always with the same person.”
+                  - paragraph [ref=e76]: — Mignon McLaughlin
+                - generic [ref=e77]:
+                  - generic [ref=e78]: “
+                  - paragraph [ref=e79]: “The best thing to hold onto in life is each other. Happy Anniversary!”
+                  - paragraph [ref=e80]: — Audrey Hepburn
+                - generic [ref=e81]:
+                  - generic [ref=e82]: “
+                  - paragraph [ref=e83]: “Together is a wonderful place to be. Cheers to another beautiful year!”
+                - generic [ref=e84]:
+                  - generic [ref=e85]: “
+                  - paragraph [ref=e86]: “Your love story is my favorite. Wishing you a blooming anniversary!”
+                - generic [ref=e87]:
+                  - generic [ref=e88]: “
+                  - paragraph [ref=e89]: “Like a garden tended with care, your love only grows more beautiful with time.”
+            - generic [ref=e90]:
+              - heading "Birthday Wishes" [level=2] [ref=e93]
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - generic [ref=e96]: “
+                  - paragraph [ref=e97]: “May your birthday bloom with happiness, just like a garden full of flowers.”
+                - generic [ref=e98]:
+                  - generic [ref=e99]: “
+                  - paragraph [ref=e100]: “Wishing you a birthday as beautiful and vibrant as a fresh bouquet of roses.”
+                - generic [ref=e101]:
+                  - generic [ref=e102]: “
+                  - paragraph [ref=e103]: “Another year older, another year more wonderful. Happy Birthday!”
+                - generic [ref=e104]:
+                  - generic [ref=e105]: “
+                  - paragraph [ref=e106]: “May your special day be surrounded by the fragrance of love and joy.”
+                - generic [ref=e107]:
+                  - generic [ref=e108]: “
+                  - paragraph [ref=e109]: “Like flowers that brighten any room, you brighten every life you touch. Happy Birthday!”
+                - generic [ref=e110]:
+                  - generic [ref=e111]: “
+                  - paragraph [ref=e112]: “Sending you a bouquet of love and warm wishes on your birthday.”
+            - generic [ref=e113]:
+              - heading "Congratulations" [level=2] [ref=e116]
+              - generic [ref=e117]:
+                - generic [ref=e118]:
+                  - generic [ref=e119]: “
+                  - paragraph [ref=e120]: “Success is a flower that blooms from the seed of hard work. Congratulations!”
+                - generic [ref=e121]:
+                  - generic [ref=e122]: “
+                  - paragraph [ref=e123]: “You did it! Celebrating your achievement with the brightest blooms.”
+                - generic [ref=e124]:
+                  - generic [ref=e125]: “
+                  - paragraph [ref=e126]: “Every accomplishment starts with the decision to try. Well done!”
+                - generic [ref=e127]:
+                  - generic [ref=e128]: “
+                  - paragraph [ref=e129]: “Here’s to new beginnings and beautiful milestones. Congratulations!”
+                - generic [ref=e130]:
+                  - generic [ref=e131]: “
+                  - paragraph [ref=e132]: “Your hard work has paid off beautifully. Time to stop and smell the roses!”
+                - generic [ref=e133]:
+                  - generic [ref=e134]: “
+                  - paragraph [ref=e135]: “Like a flower reaching for the sun, you’ve risen to the occasion. Bravo!”
+            - generic [ref=e136]:
+              - heading "Flower Quotes" [level=2] [ref=e139]
+              - generic [ref=e140]:
+                - generic [ref=e141]:
+                  - generic [ref=e142]: “
+                  - paragraph [ref=e143]: “Where flowers bloom, so does hope.”
+                  - paragraph [ref=e144]: — Lady Bird Johnson
+                - generic [ref=e145]:
+                  - generic [ref=e146]: “
+                  - paragraph [ref=e147]: “Every flower is a soul blossoming in nature.”
+                  - paragraph [ref=e148]: — Gerard De Nerval
+                - generic [ref=e149]:
+                  - generic [ref=e150]: “
+                  - paragraph [ref=e151]: “The earth laughs in flowers.”
+                  - paragraph [ref=e152]: — Ralph Waldo Emerson
+                - generic [ref=e153]:
+                  - generic [ref=e154]: “
+                  - paragraph [ref=e155]: “A flower does not think of competing with the flower next to it. It just blooms.”
+                  - paragraph [ref=e156]: — Zen Shin
+                - generic [ref=e157]:
+                  - generic [ref=e158]: “
+                  - paragraph [ref=e159]: “Flowers are the music of the ground. From earth’s lips spoken without sound.”
+                  - paragraph [ref=e160]: — Edwin Curran
+                - generic [ref=e161]:
+                  - generic [ref=e162]: “
+                  - paragraph [ref=e163]: “If we could see the miracle of a single flower clearly, our whole life would change.”
+                  - paragraph [ref=e164]: — Buddha
+            - generic [ref=e165]:
+              - heading "Get Well Soon" [level=2] [ref=e168]
+              - generic [ref=e169]:
+                - generic [ref=e170]:
+                  - generic [ref=e171]: “
+                  - paragraph [ref=e172]: “Sending healing thoughts and a virtual bouquet to brighten your day.”
+                - generic [ref=e173]:
+                  - generic [ref=e174]: “
+                  - paragraph [ref=e175]: “Flowers may not cure, but they can certainly make the heart smile. Get well soon!”
+                - generic [ref=e176]:
+                  - generic [ref=e177]: “
+                  - paragraph [ref=e178]: “Wishing you a speedy recovery. May these flowers bring warmth and cheer.”
+                - generic [ref=e179]:
+                  - generic [ref=e180]: “
+                  - paragraph [ref=e181]: “Rest, heal, and bloom again. We’re rooting for you!”
+                - generic [ref=e182]:
+                  - generic [ref=e183]: “
+                  - paragraph [ref=e184]: “A little sunshine and flowers to remind you that brighter days are ahead.”
+                - generic [ref=e185]:
+                  - generic [ref=e186]: “
+                  - paragraph [ref=e187]: “Take your time to heal. Sending you love wrapped in petals.”
+            - generic [ref=e188]:
+              - heading "Love & Romance" [level=2] [ref=e191]
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - generic [ref=e194]: “
+                  - paragraph [ref=e195]: “I’d rather have roses on my table than diamonds on my neck.”
+                  - paragraph [ref=e196]: — Emma Goldman
+                - generic [ref=e197]:
+                  - generic [ref=e198]: “
+                  - paragraph [ref=e199]: “Love is the flower you’ve got to let grow.”
+                  - paragraph [ref=e200]: — John Lennon
+                - generic [ref=e201]:
+                  - generic [ref=e202]: “
+                  - paragraph [ref=e203]: “A flower cannot blossom without sunshine, and a man cannot live without love.”
+                  - paragraph [ref=e204]: — Max Muller
+                - generic [ref=e205]:
+                  - generic [ref=e206]: “
+                  - paragraph [ref=e207]: “Love planted a rose, and the world turned sweet.”
+                  - paragraph [ref=e208]: — Katharine Lee Bates
+                - generic [ref=e209]:
+                  - generic [ref=e210]: “
+                  - paragraph [ref=e211]: “The rose speaks of love silently, in a language known only to the heart.”
+                  - paragraph [ref=e212]: — Unknown
+                - generic [ref=e213]:
+                  - generic [ref=e214]: “
+                  - paragraph [ref=e215]: “In joy or sadness, flowers are our constant friends.”
+                  - paragraph [ref=e216]: — Kozuko Okakura
+          - generic [ref=e217]:
+            - heading "Pair Your Words With Fresh Flowers" [level=3] [ref=e218]
+            - paragraph [ref=e219]: Add a personalized message with any of these quotes when you order from Pretty Petals.
+            - link "Shop Flowers Now" [ref=e220] [cursor=pointer]:
+              - /url: /flowers/
+    - contentinfo [ref=e221]:
+      - generic [ref=e223]:
+        - list [ref=e224]:
+          - listitem [ref=e225]:
+            - link "About Us" [ref=e226] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e227]:
+            - link "Delivery & Refund Policy" [ref=e228] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e229]:
+            - link "Terms and Conditions" [ref=e230] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e231]:
+            - link "Privacy Policy" [ref=e232] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e233]:
+          - listitem [ref=e234]:
+            - link "Blog" [ref=e235] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e236]:
+            - link "Quotes" [ref=e237] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e238]:
+            - link "Offers" [ref=e239] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e240]:
+            - link "Sitemap" [ref=e241] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e242]:
+            - link "Retail Stores" [ref=e243] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e244]:
+          - listitem [ref=e245]:
+            - link "Corporate Gifts" [ref=e246] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e247]:
+            - link "FAQ" [ref=e248] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e249]:
+            - link "Contact Us" [ref=e250] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e251]:
+            - paragraph [ref=e252]: Delivery Cities
+            - list [ref=e253]:
+              - listitem [ref=e254]:
+                - link "Flowers in Mumbai" [ref=e255] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e256]:
+                - link "Flowers in Thane" [ref=e257] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e258]:
+                - link "Flowers in Navi Mumbai" [ref=e259] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e260]:
+          - link "Pretty Petals" [ref=e261] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e262]
+          - paragraph [ref=e263]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e264]
+          - generic [ref=e265]:
+            - link "Facebook" [ref=e266] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e267]
+            - link "Twitter" [ref=e269] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e270]
+            - link "YouTube" [ref=e272] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e273]
+            - link "Pinterest" [ref=e275] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e276]
+            - link "Instagram" [ref=e278] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e279]
+            - link "LinkedIn" [ref=e281] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e282]
+      - generic [ref=e285]:
+        - generic [ref=e286]:
+          - generic [ref=e287]: PRETTY PETALS
+          - generic [ref=e288]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e289]:
+          - generic [ref=e290]: "We Accept:"
+          - generic [ref=e291]: Visa
+          - generic [ref=e292]: MC
+          - generic [ref=e293]: Amex
+          - generic [ref=e294]: UPI
+          - generic [ref=e295]: PayPal
+          - generic [ref=e296]: Paytm
+    - link [ref=e297] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e298]
+  - button "Open Next.js Dev Tools" [ref=e305] [cursor=pointer]:
+    - img [ref=e306]
+  - alert [ref=e309]

@@ -53,7 +53,7 @@ export default function BlogSection({ blogs }: { blogs: BlogItem[] }) {
         {blogs.map((blog, i) => (
           <Link
             key={blog._id}
-            href={`/blog/${blog.slug}`}
+            href={`/${blog.slug}`}
             ref={(el) => { cardsRef.current[i] = el; }}
             className="group rounded-xl border border-[#E8E8E8] overflow-hidden block"
           >

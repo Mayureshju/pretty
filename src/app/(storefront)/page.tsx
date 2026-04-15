@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroBanner from "@/components/HeroBanner";
 import Categories from "@/components/Categories";
 import FlowerTypes from "@/components/FlowerTypes";
@@ -17,6 +18,15 @@ import Banner from "@/models/Banner";
 import Blog from "@/models/Blog";
 import Category from "@/models/Category";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
+import { getPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("home", {
+    title: "Pretty Petals - Premium Flower Delivery, Cakes & Gifts in Mumbai",
+    description:
+      "Order fresh flowers, cakes, and gifts online from Pretty Petals. Same-day delivery in Mumbai, Thane & Navi Mumbai. Handcrafted bouquets for every occasion.",
+  });
+}
 
 export const revalidate = 3600;
 

@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us | Pretty Petals",
-  description:
-    "Learn about Pretty Petals — Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.",
-  alternates: { canonical: "https://www.prettypetals.com/about-us/" },
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("about-us", {
     title: "About Us | Pretty Petals",
     description:
+      "Learn about Pretty Petals — Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.",
+    ogTitle: "About Us | Pretty Petals",
+    ogDescription:
       "Learn about Pretty Petals — Mumbai's trusted florist for same-day flower delivery.",
-    url: "https://www.prettypetals.com/about-us/",
-    type: "website",
-  },
-};
+  });
+}
 
 /* ── SVG icons ── */
 function BouquetIcon({ size = 56 }: { size?: number }) {

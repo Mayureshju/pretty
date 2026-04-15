@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Pretty Petals",
-  description:
-    "Read the Pretty Petals privacy policy. Learn how we collect, use, and protect your personal information.",
-  alternates: { canonical: "https://www.prettypetals.com/privacy-policy/" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("privacy-policy", {
+    title: "Privacy Policy | Pretty Petals",
+    description:
+      "Read the Pretty Petals privacy policy. Learn how we collect, use, and protect your personal information.",
+  });
+}
 
 export default function PrivacyPolicyPage() {
   return (

@@ -4,12 +4,15 @@ import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CityFlowerPage from "@/components/CityFlowerPage";
 import type { ContentSection, ContentSlot } from "@/components/CityFlowerPage";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Flower Delivery Navi Mumbai | Florist in Navi Mumbai - Pretty Petals",
-  description:
-    "Send flowers to Navi Mumbai from Pretty Petals. Our online flower delivery in Navi Mumbai will send the best quality flowers on the same day.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("send-flowers-navi-mumbai", {
+    title: "Flower Delivery Navi Mumbai | Florist in Navi Mumbai - Pretty Petals",
+    description:
+      "Send flowers to Navi Mumbai from Pretty Petals. Our online flower delivery in Navi Mumbai will send the best quality flowers on the same day.",
+  });
+}
 
 export const revalidate = 3600;
 

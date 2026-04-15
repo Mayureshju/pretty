@@ -47,7 +47,7 @@ export default function BlogPostPage({ blog }: BlogPostPageProps) {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
           <path d="M9 18l6-6-6-6" />
         </svg>
-        <span className="text-[#1C2120] font-medium">Blog</span>
+        <Link href="/blog" className="text-[#737530] hover:underline">Blog</Link>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mx-1.5 opacity-50">
           <path d="M9 18l6-6-6-6" />
         </svg>

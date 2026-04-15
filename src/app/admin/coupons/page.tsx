@@ -15,6 +15,9 @@ interface CouponItem {
   code: string;
   type: "percentage" | "fixed";
   value: number;
+  description: string;
+  termsAndConditions: string;
+  isPubliclyVisible: boolean;
   minOrderAmount: number;
   maxDiscount?: number;
   usageLimit?: number;
@@ -36,6 +39,9 @@ const defaultForm = {
   code: "",
   type: "percentage" as "percentage" | "fixed",
   value: 0,
+  description: "",
+  termsAndConditions: "",
+  isPubliclyVisible: true,
   minOrderAmount: 0,
   maxDiscount: "",
   usageLimit: "",
@@ -94,6 +100,9 @@ export default function CouponsPage() {
       code: coupon.code,
       type: coupon.type,
       value: coupon.value,
+      description: coupon.description || "",
+      termsAndConditions: coupon.termsAndConditions || "",
+      isPubliclyVisible: coupon.isPubliclyVisible ?? true,
       minOrderAmount: coupon.minOrderAmount,
       maxDiscount:
         coupon.maxDiscount !== undefined ? String(coupon.maxDiscount) : "",
@@ -120,6 +129,9 @@ export default function CouponsPage() {
         code: form.code.toUpperCase(),
         type: form.type,
         value: form.value,
+        description: form.description,
+        termsAndConditions: form.termsAndConditions,
+        isPubliclyVisible: form.isPubliclyVisible,
         minOrderAmount: form.minOrderAmount,
         maxDiscount: form.maxDiscount ? Number(form.maxDiscount) : undefined,
         usageLimit: form.usageLimit ? Number(form.usageLimit) : undefined,
@@ -477,6 +489,38 @@ export default function CouponsPage() {
             </div>
           </div>
 
+          {/* Description */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Description
+            </label>
+            <textarea
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+              placeholder="Short description shown on the offers page"
+              rows={2}
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
+            />
+          </div>
+
+          {/* Terms & Conditions */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Terms &amp; Conditions
+            </label>
+            <textarea
+              value={form.termsAndConditions}
+              onChange={(e) =>
+                setForm({ ...form, termsAndConditions: e.target.value })
+              }
+              placeholder="Detailed terms and conditions for this coupon"
+              rows={3}
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors resize-none"
+            />
+          </div>
+
           {/* Usage Limit & Per User Limit */}
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -545,22 +589,45 @@ export default function CouponsPage() {
             </div>
           </div>
 
-          {/* Status */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Status
-            </label>
-            <button
-              type="button"
-              onClick={() => setForm({ ...form, isActive: !form.isActive })}
-              className={`relative inline-flex h-10 w-full items-center justify-center rounded-lg border text-sm font-medium transition-colors ${
-                form.isActive
-                  ? "border-green-200 bg-green-50 text-green-700"
-                  : "border-gray-200 bg-gray-50 text-gray-500"
-              }`}
-            >
-              {form.isActive ? "Active" : "Inactive"}
-            </button>
+          {/* Status & Public Visibility */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Status
+              </label>
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, isActive: !form.isActive })}
+                className={`relative inline-flex h-10 w-full items-center justify-center rounded-lg border text-sm font-medium transition-colors ${
+                  form.isActive
+                    ? "border-green-200 bg-green-50 text-green-700"
+                    : "border-gray-200 bg-gray-50 text-gray-500"
+                }`}
+              >
+                {form.isActive ? "Active" : "Inactive"}
+              </button>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Show on Offers Page
+              </label>
+              <button
+                type="button"
+                onClick={() =>
+                  setForm({
+                    ...form,
+                    isPubliclyVisible: !form.isPubliclyVisible,
+                  })
+                }
+                className={`relative inline-flex h-10 w-full items-center justify-center rounded-lg border text-sm font-medium transition-colors ${
+                  form.isPubliclyVisible
+                    ? "border-blue-200 bg-blue-50 text-blue-700"
+                    : "border-gray-200 bg-gray-50 text-gray-500"
+                }`}
+              >
+                {form.isPubliclyVisible ? "Visible" : "Hidden"}
+              </button>
+            </div>
           </div>
         </form>
       </Modal>

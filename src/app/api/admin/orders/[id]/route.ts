@@ -9,6 +9,11 @@ import {
 } from "@/lib/auth";
 import Order from "@/models/Order";
 import { orderStatusSchema } from "@/lib/validators/order";
+import {
+  sendOutForDeliveryWhatsApp,
+  sendDeliveredWhatsApp,
+  sendOrderCancelledWhatsApp,
+} from "@/lib/whatsapp";
 
 export async function GET(
   _request: NextRequest,
@@ -89,6 +94,15 @@ export async function PUT(
     });
 
     await order.save();
+
+    // Send WhatsApp notification (fire-and-forget)
+    const whatsappByStatus: Record<string, ((o: typeof order) => Promise<void>) | undefined> = {
+      "out-for-delivery": sendOutForDeliveryWhatsApp,
+      "delivered": sendDeliveredWhatsApp,
+      "cancelled": sendOrderCancelledWhatsApp,
+    };
+    const whatsappFn = whatsappByStatus[parsed.data.status];
+    if (whatsappFn) whatsappFn(order).catch(() => {});
 
     return Response.json(order);
   } catch (err) {

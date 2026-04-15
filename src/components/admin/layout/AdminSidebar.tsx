@@ -128,6 +128,34 @@ function IconSettings() {
   );
 }
 
+function IconSearch() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
+}
+
+function IconHelpCircle() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  );
+}
+
+function IconQuote() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z" />
+      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z" />
+    </svg>
+  );
+}
+
 function IconChevronLeft() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -175,6 +203,8 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: "Banners", href: "/admin/banners", icon: IconImage },
       { label: "Blogs", href: "/admin/blogs", icon: IconFileText },
+      { label: "FAQs", href: "/admin/faqs", icon: IconHelpCircle },
+      { label: "Quotes", href: "/admin/quotes", icon: IconQuote },
     ],
   },
   {
@@ -189,6 +219,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     title: "SYSTEM",
     items: [
+      { label: "SEO", href: "/admin/seo", icon: IconSearch },
       { label: "Users", href: "/admin/users", icon: IconUsers },
       { label: "Reports", href: "/admin/reports", icon: IconBarChart },
       { label: "Settings", href: "/admin/settings", icon: IconSettings },

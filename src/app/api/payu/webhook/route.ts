@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
 import { verifyPayUResponse } from "@/lib/payu";
 import { confirmOrderPayment } from "@/lib/order-confirmation";
+import { sendOrderFailedWhatsApp } from "@/lib/whatsapp";
 
 export async function POST(request: NextRequest) {
   try {
@@ -42,16 +43,25 @@ export async function POST(request: NextRequest) {
 
       return Response.json({ status: "ok", orderNumber: order.orderNumber });
     } else {
-      await Order.findByIdAndUpdate(orderId, {
-        "payment.status": "failed",
-        $push: {
-          statusHistory: {
-            status: "failed",
-            timestamp: new Date(),
-            note: `Payment failed (webhook): ${params.error_Message || "Unknown"}`,
+      const failedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        {
+          "payment.status": "failed",
+          $push: {
+            statusHistory: {
+              status: "failed",
+              timestamp: new Date(),
+              note: `Payment failed (webhook): ${params.error_Message || "Unknown"}`,
+            },
           },
         },
-      });
+        { new: true }
+      );
+
+      if (failedOrder) {
+        sendOrderFailedWhatsApp(failedOrder).catch(() => {});
+      }
+
       return Response.json({ status: "failed" });
     }
   } catch (err) {

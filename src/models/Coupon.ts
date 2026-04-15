@@ -4,6 +4,9 @@ export interface ICoupon extends Document {
   code: string;
   type: "percentage" | "fixed";
   value: number;
+  description: string;
+  termsAndConditions: string;
+  isPubliclyVisible: boolean;
   minOrderAmount: number;
   maxDiscount?: number;
   usageLimit?: number;
@@ -22,6 +25,9 @@ const CouponSchema = new Schema<ICoupon>(
     code: { type: String, required: true, unique: true, uppercase: true },
     type: { type: String, enum: ["percentage", "fixed"], required: true },
     value: { type: Number, required: true },
+    description: { type: String, default: "" },
+    termsAndConditions: { type: String, default: "" },
+    isPubliclyVisible: { type: Boolean, default: true },
     minOrderAmount: { type: Number, default: 0 },
     maxDiscount: { type: Number },
     usageLimit: { type: Number },

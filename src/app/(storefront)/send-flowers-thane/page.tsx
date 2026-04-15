@@ -4,12 +4,15 @@ import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CityFlowerPage from "@/components/CityFlowerPage";
 import type { ContentSection, ContentSlot } from "@/components/CityFlowerPage";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Flower Delivery Thane | Florist in Thane - Pretty Petals",
-  description:
-    "Flower Delivery Thane \u2013 Pretty Petals offers fresh flowers with same-day delivery in Thane. Pretty Petals is one of the #1 florists in Thane.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("send-flowers-thane", {
+    title: "Flower Delivery Thane | Florist in Thane - Pretty Petals",
+    description:
+      "Flower Delivery Thane \u2013 Pretty Petals offers fresh flowers with same-day delivery in Thane. Pretty Petals is one of the #1 florists in Thane.",
+  });
+}
 
 export const revalidate = 3600;
 

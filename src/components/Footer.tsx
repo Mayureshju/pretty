@@ -10,6 +10,7 @@ const footerLinks = {
   column2: [
     { label: "Blog", href: "/blog" },
     { label: "Quotes", href: "/quotes" },
+    { label: "Offers", href: "/offers" },
     { label: "Sitemap", href: "/sitemap.html" },
     { label: "Retail Stores", href: "https://share.google/aQtmjIlTnncsUqGmJ" },
   ],

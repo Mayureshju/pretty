@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { getPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms and Conditions | Pretty Petals",
-  description:
-    "Read the Pretty Petals terms and conditions for online shopping, delivery, payment, cancellations, and more.",
-  alternates: { canonical: "https://www.prettypetals.com/terms-and-conditions/" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("terms-and-conditions", {
+    title: "Terms and Conditions | Pretty Petals",
+    description:
+      "Read the Pretty Petals terms and conditions for online shopping, delivery, payment, cancellations, and more.",
+  });
+}
 
 export default function TermsAndConditionsPage() {
   return (
