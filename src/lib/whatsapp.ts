@@ -172,3 +172,17 @@ export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
   ]);
 }
+
+export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
+  const sellerPhone = "919821036990";
+
+  await sendWhatsAppTemplate(sellerPhone, "pretty_petals_new_order_seller", [
+    { name: "seller_name", value: "Reena" },
+    { name: "order_number", value: order.orderNumber },
+    { name: "customer_name", value: order.customer.name },
+    { name: "customer_phone", value: order.customer.phone || "N/A" },
+    { name: "items", value: buildItemSummary(order.items) },
+    { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
+    { name: "delivery_date", value: formatDeliveryDate(order.deliverySlot) },
+  ]);
+}

@@ -37,7 +37,7 @@ export default async function OffersPage() {
       <section className="bg-[#1C2120] py-12 md:py-16">
         <div className="max-w-[1440px] mx-auto px-4">
           <h1 className="text-2xl md:text-4xl font-bold text-white">
-            Offers &amp; Coupons
+           Coupons & Deals
           </h1>
           <p className="text-sm md:text-base text-white/60 mt-2">
             Save more on beautiful flowers with exclusive deals
