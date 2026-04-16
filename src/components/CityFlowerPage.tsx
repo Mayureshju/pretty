@@ -674,7 +674,7 @@ export default function CityFlowerPage({ data }: { data: CityData }) {
 
       {/* Intro */}
       <div className="max-w-[1440px] mx-auto px-4 pt-8 md:pt-12 pb-2">
-        <div className="max-w-3xl">
+        <div className="max-w-10xl">
           <p className="text-[15px] md:text-base text-[#444] leading-[1.8]">
             {data.intro}
           </p>
