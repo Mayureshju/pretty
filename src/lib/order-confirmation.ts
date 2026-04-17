@@ -4,7 +4,7 @@ import { Counter } from "@/models/Order";
 import Coupon from "@/models/Coupon";
 import User from "@/models/User";
 import GuestUser from "@/models/GuestUser";
-import { sendOrderConfirmationEmail } from "@/lib/email";
+import { sendOrderConfirmationEmail, sendNewOrderSellerEmail } from "@/lib/email";
 import { sendOrderConfirmedWhatsApp, sendNewOrderSellerWhatsApp } from "@/lib/whatsapp";
 
 /**
@@ -89,6 +89,7 @@ export async function confirmOrderPayment(
 
   // Notify seller about new order (fire-and-forget)
   sendNewOrderSellerWhatsApp(order).catch(() => {});
+  sendNewOrderSellerEmail(order).catch(() => {});
 
   return order;
 }

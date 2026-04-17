@@ -1,4 +1,5 @@
 import type { IOrder, IOrderItem } from "@/models/Order";
+import { getNotificationSettings } from "@/lib/notification-settings";
 
 const WHATSAPP_API_URL = "https://graph.facebook.com/v21.0";
 
@@ -174,10 +175,14 @@ export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
 }
 
 export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
-  const sellerPhone = "919821036990";
+  const settings = await getNotificationSettings();
+  if (!settings.sendSellerWhatsApp) return;
+
+  const sellerPhone = formatPhoneForWhatsApp(settings.sellerWhatsappNumber);
+  if (!sellerPhone) return;
 
   await sendWhatsAppTemplate(sellerPhone, "pretty_petals_new_order_seller", [
-    { name: "seller_name", value: "Reena" },
+    { name: "seller_name", value: settings.sellerName },
     { name: "order_number", value: order.orderNumber },
     { name: "customer_name", value: order.customer.name },
     { name: "customer_phone", value: order.customer.phone || "N/A" },
