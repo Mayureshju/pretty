@@ -76,6 +76,20 @@ export async function PUT(
 
     const data = parsed.data;
 
+    // Ensure slug uniqueness if changed
+    if (data.slug) {
+      const slugTaken = await Product.exists({
+        slug: data.slug,
+        _id: { $ne: id },
+      });
+      if (slugTaken) {
+        return Response.json(
+          { error: "Slug already in use by another product" },
+          { status: 400 }
+        );
+      }
+    }
+
     // Recalculate currentPrice based on product type
     const existing = await Product.findById(id).lean();
     if (!existing) {

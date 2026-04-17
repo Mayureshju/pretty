@@ -44,6 +44,8 @@ export default function NewProductPage() {
 
   // Form state
   const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+  const [slugManual, setSlugManual] = useState(false);
   const [description, setDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [sku, setSku] = useState("");
@@ -155,6 +157,7 @@ export default function NewProductPage() {
     try {
       const body: Record<string, unknown> = {
         name: name.trim(),
+        ...(slug.trim() && { slug: slug.trim() }),
         pricing: {
           regularPrice: Number(regularPrice),
           salePrice: salePrice ? Number(salePrice) : null,
@@ -296,11 +299,45 @@ export default function NewProductPage() {
                     id="name"
                     type="text"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      if (!slugManual) {
+                        setSlug(
+                          e.target.value
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, "-")
+                            .replace(/(^-|-$)/g, "")
+                        );
+                      }
+                    }}
                     placeholder="e.g., Red Rose Bouquet"
                     className={inputClass}
                     required
                   />
+                </div>
+                <div>
+                  <label htmlFor="slug" className={labelClass}>
+                    Slug
+                  </label>
+                  <input
+                    id="slug"
+                    type="text"
+                    value={slug}
+                    onChange={(e) => {
+                      setSlugManual(true);
+                      setSlug(
+                        e.target.value
+                          .toLowerCase()
+                          .replace(/[^a-z0-9-]+/g, "-")
+                          .replace(/(^-|-$)/g, "")
+                      );
+                    }}
+                    placeholder="auto-generated-from-name"
+                    className={inputClass}
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Auto-generated from name. Edit to customize.
+                  </p>
                 </div>
                 <div>
                   <label htmlFor="description" className={labelClass}>

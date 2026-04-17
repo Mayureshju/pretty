@@ -149,8 +149,8 @@ ProductSchema.index({ isActive: 1, isFeatured: -1 });
 ProductSchema.index({ sku: 1 }, { sparse: true });
 ProductSchema.index({ name: "text", description: "text" });
 
-// Pre-save: auto-generate slug from name if not provided
-ProductSchema.pre("save", function () {
+// Pre-validate: auto-generate slug from name if not provided, ensure uniqueness
+ProductSchema.pre("validate", async function () {
   if (!this.slug && this.name) {
     this.slug = this.name
       .toLowerCase()
@@ -158,6 +158,19 @@ ProductSchema.pre("save", function () {
       .replace(/(^-|-$)/g, "");
   }
 
+  if (this.slug && this.isNew) {
+    const base = this.slug;
+    let candidate = base;
+    let counter = 1;
+    const Model = this.constructor as typeof import("mongoose").Model;
+    while (await Model.exists({ slug: candidate })) {
+      candidate = `${base}-${++counter}`;
+    }
+    this.slug = candidate;
+  }
+});
+
+ProductSchema.pre("save", function () {
   // For variable products, set pricing from lowest variant
   if (this.type === "variable" && this.variants && this.variants.length > 0) {
     const validVariants = this.variants.filter((v) => v.price > 0);

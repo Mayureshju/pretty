@@ -51,6 +51,7 @@ export default function EditProductPage({
 
   // Form state
   const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [sku, setSku] = useState("");
@@ -91,6 +92,7 @@ export default function EditProductPage({
 
         // Populate form fields
         setName(product.name || "");
+        setSlug(product.slug || "");
         setDescription(product.description || "");
         setShortDescription(product.shortDescription || "");
         setSku(product.sku || "");
@@ -238,6 +240,7 @@ export default function EditProductPage({
     try {
       const body: Record<string, unknown> = {
         name: name.trim(),
+        slug: slug.trim() || undefined,
         description: description.trim() || undefined,
         shortDescription: shortDescription.trim() || undefined,
         sku: sku.trim() || undefined,
@@ -411,6 +414,26 @@ export default function EditProductPage({
                     placeholder="e.g., Red Rose Bouquet"
                     className={inputClass}
                     required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="slug" className={labelClass}>
+                    Slug
+                  </label>
+                  <input
+                    id="slug"
+                    type="text"
+                    value={slug}
+                    onChange={(e) =>
+                      setSlug(
+                        e.target.value
+                          .toLowerCase()
+                          .replace(/[^a-z0-9-]+/g, "-")
+                          .replace(/(^-|-$)/g, "")
+                      )
+                    }
+                    placeholder="product-url-slug"
+                    className={inputClass}
                   />
                 </div>
                 <div>
