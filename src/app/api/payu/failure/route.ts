@@ -32,12 +32,14 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.redirect(
-      new URL("/checkout/?error=payment_failed", request.url)
+      new URL("/checkout/?error=payment_failed", request.url),
+      303
     );
   } catch (err) {
     console.error("PayU failure callback error:", err);
     return NextResponse.redirect(
-      new URL("/checkout/?error=server_error", request.url)
+      new URL("/checkout/?error=server_error", request.url),
+      303
     );
   }
 }

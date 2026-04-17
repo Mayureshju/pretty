@@ -21,7 +21,8 @@ export async function POST(request: NextRequest) {
 
     if (!orderId) {
       return NextResponse.redirect(
-        new URL("/checkout/?error=invalid_order", request.url)
+        new URL("/checkout/?error=invalid_order", request.url),
+        303
       );
     }
 
@@ -30,7 +31,8 @@ export async function POST(request: NextRequest) {
       await confirmOrderPayment(orderId, params.mihpayid || params.txnid);
 
       return NextResponse.redirect(
-        new URL(`/order-confirmation/?id=${orderId}`, request.url)
+        new URL(`/order-confirmation/?id=${orderId}`, request.url),
+        303
       );
     } else {
       // Payment reported success but hash invalid
@@ -46,13 +48,15 @@ export async function POST(request: NextRequest) {
       });
 
       return NextResponse.redirect(
-        new URL("/checkout/?error=verification_failed", request.url)
+        new URL("/checkout/?error=verification_failed", request.url),
+        303
       );
     }
   } catch (err) {
     console.error("PayU success callback error:", err);
     return NextResponse.redirect(
-      new URL("/checkout/?error=server_error", request.url)
+      new URL("/checkout/?error=server_error", request.url),
+      303
     );
   }
 }
