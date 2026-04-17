@@ -1,0 +1,557 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - img "Handcrafted With Love" [ref=e56]
+        - img "Celebrate Every Moment" [ref=e61]
+        - img "The Perfect Gift" [ref=e66]
+        - img "Baked Fresh Daily" [ref=e71]
+        - img "Breathe Life Into Spaces" [ref=e76]
+        - generic [ref=e80]:
+          - generic [ref=e81]: Handcrafted With Love
+          - heading "Fresh Blooms Delivered Daily" [level=1] [ref=e82]:
+            - generic [ref=e83]: Fresh
+            - generic [ref=e84]: Blooms
+            - generic [ref=e85]: Delivered
+            - generic [ref=e86]: Daily
+          - paragraph [ref=e87]: Handcrafted With Love
+          - link "Shop Now" [ref=e88] [cursor=pointer]:
+            - /url: /flowers/
+            - text: Shop Now
+            - img [ref=e89]
+        - button "Previous slide" [ref=e91] [cursor=pointer]:
+          - img [ref=e92]
+        - button "Next slide" [ref=e94] [cursor=pointer]:
+          - img [ref=e95]
+        - generic [ref=e97]:
+          - button "Go to slide 1" [ref=e98] [cursor=pointer]
+          - button "Go to slide 2" [ref=e101] [cursor=pointer]
+          - button "Go to slide 3" [ref=e103] [cursor=pointer]
+          - button "Go to slide 4" [ref=e105] [cursor=pointer]
+          - button "Go to slide 5" [ref=e107] [cursor=pointer]
+        - generic [ref=e109]:
+          - generic [ref=e110]: "01"
+          - generic [ref=e111]: /
+          - generic [ref=e112]: "05"
+      - generic [ref=e114]:
+        - link "Birthday Birthday" [ref=e115] [cursor=pointer]:
+          - /url: /flowers/birthday/
+          - img "Birthday" [ref=e117]
+          - generic [ref=e118]: Birthday
+        - link "Anniversary Anniversary" [ref=e119] [cursor=pointer]:
+          - /url: /flowers/anniversary/
+          - img "Anniversary" [ref=e121]
+          - generic [ref=e122]: Anniversary
+        - link "Valentine's Valentine's" [ref=e123] [cursor=pointer]:
+          - /url: /flowers/valentines-day/
+          - img "Valentine's" [ref=e125]
+          - generic [ref=e126]: Valentine's
+        - link "Get Same Day Get Same Day" [ref=e127] [cursor=pointer]:
+          - /url: /flowers/
+          - img "Get Same Day" [ref=e129]
+          - generic [ref=e130]: Get Same Day
+        - link "Flowers Flowers" [ref=e131] [cursor=pointer]:
+          - /url: /flowers/
+          - img "Flowers" [ref=e133]
+          - generic [ref=e134]: Flowers
+        - link "Wedding Wedding" [ref=e135] [cursor=pointer]:
+          - /url: /flowers/wedding/
+          - img "Wedding" [ref=e137]
+          - generic [ref=e138]: Wedding
+        - link "Cakes Cakes" [ref=e139] [cursor=pointer]:
+          - /url: /cakes/
+          - img "Cakes" [ref=e141]
+          - generic [ref=e142]: Cakes
+        - link "Plants Plants" [ref=e143] [cursor=pointer]:
+          - /url: /plants/
+          - img "Plants" [ref=e145]
+          - generic [ref=e146]: Plants
+      - generic [ref=e147]:
+        - heading "Pick Their Fav Flowers" [level=2] [ref=e148]
+        - generic [ref=e149]:
+          - link "Roses Roses" [ref=e150] [cursor=pointer]:
+            - /url: /flowers/roses/
+            - img "Roses" [ref=e152]
+            - paragraph [ref=e153]: Roses
+          - link "Carnations Carnations" [ref=e154] [cursor=pointer]:
+            - /url: /flowers/carnations/
+            - img "Carnations" [ref=e156]
+            - paragraph [ref=e157]: Carnations
+          - link "Orchids Orchids" [ref=e158] [cursor=pointer]:
+            - /url: /flowers/orchids/
+            - img "Orchids" [ref=e160]
+            - paragraph [ref=e161]: Orchids
+          - link "Sunflowers Sunflowers" [ref=e162] [cursor=pointer]:
+            - /url: /flowers/
+            - img "Sunflowers" [ref=e164]
+            - paragraph [ref=e165]: Sunflowers
+          - link "Gerberas Gerberas" [ref=e166] [cursor=pointer]:
+            - /url: /flowers/gerberas/
+            - img "Gerberas" [ref=e168]
+            - paragraph [ref=e169]: Gerberas
+          - link "Luxe Luxe" [ref=e170] [cursor=pointer]:
+            - /url: /signature/
+            - img "Luxe" [ref=e172]
+            - paragraph [ref=e173]: Luxe
+      - generic [ref=e175]:
+        - img [ref=e176]
+        - generic [ref=e178]: Rated 4.9/5
+        - generic [ref=e179]: "|"
+        - generic [ref=e180]: Trusted by 50,000+ Happy Customers
+      - generic [ref=e182]:
+        - 'link "Birthdays Made Special Birthdays Made Special Joyful gifts to #MakeItSpecial" [ref=e183] [cursor=pointer]':
+          - /url: /flowers/birthday/
+          - generic [ref=e184]:
+            - img "Birthdays Made Special" [ref=e185]
+            - generic [ref=e186]:
+              - heading "Birthdays Made Special" [level=3] [ref=e187]
+              - paragraph [ref=e188]: "Joyful gifts to #MakeItSpecial"
+              - img [ref=e190]
+        - generic [ref=e192]:
+          - link "Flowers Flowers" [ref=e193] [cursor=pointer]:
+            - /url: /flowers/birthday/
+            - img "Flowers" [ref=e195]
+            - generic [ref=e196]: Flowers
+          - link "Cakes Cakes" [ref=e197] [cursor=pointer]:
+            - /url: /cakes/
+            - img "Cakes" [ref=e199]
+            - generic [ref=e200]: Cakes
+          - link "Personalised Personalised" [ref=e201] [cursor=pointer]:
+            - /url: /gifts/
+            - img "Personalised" [ref=e203]
+            - generic [ref=e204]: Personalised
+          - link "Plants Plants" [ref=e205] [cursor=pointer]:
+            - /url: /plants/
+            - img "Plants" [ref=e207]
+            - generic [ref=e208]: Plants
+          - link "Gift Sets Gift Sets" [ref=e209] [cursor=pointer]:
+            - /url: /combos-gifts/
+            - img "Gift Sets" [ref=e211]
+            - generic [ref=e212]: Gift Sets
+          - link "Hampers Hampers" [ref=e213] [cursor=pointer]:
+            - /url: /combos-gifts/
+            - img "Hampers" [ref=e215]
+            - generic [ref=e216]: Hampers
+          - link "Balloon Decor Balloon Decor" [ref=e217] [cursor=pointer]:
+            - /url: /gifts/
+            - img "Balloon Decor" [ref=e219]
+            - generic [ref=e220]: Balloon Decor
+          - link "Bestsellers Bestsellers" [ref=e221] [cursor=pointer]:
+            - /url: /popular/
+            - img "Bestsellers" [ref=e223]
+            - generic [ref=e224]: Bestsellers
+      - generic [ref=e225]:
+        - generic [ref=e226]:
+          - generic [ref=e227]:
+            - heading "Best Selling Flowers & Gifts" [level=2] [ref=e228]
+            - paragraph [ref=e229]: Surprise Your Loved Ones
+          - link "View All" [ref=e230] [cursor=pointer]:
+            - /url: /flowers/
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - link "Pastel Pink Bunch" [ref=e233] [cursor=pointer]:
+              - /url: /product/sweet-pink-roses-handbunch/
+              - img "Pastel Pink Bunch" [ref=e235]
+            - generic [ref=e238]:
+              - link "Pastel Pink Bunch" [ref=e239] [cursor=pointer]:
+                - /url: /product/sweet-pink-roses-handbunch/
+                - heading "Pastel Pink Bunch" [level=3] [ref=e240]
+              - generic [ref=e242]: ₹1595
+              - generic [ref=e244]: ⭐ 4.8 | 4
+              - paragraph [ref=e245]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e246]:
+            - link "Pink Passion" [ref=e247] [cursor=pointer]:
+              - /url: /product/sweet-pretty-pink-roses-handbunch/
+              - img "Pink Passion" [ref=e249]
+            - generic [ref=e252]:
+              - link "Pink Passion" [ref=e253] [cursor=pointer]:
+                - /url: /product/sweet-pretty-pink-roses-handbunch/
+                - heading "Pink Passion" [level=3] [ref=e254]
+              - generic [ref=e256]: ₹1649
+              - generic [ref=e258]: ⭐ 5.0 | 2
+              - paragraph [ref=e259]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e260]:
+            - link "Pretty Pink & Purple" [ref=e261] [cursor=pointer]:
+              - /url: /product/pretty-pink-purple/
+              - img "Pretty Pink & Purple" [ref=e263]
+            - generic [ref=e266]:
+              - link "Pretty Pink & Purple" [ref=e267] [cursor=pointer]:
+                - /url: /product/pretty-pink-purple/
+                - heading "Pretty Pink & Purple" [level=3] [ref=e268]
+              - generic [ref=e269]:
+                - generic [ref=e270]: ₹2150
+                - generic [ref=e271]: ₹1799
+              - generic [ref=e273]: ⭐ 5.0 | 1
+              - paragraph [ref=e274]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e275]:
+            - link "Abundant Bunch" [ref=e276] [cursor=pointer]:
+              - /url: /product/lilies-roses-handbunch/
+              - img "Abundant Bunch" [ref=e278]
+            - generic [ref=e281]:
+              - link "Abundant Bunch" [ref=e282] [cursor=pointer]:
+                - /url: /product/lilies-roses-handbunch/
+                - heading "Abundant Bunch" [level=3] [ref=e283]
+              - generic [ref=e285]: ₹3499
+              - generic [ref=e287]: ⭐ 4.8 | 5
+              - paragraph [ref=e288]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e289]:
+            - link "African Daisies" [ref=e290] [cursor=pointer]:
+              - /url: /product/mixed-colored-gerberas-bunch/
+              - img "African Daisies" [ref=e292]
+            - generic [ref=e295]:
+              - link "African Daisies" [ref=e296] [cursor=pointer]:
+                - /url: /product/mixed-colored-gerberas-bunch/
+                - heading "African Daisies" [level=3] [ref=e297]
+              - generic [ref=e299]: ₹1099
+              - generic [ref=e301]: ⭐ 4.5 | 2
+              - paragraph [ref=e302]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e303]:
+            - link "Colourful Blooms" [ref=e304] [cursor=pointer]:
+              - /url: /product/mix-color-roses-handbunch/
+              - img "Colourful Blooms" [ref=e306]
+            - generic [ref=e309]:
+              - link "Colourful Blooms" [ref=e310] [cursor=pointer]:
+                - /url: /product/mix-color-roses-handbunch/
+                - heading "Colourful Blooms" [level=3] [ref=e311]
+              - generic [ref=e313]: ₹1599
+              - generic [ref=e315]: ⭐ 5.0 | 1
+              - paragraph [ref=e316]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e317]:
+            - link "Sunny Embrace" [ref=e318] [cursor=pointer]:
+              - /url: /product/sunny-embrace/
+              - img "Sunny Embrace" [ref=e320]
+            - generic [ref=e323]:
+              - link "Sunny Embrace" [ref=e324] [cursor=pointer]:
+                - /url: /product/sunny-embrace/
+                - heading "Sunny Embrace" [level=3] [ref=e325]
+              - generic [ref=e327]: ₹699
+              - paragraph [ref=e328]: "Earliest Delivery : Tomorrow"
+          - generic [ref=e329]:
+            - link "Lily Bliss" [ref=e330] [cursor=pointer]:
+              - /url: /product/lily-bliss/
+              - img "Lily Bliss" [ref=e332]
+            - generic [ref=e335]:
+              - link "Lily Bliss" [ref=e336] [cursor=pointer]:
+                - /url: /product/lily-bliss/
+                - heading "Lily Bliss" [level=3] [ref=e337]
+              - generic [ref=e338]:
+                - generic [ref=e339]: ₹3999
+                - generic [ref=e340]: ₹3281
+              - generic [ref=e342]: ⭐ 4.5 | 2
+              - paragraph [ref=e343]: "Earliest Delivery : Tomorrow"
+      - generic [ref=e344]:
+        - heading "Explore Our Collections" [level=2] [ref=e345]
+        - generic [ref=e346]:
+          - link "Luxury Roses Luxury Roses" [ref=e347] [cursor=pointer]:
+            - /url: /flowers/roses/
+            - img "Luxury Roses" [ref=e349]
+            - paragraph [ref=e350]: Luxury Roses
+          - link "Seasonal Specials Seasonal Specials" [ref=e351] [cursor=pointer]:
+            - /url: /flowers/
+            - img "Seasonal Specials" [ref=e353]
+            - paragraph [ref=e354]: Seasonal Specials
+          - link "Gift Hampers Gift Hampers" [ref=e355] [cursor=pointer]:
+            - /url: /hampers/same-day-delivery/
+            - img "Gift Hampers" [ref=e357]
+            - paragraph [ref=e358]: Gift Hampers
+          - link "Flower Boxes Flower Boxes" [ref=e359] [cursor=pointer]:
+            - /url: /flowers/in-box/
+            - img "Flower Boxes" [ref=e361]
+            - paragraph [ref=e362]: Flower Boxes
+          - link "Birthday Specials Birthday Specials" [ref=e363] [cursor=pointer]:
+            - /url: /birthday/flowers/
+            - img "Birthday Specials" [ref=e365]
+            - paragraph [ref=e366]: Birthday Specials
+          - link "Wedding Collection Wedding Collection" [ref=e367] [cursor=pointer]:
+            - /url: /flowers/wedding/
+            - img "Wedding Collection" [ref=e369]
+            - paragraph [ref=e370]: Wedding Collection
+          - link "Corporate Gifts Corporate Gifts" [ref=e371] [cursor=pointer]:
+            - /url: /gifts/corporate/
+            - img "Corporate Gifts" [ref=e373]
+            - paragraph [ref=e374]: Corporate Gifts
+          - link "Premium Plants Premium Plants" [ref=e375] [cursor=pointer]:
+            - /url: /plants/premium/
+            - img "Premium Plants" [ref=e377]
+            - paragraph [ref=e378]: Premium Plants
+      - generic [ref=e379]:
+        - generic [ref=e380]:
+          - heading "Bakery-Fresh Cakes" [level=2] [ref=e381]
+          - generic [ref=e382]:
+            - link "Delightful Belgium Chocolate Cake Delightful Belgium Chocolate Cake ₹1,689" [ref=e383] [cursor=pointer]:
+              - /url: /product/delightful-birthday-chocolate-cake/
+              - img "Delightful Belgium Chocolate Cake" [ref=e385]
+              - paragraph [ref=e386]: Delightful Belgium Chocolate Cake
+              - paragraph [ref=e387]: ₹1,689
+            - link "Delicious Chocolate Glaze Cake Delicious Chocolate Glaze Cake ₹1,570" [ref=e388] [cursor=pointer]:
+              - /url: /product/delicious-chocolate-cake/
+              - img "Delicious Chocolate Glaze Cake" [ref=e390]
+              - paragraph [ref=e391]: Delicious Chocolate Glaze Cake
+              - paragraph [ref=e392]: ₹1,570
+            - link "Nutty Plum Cake Nutty Plum Cake ₹975" [ref=e393] [cursor=pointer]:
+              - /url: /product/nutty-plum-cake/
+              - img "Nutty Plum Cake" [ref=e395]
+              - paragraph [ref=e396]: Nutty Plum Cake
+              - paragraph [ref=e397]: ₹975
+            - link "Divine Caramel Cake Divine Caramel Cake ₹1,784" [ref=e398] [cursor=pointer]:
+              - /url: /product/divine-caramel-cake/
+              - img "Divine Caramel Cake" [ref=e400]
+              - paragraph [ref=e401]: Divine Caramel Cake
+              - paragraph [ref=e402]: ₹1,784
+            - link "Choco Orange Cheese Cake Choco Orange Cheese Cake ₹2,745" [ref=e403] [cursor=pointer]:
+              - /url: /product/choco-orange-cake/
+              - img "Choco Orange Cheese Cake" [ref=e405]
+              - paragraph [ref=e406]: Choco Orange Cheese Cake
+              - paragraph [ref=e407]: ₹2,745
+        - generic [ref=e408]:
+          - heading "Special Occasions" [level=2] [ref=e409]
+          - generic [ref=e410]:
+            - link "Birthday Birthday" [ref=e411] [cursor=pointer]:
+              - /url: /flowers/birthday/
+              - img "Birthday" [ref=e413]
+              - paragraph [ref=e414]: Birthday
+            - link "Anniversary Anniversary" [ref=e415] [cursor=pointer]:
+              - /url: /flowers/anniversary/
+              - img "Anniversary" [ref=e417]
+              - paragraph [ref=e418]: Anniversary
+            - link "Wedding Wedding" [ref=e419] [cursor=pointer]:
+              - /url: /flowers/wedding/
+              - img "Wedding" [ref=e421]
+              - paragraph [ref=e422]: Wedding
+            - link "Congratulations Congratulations" [ref=e423] [cursor=pointer]:
+              - /url: /flowers/
+              - img "Congratulations" [ref=e425]
+              - paragraph [ref=e426]: Congratulations
+            - link "Housewarming Housewarming" [ref=e427] [cursor=pointer]:
+              - /url: /flowers/
+              - img "Housewarming" [ref=e429]
+              - paragraph [ref=e430]: Housewarming
+      - generic [ref=e432]:
+        - generic [ref=e433]:
+          - heading "Refer & Earn ₹100" [level=3] [ref=e434]
+          - paragraph [ref=e435]: Invite friends and earn exciting rewards on every successful referral!
+          - link "Share Now" [ref=e436] [cursor=pointer]:
+            - /url: /refer-and-earn/
+        - img [ref=e438]
+      - generic [ref=e442]:
+        - heading "What Our Customers Say" [level=2] [ref=e443]
+        - generic [ref=e444]:
+          - generic [ref=e445]:
+            - generic [ref=e446]:
+              - img [ref=e447]
+              - img [ref=e449]
+              - img [ref=e451]
+              - img [ref=e453]
+              - img [ref=e455]
+            - paragraph [ref=e457]: Awesome flowers and beautifully arranged. Had ordered for my Gurumaa and she appreciated the thoughtful collection. God bless each of you in sourcing, putting all together and delivering it. Thank you
+            - generic [ref=e458]:
+              - generic [ref=e459]: Sanjay Diwan
+              - generic [ref=e460]: 24/01/2026
+          - generic [ref=e461]:
+            - generic [ref=e462]:
+              - img [ref=e463]
+              - img [ref=e465]
+              - img [ref=e467]
+              - img [ref=e469]
+              - img [ref=e471]
+            - paragraph [ref=e473]: Thanks a lot to Pretty Petals for making my moms birthday special she was very happy thanks a lot
+            - generic [ref=e474]:
+              - generic [ref=e475]: Aaditya Singhal
+              - generic [ref=e476]: 14/01/2026
+          - generic [ref=e477]:
+            - generic [ref=e478]:
+              - img [ref=e479]
+              - img [ref=e481]
+              - img [ref=e483]
+              - img [ref=e485]
+              - img [ref=e487]
+            - paragraph [ref=e489]: This cake was much better than I had imagined. It was very fresh and tasted great. Thank you Pretty Petals.
+            - generic [ref=e490]:
+              - generic [ref=e491]: Samiksha
+              - generic [ref=e492]: 09/01/2026
+      - generic [ref=e495]:
+        - heading "Stay Updated" [level=2] [ref=e496]
+        - paragraph [ref=e497]: Get exclusive offers and flower care tips
+        - generic [ref=e498]:
+          - textbox "your@email.com" [ref=e499]
+          - button "Subscribe" [ref=e500] [cursor=pointer]
+        - paragraph [ref=e501]: No spam. Unsubscribe anytime.
+      - generic [ref=e502]:
+        - 'heading "Pretty Petals: Send Flowers, Cakes, Gifts & Plants Online Across India" [level=1] [ref=e503]'
+        - paragraph [ref=e505]: At Pretty Petals, we take pride in delivering the highest quality flowers, cakes, plants, and gifts to your loved ones. Our diverse range ensures there's something perfect for every occasion. From romantic roses to delightful chocolate cakes and vibrant indoor plants, we have it all. As India's most trusted gifting brand, we guarantee fresh and beautiful flowers, delicious cakes, vibrant plants, and unique gifts that bring joy and smiles. Enjoy the convenience of doorstep delivery with our safe and secure packaging, ensuring your order arrives in pristine condition.
+        - button "Read More" [ref=e506] [cursor=pointer]
+      - generic [ref=e507]:
+        - heading "From Our Blog" [level=2] [ref=e508]
+        - generic [ref=e509]:
+          - 'link "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life Read More →" [ref=e510] [cursor=pointer]':
+            - /url: /womens-day-flower-delivery-in-mumbai/
+            - 'img "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life" [ref=e512]'
+            - generic [ref=e513]:
+              - 'heading "Women’s Day 2026: Best Flower Ideas to Celebrate the Special Women in Your Life" [level=3] [ref=e514]'
+              - paragraph
+              - generic [ref=e515]: Read More →
+          - link "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals Read More →" [ref=e516] [cursor=pointer]:
+            - /url: /promise-day-gifts-flowers-in-mumbai/
+            - img "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals" [ref=e518]
+            - generic [ref=e519]:
+              - heading "Promise Day – Celebrate Love with Meaningful Gifts from Pretty Petals" [level=3] [ref=e520]
+              - paragraph
+              - generic [ref=e521]: Read More →
+          - link "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals Read More →" [ref=e522] [cursor=pointer]:
+            - /url: /teddy-day-send-cute-teddy-flowers-online/
+            - img "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals" [ref=e524]
+            - generic [ref=e525]:
+              - heading "Teddy Day – Celebrate Love with Cute Teddy Gifts & Flower Combos from Pretty Petals" [level=3] [ref=e526]
+              - paragraph
+              - generic [ref=e527]: Read More →
+    - contentinfo [ref=e528]:
+      - generic [ref=e530]:
+        - list [ref=e531]:
+          - listitem [ref=e532]:
+            - link "About Us" [ref=e533] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e534]:
+            - link "Delivery & Refund Policy" [ref=e535] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e536]:
+            - link "Terms and Conditions" [ref=e537] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e538]:
+            - link "Privacy Policy" [ref=e539] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e540]:
+          - listitem [ref=e541]:
+            - link "Blog" [ref=e542] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e543]:
+            - link "Quotes" [ref=e544] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e545]:
+            - link "Coupons & Deals" [ref=e546] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e547]:
+            - link "Sitemap" [ref=e548] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e549]:
+            - link "Retail Stores" [ref=e550] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e551]:
+          - listitem [ref=e552]:
+            - link "Corporate Gifts" [ref=e553] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e554]:
+            - link "FAQ" [ref=e555] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e556]:
+            - link "Contact Us" [ref=e557] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e558]:
+            - paragraph [ref=e559]: Delivery Cities
+            - list [ref=e560]:
+              - listitem [ref=e561]:
+                - link "Flowers in Mumbai" [ref=e562] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e563]:
+                - link "Flowers in Thane" [ref=e564] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e565]:
+                - link "Flowers in Navi Mumbai" [ref=e566] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e567]:
+          - link "Pretty Petals" [ref=e568] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e569]
+          - paragraph [ref=e570]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e571]
+          - generic [ref=e572]:
+            - link "Facebook" [ref=e573] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e574]
+            - link "Twitter" [ref=e576] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e577]
+            - link "YouTube" [ref=e579] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e580]
+            - link "Pinterest" [ref=e582] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e583]
+            - link "Instagram" [ref=e585] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e586]
+            - link "LinkedIn" [ref=e588] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e589]
+      - generic [ref=e592]:
+        - generic [ref=e593]:
+          - generic [ref=e594]: PRETTY PETALS
+          - generic [ref=e595]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e596]:
+          - generic [ref=e597]: "We Accept:"
+          - generic [ref=e598]: Visa
+          - generic [ref=e599]: MC
+          - generic [ref=e600]: Amex
+          - generic [ref=e601]: UPI
+          - generic [ref=e602]: PayPal
+          - generic [ref=e603]: Paytm
+    - link [ref=e604] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e605]
+  - button "Open Next.js Dev Tools" [ref=e612] [cursor=pointer]:
+    - img [ref=e613]
+  - alert [ref=e616]

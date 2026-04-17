@@ -23,8 +23,6 @@ const PageSeoSchema = new Schema<IPageSeo>(
   { timestamps: true }
 );
 
-PageSeoSchema.index({ pageSlug: 1 }, { unique: true });
-
 const PageSeo =
   mongoose.models.PageSeo ||
   mongoose.model<IPageSeo>("PageSeo", PageSeoSchema);

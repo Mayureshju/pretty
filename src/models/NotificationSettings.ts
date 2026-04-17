@@ -14,7 +14,7 @@ const NotificationSettingsSchema = new Schema<INotificationSettings>(
   {
     key: { type: String, required: true, unique: true, default: "global" },
     sellerName: { type: String, default: "Reena", trim: true },
-    sellerWhatsappNumber: { type: String, default: "919821036990", trim: true },
+    sellerWhatsappNumber: { type: String, default: "919833100194", trim: true },
     sellerEmails: { type: [String], default: [] },
     sendSellerWhatsApp: { type: Boolean, default: true },
     sendSellerEmail: { type: Boolean, default: true },

@@ -44,7 +44,6 @@ const DeliveryCitySchema = new Schema<IDeliveryCity>(
   { timestamps: true }
 );
 
-DeliveryCitySchema.index({ city: 1 }, { unique: true });
 DeliveryCitySchema.index({ isActive: 1 });
 
 const DeliveryCity =

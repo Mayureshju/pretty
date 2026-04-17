@@ -1,0 +1,161 @@
+[     803ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[     849ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[     958ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1250ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="layout" pagePath="(storefron...">
+                <SegmentTrieNode>
+                <script>
+                <script>
+                <script>
+                <StorefrontLayout>
+                  <div className="min-h-scre...">
+                    <Header>
+                    <Navbar>
+                    <main>
+                    <Footer>
+                      <footer className="mt-6 md:mt-8" style={{...}}>
+                        <div className="max-w-[144...">
+                          <div className="grid grid-...">
+                            <ul>
+                            <ul>
+                            <ul>
+                            <div className="col-span-2">
+                              <a>
+                              <p>
+                              <h3>
+                              <div className="flex gap-2...">
+                                <a
++                                 href="https://www.facebook.com/prettypetalsmumbai/"
+-                                 href="#"
++                                 target="_blank"
+-                                 target={null}
++                                 rel="noopener noreferrer"
+-                                 rel={null}
+                                  className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
+                                  style={{backgroundColor:"#1877F2"}}
+                                  title="Facebook"
++                                 aria-label="Facebook"
+-                                 aria-label={null}
+                                >
+                                <a
++                                 href="https://www.instagram.com/prettypetalsmumbai/"
+-                                 href="#"
++                                 target="_blank"
+-                                 target={null}
++                                 rel="noopener noreferrer"
+-                                 rel={null}
+                                  className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
++                                 style={{backgroundColor:"#E1306C"}}
+-                                 style={{background-color:"rgb(0, 0, 0)"}}
++                                 title="Instagram"
+-                                 title="Twitter"
++                                 aria-label="Instagram"
+-                                 aria-label={null}
+                                >
+                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                    <path
++                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.2..."
+-                                     d="M4 4l6.5 8L4 20h2l5-6 4 6h5l-6.8-8.5L20 4h-2l-4.6 5.5L9.5 4H4z"
+                                    >
+                                <a
++                                 href="https://api.whatsapp.com/send?phone=919833100194"
+-                                 href="#"
++                                 target="_blank"
+-                                 target={null}
++                                 rel="noopener noreferrer"
+-                                 rel={null}
+                                  className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
+                                  style={{
++                                   backgroundColor: "#25D366"
+-                                   background-color: "rgb(255, 0, 0)"
+                                  }}
++                                 title="WhatsApp"
+-                                 title="YouTube"
++                                 aria-label="WhatsApp"
+-                                 aria-label={null}
+                                >
+                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                                    <path
++                                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.19..."
+-                                     d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 ..."
+                                    >
+-                               <a
+-                                 href="#"
+-                                 className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
+-                                 style={{background-color:"rgb(230, 0..."}}
+-                                 title="Pinterest"
+-                               >
+-                               <a
+-                                 href="#"
+-                                 className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
+-                                 style={{background-color:"rgb(225, 4..."}}
+-                                 title="Instagram"
+-                               >
+-                               <a
+-                                 href="#"
+-                                 className="w-9 h-9 rounded-full flex items-center justify-center text-white transiti..."
+-                                 style={{background-color:"rgb(10, 10..."}}
+-                                 title="LinkedIn"
+-                               >
+                        ...
+                    ...
+            ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3318:56)
+    at popHydrationState (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3403:13)
+    at completeWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6922:25)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at completeUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
+    at workLoopConcurrentByScheduler (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64)
+[    1760ms] [WARNING] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1771ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[    1852ms] [LOG] [Fast Refresh] done in 193ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[   16031ms] [WARNING] Image with src "https://pretty-petals-web.s3.eu-central-1.amazonaws.com/banners/desktop-3-1775915468144.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  132191ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  132304ms] [LOG] [Fast Refresh] done in 215ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  161863ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  162797ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ZBSYLYsuu-JhEPzFxhEdW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13307
+[  163800ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ZBSYLYsuu-JhEPzFxhEdW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13307
+[  164801ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ZBSYLYsuu-JhEPzFxhEdW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13307
+[  165802ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ZBSYLYsuu-JhEPzFxhEdW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13307
+[  166803ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr?id=ZBSYLYsuu-JhEPzFxhEdW' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0fhqo1d._.js:13307
+[  174267ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  179081ms] [LOG] %c Console Ninja extension is connected to Next.js browser, background: rgb(30,30,30); color: rgb(255,213,92) see https://tinyurl.com/2vt8jxzw for more info. @ :0
+[  179092ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  179166ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  179447ms] [WARNING] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  179960ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180009ms] [LOG] [Fast Refresh] done in 153ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180214ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180227ms] [LOG] [Fast Refresh] done in 115ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180334ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180571ms] [LOG] [Fast Refresh] done in 338ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180782ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  180793ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  181108ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  181110ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  182111ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441
+[  182113ms] [LOG] [Fast Refresh] done in 103ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2441

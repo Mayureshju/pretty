@@ -39,7 +39,6 @@ const BlogSchema = new Schema<IBlog>(
   { timestamps: true }
 );
 
-BlogSchema.index({ slug: 1 }, { unique: true });
 BlogSchema.index({ isPublished: 1, createdAt: -1 });
 
 BlogSchema.pre("save", function () {

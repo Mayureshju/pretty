@@ -1,0 +1,169 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+    - navigation [ref=e27]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Flowers" [ref=e31] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e32]:
+          - link "Cakes" [ref=e33] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e34]:
+          - link "Combos" [ref=e35] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e36]:
+          - link "Birthday" [ref=e37] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e38]:
+          - link "Anniversary" [ref=e39] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e40]:
+          - link "Gifts" [ref=e41] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e42]:
+          - link "Personalised" [ref=e43] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e44]:
+          - link "Plants" [ref=e45] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e46]:
+          - link "Chocolates" [ref=e47] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e48]:
+          - link "Occasions" [ref=e49] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e50]:
+          - link "International" [ref=e51] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e52]:
+      - main [ref=e53]:
+        - generic [ref=e55]:
+          - heading "Coupons & Deals" [level=1] [ref=e56]
+          - paragraph [ref=e57]: Save more on beautiful flowers with exclusive deals
+          - generic [ref=e58]:
+            - link "Home" [ref=e59] [cursor=pointer]:
+              - /url: /
+            - generic [ref=e60]: /
+            - generic [ref=e61]: Offers
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - button "All Coupons" [ref=e65]
+            - button "Percentage Off" [ref=e66]
+            - button "Flat Discount" [ref=e67]
+          - paragraph [ref=e69]: No coupons available right now. Check back soon!
+    - contentinfo [ref=e70]:
+      - generic [ref=e72]:
+        - list [ref=e73]:
+          - listitem [ref=e74]:
+            - link "About Us" [ref=e75] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e76]:
+            - link "Delivery & Refund Policy" [ref=e77] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e78]:
+            - link "Terms and Conditions" [ref=e79] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e80]:
+            - link "Privacy Policy" [ref=e81] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e82]:
+          - listitem [ref=e83]:
+            - link "Blog" [ref=e84] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e85]:
+            - link "Quotes" [ref=e86] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e87]:
+            - link "Coupons & Deals" [ref=e88] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e89]:
+            - link "Sitemap" [ref=e90] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e91]:
+            - link "Retail Stores" [ref=e92] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e93]:
+          - listitem [ref=e94]:
+            - link "Corporate Gifts" [ref=e95] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e96]:
+            - link "FAQ" [ref=e97] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e98]:
+            - link "Contact Us" [ref=e99] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e100]:
+            - paragraph [ref=e101]: Delivery Cities
+            - list [ref=e102]:
+              - listitem [ref=e103]:
+                - link "Flowers in Mumbai" [ref=e104] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e105]:
+                - link "Flowers in Thane" [ref=e106] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e107]:
+                - link "Flowers in Navi Mumbai" [ref=e108] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e109]:
+          - link "Pretty Petals" [ref=e110] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e111]
+          - paragraph [ref=e112]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e113]
+          - generic [ref=e114]:
+            - link "Facebook" [ref=e115] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e116]
+            - link "Twitter" [ref=e118] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e119]
+            - link "YouTube" [ref=e121] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e122]
+            - link "Pinterest" [ref=e124] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e125]
+            - link "Instagram" [ref=e127] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e128]
+            - link "LinkedIn" [ref=e130] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e131]
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: PRETTY PETALS
+          - generic [ref=e137]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e138]:
+          - generic [ref=e139]: "We Accept:"
+          - generic [ref=e140]: Visa
+          - generic [ref=e141]: MC
+          - generic [ref=e142]: Amex
+          - generic [ref=e143]: UPI
+          - generic [ref=e144]: PayPal
+          - generic [ref=e145]: Paytm
+    - link [ref=e146] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e147]
+  - button "Open Next.js Dev Tools" [ref=e154] [cursor=pointer]:
+    - img [ref=e155]
+  - alert [ref=e158]

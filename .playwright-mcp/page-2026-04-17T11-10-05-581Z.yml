@@ -1,0 +1,267 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pretty Petals" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "Pretty Petals" [ref=e6]
+        - generic [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]: Search for
+          - generic [ref=e10]: flowers
+          - img [ref=e11]
+        - generic [ref=e14]:
+          - link "2 Cart" [ref=e15] [cursor=pointer]:
+            - /url: /cart
+            - generic [ref=e16]:
+              - img [ref=e17]
+              - generic [ref=e20]: "2"
+            - generic [ref=e21]: Cart
+          - link "Wishlist" [ref=e22] [cursor=pointer]:
+            - /url: /wishlist/
+            - img [ref=e24]
+            - generic [ref=e26]: Wishlist
+          - link "Sign In" [ref=e27] [cursor=pointer]:
+            - /url: /sign-in
+            - img [ref=e28]
+            - generic [ref=e31]: Sign In
+    - navigation [ref=e32]:
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - link "Flowers" [ref=e36] [cursor=pointer]:
+            - /url: /flowers/
+        - listitem [ref=e37]:
+          - link "Cakes" [ref=e38] [cursor=pointer]:
+            - /url: /cakes/
+        - listitem [ref=e39]:
+          - link "Combos" [ref=e40] [cursor=pointer]:
+            - /url: /combos-gifts/
+        - listitem [ref=e41]:
+          - link "Birthday" [ref=e42] [cursor=pointer]:
+            - /url: /flowers/birthday/
+        - listitem [ref=e43]:
+          - link "Anniversary" [ref=e44] [cursor=pointer]:
+            - /url: /flowers/anniversary/
+        - listitem [ref=e45]:
+          - link "Gifts" [ref=e46] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e47]:
+          - link "Personalised" [ref=e48] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e49]:
+          - link "Plants" [ref=e50] [cursor=pointer]:
+            - /url: /plants/
+        - listitem [ref=e51]:
+          - link "Chocolates" [ref=e52] [cursor=pointer]:
+            - /url: /gifts/
+        - listitem [ref=e53]:
+          - link "Occasions" [ref=e54] [cursor=pointer]:
+            - /url: "#"
+        - listitem [ref=e55]:
+          - link "International" [ref=e56] [cursor=pointer]:
+            - /url: "#"
+    - main [ref=e57]:
+      - navigation [ref=e60]:
+        - link "Home" [ref=e61] [cursor=pointer]:
+          - /url: /
+        - img [ref=e62]
+        - link "Flowers" [ref=e64] [cursor=pointer]:
+          - /url: /flowers/
+        - img [ref=e65]
+        - link "Birthday" [ref=e67] [cursor=pointer]:
+          - /url: /flowers/birthday/
+        - img [ref=e68]
+        - generic [ref=e70]: Pink Lilies and Roses
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - button "Pink Lilies and Roses" [ref=e75] [cursor=pointer]:
+              - img "Pink Lilies and Roses" [ref=e76]
+            - img "Pink Lilies and Roses" [ref=e78]
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - heading "Pink Lilies and Roses" [level=1] [ref=e81]
+              - button [ref=e82] [cursor=pointer]:
+                - img [ref=e83]
+            - generic [ref=e85]:
+              - generic [ref=e86]: ★ 4.5
+              - generic [ref=e87]: •
+              - generic [ref=e88]: 4 Reviews
+            - generic [ref=e90]: ₹ 3,490
+            - generic [ref=e91]:
+              - paragraph [ref=e92]: Check Delivery Availability
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - img [ref=e95]
+                  - textbox "Enter 6-digit pincode" [ref=e98]
+                - button "Check" [ref=e99] [cursor=pointer]
+            - generic [ref=e100]:
+              - paragraph [ref=e101]: Select Delivery Date
+              - button "Fri, 17 Apr" [ref=e102] [cursor=pointer]:
+                - img [ref=e103]
+                - generic [ref=e106]: Fri, 17 Apr
+                - img [ref=e107]
+              - generic [ref=e109]:
+                - img [ref=e110]
+                - generic [ref=e113]: Delivery on Fri, 17 Apr
+            - button "Offers Available" [ref=e114] [cursor=pointer]:
+              - generic [ref=e115]:
+                - img [ref=e116]
+                - generic [ref=e119]: Offers Available
+              - img [ref=e120]
+            - generic [ref=e122]:
+              - heading "Description" [level=3] [ref=e123]
+              - paragraph [ref=e124]: L for love, L for lilies, and L for a lovely bouquet blooming with Pink Lilly &amp; Roses The elegance and sophistication of this nature's surprise makes your special occasion turn truly grand and remarkable. Perfect for gifting.
+            - generic [ref=e125]:
+              - paragraph [ref=e126]: SKU Number
+              - paragraph [ref=e127]: "7925"
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - img [ref=e131]
+            - paragraph [ref=e136]: 20+ Mn Smiles
+            - paragraph [ref=e137]: Delivered
+          - generic [ref=e138]:
+            - img [ref=e140]
+            - paragraph [ref=e143]: 20000+
+            - paragraph [ref=e144]: Pincodes Covered
+          - generic [ref=e145]:
+            - img [ref=e147]
+            - paragraph [ref=e152]: 620+ Cities Enjoying
+            - paragraph [ref=e153]: same-day delivery
+        - generic [ref=e154]:
+          - heading "Similar Products" [level=2] [ref=e155]
+          - generic [ref=e156]:
+            - link "African Daisies African Daisies ₹ 1,099 ★ 4.5 (2)" [ref=e157] [cursor=pointer]:
+              - /url: /product/mixed-colored-gerberas-bunch/
+              - img "African Daisies" [ref=e159]
+              - generic [ref=e160]:
+                - heading "African Daisies" [level=3] [ref=e161]
+                - generic [ref=e163]: ₹ 1,099
+                - generic [ref=e164]:
+                  - generic [ref=e165]: ★ 4.5
+                  - generic [ref=e166]: (2)
+            - link "Blue Hydrangea Blue Hydrangea ₹ 3,499 ★ 5 (3)" [ref=e167] [cursor=pointer]:
+              - /url: /product/blue-hydrangea/
+              - img "Blue Hydrangea" [ref=e169]
+              - generic [ref=e170]:
+                - heading "Blue Hydrangea" [level=3] [ref=e171]
+                - generic [ref=e173]: ₹ 3,499
+                - generic [ref=e174]:
+                  - generic [ref=e175]: ★ 5
+                  - generic [ref=e176]: (3)
+            - link "Red Carnations in a vase Red Carnations in a vase ₹ 2,499 ★ 5 (1)" [ref=e177] [cursor=pointer]:
+              - /url: /product/red-carnation/
+              - img "Red Carnations in a vase" [ref=e179]
+              - generic [ref=e180]:
+                - heading "Red Carnations in a vase" [level=3] [ref=e181]
+                - generic [ref=e183]: ₹ 2,499
+                - generic [ref=e184]:
+                  - generic [ref=e185]: ★ 5
+                  - generic [ref=e186]: (1)
+            - link "Pretty Pink Roses Pretty Pink Roses ₹ 3,599 ★ 5 (1)" [ref=e187] [cursor=pointer]:
+              - /url: /product/bouquet-of-pink-roses/
+              - img "Pretty Pink Roses" [ref=e189]
+              - generic [ref=e190]:
+                - heading "Pretty Pink Roses" [level=3] [ref=e191]
+                - generic [ref=e193]: ₹ 3,599
+                - generic [ref=e194]:
+                  - generic [ref=e195]: ★ 5
+                  - generic [ref=e196]: (1)
+      - generic [ref=e198]:
+        - button "ADD TO CART" [ref=e199] [cursor=pointer]
+        - button "BUY NOW | ₹ 3,490" [ref=e200] [cursor=pointer]
+    - contentinfo [ref=e201]:
+      - generic [ref=e203]:
+        - list [ref=e204]:
+          - listitem [ref=e205]:
+            - link "About Us" [ref=e206] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e207]:
+            - link "Delivery & Refund Policy" [ref=e208] [cursor=pointer]:
+              - /url: /delivery-and-refund-policy
+          - listitem [ref=e209]:
+            - link "Terms and Conditions" [ref=e210] [cursor=pointer]:
+              - /url: /terms-and-conditions
+          - listitem [ref=e211]:
+            - link "Privacy Policy" [ref=e212] [cursor=pointer]:
+              - /url: /privacy-policy
+        - list [ref=e213]:
+          - listitem [ref=e214]:
+            - link "Blog" [ref=e215] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e216]:
+            - link "Quotes" [ref=e217] [cursor=pointer]:
+              - /url: /quotes
+          - listitem [ref=e218]:
+            - link "Coupons & Deals" [ref=e219] [cursor=pointer]:
+              - /url: /offers
+          - listitem [ref=e220]:
+            - link "Sitemap" [ref=e221] [cursor=pointer]:
+              - /url: /sitemap.html
+          - listitem [ref=e222]:
+            - link "Retail Stores" [ref=e223] [cursor=pointer]:
+              - /url: https://share.google/aQtmjIlTnncsUqGmJ
+        - list [ref=e224]:
+          - listitem [ref=e225]:
+            - link "Corporate Gifts" [ref=e226] [cursor=pointer]:
+              - /url: /corporate-gifts
+          - listitem [ref=e227]:
+            - link "FAQ" [ref=e228] [cursor=pointer]:
+              - /url: /faq
+          - listitem [ref=e229]:
+            - link "Contact Us" [ref=e230] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e231]:
+            - paragraph [ref=e232]: Delivery Cities
+            - list [ref=e233]:
+              - listitem [ref=e234]:
+                - link "Flowers in Mumbai" [ref=e235] [cursor=pointer]:
+                  - /url: /flowers/
+              - listitem [ref=e236]:
+                - link "Flowers in Thane" [ref=e237] [cursor=pointer]:
+                  - /url: /send-flowers-thane/
+              - listitem [ref=e238]:
+                - link "Flowers in Navi Mumbai" [ref=e239] [cursor=pointer]:
+                  - /url: /send-flowers-navi-mumbai/
+        - generic [ref=e240]:
+          - link "Pretty Petals" [ref=e241] [cursor=pointer]:
+            - /url: /
+            - img "Pretty Petals" [ref=e242]
+          - paragraph [ref=e243]: Mumbai's trusted florist for same-day flower delivery. Fresh blooms, handcrafted bouquets, and meaningful gifting.
+          - heading "Spread The Love On Social Media" [level=3] [ref=e244]
+          - generic [ref=e245]:
+            - link "Facebook" [ref=e246] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e247]
+            - link "Twitter" [ref=e249] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e250]
+            - link "YouTube" [ref=e252] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e253]
+            - link "Pinterest" [ref=e255] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e256]
+            - link "Instagram" [ref=e258] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e259]
+            - link "LinkedIn" [ref=e261] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e262]
+      - generic [ref=e265]:
+        - generic [ref=e266]:
+          - generic [ref=e267]: PRETTY PETALS
+          - generic [ref=e268]: Copyright. 2026. Pretty Petals Pvt. Ltd.
+        - generic [ref=e269]:
+          - generic [ref=e270]: "We Accept:"
+          - generic [ref=e271]: Visa
+          - generic [ref=e272]: MC
+          - generic [ref=e273]: Amex
+          - generic [ref=e274]: UPI
+          - generic [ref=e275]: PayPal
+          - generic [ref=e276]: Paytm
+    - link [ref=e277] [cursor=pointer]:
+      - /url: https://api.whatsapp.com/send?phone=919650062220
+      - img [ref=e278]
+  - button "Open Next.js Dev Tools" [ref=e285] [cursor=pointer]:
+    - img [ref=e286]
+  - alert [ref=e289]

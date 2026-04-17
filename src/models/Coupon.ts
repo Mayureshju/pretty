@@ -43,7 +43,6 @@ const CouponSchema = new Schema<ICoupon>(
   { timestamps: true }
 );
 
-CouponSchema.index({ code: 1 }, { unique: true });
 CouponSchema.index({ isActive: 1, validFrom: 1, validTo: 1 });
 
 CouponSchema.pre("save", function () {

@@ -64,17 +64,34 @@ const fallbackBanners: BannerItem[] = [
 
 const SLIDE_DURATION = 6;
 
+type Petal = {
+  id: number;
+  left: string;
+  size: number;
+  delay: number;
+  duration: number;
+  swayDuration: number;
+  rotation: number;
+  opacity: number;
+};
+
 function FloatingPetals() {
-  const petals = Array.from({ length: 14 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    size: 6 + Math.random() * 10,
-    delay: Math.random() * 12,
-    duration: 14 + Math.random() * 10,
-    swayDuration: 4 + Math.random() * 4,
-    rotation: Math.random() * 360,
-    opacity: 0.08 + Math.random() * 0.1,
-  }));
+  const [petals, setPetals] = useState<Petal[]>([]);
+
+  useEffect(() => {
+    setPetals(
+      Array.from({ length: 14 }, (_, i) => ({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        size: 6 + Math.random() * 10,
+        delay: Math.random() * 12,
+        duration: 14 + Math.random() * 10,
+        swayDuration: 4 + Math.random() * 4,
+        rotation: Math.random() * 360,
+        opacity: 0.08 + Math.random() * 0.1,
+      }))
+    );
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
