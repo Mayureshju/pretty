@@ -30,6 +30,20 @@ function buildItemSummary(items: IOrderItem[]): string {
   return summary;
 }
 
+// Seller template's static text is larger, so the combined body + params must
+// stay under Meta's 1024-char template body cap. Keep this short (first item
+// name + overflow count) — seller can see full details in the admin panel.
+function buildSellerItemSummary(items: IOrderItem[]): string {
+  if (items.length === 0) return "Order";
+  const first = items[0];
+  const firstLabel = `${first.productName || "Product"}${first.variant ? ` (${first.variant})` : ""} x${first.quantity}`;
+  const label =
+    items.length === 1
+      ? firstLabel
+      : `${firstLabel} + ${items.length - 1} more item${items.length - 1 > 1 ? "s" : ""}`;
+  return label.length > 80 ? label.slice(0, 77) + "..." : label;
+}
+
 interface TemplateParam {
   name: string;
   value: string;
@@ -225,7 +239,7 @@ export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
     { name: "order_number", value: order.orderNumber },
     { name: "customer_name", value: order.customer.name },
     { name: "customer_phone", value: order.customer.phone || "N/A" },
-    { name: "items", value: buildItemSummary(order.items) },
+    { name: "items", value: buildSellerItemSummary(order.items) },
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
     { name: "delivery_date", value: formatDeliveryDate(order.deliverySlot) },
   ]);

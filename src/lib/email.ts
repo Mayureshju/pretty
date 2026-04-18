@@ -1,20 +1,21 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import type { IOrder } from "@/models/Order";
 import { getNotificationSettings } from "@/lib/notification-settings";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: parseInt(process.env.SMTP_PORT || "587", 10),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Until a custom domain is verified in Resend, fall back to their sandbox
+// sender. Set EMAIL_FROM="Pretty Petals <orders@prettypetals.com>" in Vercel
+// once the domain is verified.
+const DEFAULT_FROM = "Pretty Petals <onboarding@resend.dev>";
 
 export async function sendOrderConfirmationEmail(order: IOrder) {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn("SMTP not configured, skipping email");
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[customer-email] skip: RESEND_API_KEY not configured");
+    return;
+  }
+  if (!order.customer.email) {
+    console.warn("[customer-email] skip: order has no customer email");
     return;
   }
 
@@ -99,22 +100,25 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
     </div>
   </div>`;
 
-  try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: order.customer.email,
-      subject: `Order Confirmed - ${order.orderNumber} | Pretty Petals`,
-      html,
-    });
-    console.log(`Order confirmation email sent to ${order.customer.email}`);
-  } catch (err) {
-    console.error("Failed to send order confirmation email:", err);
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: order.customer.email,
+    subject: `Order Confirmed - ${order.orderNumber} | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[customer-email] Resend error:", error);
+    return;
   }
+  console.log(
+    `[customer-email] sent to ${order.customer.email} (id=${data?.id})`
+  );
 }
 
 export async function sendNewOrderSellerEmail(order: IOrder) {
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn("SMTP not configured, skipping seller email");
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[seller-email] skip: RESEND_API_KEY not configured");
     return;
   }
 
@@ -236,17 +240,18 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
     </div>
   </div>`;
 
-  try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: recipients.join(", "),
-      subject: `New Order - ${order.orderNumber} | Pretty Petals`,
-      html,
-    });
-    console.log(
-      `Seller notification email sent to ${recipients.length} recipient(s)`
-    );
-  } catch (err) {
-    console.error("Failed to send seller notification email:", err);
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: recipients,
+    subject: `New Order - ${order.orderNumber} | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[seller-email] Resend error:", error);
+    return;
   }
+  console.log(
+    `[seller-email] sent to ${recipients.length} recipient(s) (id=${data?.id})`
+  );
 }

@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+const DEFAULT_FROM = "Pretty Petals <onboarding@resend.dev>";
 
 export async function POST(req: Request) {
   try {
@@ -9,24 +12,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 });
     }
 
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-      console.warn("SMTP not configured, logging contact form submission");
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("[contact] RESEND_API_KEY not configured, logging only");
       console.log("Contact form:", { name, email, phone, subject, message });
       return NextResponse.json({ success: true });
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT || "587", 10),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    });
-
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+    const { error } = await resend.emails.send({
+      from: process.env.EMAIL_FROM || DEFAULT_FROM,
       to: "support@prettypetals.com",
       replyTo: email,
       subject: `Contact Form: ${subject || "General Inquiry"} - from ${name}`,
@@ -50,6 +43,11 @@ export async function POST(req: Request) {
         </div>
       `,
     });
+
+    if (error) {
+      console.error("[contact] Resend error:", error);
+      return NextResponse.json({ error: "Failed to send message" }, { status: 500 });
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
