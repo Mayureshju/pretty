@@ -119,10 +119,18 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
   }
 
   const settings = await getNotificationSettings();
-  if (!settings.sendSellerEmail) return;
+  if (!settings.sendSellerEmail) {
+    console.warn("[seller-email] skip: sendSellerEmail toggle is OFF");
+    return;
+  }
 
   const recipients = settings.sellerEmails.filter((e) => e && e.trim());
-  if (recipients.length === 0) return;
+  if (recipients.length === 0) {
+    console.warn(
+      "[seller-email] skip: sellerEmails array is empty — configure at /admin/settings"
+    );
+    return;
+  }
 
   const itemsHtml = order.items
     .map(

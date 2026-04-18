@@ -119,7 +119,13 @@ function formatAddress(shipping: IOrder["shipping"]): string {
 
 export async function sendOrderConfirmedWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
-  if (!phone) return;
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (order_confirmed): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(phone, "pretty_petals_order_confirmed", [
     { name: "customer_name", value: order.customer.name },
@@ -133,7 +139,13 @@ export async function sendOrderConfirmedWhatsApp(order: IOrder): Promise<void> {
 
 export async function sendOutForDeliveryWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
-  if (!phone) return;
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (out_for_delivery): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(phone, "pretty_petals_out_for_delivery", [
     { name: "customer_name", value: order.customer.name },
@@ -144,7 +156,13 @@ export async function sendOutForDeliveryWhatsApp(order: IOrder): Promise<void> {
 
 export async function sendDeliveredWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
-  if (!phone) return;
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (delivered): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(phone, "pretty_petals_delivered", [
     { name: "customer_name", value: order.customer.name },
@@ -154,7 +172,13 @@ export async function sendDeliveredWhatsApp(order: IOrder): Promise<void> {
 
 export async function sendOrderCancelledWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
-  if (!phone) return;
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (order_cancelled): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(phone, "pretty_petals_order_cancelled", [
     { name: "customer_name", value: order.customer.name },
@@ -165,7 +189,13 @@ export async function sendOrderCancelledWhatsApp(order: IOrder): Promise<void> {
 
 export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
-  if (!phone) return;
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (order_failed): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(phone, "pretty_petals_order_failed", [
     { name: "customer_name", value: order.customer.name },
@@ -176,10 +206,19 @@ export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
 
 export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
   const settings = await getNotificationSettings();
-  if (!settings.sendSellerWhatsApp) return;
+  if (!settings.sendSellerWhatsApp) {
+    console.warn("[seller-whatsapp] skip: sendSellerWhatsApp toggle is OFF");
+    return;
+  }
 
   const sellerPhone = formatPhoneForWhatsApp(settings.sellerWhatsappNumber);
-  if (!sellerPhone) return;
+  if (!sellerPhone) {
+    console.warn(
+      "[seller-whatsapp] skip: invalid sellerWhatsappNumber:",
+      settings.sellerWhatsappNumber
+    );
+    return;
+  }
 
   await sendWhatsAppTemplate(sellerPhone, "pretty_petals_new_order_seller", [
     { name: "seller_name", value: settings.sellerName },

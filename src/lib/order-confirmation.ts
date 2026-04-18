@@ -1,3 +1,4 @@
+import { after } from "next/server";
 import { connectDB } from "@/lib/db";
 import Order from "@/models/Order";
 import { Counter } from "@/models/Order";
@@ -81,15 +82,35 @@ export async function confirmOrderPayment(
     );
   }
 
-  // Send confirmation email (fire-and-forget)
-  sendOrderConfirmationEmail(order).catch(() => {});
+  // Dispatch notifications after the HTTP response so they survive Vercel's
+  // serverless teardown. `after()` runs even when the route redirects.
+  after(async () => {
+    console.log("[notify] dispatch", order.orderNumber);
 
-  // Send WhatsApp confirmation (fire-and-forget)
-  sendOrderConfirmedWhatsApp(order).catch(() => {});
+    try {
+      await sendOrderConfirmationEmail(order);
+    } catch (e) {
+      console.error("[notify] customer email failed:", e);
+    }
 
-  // Notify seller about new order (fire-and-forget)
-  sendNewOrderSellerWhatsApp(order).catch(() => {});
-  sendNewOrderSellerEmail(order).catch(() => {});
+    try {
+      await sendOrderConfirmedWhatsApp(order);
+    } catch (e) {
+      console.error("[notify] customer whatsapp failed:", e);
+    }
+
+    try {
+      await sendNewOrderSellerWhatsApp(order);
+    } catch (e) {
+      console.error("[notify] seller whatsapp failed:", e);
+    }
+
+    try {
+      await sendNewOrderSellerEmail(order);
+    } catch (e) {
+      console.error("[notify] seller email failed:", e);
+    }
+  });
 
   return order;
 }
