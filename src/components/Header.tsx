@@ -63,28 +63,42 @@ export default function Header() {
           </a>
 
           {/* Search - desktop */}
-          <div className="flex-1 max-w-[420px] mx-4 hidden md:block">
-            <div className="flex items-center border border-gray-200 rounded-full px-4 py-2 bg-[#f8f8f8] hover:border-gray-300 hover:bg-white transition-all cursor-pointer">
-              <span className="text-[13px] text-[#999]">Search for</span>
-              <span className="text-[13px] font-medium text-[#1C2120] ml-1.5 animate-fadeIn" key={termIdx}>
-                {searchTerms[termIdx]}
-              </span>
-              <svg className="ml-auto shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round">
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" />
-              </svg>
+          <form
+            action="/search"
+            method="get"
+            role="search"
+            className="flex-1 max-w-[420px] mx-4 hidden md:block"
+          >
+            <div className="flex items-center border border-gray-200 rounded-full px-4 py-2 bg-[#f8f8f8] focus-within:border-gray-300 focus-within:bg-white hover:border-gray-300 hover:bg-white transition-all">
+              <input
+                type="search"
+                name="q"
+                aria-label="Search products"
+                placeholder={`Search for ${searchTerms[termIdx]}`}
+                className="flex-1 bg-transparent outline-none text-[13px] text-[#1C2120] placeholder:text-[#999]"
+              />
+              <button
+                type="submit"
+                aria-label="Search"
+                className="ml-2 shrink-0 cursor-pointer p-0.5 hover:opacity-70 transition-opacity"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+              </button>
             </div>
-          </div>
+          </form>
 
           {/* Right Icons */}
           <div className="flex items-center gap-3 md:gap-4">
             {/* Search icon - mobile */}
-            <button className="md:hidden p-1.5 cursor-pointer">
+            <a href="/search" aria-label="Search" className="md:hidden p-1.5 cursor-pointer">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#464646" strokeWidth="2" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" />
                 <path d="M21 21l-4.35-4.35" />
               </svg>
-            </button>
+            </a>
 
             <a href="/cart" className="flex flex-col items-center gap-0.5 cursor-pointer group min-w-[36px] relative">
               <div className="relative">
@@ -147,18 +161,23 @@ export default function Header() {
         </div>
 
         {/* Mobile Search Bar */}
-        <div className="md:hidden px-4 pb-3">
-          <div className="flex items-center border border-gray-200 rounded-full px-3 py-2 bg-[#f8f8f8]">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" className="shrink-0 mr-2">
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-            <span className="text-[13px] text-[#999]">Search for </span>
-            <span className="text-[13px] font-medium text-[#1C2120] ml-1 animate-fadeIn" key={`m-${termIdx}`}>
-              {searchTerms[termIdx]}
-            </span>
+        <form action="/search" method="get" role="search" className="md:hidden px-4 pb-3">
+          <div className="flex items-center border border-gray-200 rounded-full px-3 py-2 bg-[#f8f8f8] focus-within:bg-white focus-within:border-gray-300 transition-all">
+            <button type="submit" aria-label="Search" className="shrink-0 mr-2 cursor-pointer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+            </button>
+            <input
+              type="search"
+              name="q"
+              aria-label="Search products"
+              placeholder={`Search for ${searchTerms[termIdx]}`}
+              className="flex-1 bg-transparent outline-none text-[13px] text-[#1C2120] placeholder:text-[#999]"
+            />
           </div>
-        </div>
+        </form>
       </header>
 
       {/* Mobile Menu Overlay */}
