@@ -235,12 +235,9 @@ export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
   }
 
   await sendWhatsAppTemplate(sellerPhone, "pretty_petals_new_order_seller", [
-    { name: "seller_name", value: settings.sellerName },
     { name: "order_number", value: order.orderNumber },
     { name: "customer_name", value: order.customer.name },
-    { name: "customer_phone", value: order.customer.phone || "N/A" },
     { name: "items", value: buildSellerItemSummary(order.items) },
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
-    { name: "delivery_date", value: formatDeliveryDate(order.deliverySlot) },
   ]);
 }
