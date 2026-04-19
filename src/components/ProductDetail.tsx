@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -138,6 +138,55 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
+
+  // Add-on products (global upsell)
+  interface AddonSuggestion {
+    _id: string;
+    name: string;
+    slug: string;
+    pricing: { regularPrice: number; salePrice?: number; currentPrice: number };
+    images: { url: string; alt?: string }[];
+  }
+  const [addonSuggestions, setAddonSuggestions] = useState<AddonSuggestion[]>([]);
+  const [addonsLoading, setAddonsLoading] = useState(false);
+  const addonsScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setAddonsLoading(true);
+    fetch(`/api/products?isAddon=true&excludeIds=${product._id}&limit=10`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled) setAddonSuggestions(data.products || []);
+      })
+      .catch(() => {
+        if (!cancelled) setAddonSuggestions([]);
+      })
+      .finally(() => {
+        if (!cancelled) setAddonsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [product._id]);
+
+  const handleAddAddon = useCallback((p: AddonSuggestion) => {
+    addToCart({
+      productId: p._id,
+      name: p.name,
+      slug: p.slug,
+      price: p.pricing.currentPrice,
+      originalPrice: p.pricing.regularPrice,
+      image: p.images?.[0]?.url || "/images/products/placeholder.jpg",
+    });
+    toast.success(`${p.name} added to cart`);
+  }, []);
+
+  const scrollAddons = useCallback((dir: 1 | -1) => {
+    const el = addonsScrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 320, behavior: "smooth" });
+  }, []);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -510,30 +559,125 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               </div>
             )}
 
-            {/* Addons */}
-            {product.addons.length > 0 && (
-              <div className="mt-5">
-                <p className="text-sm font-medium text-[#464646] mb-2">Recommended Addon Products</p>
-                <div className="flex gap-3 overflow-x-auto scroll-container pb-1">
-                  {product.addons.map((addon) => (
-                    <div key={addon.name} className="shrink-0 w-[110px] rounded-xl border border-gray-200 overflow-hidden">
-                      {addon.image && (
-                        <div className="h-[75px] bg-[#f8f8f8] overflow-hidden">
-                          <Image src={addon.image} alt={addon.name} width={110} height={75} className="w-full h-full object-cover" />
-                        </div>
-                      )}
-                      <div className="p-2">
-                        <p className="text-[11px] text-[#464646] truncate">{addon.name}</p>
-                        <div className="flex items-center justify-between mt-1">
-                          <span className="text-xs font-bold text-[#1C2120]">&#8377; {addon.price.toLocaleString()}</span>
-                          <button className="text-[10px] font-bold text-[#737530] border border-[#737530] rounded px-2 py-0.5 hover:bg-[#737530] hover:text-white transition-colors cursor-pointer">
-                            ADD
-                          </button>
-                        </div>
-                      </div>
+            {/* Add-ons: make it extra special */}
+            {(addonsLoading || addonSuggestions.length > 0) && (
+              <div
+                className="relative mt-5 rounded-2xl p-4 md:p-5 overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, #FFF9F0 0%, #FEF3E2 50%, #FDEBD0 100%)",
+                  boxShadow: "0 1px 6px rgba(0,0,0,0.05)",
+                }}
+              >
+                {/* Decorative blobs */}
+                <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-[#737530]/10 blur-2xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full bg-[#EA1E61]/10 blur-2xl pointer-events-none" />
+
+                <div className="relative flex items-center justify-between gap-3 mb-3">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 12 20 22 4 22 4 12" />
+                        <rect x="2" y="7" width="20" height="5" />
+                        <line x1="12" y1="22" x2="12" y2="7" />
+                        <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" />
+                        <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" />
+                      </svg>
                     </div>
-                  ))}
+                    <div className="min-w-0">
+                      <h3 className="text-sm md:text-base font-bold text-[#1C2120] leading-tight">
+                        Make it extra special
+                      </h3>
+                      <p className="text-[11px] md:text-xs text-[#6b6b6b] mt-0.5 truncate">
+                        Add a sweet little something to your gift
+                      </p>
+                    </div>
+                  </div>
+                  {addonSuggestions.length > 2 && (
+                    <div className="hidden md:flex items-center gap-1.5 shrink-0">
+                      <button
+                        onClick={() => scrollAddons(-1)}
+                        aria-label="Scroll left"
+                        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
+                      </button>
+                      <button
+                        onClick={() => scrollAddons(1)}
+                        aria-label="Scroll right"
+                        className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
+
+                {addonsLoading ? (
+                  <div className="relative flex gap-2.5 overflow-x-auto pb-1">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="shrink-0 w-[130px] rounded-xl bg-white/60 p-2 animate-pulse">
+                        <div className="aspect-square bg-gray-200 rounded-lg" />
+                        <div className="h-3 bg-gray-200 rounded mt-2 w-3/4" />
+                        <div className="h-3 bg-gray-200 rounded mt-2 w-1/2" />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div
+                    ref={addonsScrollRef}
+                    className="relative flex gap-2.5 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory"
+                    style={{ scrollbarWidth: "none" }}
+                  >
+                    {addonSuggestions.map((p) => {
+                      const img = p.images?.[0]?.url || "/images/products/placeholder.jpg";
+                      const hasDiscount = p.pricing.salePrice && p.pricing.salePrice < p.pricing.regularPrice;
+                      return (
+                        <div
+                          key={p._id}
+                          className="shrink-0 w-[130px] md:w-[140px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
+                        >
+                          <Link href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
+                            <Image
+                              src={img}
+                              alt={p.name}
+                              width={140}
+                              height={140}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              unoptimized
+                            />
+                            {hasDiscount && (
+                              <span className="absolute top-1.5 left-1.5 text-[10px] font-bold bg-[#EA1E61] text-white px-1.5 py-0.5 rounded">
+                                SALE
+                              </span>
+                            )}
+                          </Link>
+                          <div className="p-2">
+                            <p className="text-[11px] md:text-[12px] font-medium text-[#1C2120] leading-tight line-clamp-2 min-h-[2.3em]">
+                              {p.name}
+                            </p>
+                            <div className="flex items-center gap-1 mt-1">
+                              <span className="text-xs font-bold text-[#1C2120]">
+                                &#8377;{p.pricing.currentPrice.toLocaleString()}
+                              </span>
+                              {hasDiscount && (
+                                <span className="text-[10px] text-[#999] line-through">
+                                  &#8377;{p.pricing.regularPrice.toLocaleString()}
+                                </span>
+                              )}
+                            </div>
+                            <button
+                              onClick={() => handleAddAddon(p)}
+                              className="mt-1.5 w-full py-1 text-[11px] font-bold text-[#737530] border border-[#737530] rounded-md hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
+                            >
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                              ADD
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             )}
 

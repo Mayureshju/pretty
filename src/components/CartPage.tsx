@@ -7,11 +7,24 @@ import gsap from "gsap";
 import toast from "react-hot-toast";
 import {
   getCart,
+  addToCart,
   removeFromCart,
   updateCartQuantity,
   getCartTotal,
   type CartItem,
 } from "@/lib/cart";
+
+interface AddonProduct {
+  _id: string;
+  name: string;
+  slug: string;
+  pricing: {
+    regularPrice: number;
+    salePrice?: number;
+    currentPrice: number;
+  };
+  images: { url: string; alt?: string }[];
+}
 
 /* ── Browse categories for empty state ── */
 const browseCategories = [
@@ -41,6 +54,11 @@ export default function CartPage() {
   const [couponMessage, setCouponMessage] = useState("");
   const [couponError, setCouponError] = useState("");
   const [couponLoading, setCouponLoading] = useState(false);
+
+  /* ── Addons state ── */
+  const [addonProducts, setAddonProducts] = useState<AddonProduct[]>([]);
+  const [addonsLoading, setAddonsLoading] = useState(false);
+  const addonsScrollRef = useRef<HTMLDivElement>(null);
 
 
   /* Load cart on mount and listen for updates */
@@ -78,6 +96,45 @@ export default function CartPage() {
       );
     }
   }, [mounted, cartItems.length]);
+
+  /* Fetch add-on products when cart has items */
+  useEffect(() => {
+    if (!mounted || cartItems.length === 0) return;
+    let cancelled = false;
+    setAddonsLoading(true);
+    fetch("/api/products?isAddon=true&limit=12")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled) setAddonProducts(data.products || []);
+      })
+      .catch(() => {
+        if (!cancelled) setAddonProducts([]);
+      })
+      .finally(() => {
+        if (!cancelled) setAddonsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [mounted, cartItems.length]);
+
+  const handleAddAddon = useCallback((p: AddonProduct) => {
+    addToCart({
+      productId: p._id,
+      name: p.name,
+      slug: p.slug,
+      price: p.pricing.currentPrice,
+      originalPrice: p.pricing.regularPrice,
+      image: p.images?.[0]?.url || "/images/products/placeholder.jpg",
+    });
+    toast.success(`${p.name} added to cart`);
+  }, []);
+
+  const scrollAddons = useCallback((dir: 1 | -1) => {
+    const el = addonsScrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 320, behavior: "smooth" });
+  }, []);
 
   const handleUpdateQty = useCallback(
     (productId: string, currentQty: number, delta: number, variant?: string) => {
@@ -155,6 +212,10 @@ export default function CartPage() {
   /* Computed totals */
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  /* Filter out addons already in cart */
+  const cartProductIds = new Set(cartItems.map((c) => c.productId));
+  const availableAddons = addonProducts.filter((p) => !cartProductIds.has(p._id));
 
   /* Don't render anything until mounted (avoids hydration mismatch with localStorage) */
   if (!mounted) {
@@ -354,6 +415,128 @@ export default function CartPage() {
               </div>
             );
           })}
+
+          {/* ── Add-ons Upsell ── */}
+          {(addonsLoading || availableAddons.length > 0) && (
+            <div
+              className="relative rounded-2xl p-5 md:p-6 mb-4 overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, #FFF9F0 0%, #FEF3E2 50%, #FDEBD0 100%)",
+                boxShadow: "0 1px 6px rgba(0,0,0,0.05)",
+              }}
+            >
+              {/* Decorative blobs */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#737530]/10 blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-[#EA1E61]/10 blur-2xl pointer-events-none" />
+
+              <div className="relative flex items-start justify-between gap-3 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 12 20 22 4 22 4 12" />
+                      <rect x="2" y="7" width="20" height="5" />
+                      <line x1="12" y1="22" x2="12" y2="7" />
+                      <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" />
+                      <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold text-[#1C2120] leading-tight">
+                      Make it extra special
+                    </h3>
+                    <p className="text-xs md:text-[13px] text-[#6b6b6b] mt-0.5">
+                      Pair your gift with a sweet little something
+                    </p>
+                  </div>
+                </div>
+                {availableAddons.length > 2 && (
+                  <div className="hidden md:flex items-center gap-1.5 shrink-0">
+                    <button
+                      onClick={() => scrollAddons(-1)}
+                      aria-label="Scroll left"
+                      className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
+                    </button>
+                    <button
+                      onClick={() => scrollAddons(1)}
+                      aria-label="Scroll right"
+                      className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {addonsLoading ? (
+                <div className="relative flex gap-3 overflow-x-auto pb-1">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="shrink-0 w-[150px] rounded-xl bg-white/60 p-2 animate-pulse">
+                      <div className="aspect-square bg-gray-200 rounded-lg" />
+                      <div className="h-3 bg-gray-200 rounded mt-2 w-3/4" />
+                      <div className="h-3 bg-gray-200 rounded mt-2 w-1/2" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  ref={addonsScrollRef}
+                  className="relative flex gap-3 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory"
+                  style={{ scrollbarWidth: "none" }}
+                >
+                  {availableAddons.map((p) => {
+                    const img = p.images?.[0]?.url || "/images/products/placeholder.jpg";
+                    const hasDiscount = p.pricing.salePrice && p.pricing.salePrice < p.pricing.regularPrice;
+                    return (
+                      <div
+                        key={p._id}
+                        className="shrink-0 w-[150px] md:w-[160px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
+                      >
+                        <a href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
+                          <Image
+                            src={img}
+                            alt={p.name}
+                            width={160}
+                            height={160}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            unoptimized
+                          />
+                          {hasDiscount && (
+                            <span className="absolute top-1.5 left-1.5 text-[10px] font-bold bg-[#EA1E61] text-white px-1.5 py-0.5 rounded">
+                              SALE
+                            </span>
+                          )}
+                        </a>
+                        <div className="p-2.5">
+                          <p className="text-[12px] md:text-[13px] font-medium text-[#1C2120] leading-tight line-clamp-2 min-h-[2.3em]">
+                            {p.name}
+                          </p>
+                          <div className="flex items-center gap-1.5 mt-1.5">
+                            <span className="text-sm font-bold text-[#1C2120]">
+                              &#8377;{p.pricing.currentPrice.toLocaleString()}
+                            </span>
+                            {hasDiscount && (
+                              <span className="text-[10px] text-[#999] line-through">
+                                &#8377;{p.pricing.regularPrice.toLocaleString()}
+                              </span>
+                            )}
+                          </div>
+                          <button
+                            onClick={() => handleAddAddon(p)}
+                            className="mt-2 w-full py-1.5 text-xs font-bold text-[#737530] border border-[#737530] rounded-md hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
+                          >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                            ADD
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* ── Right: Sidebar ── */}

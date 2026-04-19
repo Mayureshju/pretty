@@ -29,6 +29,21 @@ export async function GET(request: NextRequest) {
       filter.categories = category;
     }
 
+    const isAddonParam = searchParams.get("isAddon");
+    if (isAddonParam === "true") {
+      filter.isAddon = true;
+    } else if (isAddonParam === "false") {
+      filter.isAddon = { $ne: true };
+    }
+
+    const excludeIds = searchParams.get("excludeIds") || "";
+    if (excludeIds) {
+      const excludeList = excludeIds.split(",").filter(Boolean);
+      if (excludeList.length > 0) {
+        filter._id = { $nin: excludeList };
+      }
+    }
+
     // Sort mapping
     let sortObj: Record<string, 1 | -1> = { order: 1, "metrics.totalSales": -1 };
     if (sort === "price-low") sortObj = { "pricing.currentPrice": 1 };
