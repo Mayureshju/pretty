@@ -100,18 +100,18 @@ export default function AboutUsPage() {
       </section>
 
       {/* ════════════ INTRO ════════════ */}
-      <section className="max-w-300 mx-auto px-4 py-14 md:py-20">
-        <p className="text-base leading-relaxed text-text-body max-w-3xl">
+      <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-14 md:py-20">
+        <p className="text-base md:text-lg leading-relaxed text-text-body">
           At Pretty Petals, we don&apos;t just deliver flowers — we deliver
           emotions, thoughtfully handcrafted into every bouquet. As a growing and
           trusted name in online flower delivery in Mumbai, our mission is
           simple:
         </p>
-        <p className="text-lg md:text-xl font-semibold text-primary mt-4 max-w-3xl">
+        <p className="text-lg md:text-2xl font-semibold text-primary mt-5">
           Make every moment special with fresh, elegant, and meaningful floral
           arrangements.
         </p>
-        <p className="text-base leading-relaxed text-text-body max-w-3xl mt-4">
+        <p className="text-base md:text-lg leading-relaxed text-text-body mt-5">
           Whether it&apos;s a birthday surprise, anniversary celebration,
           wedding, or a simple gesture of love, we ensure your feelings are
           delivered beautifully and on time.
