@@ -3,52 +3,74 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 
-interface NavCategory {
-  _id: string;
-  name: string;
-  slug: string;
-  productCount: number;
-  children: { _id: string; name: string; slug: string; productCount: number }[];
+interface MenuLink {
+  label: string;
+  href: string;
+  isNew?: boolean;
 }
 
-/* Nav items with their slugs — order matters for display */
-const navOrder = [
-  { label: "Flowers", slug: "flowers" },
-  { label: "Cakes", slug: "cakes" },
-  { label: "Combos", slug: "combos-gifts" },
-  { label: "Birthday", slug: "birthday", parentSlug: "flowers" },
-  { label: "Anniversary", slug: "anniversary", parentSlug: "flowers" },
-  { label: "Gifts", slug: "gifts" },
-  { label: "Personalised", slug: "gifts" },
-  { label: "Plants", slug: "plants" },
-  { label: "Chocolates", slug: "gifts" },
-  { label: "Occasions", slug: "" },
-  { label: "International", slug: "" },
+interface MenuColumn {
+  title: string;
+  links: MenuLink[];
+}
+
+interface TopMenuItem {
+  label: string;
+  href: string;
+  columns?: MenuColumn[];
+}
+
+/* Menu structure matches CurrentMenu.docx exactly */
+const MENU: TopMenuItem[] = [
+  {
+    label: "Flowers",
+    href: "/flowers/",
+    columns: [
+      {
+        title: "Flowers For Every Occasions",
+        links: [
+          { label: "Birthday", href: "/flowers/birthday/" },
+          { label: "Anniversary", href: "/flowers/anniversary/" },
+          // { label: "Congratulations", href: "/flowers/congratulations/" },
+          // { label: "Love n Romance", href: "/flowers/love-n-romance/" },
+          { label: "Wedding", href: "/flowers/wedding/" },
+          { label: "Housewarming", href: "/flowers/house-warming/" },
+          { label: "Get Well Soon", href: "/flowers/get-well-soon/" },
+          { label: "Mother's Day", href: "/flowers/mother-flower/" },
+          { label: "Valentine", href: "/flowers/valentines-day/" },
+        ],
+      },
+      {
+        title: "Floral Types",
+        links: [
+          { label: "Roses", href: "/flowers/roses/" },
+          { label: "Mixed Flowers", href: "/flowers/mixed-flowers/" },
+          { label: "Carnations", href: "/flowers/carnations/" },
+          { label: "Exotic Flowers", href: "/flowers/exotic-flowers/" },
+          { label: "Orchids", href: "/flowers/orchids/" },
+          { label: "Gerberas", href: "/flowers/gerberas/" },
+          { label: "Lilies", href: "/flowers/lilies/" },
+          { label: "Garlands", href: "/flowers/garlands/" },
+          // { label: "Dried Flowers", href: "/flowers/dried-flowers/", isNew: true },
+          // { label: "Daisies", href: "/flowers/daisies/", isNew: true },
+        ],
+      },
+    ],
+  },
+  { label: "Cakes", href: "/cakes/" },
+  { label: "Combos", href: "/combos-gifts/" },
+  { label: "Birthday", href: "/flowers/birthday/" },
+  { label: "Corporate", href: "/corporate/" },
+  { label: "Gifts", href: "/gifts/" },
+  { label: "Popular", href: "/popular/" },
+  { label: "Fruits", href: "/fruits/" },
+  { label: "Signature Floral Arrangements", href: "/signature/" },
 ];
 
-function buildHref(cat: NavCategory | undefined, nav: typeof navOrder[0]): string {
-  if (nav.parentSlug) return `/${nav.parentSlug}/${nav.slug}/`;
-  if (cat) return `/${cat.slug}/`;
-  return "#";
-}
-
-function buildChildHref(parent: NavCategory, child: { slug: string }): string {
-  return `/${parent.slug}/${child.slug}/`;
-}
-
 export default function Navbar() {
-  const [categories, setCategories] = useState<NavCategory[]>([]);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Fetch categories
-  useEffect(() => {
-    fetch("/api/categories/nav")
-      .then((r) => r.json())
-      .then((data: NavCategory[]) => setCategories(data))
-      .catch(() => {});
-  }, []);
 
   const handleEnter = (label: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -67,7 +89,6 @@ export default function Navbar() {
     timeoutRef.current = setTimeout(() => setActiveMenu(null), 150);
   };
 
-  // GSAP entrance animation for dropdown
   useEffect(() => {
     if (activeMenu && dropdownRef.current) {
       gsap.fromTo(
@@ -79,45 +100,20 @@ export default function Navbar() {
       gsap.fromTo(
         cols,
         { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3, stagger: 0.04, ease: "power3.out", delay: 0.05 }
+        { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: "power3.out", delay: 0.05 }
       );
     }
   }, [activeMenu]);
 
-  // Find the category matching the active menu
-  function getMenuCategory(): NavCategory | null {
-    if (!activeMenu) return null;
-    const nav = navOrder.find((n) => n.label === activeMenu);
-    if (!nav) return null;
-    // For items like "Birthday" that are children, find the parent "flowers"
-    const parentSlug = nav.parentSlug || nav.slug;
-    return categories.find((c) => c.slug === parentSlug) || null;
-  }
-
-  const menuCategory = getMenuCategory();
-  const hasDropdown = menuCategory && menuCategory.children.length > 0;
-
-  // Split children into columns of ~8 items
-  function getColumns(children: NavCategory["children"]): NavCategory["children"][] {
-    const cols: NavCategory["children"][] = [];
-    const perCol = 8;
-    for (let i = 0; i < children.length; i += perCol) {
-      cols.push(children.slice(i, i + perCol));
-    }
-    return cols;
-  }
+  const activeItem = MENU.find((m) => m.label === activeMenu) || null;
+  const hasDropdown = !!(activeItem && activeItem.columns && activeItem.columns.length > 0);
 
   return (
     <nav className="bg-white border-b border-[#e5e7eb] sticky top-[60px] md:top-[66px] z-40 hidden md:block">
       <div className="max-w-[1440px] mx-auto px-4">
-        <ul className="flex items-center justify-start overflow-x-auto scroll-container">
-          {navOrder.map((item) => {
-            const cat = categories.find((c) => c.slug === item.slug);
-            const parentCat = item.parentSlug
-              ? categories.find((c) => c.slug === item.parentSlug)
-              : cat;
-            const showDropdown = parentCat && parentCat.children.length > 0;
-
+        <ul className="flex items-center justify-center overflow-x-auto scroll-container">
+          {MENU.map((item) => {
+            const showDropdown = !!(item.columns && item.columns.length > 0);
             return (
               <li
                 key={item.label}
@@ -126,7 +122,7 @@ export default function Navbar() {
                 className="relative"
               >
                 <a
-                  href={buildHref(cat, item)}
+                  href={item.href}
                   className={`block px-4 lg:px-5 py-2.5 text-[13px] lg:text-[14px] font-normal whitespace-nowrap transition-colors relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:bg-[#737530] after:transition-all ${
                     activeMenu === item.label
                       ? "text-[#737530] after:w-full"
@@ -142,7 +138,7 @@ export default function Navbar() {
       </div>
 
       {/* ── Mega Dropdown ── */}
-      {hasDropdown && menuCategory && (
+      {hasDropdown && activeItem && activeItem.columns && (
         <div
           ref={dropdownRef}
           onMouseEnter={handleDropdownEnter}
@@ -150,39 +146,25 @@ export default function Navbar() {
           className="absolute left-0 right-0 z-50 bg-white border-b border-gray-200"
           style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.1)" }}
         >
-          <div className="max-w-[1440px] mx-auto px-4 py-5">
-            <div className="flex gap-8">
-              {/* "All" link + category name */}
-              <div className="mega-col min-w-[160px]">
-                <h4 className="text-[13px] font-semibold text-[#737530] mb-2.5 pb-1.5 border-b border-[#737530]/10">
-                  {menuCategory.name}
-                </h4>
-                <ul className="space-y-1.5">
-                  <li>
-                    <a href={`/${menuCategory.slug}/`}
-                      className="text-[13px] text-[#737530] font-medium hover:text-[#4C4D27] transition-colors block py-0.5">
-                      All {menuCategory.name}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Subcategories in columns */}
-              {getColumns(menuCategory.children.filter((c) => c.productCount > 0)).map((col, colIdx) => (
-                <div key={colIdx} className="mega-col min-w-[160px]">
-                  <h4 className="text-[13px] font-semibold text-[#737530] mb-2.5 pb-1.5 border-b border-[#737530]/10">
-                    {colIdx === 0 ? "Subcategories" : "\u00A0"}
+          <div className="max-w-[1440px] mx-auto px-4 py-6">
+            <div className="flex gap-10">
+              {activeItem.columns.map((col) => (
+                <div key={col.title} className="mega-col min-w-[200px]">
+                  <h4 className="text-[13px] font-semibold text-[#737530] mb-3 pb-2 border-b border-[#737530]/15 uppercase tracking-wide">
+                    {col.title}
                   </h4>
-                  <ul className="space-y-1.5">
-                    {col.map((child) => (
-                      <li key={child._id}>
+                  <ul className="space-y-2">
+                    {col.links.map((link) => (
+                      <li key={link.label}>
                         <a
-                          href={buildChildHref(menuCategory, child)}
-                          className="text-[13px] text-[#464646] hover:text-[#737530] transition-colors block py-0.5"
+                          href={link.href}
+                          className="group inline-flex items-center gap-2 text-[13px] text-[#464646] hover:text-[#737530] transition-colors py-0.5"
                         >
-                          {child.name}
-                          {child.productCount > 0 && (
-                            <span className="text-[11px] text-[#999] ml-1">({child.productCount})</span>
+                          <span>{link.label}</span>
+                          {link.isNew && (
+                            <span className="text-[9px] font-bold bg-[#EA1E61] text-white px-1.5 py-0.5 rounded uppercase tracking-wider leading-none">
+                              New
+                            </span>
                           )}
                         </a>
                       </li>

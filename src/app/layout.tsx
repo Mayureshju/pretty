@@ -15,7 +15,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pretty Petals - Premium Flower Delivery, Cakes & Gifts in Mumbai",
+  metadataBase: new URL("https://www.prettypetals.com"),
+  title: {
+    default: "Pretty Petals - Premium Flower Delivery, Cakes & Gifts in Mumbai",
+    template: "%s",
+  },
   description:
     "Order premium flowers, cakes, plants & gifts online with same day delivery in Mumbai. Handcrafted bouquets for birthdays, anniversaries & all occasions.",
 };
