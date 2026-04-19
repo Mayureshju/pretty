@@ -11,7 +11,7 @@ const footerLinks = {
     { label: "Blog", href: "/blog" },
     { label: "Quotes", href: "/quotes" },
     { label: "Coupons & Deals", href: "/offers" },
-    { label: "Sitemap", href: "/sitemap.html" },
+    { label: "Sitemap", href: "/sitemap.xml" },
     { label: "Retail Stores", href: "https://share.google/aQtmjIlTnncsUqGmJ" },
   ],
   column3: [
