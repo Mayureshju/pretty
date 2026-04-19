@@ -252,7 +252,7 @@ function ProductCarousel({ products, title, city }: { products: CityProduct[]; t
 function TextSectionRenderer({ section }: { section: TextSection }) {
   return (
     <div className="max-w-[1440px] mx-auto px-4 py-8 md:py-12">
-      <div className="max-w-3xl content-section border-l-3 border-[#737530] pl-5 md:pl-6">
+      <div className="max-w-10xl content-section border-l-3 border-[#737530] pl-5 md:pl-6">
         <h2 className="text-xl md:text-2xl font-bold text-[#1C2120] mb-3">{section.title}</h2>
         <p className="text-[14px] md:text-[15px] text-[#555] leading-[1.8]">{section.content}</p>
         {section.subHeading && (
