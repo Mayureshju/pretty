@@ -12,7 +12,7 @@ const birthdayCategories = [
   { name: "Personalised", href: "/gifts/", image: "/images/birthday-section/personalised.png" },
   { name: "Plants", href: "/plants/", image: "/images/birthday-section/plants.png" },
   { name: "Gift Sets", href: "/combos-gifts/", image: "/images/birthday-section/gift-sets.png" },
-  { name: "Hampers", href: "/combos-gifts/", image: "/images/birthday-section/hampers.png" },
+  { name: "Fruit Basket", href: "/fruits/", image: "/images/birthday-section/hampers.png" },
   { name: "Balloon Decor", href: "/gifts/", image: "/images/birthday-section/balloons.png" },
   { name: "Bestsellers", href: "/popular/", image: "/images/birthday-section/bestsellers.png" },
 ];
