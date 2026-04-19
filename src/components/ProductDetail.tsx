@@ -139,6 +139,32 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
 
+  // Dynamic offers (admin-managed)
+  interface OfferItem {
+    _id: string;
+    title: string;
+    description?: string;
+    highlight?: string;
+    code?: string;
+    icon: "percent" | "gift" | "truck" | "star" | "tag";
+  }
+  const [offers, setOffers] = useState<OfferItem[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/offers")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled) setOffers(data.offers || []);
+      })
+      .catch(() => {
+        if (!cancelled) setOffers([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // Add-on products (global upsell)
   interface AddonSuggestion {
     _id: string;
@@ -846,22 +872,52 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               </div>
             )}
 
-            {/* Offers */}
-            <button
-              onClick={() => setShowOffers(!showOffers)}
-              className="mt-4 w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-[#737530]/30 transition-colors cursor-pointer"
-            >
-              <div className="flex items-center gap-2">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#737530" /></svg>
-                <span className="text-sm font-semibold text-[#737530]">Offers Available</span>
-              </div>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className={`transition-transform duration-200 ${showOffers ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg>
-            </button>
-            {showOffers && (
-              <div className="border border-t-0 border-gray-200 rounded-b-xl p-4 -mt-1 text-sm text-[#464646] space-y-2">
-                <p className="flex items-center gap-2"><span className="text-[#4CAF50] font-bold">10%</span> off on orders above &#8377;999 with code <span className="font-semibold text-[#737530]">BLOOM10</span></p>
-                <p className="flex items-center gap-2"><span className="text-[#4CAF50] font-bold">Free</span> delivery on your first order</p>
-              </div>
+            {/* Offers (dynamic from admin) */}
+            {offers.length > 0 && (
+              <>
+                <button
+                  onClick={() => setShowOffers(!showOffers)}
+                  className="mt-4 w-full flex items-center justify-between p-4 rounded-xl border border-gray-200 hover:border-[#737530]/30 transition-colors cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round"><path d="M21.41 11.58l-9-9A2 2 0 0011 2H4a2 2 0 00-2 2v7c0 .53.21 1.04.59 1.41l9 9a2 2 0 002.82 0l7-7a2 2 0 000-2.83z" /><circle cx="7.5" cy="7.5" r="1.5" fill="#737530" /></svg>
+                    <span className="text-sm font-semibold text-[#737530]">
+                      {offers.length} Offer{offers.length !== 1 ? "s" : ""} Available
+                    </span>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" className={`transition-transform duration-200 ${showOffers ? "rotate-180" : ""}`}><path d="M6 9l6 6 6-6" /></svg>
+                </button>
+                {showOffers && (
+                  <div className="border border-t-0 border-gray-200 rounded-b-xl p-4 -mt-1 text-sm text-[#464646] space-y-3">
+                    {offers.map((o) => (
+                      <div key={o._id} className="flex items-start gap-2.5">
+                        <div className="shrink-0 w-7 h-7 rounded-full bg-[#737530]/10 flex items-center justify-center text-[#737530]">
+                          <OfferIconSvg icon={o.icon} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="leading-snug">
+                            {o.highlight && (
+                              <span className="text-[#4CAF50] font-bold mr-1">{o.highlight}</span>
+                            )}
+                            <span>{o.title}</span>
+                            {o.code && (
+                              <>
+                                {" "}
+                                <span className="font-semibold text-[#737530] font-mono tracking-wide bg-[#F2F3E8] px-1.5 py-0.5 rounded text-xs">
+                                  {o.code}
+                                </span>
+                              </>
+                            )}
+                          </p>
+                          {o.description && (
+                            <p className="text-xs text-[#888] mt-0.5">{o.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
             {/* Description */}
@@ -978,5 +1034,52 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
         </div>
       </div>
     </>
+  );
+}
+
+function OfferIconSvg({ icon }: { icon: "percent" | "gift" | "truck" | "star" | "tag" }) {
+  const common = { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (icon === "gift") {
+    return (
+      <svg {...common}>
+        <polyline points="20 12 20 22 4 22 4 12" />
+        <rect x="2" y="7" width="20" height="5" />
+        <line x1="12" y1="22" x2="12" y2="7" />
+        <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" />
+        <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" />
+      </svg>
+    );
+  }
+  if (icon === "truck") {
+    return (
+      <svg {...common}>
+        <rect x="1" y="3" width="15" height="13" />
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+        <circle cx="5.5" cy="18.5" r="2.5" />
+        <circle cx="18.5" cy="18.5" r="2.5" />
+      </svg>
+    );
+  }
+  if (icon === "star") {
+    return (
+      <svg {...common}>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    );
+  }
+  if (icon === "tag") {
+    return (
+      <svg {...common}>
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" />
+        <line x1="7" y1="7" x2="7.01" y2="7" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <line x1="19" y1="5" x2="5" y2="19" />
+      <circle cx="6.5" cy="6.5" r="2.5" />
+      <circle cx="17.5" cy="17.5" r="2.5" />
+    </svg>
   );
 }

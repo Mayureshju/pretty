@@ -212,6 +212,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { label: "Delivery Cities", href: "/admin/delivery-cities", icon: IconTruck },
       { label: "Coupons", href: "/admin/coupons", icon: IconTag },
+      { label: "Offers", href: "/admin/offers", icon: IconPercent },
       { label: "Sales", href: "/admin/sales", icon: IconPercent },
       { label: "Customers", href: "/admin/customers", icon: IconUsers },
     ],
