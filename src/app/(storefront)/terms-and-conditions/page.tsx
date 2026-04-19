@@ -26,7 +26,7 @@ export default function TermsAndConditionsPage() {
 
       {/* Content */}
       <section className="max-w-[1440px] mx-auto px-4 py-10 md:py-14">
-        <div className="max-w-3xl prose-container">
+        <div className="w-full prose-container">
 
           <p className="text-[14px] md:text-[15px] text-[#555] leading-[1.8] mb-6">
             These online shopping terms and conditions apply to all orders that you, the customer, place using this website.

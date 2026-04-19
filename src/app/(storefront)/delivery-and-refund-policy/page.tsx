@@ -26,7 +26,7 @@ export default function DeliveryAndRefundPolicyPage() {
 
       {/* Content */}
       <section className="max-w-[1440px] mx-auto px-4 py-10 md:py-14">
-        <div className="max-w-3xl prose-container">
+        <div className="w-full prose-container">
 
           <div className="mb-8 pb-6 border-b border-[#EEEEEE]">
             <h2 className="text-lg md:text-xl font-bold text-[#1C2120] mb-3">Delivery Time</h2>
