@@ -218,6 +218,30 @@ export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
   ]);
 }
 
+export async function sendDeliveredSellerWhatsApp(order: IOrder): Promise<void> {
+  const settings = await getNotificationSettings();
+  if (!settings.sendSellerWhatsApp) {
+    console.warn("[seller-whatsapp] skip (delivered): sendSellerWhatsApp toggle is OFF");
+    return;
+  }
+
+  const sellerPhone = formatPhoneForWhatsApp(settings.sellerWhatsappNumber);
+  if (!sellerPhone) {
+    console.warn(
+      "[seller-whatsapp] skip (delivered): invalid sellerWhatsappNumber:",
+      settings.sellerWhatsappNumber
+    );
+    return;
+  }
+
+  await sendWhatsAppTemplate(sellerPhone, "pretty_petals_delivered_seller", [
+    { name: "order_number", value: order.orderNumber },
+    { name: "customer_name", value: order.customer.name },
+    { name: "items", value: buildSellerItemSummary(order.items) },
+    { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
+  ]);
+}
+
 export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
   const settings = await getNotificationSettings();
   if (!settings.sendSellerWhatsApp) {

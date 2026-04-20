@@ -13,10 +13,12 @@ import {
   sendOutForDeliveryWhatsApp,
   sendDeliveredWhatsApp,
   sendOrderCancelledWhatsApp,
+  sendDeliveredSellerWhatsApp,
 } from "@/lib/whatsapp";
 import {
   sendOutForDeliveryEmail,
   sendDeliveredEmail,
+  sendDeliveredSellerEmail,
 } from "@/lib/email";
 
 export async function GET(
@@ -115,6 +117,12 @@ export async function PUT(
     };
     const emailFn = emailByStatus[parsed.data.status];
     if (emailFn) emailFn(order).catch(() => {});
+
+    // Notify seller when an order is delivered (fire-and-forget)
+    if (parsed.data.status === "delivered") {
+      sendDeliveredSellerWhatsApp(order).catch(() => {});
+      sendDeliveredSellerEmail(order).catch(() => {});
+    }
 
     return Response.json(order);
   } catch (err) {
