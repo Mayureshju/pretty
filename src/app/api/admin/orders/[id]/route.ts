@@ -14,6 +14,10 @@ import {
   sendDeliveredWhatsApp,
   sendOrderCancelledWhatsApp,
 } from "@/lib/whatsapp";
+import {
+  sendOutForDeliveryEmail,
+  sendDeliveredEmail,
+} from "@/lib/email";
 
 export async function GET(
   _request: NextRequest,
@@ -103,6 +107,14 @@ export async function PUT(
     };
     const whatsappFn = whatsappByStatus[parsed.data.status];
     if (whatsappFn) whatsappFn(order).catch(() => {});
+
+    // Send customer email for delivery milestones (fire-and-forget)
+    const emailByStatus: Record<string, ((o: typeof order) => Promise<void>) | undefined> = {
+      "out-for-delivery": sendOutForDeliveryEmail,
+      "delivered": sendDeliveredEmail,
+    };
+    const emailFn = emailByStatus[parsed.data.status];
+    if (emailFn) emailFn(order).catch(() => {});
 
     return Response.json(order);
   } catch (err) {

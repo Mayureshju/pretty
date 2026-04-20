@@ -116,6 +116,138 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
   );
 }
 
+function formatDeliveryAddress(order: IOrder): string {
+  const s = order.shipping;
+  if (!s?.address) return "As provided";
+  const parts = [s.address, s.city, s.state, s.pincode].filter(Boolean);
+  return parts.join(", ");
+}
+
+export async function sendOutForDeliveryEmail(order: IOrder) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[customer-email] skip (out_for_delivery): RESEND_API_KEY not configured");
+    return;
+  }
+  if (!order.customer.email) {
+    console.warn("[customer-email] skip (out_for_delivery): order has no customer email");
+    return;
+  }
+
+  const html = `
+  <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
+    <div style="background:#737530;padding:24px;text-align:center;">
+      <h1 style="color:#fff;margin:0;font-size:22px;">Pretty Petals</h1>
+    </div>
+
+    <div style="padding:24px;background:#fff;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="width:60px;height:60px;background:#FFF3E0;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:28px;color:#E65100;">&#128666;</span>
+        </div>
+        <h2 style="margin:0 0 4px;font-size:20px;">Your Order is Out for Delivery!</h2>
+        <p style="color:#888;margin:0;font-size:14px;">Hi ${order.customer.name}, your flowers are on the way.</p>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:8px;padding:16px;margin-bottom:20px;">
+        <table style="width:100%;font-size:14px;">
+          <tr>
+            <td style="color:#888;">Order Number</td>
+            <td style="text-align:right;font-weight:bold;">${order.orderNumber}</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3 style="font-size:16px;margin:0 0 12px;border-bottom:2px solid #737530;padding-bottom:8px;">Delivery Address</h3>
+      <p style="font-size:14px;color:#464646;margin:0;line-height:1.6;">
+        ${order.customer.name}<br/>
+        ${formatDeliveryAddress(order)}<br/>
+        ${order.customer.phone ? `Phone: ${order.customer.phone}` : ""}
+      </p>
+    </div>
+
+    <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
+      <p style="margin:0 0 4px;">Our delivery partner will reach you shortly.</p>
+      <p style="margin:0;color:#888;">Thank you for shopping with Pretty Petals &#10084;</p>
+    </div>
+  </div>`;
+
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: order.customer.email,
+    subject: `Out for Delivery - ${order.orderNumber} | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[customer-email] Resend error (out_for_delivery):", error);
+    return;
+  }
+  console.log(
+    `[customer-email] out_for_delivery sent to ${order.customer.email} (id=${data?.id})`
+  );
+}
+
+export async function sendDeliveredEmail(order: IOrder) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[customer-email] skip (delivered): RESEND_API_KEY not configured");
+    return;
+  }
+  if (!order.customer.email) {
+    console.warn("[customer-email] skip (delivered): order has no customer email");
+    return;
+  }
+
+  const html = `
+  <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
+    <div style="background:#737530;padding:24px;text-align:center;">
+      <h1 style="color:#fff;margin:0;font-size:22px;">Pretty Petals</h1>
+    </div>
+
+    <div style="padding:24px;background:#fff;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="width:60px;height:60px;background:#E8F5E9;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:28px;color:#009D43;">&#10003;</span>
+        </div>
+        <h2 style="margin:0 0 4px;font-size:20px;">Order Delivered</h2>
+        <p style="color:#888;margin:0;font-size:14px;">Hi ${order.customer.name}, your order has been delivered.</p>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:8px;padding:16px;margin-bottom:20px;">
+        <table style="width:100%;font-size:14px;">
+          <tr>
+            <td style="color:#888;">Order Number</td>
+            <td style="text-align:right;font-weight:bold;">${order.orderNumber}</td>
+          </tr>
+        </table>
+      </div>
+
+      <p style="font-size:14px;color:#464646;line-height:1.6;margin:0;">
+        We hope you loved your flowers! If you have a moment, we'd be grateful if you shared your experience by replying to this email or leaving a review on the product page.
+      </p>
+    </div>
+
+    <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
+      <p style="margin:0 0 4px;">Thank you for shopping with Pretty Petals &#10084;</p>
+      <p style="margin:0;color:#888;">We can't wait to bloom again with you.</p>
+    </div>
+  </div>`;
+
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: order.customer.email,
+    subject: `Delivered - ${order.orderNumber} | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[customer-email] Resend error (delivered):", error);
+    return;
+  }
+  console.log(
+    `[customer-email] delivered sent to ${order.customer.email} (id=${data?.id})`
+  );
+}
+
 export async function sendNewOrderSellerEmail(order: IOrder) {
   if (!process.env.RESEND_API_KEY) {
     console.warn("[seller-email] skip: RESEND_API_KEY not configured");
