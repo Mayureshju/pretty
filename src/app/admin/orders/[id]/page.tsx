@@ -60,6 +60,10 @@ interface OrderDetail {
   status: string;
   statusHistory: StatusHistoryEntry[];
   createdAt: string;
+  deliverySlot?: string;
+  deliveryCharge?: number;
+  floristInstruction?: string;
+  messageOnCard?: string;
 }
 
 const ALL_STATUSES = [
@@ -94,6 +98,12 @@ function formatStatus(status: string): string {
   return status
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function formatDeliveryDate(iso: string): string {
+  const d = new Date(iso.length === 10 ? iso + "T00:00:00" : iso);
+  if (isNaN(d.getTime())) return iso;
+  return format(d, "EEE, dd MMM yyyy");
 }
 
 function getProductName(item: OrderItemDetail): string {
@@ -500,6 +510,45 @@ export default function OrderDetailPage({
             </div>
           </div>
 
+          {/* Delivery Details */}
+          <div className="bg-white rounded-xl border border-gray-100 p-6">
+            <h2 className="text-lg font-semibold text-[#1C2120] mb-4">
+              Delivery Details
+            </h2>
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <path d="M16 2v4M8 2v4M3 10h18" />
+                </svg>
+                <div>
+                  <p className="text-xs text-gray-500">Delivery Date</p>
+                  <p className="font-medium text-gray-900">
+                    {order.deliverySlot ? formatDeliveryDate(order.deliverySlot) : (
+                      <span className="text-gray-400 font-normal">Not specified</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+              {typeof order.deliveryCharge === "number" && (
+                <div className="flex items-start gap-2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5">
+                    <rect x="1" y="3" width="15" height="13" />
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
+                  </svg>
+                  <div>
+                    <p className="text-xs text-gray-500">Delivery Charge</p>
+                    <p className="font-medium text-gray-900">
+                      {order.deliveryCharge === 0 ? "Free" : formatCurrency(order.deliveryCharge)}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* Shipping Info */}
           <div className="bg-white rounded-xl border border-gray-100 p-6">
             <h2 className="text-lg font-semibold text-[#1C2120] mb-4">
@@ -524,6 +573,33 @@ export default function OrderDetailPage({
               )}
             </div>
           </div>
+
+          {/* Gifting Details */}
+          {(order.floristInstruction || order.messageOnCard) && (
+            <div className="bg-white rounded-xl border border-gray-100 p-6">
+              <h2 className="text-lg font-semibold text-[#1C2120] mb-4">
+                Gifting Details
+              </h2>
+              <div className="space-y-4 text-sm">
+                {order.floristInstruction && (
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Florist Instruction</p>
+                    <p className="text-gray-800 bg-gray-50 rounded-md px-3 py-2 whitespace-pre-wrap">
+                      {order.floristInstruction}
+                    </p>
+                  </div>
+                )}
+                {order.messageOnCard && (
+                  <div>
+                    <p className="text-xs text-gray-500 mb-1">Message on Card</p>
+                    <p className="text-gray-800 bg-[#F2F3E8] rounded-md px-3 py-2 italic whitespace-pre-wrap">
+                      {order.messageOnCard}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Status Update */}
           <div className="bg-white rounded-xl border border-gray-100 p-6">
