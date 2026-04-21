@@ -18,7 +18,7 @@ export async function GET() {
     const settings = await getNotificationSettings();
     return Response.json({
       sellerName: settings.sellerName,
-      sellerWhatsappNumber: settings.sellerWhatsappNumber,
+      sellerWhatsappNumbers: settings.sellerWhatsappNumbers,
       sellerEmails: settings.sellerEmails,
       sendSellerWhatsApp: settings.sendSellerWhatsApp,
       sendSellerEmail: settings.sendSellerEmail,
@@ -57,7 +57,7 @@ export async function PUT(request: NextRequest) {
 
     return Response.json({
       sellerName: updated.sellerName,
-      sellerWhatsappNumber: updated.sellerWhatsappNumber,
+      sellerWhatsappNumbers: updated.sellerWhatsappNumbers,
       sellerEmails: updated.sellerEmails,
       sendSellerWhatsApp: updated.sendSellerWhatsApp,
       sendSellerEmail: updated.sendSellerEmail,

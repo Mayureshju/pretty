@@ -29,7 +29,7 @@ export default function SettingsPage() {
 
   // Notifications (persisted)
   const [sellerName, setSellerName] = useState("");
-  const [sellerWhatsappNumber, setSellerWhatsappNumber] = useState("");
+  const [sellerWhatsappNumbersInput, setSellerWhatsappNumbersInput] = useState("");
   const [sellerEmailsInput, setSellerEmailsInput] = useState("");
   const [sendSellerWhatsApp, setSendSellerWhatsApp] = useState(true);
   const [sendSellerEmail, setSendSellerEmail] = useState(true);
@@ -45,7 +45,11 @@ export default function SettingsPage() {
         const data = await res.json();
         if (cancelled) return;
         setSellerName(data.sellerName || "");
-        setSellerWhatsappNumber(data.sellerWhatsappNumber || "");
+        setSellerWhatsappNumbersInput(
+          Array.isArray(data.sellerWhatsappNumbers)
+            ? data.sellerWhatsappNumbers.join(", ")
+            : ""
+        );
         setSellerEmailsInput(
           Array.isArray(data.sellerEmails) ? data.sellerEmails.join(", ") : ""
         );
@@ -74,7 +78,10 @@ export default function SettingsPage() {
       .map((e) => e.trim())
       .filter(Boolean);
 
-    const phone = sellerWhatsappNumber.replace(/\D/g, "");
+    const phones = sellerWhatsappNumbersInput
+      .split(/[\s,;]+/)
+      .map((p) => p.replace(/\D/g, ""))
+      .filter(Boolean);
 
     setNotificationsSaving(true);
     try {
@@ -83,7 +90,7 @@ export default function SettingsPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sellerName: sellerName.trim(),
-          sellerWhatsappNumber: phone,
+          sellerWhatsappNumbers: phones,
           sellerEmails: emails,
           sendSellerWhatsApp,
           sendSellerEmail,
@@ -97,7 +104,7 @@ export default function SettingsPage() {
         throw new Error(msg || data?.error || "Save failed");
       }
       setSellerName(data.sellerName);
-      setSellerWhatsappNumber(data.sellerWhatsappNumber);
+      setSellerWhatsappNumbersInput((data.sellerWhatsappNumbers || []).join(", "));
       setSellerEmailsInput((data.sellerEmails || []).join(", "));
       setSendSellerWhatsApp(data.sendSellerWhatsApp);
       setSendSellerEmail(data.sendSellerEmail);
@@ -274,18 +281,21 @@ export default function SettingsPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Seller WhatsApp Number
+                    Seller WhatsApp Numbers
                   </label>
-                  <input
-                    type="tel"
-                    value={sellerWhatsappNumber}
-                    onChange={(e) => setSellerWhatsappNumber(e.target.value)}
-                    placeholder="10-digit number (e.g. 9821036990)"
-                    className={inputClass}
+                  <textarea
+                    value={sellerWhatsappNumbersInput}
+                    onChange={(e) =>
+                      setSellerWhatsappNumbersInput(e.target.value)
+                    }
+                    rows={3}
+                    placeholder="9821036990, 9833100194"
+                    className={`${inputClass} resize-none`}
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    10-digit Indian mobile, with or without 91 prefix. Only
-                    digits are saved.
+                    Comma-separated. Each number receives the new-order and
+                    delivered WhatsApp templates. 10-digit Indian mobile, with
+                    or without 91 prefix. Only digits are saved.
                   </p>
                 </div>
 

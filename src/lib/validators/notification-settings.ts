@@ -6,13 +6,17 @@ export const notificationSettingsSchema = z.object({
     .trim()
     .min(1, "Seller name is required")
     .max(100, "Seller name is too long"),
-  sellerWhatsappNumber: z
-    .string()
-    .trim()
-    .regex(
-      /^\d{10,12}$/,
-      "Enter a 10-digit number, or 12 digits with 91 prefix"
-    ),
+  sellerWhatsappNumbers: z
+    .array(
+      z
+        .string()
+        .trim()
+        .regex(
+          /^\d{10,12}$/,
+          "Enter a 10-digit number, or 12 digits with 91 prefix"
+        )
+    )
+    .max(10, "Maximum 10 recipients"),
   sellerEmails: z
     .array(z.string().trim().email("Invalid email address"))
     .max(10, "Maximum 10 recipients"),

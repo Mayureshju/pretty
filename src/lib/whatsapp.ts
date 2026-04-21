@@ -218,6 +218,20 @@ export async function sendOrderFailedWhatsApp(order: IOrder): Promise<void> {
   ]);
 }
 
+function resolveSellerPhones(raw: string[] | undefined): string[] {
+  if (!Array.isArray(raw)) return [];
+  const seen = new Set<string>();
+  const phones: string[] = [];
+  for (const entry of raw) {
+    const phone = formatPhoneForWhatsApp(entry);
+    if (phone && !seen.has(phone)) {
+      seen.add(phone);
+      phones.push(phone);
+    }
+  }
+  return phones;
+}
+
 export async function sendDeliveredSellerWhatsApp(order: IOrder): Promise<void> {
   const settings = await getNotificationSettings();
   if (!settings.sendSellerWhatsApp) {
@@ -225,21 +239,27 @@ export async function sendDeliveredSellerWhatsApp(order: IOrder): Promise<void> 
     return;
   }
 
-  const sellerPhone = formatPhoneForWhatsApp(settings.sellerWhatsappNumber);
-  if (!sellerPhone) {
+  const sellerPhones = resolveSellerPhones(settings.sellerWhatsappNumbers);
+  if (sellerPhones.length === 0) {
     console.warn(
-      "[seller-whatsapp] skip (delivered): invalid sellerWhatsappNumber:",
-      settings.sellerWhatsappNumber
+      "[seller-whatsapp] skip (delivered): no valid sellerWhatsappNumbers:",
+      settings.sellerWhatsappNumbers
     );
     return;
   }
 
-  await sendWhatsAppTemplate(sellerPhone, "pretty_petals_delivered_seller", [
+  const params: TemplateParam[] = [
     { name: "order_number", value: order.orderNumber },
     { name: "customer_name", value: order.customer.name },
     { name: "items", value: buildSellerItemSummary(order.items) },
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
-  ]);
+  ];
+
+  await Promise.all(
+    sellerPhones.map((phone) =>
+      sendWhatsAppTemplate(phone, "pretty_petals_delivered_seller", params)
+    )
+  );
 }
 
 export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
@@ -249,19 +269,25 @@ export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
     return;
   }
 
-  const sellerPhone = formatPhoneForWhatsApp(settings.sellerWhatsappNumber);
-  if (!sellerPhone) {
+  const sellerPhones = resolveSellerPhones(settings.sellerWhatsappNumbers);
+  if (sellerPhones.length === 0) {
     console.warn(
-      "[seller-whatsapp] skip: invalid sellerWhatsappNumber:",
-      settings.sellerWhatsappNumber
+      "[seller-whatsapp] skip: no valid sellerWhatsappNumbers:",
+      settings.sellerWhatsappNumbers
     );
     return;
   }
 
-  await sendWhatsAppTemplate(sellerPhone, "pretty_petals_new_order_seller", [
+  const params: TemplateParam[] = [
     { name: "order_number", value: order.orderNumber },
     { name: "customer_name", value: order.customer.name },
     { name: "items", value: buildSellerItemSummary(order.items) },
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
-  ]);
+  ];
+
+  await Promise.all(
+    sellerPhones.map((phone) =>
+      sendWhatsAppTemplate(phone, "pretty_petals_new_order_seller", params)
+    )
+  );
 }
