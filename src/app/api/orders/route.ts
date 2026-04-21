@@ -80,6 +80,8 @@ export async function POST(request: NextRequest) {
       shipping: body.shipping || {},
       deliveryCharge,
       deliverySlot: body.deliverySlot || "",
+      floristInstruction: body.floristInstruction?.trim() || "",
+      messageOnCard: body.messageOnCard?.trim() || "",
       pricing: {
         subtotal,
         discount,

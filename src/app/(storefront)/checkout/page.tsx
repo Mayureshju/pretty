@@ -60,6 +60,10 @@ function CheckoutInner() {
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
 
+  /* ── Gifting ── */
+  const [floristInstruction, setFloristInstruction] = useState("");
+  const [messageOnCard, setMessageOnCard] = useState("");
+
   /* ── Coupon ── */
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -336,6 +340,8 @@ function CheckoutInner() {
           },
           deliveryCharge,
           deliverySlot: deliveryDate,
+          floristInstruction: floristInstruction.trim() || undefined,
+          messageOnCard: messageOnCard.trim() || undefined,
           couponCode: couponCode.trim() || undefined,
           discount,
         }),
@@ -705,6 +711,51 @@ function CheckoutInner() {
                     )}
                   </div>
                 )}
+              </div>
+            </div>
+
+            {/* Gifting Options */}
+            <div className="bg-white rounded-xl border border-gray-100 p-5 mb-5">
+              <h2 className="text-lg font-semibold text-[#1C2120] mb-1 flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737530" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="20 12 20 22 4 22 4 12" />
+                  <rect x="2" y="7" width="20" height="5" />
+                  <line x1="12" y1="22" x2="12" y2="7" />
+                  <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z" />
+                  <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z" />
+                </svg>
+                Gifting Options
+              </h2>
+              <p className="text-xs text-[#888] mb-4">Optional — leave blank if not needed</p>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-[#464646] mb-1.5">
+                    Florist Instruction
+                  </label>
+                  <textarea
+                    value={floristInstruction}
+                    onChange={(e) => setFloristInstruction(e.target.value.slice(0, 500))}
+                    placeholder="Any special instructions for the florist (e.g., preferred colors, arrangement style)"
+                    rows={3}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors resize-none"
+                  />
+                  <p className="text-xs text-[#888] mt-1 text-right">{floristInstruction.length}/500</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-[#464646] mb-1.5">
+                    Message on Card
+                  </label>
+                  <textarea
+                    value={messageOnCard}
+                    onChange={(e) => setMessageOnCard(e.target.value.slice(0, 250))}
+                    placeholder="Your personal message for the recipient"
+                    rows={3}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors resize-none"
+                  />
+                  <p className="text-xs text-[#888] mt-1 text-right">{messageOnCard.length}/250</p>
+                </div>
               </div>
             </div>
 

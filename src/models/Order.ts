@@ -28,6 +28,8 @@ export interface IOrder extends Document {
   deliveryCity?: mongoose.Types.ObjectId;
   deliveryCharge: number;
   deliverySlot?: string;
+  floristInstruction?: string;
+  messageOnCard?: string;
   pricing: {
     subtotal: number;
     discount: number;
@@ -96,6 +98,8 @@ const OrderSchema = new Schema<IOrder>(
     deliveryCity: { type: Schema.Types.ObjectId, ref: "DeliveryCity" },
     deliveryCharge: { type: Number, default: 0 },
     deliverySlot: { type: String },
+    floristInstruction: { type: String },
+    messageOnCard: { type: String },
     pricing: {
       subtotal: { type: Number, required: true },
       discount: { type: Number, default: 0 },
