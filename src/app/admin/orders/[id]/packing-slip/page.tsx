@@ -30,12 +30,10 @@ function formatDeliverySlot(iso: string): string {
 }
 
 const COMPANY = {
-  name: "Pretty Petals",
-  address: "Shop No. 3, 15A, Gagangiri CHS Off Carter Rd Golf Link Road, Union Park, Khar West",
-  city: "Mumbai, MH, 400052 India",
+  domain: "www.prettypetals.com",
+  address:
+    "Shop No. 3, 15A, Gagangiri CHS Off Carter Rd Golf Link Road, Union Park, Khar West, Mumbai - 400052",
   phone: "Ph: 9833100194 / 8369224582",
-  email: "support@prettypetals.com",
-  gstin: "27AAMPS9904P1ZN",
 };
 
 export default function PackingSlipPage({ params }: { params: Promise<{ id: string }> }) {
@@ -73,13 +71,23 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
       <style>{`
         @media print {
           @page { size: A4 portrait; margin: 8mm; }
+          html, body { width: 210mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
-          .slip-page { padding: 0 !important; min-height: calc(297mm - 16mm) !important; }
+          .slip-page {
+            padding: 0 !important;
+            max-width: none !important;
+            width: 100% !important;
+            height: calc(297mm - 16mm) !important;
+            min-height: calc(297mm - 16mm) !important;
+            page-break-after: avoid;
+            page-break-inside: avoid;
+          }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; }
+        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; height: 100%; }
         .slip-page { max-width: 800px; width: 100%; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
+        .spacer { flex: 1 1 auto; }
         .title { font-size: 16px; font-weight: bold; color: #2980b9; margin-bottom: 6px; letter-spacing: 0.5px; }
         .logo { height: 32px; margin-bottom: 8px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 10px; }
@@ -107,8 +115,6 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
 
       <div className="slip-page">
         <div className="title">Delivery Challan</div>
-
-        <img src="/logo.png" alt="Pretty Petals" className="logo" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
 
         <div className="grid-3">
           <div>
@@ -206,9 +212,11 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
           )}
         </div>
 
+        <div className="spacer" />
+
         <div className="footer">
-          {COMPANY.name} | {COMPANY.address} {COMPANY.city} |<br />
-          {COMPANY.phone} | {COMPANY.email} | {COMPANY.gstin}
+          {COMPANY.domain} &nbsp;|&nbsp; {COMPANY.address} &nbsp;|&nbsp;{" "}
+          {COMPANY.phone}
         </div>
       </div>
     </>

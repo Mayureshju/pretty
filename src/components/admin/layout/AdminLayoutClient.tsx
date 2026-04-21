@@ -11,8 +11,10 @@ interface AdminLayoutClientProps {
 
 export default function AdminLayoutClient({ children }: AdminLayoutClientProps) {
   const pathname = usePathname();
+  const normalizedPath = pathname?.replace(/\/$/, "");
   const isPrintRoute =
-    pathname?.endsWith("/packing-slip") || pathname?.endsWith("/invoice");
+    normalizedPath?.endsWith("/packing-slip") ||
+    normalizedPath?.endsWith("/invoice");
 
   const [collapsed, setCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
