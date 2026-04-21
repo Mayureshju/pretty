@@ -18,7 +18,15 @@ interface OrderDetail {
   shipping: { address?: string; city?: string; state?: string; pincode?: string };
   notes?: string;
   deliverySlot?: string;
+  floristInstruction?: string;
+  messageOnCard?: string;
   createdAt: string;
+}
+
+function formatDeliverySlot(iso: string): string {
+  const d = new Date(iso.length === 10 ? iso + "T00:00:00" : iso);
+  if (isNaN(d.getTime())) return iso;
+  return format(d, "EEE, dd MMM yyyy");
 }
 
 const COMPANY = {
@@ -64,27 +72,31 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
     <>
       <style>{`
         @media print {
-          @page { size: A4 portrait; margin: 10mm; }
+          @page { size: A4 portrait; margin: 8mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
+          .slip-page { padding: 0 !important; }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #111; background: #fff; }
-        .slip-page { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .title { font-size: 36px; font-weight: bold; color: #2980b9; margin-bottom: 10px; }
-        .logo { height: 50px; margin-bottom: 16px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .grid-3 h4 { font-size: 13px; font-weight: bold; margin-bottom: 6px; }
-        .grid-3 p { font-size: 12px; line-height: 1.5; color: #333; }
-        .divider { border: none; border-top: 1px solid #ccc; margin: 16px 0; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
-        th { background: #f5f5f5; padding: 8px 10px; text-align: left; font-size: 12px; font-weight: bold; border-bottom: 2px solid #ddd; }
-        td { padding: 8px 10px; border-bottom: 1px solid #eee; font-size: 12px; vertical-align: middle; }
+        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #111; background: #fff; }
+        .slip-page { max-width: 800px; margin: 0 auto; padding: 16px; }
+        .title { font-size: 26px; font-weight: bold; color: #2980b9; margin-bottom: 6px; }
+        .logo { height: 38px; margin-bottom: 10px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+        .grid-3 h4 { font-size: 12px; font-weight: bold; margin-bottom: 4px; }
+        .grid-3 p { font-size: 11px; line-height: 1.45; color: #333; }
+        .divider { border: none; border-top: 1px solid #ccc; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th { background: #f5f5f5; padding: 6px 8px; text-align: left; font-size: 11px; font-weight: bold; border-bottom: 2px solid #ddd; }
+        td { padding: 6px 8px; border-bottom: 1px solid #eee; font-size: 11px; vertical-align: middle; }
         .text-center { text-align: center; }
-        .item-img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
-        .meta-section { margin-bottom: 10px; font-size: 12px; line-height: 1.8; }
+        .item-img { width: 34px; height: 34px; object-fit: cover; border-radius: 4px; }
+        .meta-section { margin-bottom: 8px; font-size: 11px; line-height: 1.6; }
+        .meta-section p { margin-bottom: 2px; }
         .meta-section strong { color: #111; }
-        .footer { margin-top: 20px; padding-top: 12px; border-top: 1px solid #ccc; font-size: 11px; color: #555; text-align: center; line-height: 1.6; }
+        .card-msg { background: #F2F3E8; border-left: 3px solid #737530; padding: 6px 10px; margin-top: 4px; font-style: italic; font-size: 11px; white-space: pre-wrap; }
+        .florist-note { background: #fff8e1; border-left: 3px solid #d97706; padding: 6px 10px; margin-top: 4px; font-size: 11px; white-space: pre-wrap; }
+        .footer { margin-top: 12px; padding-top: 8px; border-top: 1px solid #ccc; font-size: 10px; color: #555; text-align: center; line-height: 1.5; }
         .print-btn { position: fixed; bottom: 20px; right: 20px; padding: 10px 24px; background: #737530; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; z-index: 100; }
         .print-btn:hover { background: #4C4D27; }
       `}</style>
@@ -124,6 +136,12 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
               <strong>Order Date:</strong>{" "}
               {format(new Date(order.createdAt), "dd-MM-yyyy")}
             </p>
+            {order.deliverySlot && (
+              <p>
+                <strong>Delivery Date:</strong>{" "}
+                {formatDeliverySlot(order.deliverySlot)}
+              </p>
+            )}
           </div>
         </div>
 
@@ -162,14 +180,29 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         </table>
 
         <div className="meta-section">
-          {order.notes && (
-            <p><strong>Customer Note:</strong> {order.notes}</p>
-          )}
           {order.customer.phone && (
             <p><strong>Receiver No:</strong> {order.customer.phone}</p>
           )}
           {order.shipping.pincode && (
-            <p><strong>Shipping_pincode:</strong> {order.shipping.pincode}</p>
+            <p><strong>Shipping Pincode:</strong> {order.shipping.pincode}</p>
+          )}
+          {order.deliverySlot && (
+            <p><strong>Delivery Date:</strong> {formatDeliverySlot(order.deliverySlot)}</p>
+          )}
+          {order.notes && (
+            <p><strong>Customer Note:</strong> {order.notes}</p>
+          )}
+          {order.floristInstruction && (
+            <div style={{ marginTop: 6 }}>
+              <strong>Florist Instruction:</strong>
+              <div className="florist-note">{order.floristInstruction}</div>
+            </div>
+          )}
+          {order.messageOnCard && (
+            <div style={{ marginTop: 6 }}>
+              <strong>Message on Card:</strong>
+              <div className="card-msg">{order.messageOnCard}</div>
+            </div>
           )}
         </div>
 
