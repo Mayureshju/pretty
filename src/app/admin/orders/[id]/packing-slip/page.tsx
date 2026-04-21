@@ -77,26 +77,34 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
           .no-print { display: none !important; }
           .slip-page { padding: 0 !important; }
         }
+        /* Hide the admin sidebar/header so the print page has no admin chrome */
+        body > div > aside,
+        body > div > header,
+        body header,
+        body aside { display: none !important; }
+        body > div > div { margin-left: 0 !important; }
+        body > div > div > main { padding: 0 !important; background: #fff !important; }
+        body > div { background: #fff !important; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #111; background: #fff; }
-        .slip-page { max-width: 800px; margin: 0 auto; padding: 16px; }
-        .title { font-size: 26px; font-weight: bold; color: #2980b9; margin-bottom: 6px; }
-        .logo { height: 38px; margin-bottom: 10px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 12px; }
-        .grid-3 h4 { font-size: 12px; font-weight: bold; margin-bottom: 4px; }
-        .grid-3 p { font-size: 11px; line-height: 1.45; color: #333; }
-        .divider { border: none; border-top: 1px solid #ccc; margin: 10px 0; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-        th { background: #f5f5f5; padding: 6px 8px; text-align: left; font-size: 11px; font-weight: bold; border-bottom: 2px solid #ddd; }
-        td { padding: 6px 8px; border-bottom: 1px solid #eee; font-size: 11px; vertical-align: middle; }
+        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; }
+        .slip-page { max-width: 800px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
+        .title { font-size: 16px; font-weight: bold; color: #2980b9; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .logo { height: 32px; margin-bottom: 8px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+        .grid-3 h4 { font-size: 11px; font-weight: bold; margin-bottom: 3px; }
+        .grid-3 p { font-size: 10px; line-height: 1.45; color: #333; }
+        .divider { border: none; border-top: 1px solid #ccc; margin: 8px 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+        th { background: #f5f5f5; padding: 5px 7px; text-align: left; font-size: 10px; font-weight: bold; border-bottom: 2px solid #ddd; }
+        td { padding: 5px 7px; border-bottom: 1px solid #eee; font-size: 10px; vertical-align: middle; }
         .text-center { text-align: center; }
-        .item-img { width: 34px; height: 34px; object-fit: cover; border-radius: 4px; }
-        .meta-section { margin-bottom: 8px; font-size: 11px; line-height: 1.6; }
+        .item-img { width: 30px; height: 30px; object-fit: cover; border-radius: 4px; }
+        .meta-section { margin-bottom: 8px; font-size: 10px; line-height: 1.55; }
         .meta-section p { margin-bottom: 2px; }
         .meta-section strong { color: #111; }
-        .card-msg { background: #F2F3E8; border-left: 3px solid #737530; padding: 6px 10px; margin-top: 4px; font-style: italic; font-size: 11px; white-space: pre-wrap; }
-        .florist-note { background: #fff8e1; border-left: 3px solid #d97706; padding: 6px 10px; margin-top: 4px; font-size: 11px; white-space: pre-wrap; }
-        .footer { margin-top: 12px; padding-top: 8px; border-top: 1px solid #ccc; font-size: 10px; color: #555; text-align: center; line-height: 1.5; }
+        .card-msg { background: #F2F3E8; border-left: 3px solid #737530; padding: 5px 9px; margin-top: 3px; font-style: italic; font-size: 10px; white-space: pre-wrap; }
+        .florist-note { background: #fff8e1; border-left: 3px solid #d97706; padding: 5px 9px; margin-top: 3px; font-size: 10px; white-space: pre-wrap; }
+        .footer { margin-top: auto; padding-top: 8px; border-top: 1px solid #ccc; font-size: 9px; color: #555; text-align: center; line-height: 1.5; }
         .print-btn { position: fixed; bottom: 20px; right: 20px; padding: 10px 24px; background: #737530; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; z-index: 100; }
         .print-btn:hover { background: #4C4D27; }
       `}</style>
@@ -106,7 +114,7 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
       </button>
 
       <div className="slip-page">
-        <div className="title">Packing Slip</div>
+        <div className="title">Delivery Challan</div>
 
         <img src="/logo.png" alt="Pretty Petals" className="logo" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
 
