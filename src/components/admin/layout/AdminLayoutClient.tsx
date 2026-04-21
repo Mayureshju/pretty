@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import AdminSidebar from "@/components/admin/layout/AdminSidebar";
 import AdminHeader from "@/components/admin/layout/AdminHeader";
 
@@ -9,6 +10,10 @@ interface AdminLayoutClientProps {
 }
 
 export default function AdminLayoutClient({ children }: AdminLayoutClientProps) {
+  const pathname = usePathname();
+  const isPrintRoute =
+    pathname?.endsWith("/packing-slip") || pathname?.endsWith("/invoice");
+
   const [collapsed, setCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -25,6 +30,10 @@ export default function AdminLayoutClient({ children }: AdminLayoutClientProps) 
   }, []);
 
   const sidebarWidth = collapsed ? 72 : 260;
+
+  if (isPrintRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F7FA]">

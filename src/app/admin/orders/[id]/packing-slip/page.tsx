@@ -75,19 +75,11 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
           @page { size: A4 portrait; margin: 8mm; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
-          .slip-page { padding: 0 !important; }
+          .slip-page { padding: 0 !important; min-height: calc(297mm - 16mm) !important; }
         }
-        /* Hide the admin sidebar/header so the print page has no admin chrome */
-        body > div > aside,
-        body > div > header,
-        body header,
-        body aside { display: none !important; }
-        body > div > div { margin-left: 0 !important; }
-        body > div > div > main { padding: 0 !important; background: #fff !important; }
-        body > div { background: #fff !important; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; }
-        .slip-page { max-width: 800px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
+        .slip-page { max-width: 800px; width: 100%; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
         .title { font-size: 16px; font-weight: bold; color: #2980b9; margin-bottom: 6px; letter-spacing: 0.5px; }
         .logo { height: 32px; margin-bottom: 8px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 10px; }
