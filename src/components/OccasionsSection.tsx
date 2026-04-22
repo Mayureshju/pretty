@@ -12,9 +12,9 @@ const birthdayCategories = [
   { name: "Personalised", href: "/gifts/", image: "/images/birthday-section/personalised.png" },
   { name: "Fruits", href: "/fruits/", image: "/images/birthday-section/hampers.png" },
   { name: "Gift Sets", href: "/combos-gifts/", image: "/images/birthday-section/gift-sets.png" },
-  { name: "Hampers", href: "/combos-gifts/", image: "/images/birthday-section/hampers.png" },
-  { name: "Balloon Decor", href: "/gifts/", image: "/images/birthday-section/balloons.png" },
-  { name: "Bestsellers", href: "/popular/", image: "/images/birthday-section/bestsellers.png" },
+  { name: "Featured Flowers", href: "/combos-gifts/", image: "/images/birthday-section/featured-flowers.png" },
+  { name: "Exotic Flowers", href: "/gifts/", image: "/images/birthday-section/exotic-flowers.png" },
+  { name: "Popular", href: "/popular/", image: "/images/birthday-section/popular.png" },
 ];
 
 export default function OccasionsSection() {
