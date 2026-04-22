@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Blog from "@/models/Blog";
@@ -88,6 +89,11 @@ export async function POST(request: NextRequest) {
 
     const blog = new Blog(data);
     await blog.save();
+
+    // Prerender the new blog URL and refresh the listings / sitemap.
+    revalidatePath(`/${blog.slug}`);
+    revalidatePath("/blog");
+    revalidatePath("/sitemap.xml");
 
     return Response.json(blog, { status: 201 });
   } catch (err) {
