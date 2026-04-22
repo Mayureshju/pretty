@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     }
 
     const folder = (formData.get("folder") as string) || "products";
-    const allowedFolders = ["products", "banners", "categories"];
+    const allowedFolders = ["products", "banners", "categories", "blogs"];
     const safeFolder = allowedFolders.includes(folder) ? folder : "products";
 
     const sanitizedName = file.name
@@ -72,7 +72,7 @@ export async function DELETE(request: Request) {
       return errorResponse("Invalid key", 400);
     }
 
-    const validPrefixes = ["products/", "banners/", "categories/"];
+    const validPrefixes = ["products/", "banners/", "categories/", "blogs/"];
     if (!validPrefixes.some((p) => key.startsWith(p))) {
       return errorResponse("Invalid key prefix", 400);
     }

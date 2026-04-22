@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
 import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import ImageUploader from "@/components/admin/shared/ImageUploader";
 
 interface BlogData {
   _id: string;
@@ -265,16 +266,12 @@ export default function EditBlogPage({
               <h3 className="text-sm font-semibold text-[#1C2120] mb-4">
                 Featured Image
               </h3>
-              <div>
-                <label className={labelClass}>Image URL</label>
-                <input
-                  type="url"
-                  value={form.image}
-                  onChange={(e) => updateField("image", e.target.value)}
-                  className={inputClass}
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
+              <ImageUploader
+                value={form.image}
+                onUrlChange={(url) => updateField("image", url)}
+                onRemove={() => updateField("image", "")}
+                folder="blogs"
+              />
             </div>
 
             {/* Author */}
