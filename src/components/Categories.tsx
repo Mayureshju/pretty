@@ -10,11 +10,11 @@ const categories = [
   { name: "Birthday", href: "/flowers/birthday/", image: "/images/categories/icons/birthday.png" },
   { name: "Anniversary", href: "/flowers/anniversary/", image: "/images/categories/icons/anniversary.png" },
   { name: "Valentine's", href: "/flowers/valentines-day/", image: "/images/categories/icons/valentines.png" },
-  { name: "Get Same Day", href: "/flowers/", image: "/images/categories/icons/sameday.png" },
+  { name: "Funeral", href: "/flowers/funeral/", image: "/images/categories/icons/funeral.png" },
   { name: "Flowers", href: "/flowers/", image: "/images/categories/icons/flowers.png" },
   { name: "Wedding", href: "/flowers/wedding/", image: "/images/categories/icons/wedding.png" },
   { name: "Cakes", href: "/cakes/", image: "/images/categories/icons/cakes.png" },
-  { name: "Plants", href: "/plants/", image: "/images/categories/icons/plants.png" },
+  { name: "Fruits", href: "/fruits/", image: "/images/categories/icons/fruits.png" },
 ];
 
 export default function Categories() {
