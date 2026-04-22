@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Category from "@/models/Category";
@@ -54,6 +55,22 @@ export async function POST(request: NextRequest) {
     }
 
     const category = await Category.create(data);
+
+    // Fresh categories affect the homepage listings and the sitemap
+    // immediately, and the new URL itself must be prerendered.
+    const populated = await Category.findById(category._id)
+      .populate("parent", "slug")
+      .lean<{ slug: string; parent?: { slug?: string } | null }>();
+    if (populated) {
+      const parentSlug = populated.parent?.slug;
+      const path = parentSlug
+        ? `/${parentSlug}/${populated.slug}`
+        : `/${populated.slug}`;
+      revalidatePath(path);
+    }
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+
     return Response.json(category, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/categories error:", err);

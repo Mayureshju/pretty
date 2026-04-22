@@ -27,14 +27,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/shop/`,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/our-story/`,
+      url: `${BASE_URL}/about-us/`,
       changeFrequency: "monthly",
-      priority: 0.4,
+      priority: 0.5,
     },
     {
       url: `${BASE_URL}/contact-us/`,
@@ -45,6 +40,46 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}/faq/`,
       changeFrequency: "monthly",
       priority: 0.4,
+    },
+    {
+      url: `${BASE_URL}/blog/`,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/offers/`,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/quotes/`,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/send-flowers-navi-mumbai/`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/send-flowers-thane/`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/privacy-policy/`,
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${BASE_URL}/delivery-and-refund-policy/`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms-and-conditions/`,
+      changeFrequency: "yearly",
+      priority: 0.2,
     },
   ];
 

@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
@@ -9,6 +10,24 @@ import {
 import Category from "@/models/Category";
 import Product from "@/models/Product";
 import { categorySchema } from "@/lib/validators/category";
+
+// Revalidate every storefront surface that could be showing this category.
+// Covers: listing pages (parent/child or standalone), the homepage (which
+// lists categories), and the sitemap.
+async function revalidateCategory(cat: {
+  slug: string;
+  parent?: { slug?: string } | string | null;
+}) {
+  const parentSlug =
+    cat.parent && typeof cat.parent === "object" && "slug" in cat.parent
+      ? cat.parent.slug
+      : null;
+
+  const path = parentSlug ? `/${parentSlug}/${cat.slug}` : `/${cat.slug}`;
+  revalidatePath(path);
+  revalidatePath("/");
+  revalidatePath("/sitemap.xml");
+}
 
 export async function GET(
   _request: NextRequest,
@@ -69,14 +88,23 @@ export async function PUT(
       data.parent = null;
     }
 
+    // Capture pre-update slug/parent so we can revalidate the old URL too if
+    // either changed.
+    const before = await Category.findById(id)
+      .populate("parent", "slug")
+      .lean<{ slug: string; parent?: { slug?: string } | null }>();
+
     const category = await Category.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
-    }).populate("parent", "name");
+    }).populate("parent", "name slug");
 
     if (!category) {
       return notFoundResponse("Category not found");
     }
+
+    if (before) await revalidateCategory(before);
+    await revalidateCategory(category);
 
     return Response.json(category);
   } catch (err) {
@@ -121,10 +149,17 @@ export async function DELETE(
       );
     }
 
-    const category = await Category.findByIdAndDelete(id);
+    const category = await Category.findByIdAndDelete(id).populate(
+      "parent",
+      "slug"
+    );
     if (!category) {
       return notFoundResponse("Category not found");
     }
+
+    await revalidateCategory(
+      category as unknown as { slug: string; parent?: { slug?: string } | null }
+    );
 
     return Response.json({ message: "Category deleted successfully" });
   } catch (err) {

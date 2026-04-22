@@ -12,6 +12,7 @@ import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
 import EmptyState from "@/components/admin/shared/EmptyState";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
+import ImageUploader from "@/components/admin/shared/ImageUploader";
 import toast from "react-hot-toast";
 
 interface CategoryItem {
@@ -648,17 +649,16 @@ export default function CategoriesPage() {
             />
           </div>
 
-          {/* Image URL */}
+          {/* Image */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Image URL
+              Image
             </label>
-            <input
-              type="url"
+            <ImageUploader
               value={form.image}
-              onChange={(e) => setForm({ ...form, image: e.target.value })}
-              placeholder="https://example.com/image.jpg"
-              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+              onUrlChange={(url) => setForm({ ...form, image: url })}
+              onRemove={() => setForm({ ...form, image: "" })}
+              folder="categories"
             />
           </div>
 
@@ -756,20 +756,14 @@ export default function CategoriesPage() {
           {form.isBanner && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Banner Image URL
+                Banner Image
               </label>
-              <input
-                type="url"
+              <ImageUploader
                 value={form.bannerImage}
-                onChange={(e) => setForm({ ...form, bannerImage: e.target.value })}
-                placeholder="https://example.com/banner.jpg"
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+                onUrlChange={(url) => setForm({ ...form, bannerImage: url })}
+                onRemove={() => setForm({ ...form, bannerImage: "" })}
+                folder="banners"
               />
-              {form.bannerImage && (
-                <div className="mt-2 rounded-lg overflow-hidden border border-gray-100">
-                  <img src={form.bannerImage} alt="Banner preview" className="w-full h-32 object-cover" />
-                </div>
-              )}
             </div>
           )}
 
