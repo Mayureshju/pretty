@@ -78,12 +78,17 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
             padding: 0 !important;
             max-width: none !important;
             width: 100% !important;
-            min-height: 0 !important;
+            min-height: calc(210mm - 16mm) !important;
             height: auto !important;
-            display: block !important;
+            display: flex !important;
+            flex-direction: column !important;
           }
-          .spacer { display: none !important; }
-          .footer { margin-top: 6px !important; page-break-inside: avoid; break-inside: avoid; }
+          .spacer { display: block !important; flex: 1 1 auto !important; }
+          .footer {
+            margin-top: auto !important;
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
           table, tr, td, th { page-break-inside: avoid; }
           .grid-3 { gap: 8px !important; margin-bottom: 6px !important; }
           .meta-section { margin-bottom: 4px !important; }
