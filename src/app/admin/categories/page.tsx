@@ -13,6 +13,7 @@ import StatusBadge from "@/components/admin/shared/StatusBadge";
 import EmptyState from "@/components/admin/shared/EmptyState";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
+import SearchInput from "@/components/admin/shared/SearchInput";
 import toast from "react-hot-toast";
 
 interface CategoryItem {
@@ -62,6 +63,7 @@ export default function CategoriesPage() {
   const [deleteTarget, setDeleteTarget] = useState<CategoryItem | null>(null);
   const [reorderMode, setReorderMode] = useState(false);
   const [reorderList, setReorderList] = useState<CategoryItem[]>([]);
+  const [search, setSearch] = useState("");
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">(
     "idle"
   );
@@ -267,8 +269,19 @@ export default function CategoriesPage() {
   // Categories available as parent options (exclude self when editing)
   const parentOptions = categories.filter((c) => c._id !== editingId);
 
-  // Sort categories by order for the grid view
-  const sortedCategories = [...categories].sort((a, b) => a.order - b.order);
+  // Sort categories by order for the grid view, then filter by search
+  const query = search.trim().toLowerCase();
+  const sortedCategories = [...categories]
+    .sort((a, b) => a.order - b.order)
+    .filter((c) => {
+      if (!query) return true;
+      return (
+        c.name.toLowerCase().includes(query) ||
+        c.slug.toLowerCase().includes(query) ||
+        (c.description || "").toLowerCase().includes(query) ||
+        (c.parent?.name || "").toLowerCase().includes(query)
+      );
+    });
 
   return (
     <div className="space-y-6">
@@ -350,6 +363,18 @@ export default function CategoriesPage() {
         </div>
       </div>
 
+      {/* Search */}
+      {!reorderMode && !loading && categories.length > 0 && (
+        <div className="bg-white rounded-xl border border-gray-100 p-4">
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Search by name, slug, parent..."
+            className="md:w-80"
+          />
+        </div>
+      )}
+
       {/* Content */}
       {loading ? (
         <LoadingSkeleton type="cards" rows={6} />
@@ -358,6 +383,11 @@ export default function CategoriesPage() {
           title="No categories yet"
           description="Create your first category to organize your products."
           action={{ label: "Add Category", onClick: openAddModal }}
+        />
+      ) : !reorderMode && sortedCategories.length === 0 ? (
+        <EmptyState
+          title="No categories match your search"
+          description="Try a different search term."
         />
       ) : reorderMode ? (
         /* ---- Reorder List View ---- */
