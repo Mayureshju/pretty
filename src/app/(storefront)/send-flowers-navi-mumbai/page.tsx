@@ -155,8 +155,9 @@ const contentLayout: ContentSlot[] = [
 const naviMumbaiData = {
   city: "Navi Mumbai",
   heroTitle: "Flower Delivery in Navi Mumbai",
-  heroSubtitle: "Premium flower delivery with same-day service across Navi Mumbai",
+  heroSubtitle: "Order now for same-day flower delivery in Navi Mumbai.",
   heroImage: "/images/banners/flowers.jpg",
+  heroCta: { text: "Same-Day Flower Delivery – Order Now", href: "/flowers/" },
   intro:
     "Looking for online flower delivery in Navi Mumbai that is fast, reliable, and beautifully curated? Welcome to Pretty Petals \u2014 your trusted local florist delivering fresh, handcrafted bouquets across Navi Mumbai. Whether it\u2019s a birthday, anniversary, romantic surprise, or last-minute celebration, we make sure your emotions are delivered on time and in perfect condition.",
   sections,

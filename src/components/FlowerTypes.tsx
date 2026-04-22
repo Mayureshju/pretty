@@ -10,7 +10,7 @@ const flowers = [
   { name: "Roses", href: "/flowers/roses/", image: "/images/flowers/roses.jpg" },
   { name: "Carnations", href: "/flowers/carnations/", image: "/images/flowers/carnations.jpg" },
   { name: "Orchids", href: "/flowers/orchids/", image: "/images/flowers/orchids.jpg" },
-  { name: "Sunflowers", href: "/flowers/", image: "/images/flowers/sunflowers.jpg" },
+  { name: "Mixed Flowers", href: "/flowers/mixed-flowers/", image: "/images/flowers/sunflowers.jpg" },
   { name: "Gerberas", href: "/flowers/gerberas/", image: "/images/flowers/gerberas.jpg" },
   { name: "Luxe", href: "/signature/", image: "/images/flowers/luxe.jpg" },
 ];

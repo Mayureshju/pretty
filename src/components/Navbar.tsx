@@ -20,7 +20,22 @@ interface TopMenuItem {
   columns?: MenuColumn[];
 }
 
-/* Menu structure matches CurrentMenu.docx exactly */
+const FLORAL_TYPES = [
+  { label: "Roses", href: "/flowers/roses/" },
+  { label: "Mixed Flowers", href: "/flowers/mixed-flowers/" },
+  { label: "Carnations", href: "/flowers/carnations/" },
+  { label: "Exotic Flowers", href: "/flowers/exotic-flowers/" },
+  { label: "Orchids", href: "/flowers/orchids/" },
+  { label: "Gerberas", href: "/flowers/gerberas/" },
+  { label: "Lilies", href: "/flowers/lilies/" },
+];
+
+const SEND_FLOWER_TO = [
+  { label: "Mumbai", href: "/flowers/" },
+  { label: "Navi Mumbai", href: "/send-flowers-navi-mumbai/" },
+  { label: "Thane", href: "/send-flowers-thane/" },
+];
+
 const MENU: TopMenuItem[] = [
   {
     label: "Flowers",
@@ -31,40 +46,148 @@ const MENU: TopMenuItem[] = [
         links: [
           { label: "Birthday", href: "/flowers/birthday/" },
           { label: "Anniversary", href: "/flowers/anniversary/" },
-          // { label: "Congratulations", href: "/flowers/congratulations/" },
-          // { label: "Love n Romance", href: "/flowers/love-n-romance/" },
           { label: "Wedding", href: "/flowers/wedding/" },
           { label: "Housewarming", href: "/flowers/house-warming/" },
           { label: "Get Well Soon", href: "/flowers/get-well-soon/" },
           { label: "Mother's Day", href: "/flowers/mother-flower/" },
-          { label: "Valentine", href: "/flowers/valentines-day/" },
         ],
       },
       {
         title: "Floral Types",
+        links: [...FLORAL_TYPES, { label: "Garlands", href: "/flowers/garlands/" }],
+      },
+      {
+        title: "Send Flower To",
+        links: SEND_FLOWER_TO,
+      },
+    ],
+  },
+  {
+    label: "Cakes",
+    href: "/cakes/",
+    columns: [
+      {
+        title: "Cakes",
         links: [
-          { label: "Roses", href: "/flowers/roses/" },
-          { label: "Mixed Flowers", href: "/flowers/mixed-flowers/" },
-          { label: "Carnations", href: "/flowers/carnations/" },
-          { label: "Exotic Flowers", href: "/flowers/exotic-flowers/" },
-          { label: "Orchids", href: "/flowers/orchids/" },
-          { label: "Gerberas", href: "/flowers/gerberas/" },
-          { label: "Lilies", href: "/flowers/lilies/" },
-          { label: "Garlands", href: "/flowers/garlands/" },
-          // { label: "Dried Flowers", href: "/flowers/dried-flowers/", isNew: true },
-          // { label: "Daisies", href: "/flowers/daisies/", isNew: true },
+          { label: "Photo Cake", href: "/cakes/photo-cake/" },
+          { label: "Premium Cake", href: "/cakes/premium-cake/" },
         ],
       },
     ],
   },
-  { label: "Cakes", href: "/cakes/" },
-  { label: "Combos", href: "/combos-gifts/" },
-  { label: "Birthday", href: "/flowers/birthday/" },
-  { label: "Corporate", href: "/corporate/" },
+  {
+    label: "Combos",
+    href: "/combos-gifts/",
+    columns: [
+      {
+        title: "Combos",
+        links: [
+          { label: "Flowers + Cakes", href: "/combos-gifts/flowers-cakes/" },
+          { label: "Flowers + Chocolates", href: "/combos-gifts/flowers-chocolates/" },
+          { label: "Personalized Gifts", href: "/combos-gifts/personalized-gifts/" },
+          { label: "Flowers + Teddy", href: "/combos-gifts/flowers-teddy/" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Premium Flower",
+    href: "/premium-flower/",
+    columns: [
+      {
+        title: "Premium Flower",
+        links: [
+          { label: "Birthday", href: "/premium-flower/birthday/" },
+          { label: "Anniversary", href: "/premium-flower/anniversary/" },
+          { label: "Wedding", href: "/premium-flower/wedding/" },
+          { label: "Housewarming", href: "/premium-flower/housewarming/" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Birthday",
+    href: "/flowers/birthday/",
+    columns: [
+      {
+        title: "Birthday",
+        links: [{ label: "Birthday Flowers", href: "/flowers/birthday/" }],
+      },
+      {
+        title: "Floral Types",
+        links: FLORAL_TYPES,
+      },
+      {
+        title: "Send Birthday Flower To",
+        links: SEND_FLOWER_TO,
+      },
+    ],
+  },
+  {
+    label: "Anniversary",
+    href: "/flowers/anniversary/",
+    columns: [
+      {
+        title: "Anniversary",
+        links: [{ label: "Anniversary Flowers", href: "/flowers/anniversary/" }],
+      },
+      {
+        title: "Floral Types",
+        links: FLORAL_TYPES,
+      },
+      {
+        title: "Send Anniversary Flower To",
+        links: SEND_FLOWER_TO,
+      },
+    ],
+  },
+  {
+    label: "Occasions",
+    href: "/occasions/",
+    columns: [
+      {
+        title: "Occasions",
+        links: [
+          { label: "Birthday Flowers", href: "/flowers/birthday/" },
+          { label: "Anniversary Flowers", href: "/flowers/anniversary/" },
+          { label: "Wedding Flowers", href: "/flowers/wedding/" },
+          { label: "Get Well Soon", href: "/flowers/get-well-soon/" },
+          { label: "Congratulations", href: "/flowers/congratulations/" },
+          { label: "Sympathy / Funeral", href: "/flowers/sympathy/" },
+          { label: "Housewarming", href: "/flowers/house-warming/" },
+          { label: "Corporate Gifting", href: "/corporate/" },
+        ],
+      },
+      {
+        title: "Special Days",
+        links: [
+          { label: "Mother’s Day", href: "/flowers/mother-flower/" },
+          { label: "Father’s Day", href: "/occasions/fathers-day/" },
+          { label: "Parents’ Day", href: "/occasions/parents-day/" },
+          { label: "Women’s Day", href: "/occasions/womens-day/" },
+          { label: "Men’s Day", href: "/occasions/mens-day/" },
+          { label: "Friendship Day", href: "/occasions/friendship-day/" },
+          { label: "Valentine’s Day", href: "/flowers/valentines-day/" },
+        ],
+      },
+      {
+        title: "Festivals Flowers",
+        links: [
+          { label: "Diwali", href: "/occasions/diwali/" },
+          { label: "Holi", href: "/occasions/holi/" },
+          { label: "Raksha Bandhan", href: "/occasions/raksha-bandhan/" },
+          { label: "Dussehra", href: "/occasions/dussehra/" },
+          { label: "Ganesh Chaturthi", href: "/occasions/ganesh-chaturthi/" },
+          { label: "Janmashtami", href: "/occasions/janmashtami/" },
+          { label: "Eid", href: "/occasions/eid/" },
+          { label: "Christmas & New Year", href: "/occasions/christmas-new-year/" },
+        ],
+      },
+    ],
+  },
   { label: "Gifts", href: "/gifts/" },
-  { label: "Popular", href: "/popular/" },
   { label: "Fruits", href: "/fruits/" },
-  { label: "Signature Floral Arrangements", href: "/signature/" },
+  { label: "Luxury Flower Arrangements", href: "/signature/" },
 ];
 
 export default function Navbar() {

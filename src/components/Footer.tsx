@@ -15,7 +15,6 @@ const footerLinks = {
     { label: "Retail Stores", href: "https://share.google/aQtmjIlTnncsUqGmJ" },
   ],
   column3: [
-    { label: "Corporate Gifts", href: "/corporate-gifts" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact Us", href: "/contact-us" },
   ],

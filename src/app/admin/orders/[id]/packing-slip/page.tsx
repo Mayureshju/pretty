@@ -70,41 +70,47 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
     <>
       <style>{`
         @media print {
-          @page { size: A4 portrait; margin: 8mm; }
-          html, body { width: 210mm; }
+          @page { size: A5 portrait; margin: 8mm 7mm; }
+          html, body { width: auto; height: auto; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
           .slip-page {
             padding: 0 !important;
             max-width: none !important;
             width: 100% !important;
-            height: calc(297mm - 16mm) !important;
-            min-height: calc(297mm - 16mm) !important;
-            page-break-after: avoid;
-            page-break-inside: avoid;
+            min-height: 0 !important;
+            height: auto !important;
+            display: block !important;
           }
+          .spacer { display: none !important; }
+          .footer { margin-top: 6px !important; page-break-inside: avoid; break-inside: avoid; }
+          table, tr, td, th { page-break-inside: avoid; }
+          .grid-3 { gap: 8px !important; margin-bottom: 6px !important; }
+          .meta-section { margin-bottom: 4px !important; }
+          .divider { margin: 5px 0 !important; }
+          table { margin-bottom: 5px !important; }
+          th, td { padding: 4px 5px !important; }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; height: 100%; }
-        .slip-page { max-width: 800px; width: 100%; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
+        html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; }
+        .slip-page { max-width: 560px; width: 100%; margin: 0 auto; padding: 14px; display: flex; flex-direction: column; min-height: 100vh; }
         .spacer { flex: 1 1 auto; }
-        .title { font-size: 16px; font-weight: bold; color: #2980b9; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .logo { height: 32px; margin-bottom: 8px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 10px; }
-        .grid-3 h4 { font-size: 11px; font-weight: bold; margin-bottom: 3px; }
-        .grid-3 p { font-size: 10px; line-height: 1.45; color: #333; }
-        .divider { border: none; border-top: 1px solid #ccc; margin: 8px 0; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
-        th { background: #f5f5f5; padding: 5px 7px; text-align: left; font-size: 10px; font-weight: bold; border-bottom: 2px solid #ddd; }
-        td { padding: 5px 7px; border-bottom: 1px solid #eee; font-size: 10px; vertical-align: middle; }
+        .title { font-size: 15px; font-weight: bold; color: #111; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+        .grid-3 h4 { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
+        .grid-3 p { font-size: 10px; line-height: 1.4; color: #333; }
+        .divider { border: none; border-top: 1px solid #ccc; margin: 6px 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+        th { background: #f5f5f5; padding: 4px 6px; text-align: left; font-size: 10px; font-weight: bold; border-bottom: 1px solid #ddd; }
+        td { padding: 4px 6px; border-bottom: 1px solid #eee; font-size: 10px; vertical-align: middle; }
         .text-center { text-align: center; }
-        .item-img { width: 30px; height: 30px; object-fit: cover; border-radius: 4px; }
-        .meta-section { margin-bottom: 8px; font-size: 10px; line-height: 1.55; }
+        .item-img { width: 26px; height: 26px; object-fit: cover; border-radius: 3px; }
+        .meta-section { margin-bottom: 6px; font-size: 10px; line-height: 1.45; }
         .meta-section p { margin-bottom: 2px; }
         .meta-section strong { color: #111; }
-        .card-msg { background: #F2F3E8; border-left: 3px solid #737530; padding: 5px 9px; margin-top: 3px; font-style: italic; font-size: 10px; white-space: pre-wrap; }
-        .florist-note { background: #fff8e1; border-left: 3px solid #d97706; padding: 5px 9px; margin-top: 3px; font-size: 10px; white-space: pre-wrap; }
-        .footer { margin-top: auto; padding-top: 8px; border-top: 1px solid #ccc; font-size: 9px; color: #555; text-align: center; line-height: 1.5; }
+        .card-msg { padding: 3px 0 3px 7px; margin-top: 2px; font-style: italic; font-size: 10px; white-space: pre-wrap; border-left: 2px solid #999; }
+        .florist-note { padding: 3px 0 3px 7px; margin-top: 2px; font-size: 10px; white-space: pre-wrap; border-left: 2px solid #999; }
+        .footer { margin-top: auto; padding-top: 6px; border-top: 1px solid #ccc; font-size: 9px; color: #444; text-align: center; line-height: 1.45; }
         .print-btn { position: fixed; bottom: 20px; right: 20px; padding: 10px 24px; background: #737530; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; z-index: 100; }
         .print-btn:hover { background: #4C4D27; }
       `}</style>

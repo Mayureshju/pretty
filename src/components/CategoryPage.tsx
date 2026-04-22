@@ -232,7 +232,9 @@ export default function CategoryPage({
           <span className="text-[#1C2120] font-medium">{category.name}</span>
         </nav>
 
-        <h1 className="text-xl md:text-2xl font-semibold text-[#1C2120]">{category.name}</h1>
+        <h1 className="text-xl md:text-2xl font-semibold text-[#1C2120]">
+          {category.slug === "flowers" ? "Send Flower To Mumbai" : category.name}
+        </h1>
         {category.description && (
           <p className="text-sm text-[#464646] mt-2 max-w-2xl">{category.description}</p>
         )}

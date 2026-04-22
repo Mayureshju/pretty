@@ -208,14 +208,15 @@ export default function Header() {
               </Show>
               {[
                 { label: "Flowers", href: "/flowers/" },
-                { label: "Cakes", href: "/all-cakes" },
-                { label: "Combos", href: "/gift-hampers" },
-                { label: "Birthday", href: "/birthday" },
-                { label: "Anniversary", href: "/anniversary" },
-                { label: "Gifts", href: "/gifts" },
-                { label: "Personalised", href: "/personalised-gifts" },
-                { label: "Plants", href: "/plants" },
-                { label: "Chocolates", href: "/chocolates" },
+                { label: "Cakes", href: "/cakes/" },
+                { label: "Combos", href: "/combos-gifts/" },
+                { label: "Premium Flower", href: "/premium-flower/" },
+                { label: "Birthday", href: "/flowers/birthday/" },
+                { label: "Anniversary", href: "/flowers/anniversary/" },
+                { label: "Occasions", href: "/occasions/" },
+                { label: "Gifts", href: "/gifts/" },
+                { label: "Fruits", href: "/fruits/" },
+                { label: "Luxury Flower Arrangements", href: "/signature/" },
               ].map((item) => (
                 <a
                   key={item.label}

@@ -54,10 +54,10 @@ const fallbackBanners: BannerItem[] = [
   },
   {
     id: 5,
-    tag: "Breathe Life Into Spaces",
-    title: "Living\nGreens",
-    subtitle: "Lush plants to brighten your home and office",
-    cta: { text: "Shop Plants", href: "/plants/" },
+    tag: "Hand-Picked & Fresh",
+    title: "Juicy\nFresh Fruits",
+    subtitle: "Seasonal fruit baskets and hampers delivered to your door",
+    cta: { text: "Shop Fruits", href: "/fruits/" },
     image: "/images/banners/plants.jpg",
   },
 ];
@@ -88,7 +88,7 @@ function FloatingPetals() {
         duration: 14 + Math.random() * 10,
         swayDuration: 4 + Math.random() * 4,
         rotation: Math.random() * 360,
-        opacity: 0.08 + Math.random() * 0.1,
+        opacity: 0.2 + Math.random() * 0.25,
       }))
     );
   }, []);
@@ -146,6 +146,15 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
     const subtitle = content.querySelector("[data-subtitle]");
     const cta = content.querySelector("[data-cta]");
     const img = slide.querySelector("img");
+
+    // Reset element opacities/transforms left over from the prior exit animation —
+    // otherwise the title/tag stay invisible on the second cycle through this slide.
+    gsap.set([tag, title, subtitle, cta].filter(Boolean), {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      clearProps: "transform",
+    });
 
     const tl = gsap.timeline();
 
@@ -323,7 +332,7 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] overflow-hidden bg-[#3C2A20]"
+      className="relative w-full h-[280px] sm:h-[380px] md:h-[450px] lg:h-[520px] overflow-hidden bg-[#FFF4F4]"
     >
       {/* Slides */}
       {banners.map((b, idx) => (
@@ -361,19 +370,19 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
             />
           </div>
 
-          {/* Gradient Overlay */}
+          {/* Gradient Overlay — lighter so the image colors stay vibrant */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(60,42,32,0.82) 0%, rgba(60,42,32,0.55) 45%, rgba(60,42,32,0.15) 100%)",
+                "linear-gradient(to right, rgba(28,33,32,0.55) 0%, rgba(28,33,32,0.25) 45%, rgba(28,33,32,0) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to top, rgba(60,42,32,0.5) 0%, transparent 40%)",
+                "linear-gradient(to top, rgba(28,33,32,0.25) 0%, transparent 35%)",
             }}
           />
         </div>

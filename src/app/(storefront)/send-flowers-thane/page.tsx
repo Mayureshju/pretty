@@ -163,8 +163,9 @@ const contentLayout: ContentSlot[] = [
 const thaneData = {
   city: "Thane",
   heroTitle: "Online Flower Delivery in Thane",
-  heroSubtitle: "Fresh handcrafted bouquets delivered same-day across Thane",
+  heroSubtitle: "Order flowers in Thane today for same-day delivery",
   heroImage: "/images/banners/flowers.jpg",
+  heroCta: { text: "Same-Day Flower Delivery – Shop Now", href: "/flowers/" },
   intro:
     "Looking for a trusted florist in Thane who can deliver fresh, beautiful flowers on time? Welcome to Pretty Petals \u2014 your go-to destination for online flower delivery in Thane with premium quality, elegant designs, and reliable service. Whether it\u2019s a birthday, anniversary, romantic surprise, or a last-minute celebration, we help you express your emotions with perfectly crafted floral arrangements. Order flowers in Thane today for same-day delivery.",
   sections,

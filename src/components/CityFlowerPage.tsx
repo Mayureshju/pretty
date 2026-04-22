@@ -49,6 +49,7 @@ export interface CityData {
   heroTitle: string;
   heroSubtitle: string;
   heroImage: string;
+  heroCta?: { text: string; href: string };
   intro: string;
   sections: ContentSection[];
   contentLayout: ContentSlot[];
@@ -648,6 +649,17 @@ export default function CityFlowerPage({ data }: { data: CityData }) {
           <p className="text-sm sm:text-base md:text-lg text-white/70 mt-2 md:mt-3 max-w-lg">
             {data.heroSubtitle}
           </p>
+          {data.heroCta && (
+            <Link
+              href={data.heroCta.href}
+              className="inline-flex items-center gap-2 mt-4 md:mt-5 px-6 py-2.5 md:px-7 md:py-3 rounded-full text-sm md:text-base font-semibold text-[#1C2120] bg-white hover:bg-gray-100 transition-all shadow-[0_4px_18px_rgba(0,0,0,0.18)] hover:scale-[1.02] w-fit"
+            >
+              {data.heroCta.text}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          )}
           <div className="flex items-center gap-2 mt-4 md:mt-5 text-xs text-white/50">
             <Link href="/" className="hover:text-white/80 transition-colors">Home</Link>
             <span>/</span>

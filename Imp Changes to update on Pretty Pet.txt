@@ -1,0 +1,188 @@
+Imp Changes to update on Pretty Petals
+
+A. Site icon
+
+B. Menu Changes 
+Current Menu
+
+Flowers
+Cakes
+Combos
+Birthday
+Corporate
+Gifts
+Popular
+Fruits
+Signature Floral Arrangements
+
+
+Update Menu
+Flowers
+Cakes
+Combos
+Premium Flower
+Birthday
+Anniversary
+Occasions
+Gifts
+Fruits
+Luxury Flower Arrangements
+
+
+Sub-menu
+
+1. Flowers: - 
+Flowers For Every Occasions
+Birthday
+Anniversary
+Wedding
+Housewarming
+Get Well Soon
+Mother's Day
+
+Floral Types
+Roses
+Mixed Flowers
+Carnations
+Exotic Flowers
+Orchids
+Gerberas
+Lilies
+Garlands
+
+Send Flower To
+
+Mumbai
+Navi Mumbai
+Thane
+
+2. Cakes - Photo Cake
+Premium Cake
+
+3. Combos: Flowers + Cakes
+Flowers + Chocolates
+Personalized Gifts
+Flowers + Teddy
+
+4. Premium Flower
+Birthday
+Anniversary
+Wedding
+Housewarming
+
+5.Birthday:- 
+Birthday Flowers 
+
+Floral Types
+Roses
+Mixed Flowers
+Carnations
+Exotic Flowers
+Orchids
+Gerberas
+Lilies
+
+Send Birthday Flower To
+
+Mumbai
+Navi Mumbai
+Thane
+
+6.Anniversary:-
+
+Anniversary Flowers
+
+Floral Types
+Roses
+Mixed Flowers
+Carnations
+Exotic Flowers
+Orchids
+Gerberas
+Lilies
+
+Send Anniversary Flower To
+
+Mumbai
+Navi Mumbai
+Thane
+
+7. Occasions:
+Birthday Flowers
+Anniversary Flowers
+Wedding Flowers
+Get Well Soon
+Congratulations
+Sympathy / Funeral
+Housewarming
+Corporate Gifting
+
+Special Days
+
+Mother’s Day
+Father’s Day
+Parents’ Day
+Women’s Day
+Men’s Day
+Friendship Day
+Valentine’s Day
+
+Festivals Flowers 
+Diwali
+Holi
+Raksha Bandhan
+Dussehra
+Ganesh Chaturthi
+Janmashtami
+Eid
+Christmas & New Year
+
+
+8. Gifts: 
+
+9.Fruits: 
+
+10.Luxury Flower Arrangements:
+
+
+
+Remove Corporate Gifting link from footer 
+
+
+
+
+Navi Mumbai & Thane Banner page add CTA button Shop Now or Order Now 
+
+Below home page banner change plant with fruits 
+
+Fav Flowers section Sunflowers Replace by Mixed Flower with link 
+
+Remove plant by fruits 
+
+https://www.prettypetals.com/flowers/ 
+Heading : Send Flower To Mumbai
+
+
+Thane Banner 
+Remove :Fresh handcrafted bouquets delivered same-day across Thane
+
+Replace by :Order flowers in Thane today for same-day delivery
+
+CTA Button : Same-Day Flower Delivery – Shop Now
+
+Navi Mumbai Banners 
+
+Remove: Premium flower delivery with same-day service across Navi Mumbai
+
+Replace: Order now for same-day flower delivery in Navi Mumbai.
+CTA Button : Same-Day Flower Delivery – Order Now
+
+
+Banners scrolling second time heading not show 
+
+Also, banners color too dal so please try to highlight colour & fresh vibe 
+
+
+
+
+ 
