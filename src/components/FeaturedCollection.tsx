@@ -8,46 +8,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const collections = [
-  {
-    title: "Luxury Roses",
-    href: "/flowers/roses",
-    image: "/images/products/red-roses.jpg",
-  },
-  {
-    title: "Seasonal Specials",
-    href: "/flowers/",
-    image: "/images/products/pink-bouquet.jpg",
-  },
-  {
-    title: "Gift Hampers",
-    href: "/hampers/same-day-delivery",
-    image: "/images/categories/hampers.jpg",
-  },
-  {
-    title: "Flower Boxes",
-    href: "/flowers/in-box",
-    image: "/images/products/flower-box.jpg",
-  },
-  {
-    title: "Birthday Specials",
-    href: "/birthday/flowers",
-    image: "/images/products/birthday-flowers.jpg",
-  },
-  {
-    title: "Wedding Collection",
-    href: "/flowers/wedding",
-    image: "/images/products/wedding-flowers.jpg",
-  },
-  {
-    title: "Corporate Gifts",
-    href: "/gifts/corporate",
-    image: "/images/products/corporate-gifts.jpg",
-  },
-  {
-    title: "Premium Plants",
-    href: "/plants/premium",
-    image: "/images/products/premium-plants.jpg",
-  },
+  { title: "Roses", href: "/flowers/roses/", image: "/images/categories/roses.png" },
+  { title: "Exotic Flowers", href: "/flowers/exotic-flowers/", image: "/images/categories/exotic-flowers.png" },
+  { title: "Combos & Gifts", href: "/combos-gifts/", image: "/images/categories/combos-gifts.png" },
+  { title: "Signature Floral Arrangements", href: "/signature/", image: "/images/categories/signature.png" },
+  { title: "Birthday", href: "/flowers/birthday/", image: "/images/categories/birthday.png" },
+  { title: "Wedding", href: "/flowers/wedding/", image: "/images/categories/wedding.png" },
+  { title: "Corporate", href: "/flowers/corporate/", image: "/images/categories/corporate.png" },
+  { title: "Fruits", href: "/fruits/", image: "/images/categories/fruits.png" },
 ];
 
 export default function FeaturedCollection() {

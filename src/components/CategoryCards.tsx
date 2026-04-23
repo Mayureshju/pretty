@@ -15,11 +15,11 @@ interface CardItem {
 }
 
 const occasionItems: CardItem[] = [
-  { title: "Birthday", href: "/flowers/birthday/", image: "/images/occasions/birthday.jpg" },
-  { title: "Anniversary", href: "/flowers/anniversary/", image: "/images/occasions/anniversary.jpg" },
-  { title: "Wedding", href: "/flowers/wedding/", image: "/images/occasions/wedding.jpg" },
-  { title: "Congratulations", href: "/flowers/", image: "/images/occasions/congratulations.jpg" },
-  { title: "Housewarming", href: "/flowers/", image: "/images/occasions/housewarming.jpg" },
+  { title: "Birthday", href: "/flowers/birthday/", image: "/images/occasions/birthday.png" },
+  { title: "Wedding", href: "/flowers/wedding/", image: "/images/occasions/wedding.png" },
+  { title: "House Warming", href: "/flowers/house-warming/", image: "/images/occasions/house-warming.png" },
+  { title: "Anniversary", href: "/flowers/anniversary/", image: "/images/occasions/anniversary.png" },
+  { title: "Mother's Day", href: "/flowers/mother-flower/", image: "/images/occasions/mother-flower.png" },
 ];
 
 function LargeCardRow({
