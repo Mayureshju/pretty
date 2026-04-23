@@ -15,7 +15,14 @@ interface OrderDetail {
     price: number;
     total: number;
   }[];
-  shipping: { address?: string; city?: string; state?: string; pincode?: string };
+  shipping: {
+    address?: string;
+    city?: string;
+    state?: string;
+    pincode?: string;
+    receiverName?: string;
+    receiverPhone?: string;
+  };
   notes?: string;
   deliverySlot?: string;
   floristInstruction?: string;
@@ -131,7 +138,10 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
           <div>
             <h4>Shipping Address:</h4>
             <p>
-              {order.customer.name}<br />
+              {order.shipping.receiverName || order.customer.name}<br />
+              {order.shipping.receiverPhone && (
+                <>Ph: {order.shipping.receiverPhone}<br /></>
+              )}
               {order.shipping.address && <>{order.shipping.address}<br /></>}
               {order.shipping.city}{order.shipping.state && `, ${order.shipping.state}`} {order.shipping.pincode}<br />
               {order.shipping.city || "Mumbai"}
@@ -197,8 +207,14 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         </table>
 
         <div className="meta-section">
-          {order.customer.phone && (
-            <p><strong>Receiver No:</strong> {order.customer.phone}</p>
+          {order.shipping.receiverName && (
+            <p><strong>Receiver Name:</strong> {order.shipping.receiverName}</p>
+          )}
+          {(order.shipping.receiverPhone || order.customer.phone) && (
+            <p>
+              <strong>Receiver No:</strong>{" "}
+              {order.shipping.receiverPhone || order.customer.phone}
+            </p>
           )}
           {order.shipping.pincode && (
             <p><strong>Shipping Pincode:</strong> {order.shipping.pincode}</p>

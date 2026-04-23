@@ -49,6 +49,10 @@ function CheckoutInner() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
 
+  /* ── Receiver (recipient) form ── */
+  const [receiverName, setReceiverName] = useState("");
+  const [receiverPhone, setReceiverPhone] = useState("");
+
   /* ── Delivery ── */
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
   const [deliveryLoading, setDeliveryLoading] = useState(false);
@@ -303,6 +307,10 @@ function CheckoutInner() {
     else if (!/^\d{6}$/.test(pincode)) errs.pincode = "Enter a valid 6-digit pincode";
     if (!deliveryInfo) errs.pincode = "Delivery not available for this pincode";
     if (!deliveryDate) errs.deliveryDate = "Please select a delivery date";
+    if (!receiverName.trim()) errs.receiverName = "Receiver name is required";
+    if (!receiverPhone.trim()) errs.receiverPhone = "Receiver phone is required";
+    else if (!/^\d{10}$/.test(receiverPhone))
+      errs.receiverPhone = "Enter a valid 10-digit phone number";
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -337,6 +345,8 @@ function CheckoutInner() {
             pincode: pincode.trim(),
             city,
             state,
+            receiverName: receiverName.trim(),
+            receiverPhone: receiverPhone.trim(),
           },
           deliveryCharge,
           deliverySlot: deliveryDate,
@@ -594,6 +604,43 @@ function CheckoutInner() {
               </h2>
 
               <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-[#464646] mb-1.5">
+                      Receiver Name <span className="text-[#EA1E61]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={receiverName}
+                      onChange={(e) => setReceiverName(e.target.value)}
+                      placeholder="Name of the person receiving the order"
+                      className={`w-full border ${errors.receiverName ? "border-[#EA1E61]" : "border-gray-200"} rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors`}
+                    />
+                    {errors.receiverName && (
+                      <p className="text-xs text-[#EA1E61] mt-1">{errors.receiverName}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-[#464646] mb-1.5">
+                      Receiver Phone <span className="text-[#EA1E61]">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      value={receiverPhone}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+                        setReceiverPhone(val);
+                      }}
+                      placeholder="10-digit mobile number"
+                      className={`w-full border ${errors.receiverPhone ? "border-[#EA1E61]" : "border-gray-200"} rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors`}
+                    />
+                    {errors.receiverPhone && (
+                      <p className="text-xs text-[#EA1E61] mt-1">{errors.receiverPhone}</p>
+                    )}
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-[#464646] mb-1.5">
                     Address <span className="text-[#EA1E61]">*</span>

@@ -77,7 +77,15 @@ export async function POST(request: NextRequest) {
           total: item.price * item.quantity,
         })
       ),
-      shipping: body.shipping || {},
+      shipping: {
+        address: body.shipping?.address,
+        city: body.shipping?.city,
+        state: body.shipping?.state,
+        pincode: body.shipping?.pincode,
+        method: body.shipping?.method,
+        receiverName: body.shipping?.receiverName?.trim() || "",
+        receiverPhone: body.shipping?.receiverPhone?.trim() || "",
+      },
       deliveryCharge,
       deliverySlot: body.deliverySlot || "",
       floristInstruction: body.floristInstruction?.trim() || "",

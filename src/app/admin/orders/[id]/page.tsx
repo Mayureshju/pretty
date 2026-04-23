@@ -43,6 +43,8 @@ interface OrderDetail {
     state?: string;
     pincode?: string;
     method?: string;
+    receiverName?: string;
+    receiverPhone?: string;
   };
   pricing: {
     subtotal: number;
@@ -555,6 +557,26 @@ export default function OrderDetailPage({
               Shipping Address
             </h2>
             <div className="text-sm text-gray-600 space-y-1">
+              {(order.shipping.receiverName || order.shipping.receiverPhone) && (
+                <div className="mb-2 pb-2 border-b border-gray-100">
+                  {order.shipping.receiverName && (
+                    <p>
+                      <span className="text-xs text-gray-500">Receiver:</span>{" "}
+                      <span className="font-medium text-gray-900">
+                        {order.shipping.receiverName}
+                      </span>
+                    </p>
+                  )}
+                  {order.shipping.receiverPhone && (
+                    <p>
+                      <span className="text-xs text-gray-500">Phone:</span>{" "}
+                      <span className="font-medium text-gray-900">
+                        {order.shipping.receiverPhone}
+                      </span>
+                    </p>
+                  )}
+                </div>
+              )}
               {order.shipping.address ? (
                 <>
                   <p>{order.shipping.address}</p>

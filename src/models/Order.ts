@@ -24,6 +24,8 @@ export interface IOrder extends Document {
     state?: string;
     pincode?: string;
     method?: string;
+    receiverName?: string;
+    receiverPhone?: string;
   };
   deliveryCity?: mongoose.Types.ObjectId;
   deliveryCharge: number;
@@ -94,6 +96,8 @@ const OrderSchema = new Schema<IOrder>(
       state: { type: String },
       pincode: { type: String },
       method: { type: String },
+      receiverName: { type: String },
+      receiverPhone: { type: String },
     },
     deliveryCity: { type: Schema.Types.ObjectId, ref: "DeliveryCity" },
     deliveryCharge: { type: Number, default: 0 },
