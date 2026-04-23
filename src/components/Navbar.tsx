@@ -92,7 +92,7 @@ const MENU: TopMenuItem[] = [
   },
   {
     label: "Premium Flower",
-    href: "/premium-flower/",
+    href: "/popular",
     columns: [
       {
         title: "Premium Flower",
