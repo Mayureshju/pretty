@@ -67,6 +67,17 @@ const nextConfig: NextConfig = {
         destination: "/flowers/",
         permanent: true,
       },
+      // Slug "photo-cake" is top-level; mirrors old /cakes/photo-cake/ path
+      {
+        source: "/cakes/photo-cake",
+        destination: "/photo-cake/",
+        permanent: true,
+      },
+      {
+        source: "/cakes/photo-cake/",
+        destination: "/photo-cake/",
+        permanent: true,
+      },
     ];
   },
 };

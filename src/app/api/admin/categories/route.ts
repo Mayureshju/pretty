@@ -74,6 +74,19 @@ export async function POST(request: NextRequest) {
     return Response.json(category, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/categories error:", err);
+    const code =
+      typeof err === "object" && err !== null && "code" in err
+        ? (err as { code?: number }).code
+        : undefined;
+    if (code === 11000) {
+      return Response.json(
+        {
+          error:
+            "A category with this name already exists (same URL slug). Try a different name or edit the existing category.",
+        },
+        { status: 409 }
+      );
+    }
     return errorResponse("Failed to create category");
   }
 }

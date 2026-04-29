@@ -51,13 +51,18 @@ const CategorySchema = new Schema<ICategory>(
 CategorySchema.index({ parent: 1 });
 CategorySchema.index({ order: 1 });
 
-// Pre-save: auto-generate slug from name if not provided
-CategorySchema.pre("save", function () {
+// Pre-validate: slug must exist before validators run (validation runs BEFORE pre-save)
+function slugFromName(name: string): string {
+  const s = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  return s || "category";
+}
+
+CategorySchema.pre("validate", function () {
   if (!this.slug && this.name) {
-    this.slug = this.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+    this.slug = slugFromName(this.name);
   }
 });
 
