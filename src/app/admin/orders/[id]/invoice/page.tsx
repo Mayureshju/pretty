@@ -15,7 +15,14 @@ interface OrderDetail {
     price: number;
     total: number;
   }[];
-  shipping: { address?: string; city?: string; state?: string; pincode?: string };
+  shipping: {
+    address?: string;
+    city?: string;
+    state?: string;
+    pincode?: string;
+    receiverName?: string;
+    receiverPhone?: string;
+  };
   pricing: { subtotal: number; discount: number; couponCode?: string; shipping: number; total: number };
   payment: { method?: string; status: string; transactionId?: string };
   invoice: { number?: string; date?: string };
@@ -76,6 +83,7 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
         body { font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #111; background: #fff; }
         .invoice-page { max-width: 800px; margin: 0 auto; padding: 20px; }
         .title { font-size: 36px; font-weight: bold; color: #c0392b; margin-bottom: 10px; }
+        .header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
         .logo { height: 50px; margin-bottom: 10px; }
         .company-info { font-size: 12px; color: #333; line-height: 1.5; margin-bottom: 20px; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
@@ -99,9 +107,10 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
       </button>
 
       <div className="invoice-page">
-        <div className="title">INVOICE</div>
-
-        <img src="/logo.png" alt="Pretty Petals" className="logo" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+        <div className="header">
+          <div className="title">INVOICE</div>
+          <img src="/logo11.webp" alt="Pretty Petals" className="logo" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+        </div>
 
         <div className="company-info">
           <strong>{COMPANY.name}</strong><br />
@@ -109,6 +118,7 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
           {COMPANY.address2}<br />
           {COMPANY.city}<br />
           {COMPANY.country}<br />
+          Pretty Petals +91 9833100194<br />
           {COMPANY.gstin}
         </div>
 
@@ -126,9 +136,9 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
             <h4>Shipping Address:</h4>
             <p>
               {order.customer.name}<br />
-              {order.shipping.address && <>{order.shipping.address}<br /></>}
-              {order.shipping.city}{order.shipping.state && `, ${order.shipping.state}`} {order.shipping.pincode}<br />
-              {order.shipping.city || "Mumbai"}
+              {order.shipping.city || "Mumbai"}<br />
+              Email: {order.customer.email}
+              {order.customer.phone && <><br />Phone: +91{order.customer.phone}</>}
             </p>
           </div>
           <div>

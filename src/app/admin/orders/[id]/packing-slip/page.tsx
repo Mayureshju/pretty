@@ -41,6 +41,7 @@ const COMPANY = {
   address:
     "Shop No. 3, 15A, Gagangiri CHS Off Carter Rd Golf Link Road, Union Park, Khar West, Mumbai - 400052",
   phone: "Ph: 9833100194 / 8369224582",
+  senderPhone: "+91 9833100194",
 };
 
 export default function PackingSlipPage({ params }: { params: Promise<{ id: string }> }) {
@@ -108,6 +109,8 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         .slip-page { max-width: 560px; width: 100%; margin: 0 auto; padding: 14px; display: flex; flex-direction: column; min-height: 100vh; }
         .spacer { flex: 1 1 auto; }
         .title { font-size: 15px; font-weight: bold; color: #111; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+        .logo { height: 40px; width: auto; object-fit: contain; }
         .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 8px; }
         .grid-3 h4 { font-size: 11px; font-weight: bold; margin-bottom: 2px; }
         .grid-3 p { font-size: 10px; line-height: 1.4; color: #333; }
@@ -132,7 +135,10 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
       </button>
 
       <div className="slip-page">
-        <div className="title">Delivery Challan</div>
+        <div className="header">
+          <div className="title">Delivery Challan</div>
+          <img src="/logo11.webp" alt="Pretty Petals" className="logo" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+        </div>
 
         <div className="grid-3">
           <div>
@@ -152,7 +158,8 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
             <p>
               {order.customer.name}<br />
               {order.shipping.city || "Mumbai"}<br />
-              Email: {order.customer.email}
+              Email: {order.customer.email}<br />
+              Sender Phone: {COMPANY.senderPhone}
             </p>
           </div>
           <div>
@@ -207,21 +214,6 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         </table>
 
         <div className="meta-section">
-          {order.shipping.receiverName && (
-            <p><strong>Receiver Name:</strong> {order.shipping.receiverName}</p>
-          )}
-          {(order.shipping.receiverPhone || order.customer.phone) && (
-            <p>
-              <strong>Receiver No:</strong>{" "}
-              {order.shipping.receiverPhone || order.customer.phone}
-            </p>
-          )}
-          {order.shipping.pincode && (
-            <p><strong>Shipping Pincode:</strong> {order.shipping.pincode}</p>
-          )}
-          {order.deliverySlot && (
-            <p><strong>Delivery Date:</strong> {formatDeliverySlot(order.deliverySlot)}</p>
-          )}
           {order.notes && (
             <p><strong>Customer Note:</strong> {order.notes}</p>
           )}
@@ -242,8 +234,7 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         <div className="spacer" />
 
         <div className="footer">
-          {COMPANY.domain} &nbsp;|&nbsp; {COMPANY.address} &nbsp;|&nbsp;{" "}
-          {COMPANY.phone}
+          {COMPANY.address} &nbsp;|&nbsp; {COMPANY.phone}
         </div>
       </div>
     </>
