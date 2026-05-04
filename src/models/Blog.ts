@@ -41,14 +41,24 @@ const BlogSchema = new Schema<IBlog>(
 
 BlogSchema.index({ isPublished: 1, createdAt: -1 });
 
-BlogSchema.pre("save", function () {
-  if (!this.slug && this.title) {
-    this.slug = this.title
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-");
+function slugFromTitle(title: string): string {
+  const slug = title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug;
+}
+
+// Must run on `validate`, not `save`: required-field validation happens before save hooks.
+BlogSchema.pre("validate", function () {
+  if (this.slug) {
+    this.slug = String(this.slug).toLowerCase().trim();
+  } else if (this.title) {
+    const base = slugFromTitle(this.title);
+    this.slug = base || `post-${Date.now()}`;
   }
 });
 
