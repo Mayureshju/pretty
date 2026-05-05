@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface ISale extends Document {
   name: string;
+  adjustmentDirection: "discount" | "hike";
   discountType: "percentage" | "fixed";
   discountValue: number;
   startDateTime: Date;
@@ -16,6 +17,11 @@ export interface ISale extends Document {
 const SaleSchema = new Schema<ISale>(
   {
     name: { type: String, required: true, trim: true },
+    adjustmentDirection: {
+      type: String,
+      enum: ["discount", "hike"],
+      default: "discount",
+    },
     discountType: {
       type: String,
       enum: ["percentage", "fixed"],

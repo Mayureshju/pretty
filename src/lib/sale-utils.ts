@@ -35,23 +35,31 @@ export function findMatchingSale(
 
   if (matching.length === 0) return null;
 
-  // If multiple sales match, return the one with highest discount value
-  // (for percentage: higher % wins, for fixed: higher amount wins)
-  return matching.reduce((best, sale) => {
+  // Prefer discounts over hikes; among discounts pick highest value
+  const discounts = matching.filter((s) => (s.adjustmentDirection ?? "discount") === "discount");
+  const pool = discounts.length > 0 ? discounts : matching;
+
+  return pool.reduce((best, sale) => {
     if (!best) return sale;
-    // Compare effective discount — simple heuristic: higher value wins
-    // For mixed types, percentage generally wins for expensive items
     return sale.discountValue > best.discountValue ? sale : best;
   }, null as ISale | null);
 }
 
 /**
- * Compute the effective sale price for a product given active sales.
+ * Compute the effective price for a product given a sale (supports both discount and hike).
  */
 export function computeSalePrice(
   regularPrice: number,
   sale: ISale
 ): number {
+  const direction = sale.adjustmentDirection ?? "discount";
+  if (direction === "hike") {
+    if (sale.discountType === "percentage") {
+      return Math.round(regularPrice * (1 + sale.discountValue / 100));
+    }
+    return Math.round(regularPrice + sale.discountValue);
+  }
+  // discount
   if (sale.discountType === "percentage") {
     return Math.round(regularPrice * (1 - sale.discountValue / 100));
   }
@@ -101,16 +109,18 @@ export function applyActiveSale(
   }
 
   // Sale overrides existing sale price
-  const salePrice = computeSalePrice(product.pricing.regularPrice, sale);
+  const adjustedPrice = computeSalePrice(product.pricing.regularPrice, sale);
+  const direction = sale.adjustmentDirection ?? "discount";
+  // positive = discount, negative = hike
   const discountPercent = Math.round(
-    ((product.pricing.regularPrice - salePrice) / product.pricing.regularPrice) * 100
+    ((product.pricing.regularPrice - adjustedPrice) / product.pricing.regularPrice) * 100
   );
 
   return {
-    effectivePrice: salePrice,
+    effectivePrice: adjustedPrice,
     originalPrice: product.pricing.regularPrice,
     saleLabel: sale.name,
     hasSale: true,
-    discountPercent,
+    discountPercent: direction === "hike" ? -Math.abs(discountPercent) : Math.abs(discountPercent),
   };
 }

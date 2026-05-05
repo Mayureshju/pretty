@@ -16,6 +16,7 @@ interface CategoryItem {
 interface SaleItem {
   _id: string;
   name: string;
+  adjustmentDirection: "discount" | "hike";
   discountType: "percentage" | "fixed";
   discountValue: number;
   startDate: string;
@@ -26,6 +27,7 @@ interface SaleItem {
 
 const defaultForm = {
   name: "",
+  adjustmentDirection: "discount" as "discount" | "hike",
   discountType: "percentage" as "percentage" | "fixed",
   discountValue: 0,
   startDate: "",
@@ -69,11 +71,12 @@ function getSaleStatus(sale: SaleItem): string {
   return "active";
 }
 
-function getDiscountLabel(sale: SaleItem): string {
+function getAdjustmentLabel(sale: SaleItem): string {
+  const isHike = (sale.adjustmentDirection ?? "discount") === "hike";
   if (sale.discountType === "percentage") {
-    return `${sale.discountValue}% OFF`;
+    return isHike ? `${sale.discountValue}% HIKE` : `${sale.discountValue}% OFF`;
   }
-  return `₹${sale.discountValue} OFF`;
+  return isHike ? `₹${sale.discountValue} HIKE` : `₹${sale.discountValue} OFF`;
 }
 
 export default function SalesPage() {
@@ -125,6 +128,7 @@ export default function SalesPage() {
     setEditingId(sale._id);
     setForm({
       name: sale.name,
+      adjustmentDirection: sale.adjustmentDirection ?? "discount",
       discountType: sale.discountType,
       discountValue: sale.discountValue,
       startDate: formatDateForInput(sale.startDate),
@@ -143,10 +147,12 @@ export default function SalesPage() {
     try {
       const payload = {
         name: form.name,
+        adjustmentDirection: form.adjustmentDirection,
         discountType: form.discountType,
         discountValue: form.discountValue,
-        startDate: new Date(form.startDate).toISOString(),
-        endDate: new Date(form.endDate).toISOString(),
+        startDateTime: new Date(form.startDate).toISOString(),
+        endDateTime: new Date(form.endDate).toISOString(),
+        applyTo: form.applyTo,
         categories: form.applyTo === "specific" ? form.selectedCategories : [],
         isActive: form.isActive,
       };
@@ -269,7 +275,7 @@ export default function SalesPage() {
               >
                 {/* Discount badge icon */}
                 <div className="flex-shrink-0">
-                  <div className="w-[60px] h-[60px] rounded-lg bg-[#E3F2FD] flex items-center justify-center text-[#737530]">
+                  <div className={`w-[60px] h-[60px] rounded-lg flex items-center justify-center ${(sale.adjustmentDirection ?? "discount") === "hike" ? "bg-orange-50 text-orange-500" : "bg-[#E3F2FD] text-[#737530]"}`}>
                     <svg
                       width="28"
                       height="28"
@@ -294,8 +300,8 @@ export default function SalesPage() {
                       <h3 className="font-semibold text-[#1C2120] truncate">
                         {sale.name}
                       </h3>
-                      <p className="text-sm font-medium text-[#737530] mt-0.5">
-                        {getDiscountLabel(sale)}
+                      <p className={`text-sm font-medium mt-0.5 ${(sale.adjustmentDirection ?? "discount") === "hike" ? "text-orange-600" : "text-[#737530]"}`}>
+                        {getAdjustmentLabel(sale)}
                       </p>
                     </div>
                     <StatusBadge status={status} size="sm" />
@@ -382,10 +388,49 @@ export default function SalesPage() {
             />
           </div>
 
-          {/* Discount Type */}
+          {/* Adjustment Direction */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Discount Type
+              Price Adjustment
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, adjustmentDirection: "discount" })}
+                className={`flex items-center justify-center gap-2 py-2.5 rounded-lg border text-sm font-medium transition-colors ${
+                  form.adjustmentDirection === "discount"
+                    ? "bg-[#737530] text-white border-[#737530]"
+                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <polyline points="5 12 12 19 19 12" />
+                </svg>
+                Discount (Lower Price)
+              </button>
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, adjustmentDirection: "hike" })}
+                className={`flex items-center justify-center gap-2 py-2.5 rounded-lg border text-sm font-medium transition-colors ${
+                  form.adjustmentDirection === "hike"
+                    ? "bg-orange-500 text-white border-orange-500"
+                    : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="19" x2="12" y2="5" />
+                  <polyline points="5 12 12 5 19 12" />
+                </svg>
+                Hike (Raise Price)
+              </button>
+            </div>
+          </div>
+
+          {/* Adjustment Type */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {form.adjustmentDirection === "hike" ? "Hike Type" : "Discount Type"}
             </label>
             <div className="flex items-center gap-4">
               <label className="flex items-center gap-2 cursor-pointer">
@@ -417,10 +462,10 @@ export default function SalesPage() {
             </div>
           </div>
 
-          {/* Discount Value */}
+          {/* Adjustment Value */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Discount Value
+              {form.adjustmentDirection === "hike" ? "Hike Value" : "Discount Value"}
             </label>
             <input
               type="number"
@@ -432,12 +477,15 @@ export default function SalesPage() {
                 })
               }
               min={0}
-              max={form.discountType === "percentage" ? 100 : undefined}
+              max={form.adjustmentDirection === "discount" && form.discountType === "percentage" ? 100 : undefined}
               placeholder={
                 form.discountType === "percentage" ? "e.g. 20" : "e.g. 100"
               }
               className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
             />
+            {form.adjustmentDirection === "discount" && form.discountType === "percentage" && (
+              <p className="text-xs text-gray-400 mt-1">Max 100% for discounts</p>
+            )}
           </div>
 
           {/* Start and End Dates */}
