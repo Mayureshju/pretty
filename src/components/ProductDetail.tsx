@@ -111,7 +111,21 @@ const trustBadges = [
 export default function ProductDetail({ product, similarProducts, saleInfo }: ProductDetailProps) {
   const router = useRouter();
   const [activeImg, setActiveImg] = useState(0);
-  const [activeVariant, setActiveVariant] = useState(0);
+  const [activeVariant, setActiveVariant] = useState(() => {
+    if (product.variants.length === 0) return 0;
+    // Default to cheapest variant to match the price shown on listing pages
+    let cheapestIdx = 0;
+    let cheapestPrice = product.variants[0].salePrice && product.variants[0].salePrice > 0
+      ? product.variants[0].salePrice
+      : product.variants[0].price;
+    for (let i = 1; i < product.variants.length; i++) {
+      const vp = product.variants[i].salePrice && product.variants[i].salePrice > 0
+        ? product.variants[i].salePrice
+        : product.variants[i].price;
+      if (vp < cheapestPrice) { cheapestPrice = vp; cheapestIdx = i; }
+    }
+    return cheapestIdx;
+  });
   const [wishlisted, setWishlisted] = useState(() => isInWishlist(product._id));
   const [showOffers, setShowOffers] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
