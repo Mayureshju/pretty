@@ -121,6 +121,10 @@ const trustBadges = [
   { icon: "truck", label: "620+ Cities Enjoying", sub: "same-day delivery" },
 ];
 
+function effectiveVariantPrice(v: ProductVariant): number {
+  return v.salePrice != null && v.salePrice > 0 ? v.salePrice : v.price;
+}
+
 export default function ProductDetail({ product, similarProducts, saleInfo }: ProductDetailProps) {
   const router = useRouter();
   const [activeImg, setActiveImg] = useState(0);
@@ -128,8 +132,6 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     if (product.variants.length === 0) return 0;
     // Default to cheapest variant to match the price shown on listing pages
     let cheapestIdx = 0;
-    const effectiveVariantPrice = (v: ProductVariant) =>
-      v.salePrice != null && v.salePrice > 0 ? v.salePrice : v.price;
     let cheapestPrice = effectiveVariantPrice(product.variants[0]);
     for (let i = 1; i < product.variants.length; i++) {
       const vp = effectiveVariantPrice(product.variants[i]);
