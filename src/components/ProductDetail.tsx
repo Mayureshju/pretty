@@ -609,7 +609,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                       )}
                       <div className="p-2">
                         <p className="text-xs font-medium text-[#1C2120]">{v.label}</p>
-                        <p className="text-xs font-bold text-[#1C2120]">&#8377; {v.price.toLocaleString()}</p>
+                        <p className="text-xs font-bold text-[#1C2120]">&#8377; {(saleInfo?.hasSale ? applyVariantSale(effectiveVariantPrice(v), saleInfo) : effectiveVariantPrice(v)).toLocaleString()}</p>
                       </div>
                     </button>
                   ))}
