@@ -19,8 +19,8 @@ interface SaleItem {
   adjustmentDirection: "discount" | "hike";
   discountType: "percentage" | "fixed";
   discountValue: number;
-  startDate: string;
-  endDate: string;
+  startDateTime: string;
+  endDateTime: string;
   categories: CategoryItem[];
   isActive: boolean;
 }
@@ -62,8 +62,8 @@ function formatDateForInput(dateStr: string): string {
 
 function getSaleStatus(sale: SaleItem): string {
   const now = new Date();
-  const start = new Date(sale.startDate);
-  const end = new Date(sale.endDate);
+  const start = new Date(sale.startDateTime);
+  const end = new Date(sale.endDateTime);
 
   if (!sale.isActive) return "inactive";
   if (end < now) return "expired";
@@ -131,8 +131,8 @@ export default function SalesPage() {
       adjustmentDirection: sale.adjustmentDirection ?? "discount",
       discountType: sale.discountType,
       discountValue: sale.discountValue,
-      startDate: formatDateForInput(sale.startDate),
-      endDate: formatDateForInput(sale.endDate),
+      startDate: formatDateForInput(sale.startDateTime),
+      endDate: formatDateForInput(sale.endDateTime),
       applyTo: sale.categories.length > 0 ? "specific" : "all",
       selectedCategories: sale.categories.map((c) => c._id),
       isActive: sale.isActive,
@@ -309,8 +309,8 @@ export default function SalesPage() {
 
                   <div className="flex flex-col gap-1 mt-2 text-xs text-gray-500">
                     <span>
-                      {formatDateForDisplay(sale.startDate)} &mdash;{" "}
-                      {formatDateForDisplay(sale.endDate)}
+                      {formatDateForDisplay(sale.startDateTime)} &mdash;{" "}
+                      {formatDateForDisplay(sale.endDateTime)}
                     </span>
                     <span>
                       {sale.categories.length > 0

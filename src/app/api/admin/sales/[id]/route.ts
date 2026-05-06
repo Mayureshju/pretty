@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
@@ -77,6 +78,8 @@ export async function PUT(
       return notFoundResponse("Sale not found");
     }
 
+    revalidatePath("/", "layout");
+    revalidatePath("/product/[slug]", "page");
     return Response.json(sale);
   } catch (err) {
     console.error("PUT /api/admin/sales/[id] error:", err);
@@ -103,6 +106,8 @@ export async function DELETE(
       return notFoundResponse("Sale not found");
     }
 
+    revalidatePath("/", "layout");
+    revalidatePath("/product/[slug]", "page");
     return Response.json({ message: "Sale deleted successfully" });
   } catch (err) {
     console.error("DELETE /api/admin/sales/[id] error:", err);

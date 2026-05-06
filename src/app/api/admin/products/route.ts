@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Product from "@/models/Product";
@@ -121,6 +122,7 @@ export async function POST(request: NextRequest) {
     // Populate category for response
     await product.populate("categories", "name slug");
 
+    revalidatePath("/", "layout");
     return Response.json(product, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/products error:", err);

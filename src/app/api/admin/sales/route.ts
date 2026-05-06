@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Sale from "@/models/Sale";
@@ -52,6 +53,8 @@ export async function POST(request: NextRequest) {
     };
 
     const sale = await Sale.create(data);
+    revalidatePath("/", "layout");
+    revalidatePath("/product/[slug]", "page");
     return Response.json(sale, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/sales error:", err);
