@@ -94,6 +94,19 @@ interface SaleInfo {
   saleLabel: string | null;
   hasSale: boolean;
   discountPercent: number;
+  discountType?: "percentage" | "fixed";
+  discountValue?: number;
+  adjustmentDirection?: "discount" | "hike";
+}
+
+function applyVariantSale(basePrice: number, sale: SaleInfo): number {
+  if (!sale.discountType || sale.discountValue == null) return basePrice;
+  if (sale.adjustmentDirection === "hike") {
+    if (sale.discountType === "percentage") return Math.round(basePrice * (1 + sale.discountValue / 100));
+    return Math.round(basePrice + sale.discountValue);
+  }
+  if (sale.discountType === "percentage") return Math.round(basePrice * (1 - sale.discountValue / 100));
+  return Math.max(0, basePrice - sale.discountValue);
 }
 
 interface ProductDetailProps {
@@ -390,23 +403,28 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     ? product.images.sort((a, b) => a.order - b.order)
     : [{ url: "/images/placeholder.jpg", alt: product.name, order: 0 }];
 
-  // Use saleInfo for active campaign sales, fallback to product pricing
-  const currentPrice =
-    product.variants.length > 0
-      ? (product.variants[activeVariant].salePrice || product.variants[activeVariant].price)
-      : saleInfo?.hasSale
-        ? saleInfo.effectivePrice
-        : product.pricing.currentPrice;
+  // Use saleInfo for active campaign sales; apply to each variant's base price too
+  const currentPrice = (() => {
+    if (product.variants.length > 0) {
+      const v = product.variants[activeVariant];
+      const basePrice = effectiveVariantPrice(v);
+      return saleInfo?.hasSale ? applyVariantSale(basePrice, saleInfo) : basePrice;
+    }
+    return saleInfo?.hasSale ? saleInfo.effectivePrice : product.pricing.currentPrice;
+  })();
 
-  const discount = saleInfo?.hasSale
-    ? saleInfo.discountPercent
-    : product.pricing.salePrice
-      ? Math.round(
-          ((product.pricing.regularPrice - product.pricing.salePrice) /
-            product.pricing.regularPrice) *
-            100
-        )
+  const discount = (() => {
+    if (product.variants.length > 0 && saleInfo?.hasSale) {
+      const v = product.variants[activeVariant];
+      const basePrice = effectiveVariantPrice(v);
+      const adjusted = applyVariantSale(basePrice, saleInfo);
+      return Math.round(((basePrice - adjusted) / basePrice) * 100);
+    }
+    if (saleInfo?.hasSale) return saleInfo.discountPercent;
+    return product.pricing.salePrice
+      ? Math.round(((product.pricing.regularPrice - product.pricing.salePrice) / product.pricing.regularPrice) * 100)
       : 0;
+  })();
 
   const saleLabel = saleInfo?.saleLabel;
 

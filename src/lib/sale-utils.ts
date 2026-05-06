@@ -81,6 +81,9 @@ export function applyActiveSale(
   saleLabel: string | null;
   hasSale: boolean;
   discountPercent: number;
+  discountType?: "percentage" | "fixed";
+  discountValue?: number;
+  adjustmentDirection?: "discount" | "hike";
 } {
   const categoryIds = (product.categories ?? [])
     .map((cat) => {
@@ -122,5 +125,8 @@ export function applyActiveSale(
     saleLabel: sale.name,
     hasSale: true,
     discountPercent: direction === "hike" ? -Math.abs(discountPercent) : Math.abs(discountPercent),
+    discountType: sale.discountType,
+    discountValue: sale.discountValue,
+    adjustmentDirection: direction,
   };
 }
