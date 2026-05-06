@@ -115,13 +115,11 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     if (product.variants.length === 0) return 0;
     // Default to cheapest variant to match the price shown on listing pages
     let cheapestIdx = 0;
-    let cheapestPrice = product.variants[0].salePrice && product.variants[0].salePrice > 0
-      ? product.variants[0].salePrice
-      : product.variants[0].price;
+    const effectiveVariantPrice = (v: ProductVariant) =>
+      v.salePrice != null && v.salePrice > 0 ? v.salePrice : v.price;
+    let cheapestPrice = effectiveVariantPrice(product.variants[0]);
     for (let i = 1; i < product.variants.length; i++) {
-      const vp = product.variants[i].salePrice && product.variants[i].salePrice > 0
-        ? product.variants[i].salePrice
-        : product.variants[i].price;
+      const vp = effectiveVariantPrice(product.variants[i]);
       if (vp < cheapestPrice) { cheapestPrice = vp; cheapestIdx = i; }
     }
     return cheapestIdx;
