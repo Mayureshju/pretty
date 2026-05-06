@@ -205,6 +205,7 @@ const NAV_GROUPS: NavGroup[] = [
       { label: "Blogs", href: "/admin/blogs", icon: IconFileText },
       { label: "FAQs", href: "/admin/faqs", icon: IconHelpCircle },
       { label: "Quotes", href: "/admin/quotes", icon: IconQuote },
+      { label: "Quote Categories", href: "/admin/quote-categories", icon: IconTag },
     ],
   },
   {

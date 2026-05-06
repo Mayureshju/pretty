@@ -14,6 +14,8 @@ import mongoose from "mongoose";
 function revalidateBlog(slug: string) {
   revalidatePath(`/${slug}`);
   revalidatePath("/blog");
+  // Home page renders <BlogSection> with the latest posts.
+  revalidatePath("/");
   revalidatePath("/sitemap.xml");
 }
 

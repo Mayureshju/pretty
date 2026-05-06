@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import Modal from "@/components/admin/shared/Modal";
 import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
@@ -19,6 +20,11 @@ interface QuoteItem {
   isActive: boolean;
 }
 
+interface CategoryOption {
+  _id: string;
+  name: string;
+}
+
 const defaultForm = {
   text: "",
   author: "",
@@ -27,15 +33,6 @@ const defaultForm = {
   order: 0,
   isActive: true,
 };
-
-const CATEGORY_OPTIONS = [
-  "Flower Quotes",
-  "Love & Romance",
-  "Birthday Wishes",
-  "Anniversary Messages",
-  "Get Well Soon",
-  "Congratulations",
-];
 
 export default function QuotesPage() {
   const [quotes, setQuotes] = useState<QuoteItem[]>([]);
@@ -51,6 +48,14 @@ export default function QuotesPage() {
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
+  const [categoryOptions, setCategoryOptions] = useState<CategoryOption[]>([]);
+
+  useEffect(() => {
+    fetch("/api/admin/quote-categories")
+      .then((res) => (res.ok ? res.json() : { categories: [] }))
+      .then((data) => setCategoryOptions(data.categories || []))
+      .catch(() => setCategoryOptions([]));
+  }, []);
 
   const fetchQuotes = useCallback(async () => {
     setLoading(true);
@@ -222,9 +227,9 @@ export default function QuotesPage() {
           className="border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
         >
           <option value="">All Categories</option>
-          {CATEGORY_OPTIONS.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
+          {categoryOptions.map((cat) => (
+            <option key={cat._id} value={cat.name}>
+              {cat.name}
             </option>
           ))}
         </select>
@@ -411,15 +416,28 @@ export default function QuotesPage() {
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
                 required
-                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors"
+                disabled={categoryOptions.length === 0}
+                className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-gray-700 bg-white focus:border-[#737530] focus:ring-1 focus:ring-[#737530]/20 focus:outline-none transition-colors disabled:bg-gray-50 disabled:text-gray-400"
               >
                 <option value="">Select category</option>
-                {CATEGORY_OPTIONS.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
+                {categoryOptions.map((cat) => (
+                  <option key={cat._id} value={cat.name}>
+                    {cat.name}
                   </option>
                 ))}
               </select>
+              {categoryOptions.length === 0 && (
+                <p className="text-xs text-gray-500 mt-1">
+                  No categories yet.{" "}
+                  <Link
+                    href="/admin/quote-categories"
+                    className="text-[#737530] hover:underline"
+                  >
+                    Create one
+                  </Link>
+                  .
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">

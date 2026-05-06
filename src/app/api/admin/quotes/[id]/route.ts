@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
@@ -8,6 +9,11 @@ import {
 } from "@/lib/auth";
 import Quote from "@/models/Quote";
 import { updateQuoteSchema } from "@/lib/validators/quote";
+
+function revalidateQuotes() {
+  revalidatePath("/quotes");
+  revalidatePath("/sitemap.xml");
+}
 
 export async function GET(
   _request: NextRequest,
@@ -68,6 +74,8 @@ export async function PUT(
       return notFoundResponse("Quote not found");
     }
 
+    revalidateQuotes();
+
     return Response.json(quote);
   } catch (err) {
     console.error("PUT /api/admin/quotes/[id] error:", err);
@@ -93,6 +101,8 @@ export async function DELETE(
     if (!quote) {
       return notFoundResponse("Quote not found");
     }
+
+    revalidateQuotes();
 
     return Response.json({ message: "Quote deleted successfully" });
   } catch (err) {

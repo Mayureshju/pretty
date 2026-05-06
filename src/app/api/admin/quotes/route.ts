@@ -1,8 +1,14 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Quote from "@/models/Quote";
 import { quoteSchema } from "@/lib/validators/quote";
+
+function revalidateQuotes() {
+  revalidatePath("/quotes");
+  revalidatePath("/sitemap.xml");
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -70,6 +76,7 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const quote = await Quote.create(parsed.data);
+    revalidateQuotes();
     return Response.json(quote, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/quotes error:", err);

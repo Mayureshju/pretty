@@ -93,6 +93,8 @@ export async function POST(request: NextRequest) {
     // Prerender the new blog URL and refresh the listings / sitemap.
     revalidatePath(`/${blog.slug}`);
     revalidatePath("/blog");
+    // Home page renders <BlogSection> with the latest posts.
+    revalidatePath("/");
     revalidatePath("/sitemap.xml");
 
     return Response.json(blog, { status: 201 });

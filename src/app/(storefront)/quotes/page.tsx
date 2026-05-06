@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { connectDB } from "@/lib/db";
 import Quote from "@/models/Quote";
+import QuoteCategory from "@/models/QuoteCategory";
 import { getPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,32 +18,34 @@ export const revalidate = 3600;
 export default async function QuotesPage() {
   await connectDB();
 
-  const quotes = await Quote.find({ isActive: true })
-    .select("text author category color order")
-    .sort({ category: 1, order: 1 })
-    .lean();
+  const [quotes, categories] = await Promise.all([
+    Quote.find({ isActive: true })
+      .select("text author category order")
+      .sort({ order: 1 })
+      .lean(),
+    QuoteCategory.find({ isActive: true })
+      .select("name color order")
+      .sort({ order: 1, name: 1 })
+      .lean(),
+  ]);
 
-  // Group by category, preserving order and color from the first quote in each group
-  const categoryMap = new Map<
-    string,
-    { color: string; quotes: { text: string; author: string }[] }
-  >();
-
+  // Group quotes by their category name; categories without quotes are hidden,
+  // and quotes whose category name doesn't match an active QuoteCategory are skipped.
+  const quotesByName = new Map<string, { text: string; author: string }[]>();
   for (const q of quotes) {
-    const cat = q.category;
-    if (!categoryMap.has(cat)) {
-      categoryMap.set(cat, { color: q.color || "#737530", quotes: [] });
-    }
-    categoryMap.get(cat)!.quotes.push({ text: q.text, author: q.author || "" });
+    if (!quotesByName.has(q.category)) quotesByName.set(q.category, []);
+    quotesByName
+      .get(q.category)!
+      .push({ text: q.text, author: q.author || "" });
   }
 
-  const quoteCategories = Array.from(categoryMap.entries()).map(
-    ([title, data]) => ({
-      title,
-      color: data.color,
-      quotes: data.quotes,
-    })
-  );
+  const quoteCategories = categories
+    .map((c) => ({
+      title: c.name,
+      color: c.color || "#737530",
+      quotes: quotesByName.get(c.name) || [],
+    }))
+    .filter((c) => c.quotes.length > 0);
 
   return (
     <main>
