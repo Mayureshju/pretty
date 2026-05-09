@@ -128,18 +128,25 @@ function effectiveVariantPrice(v: ProductVariant): number {
 
 export default function ProductDetail({ product, similarProducts, saleInfo }: ProductDetailProps) {
   const router = useRouter();
+
+  /** Lowest effective price first (sale price when set), then by label */
+  const variantsSorted = useMemo(() => {
+    if (!product.variants?.length) return [];
+    return [...product.variants].sort((a, b) => {
+      const pa = effectiveVariantPrice(a);
+      const pb = effectiveVariantPrice(b);
+      if (pa !== pb) return pa - pb;
+      return a.label.localeCompare(b.label);
+    });
+  }, [product.variants]);
+
   const [activeImg, setActiveImg] = useState(0);
-  const [activeVariant, setActiveVariant] = useState(() => {
-    if (product.variants.length === 0) return 0;
-    // Default to cheapest variant to match the price shown on listing pages
-    let cheapestIdx = 0;
-    let cheapestPrice = effectiveVariantPrice(product.variants[0]);
-    for (let i = 1; i < product.variants.length; i++) {
-      const vp = effectiveVariantPrice(product.variants[i]);
-      if (vp < cheapestPrice) { cheapestPrice = vp; cheapestIdx = i; }
-    }
-    return cheapestIdx;
-  });
+  // Default index 0 = cheapest after variantsSorted order
+  const [activeVariant, setActiveVariant] = useState(0);
+
+  useEffect(() => {
+    setActiveVariant(0);
+  }, [product._id]);
   const [wishlisted, setWishlisted] = useState(() => isInWishlist(product._id));
   const [showOffers, setShowOffers] = useState(false);
   const [isZooming, setIsZooming] = useState(false);
@@ -250,7 +257,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   }
 
   function handleAddToCart() {
-    const variantLabel = product.variants.length > 0 ? product.variants[activeVariant].label : undefined;
+    const variantLabel = variantsSorted.length > 0 ? variantsSorted[activeVariant].label : undefined;
     addToCart({
       productId: product._id,
       name: product.name,
@@ -408,8 +415,8 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
 
   // Use saleInfo for active campaign sales; apply to each variant's base price too
   const currentPrice = (() => {
-    if (product.variants.length > 0) {
-      const v = product.variants[activeVariant];
+    if (variantsSorted.length > 0) {
+      const v = variantsSorted[activeVariant];
       const basePrice = effectiveVariantPrice(v);
       return saleInfo?.hasSale ? applyVariantSale(basePrice, saleInfo) : basePrice;
     }
@@ -417,8 +424,8 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   })();
 
   const discount = (() => {
-    if (product.variants.length > 0 && saleInfo?.hasSale) {
-      const v = product.variants[activeVariant];
+    if (variantsSorted.length > 0 && saleInfo?.hasSale) {
+      const v = variantsSorted[activeVariant];
       const basePrice = effectiveVariantPrice(v);
       const adjusted = applyVariantSale(basePrice, saleInfo);
       return Math.round(((basePrice - adjusted) / basePrice) * 100);
@@ -591,11 +598,11 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             </div>
 
             {/* Variants */}
-            {product.variants.length > 0 && (
+            {variantsSorted.length > 0 && (
               <div className="mt-5">
                 <p className="text-sm font-medium text-[#464646] mb-2">Make this gift extra special</p>
                 <div className="flex gap-3">
-                  {product.variants.map((v, i) => (
+                  {variantsSorted.map((v, i) => (
                     <button
                       key={v.label}
                       onClick={() => setActiveVariant(i)}
@@ -615,9 +622,9 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                     </button>
                   ))}
                 </div>
-                {product.variants[activeVariant]?.shortDescription?.trim() && (
+                {variantsSorted[activeVariant]?.shortDescription?.trim() && (
                   <p className="text-sm text-[#464646] leading-relaxed mt-3 whitespace-pre-wrap">
-                    {product.variants[activeVariant].shortDescription}
+                    {variantsSorted[activeVariant].shortDescription}
                   </p>
                 )}
               </div>
