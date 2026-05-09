@@ -26,6 +26,7 @@ interface ProductVariant {
   salePrice?: number;
   image?: string;
   stock: number;
+  shortDescription?: string;
 }
 
 interface ProductAddon {
@@ -614,6 +615,11 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                     </button>
                   ))}
                 </div>
+                {product.variants[activeVariant]?.shortDescription?.trim() && (
+                  <p className="text-sm text-[#464646] leading-relaxed mt-3 whitespace-pre-wrap">
+                    {product.variants[activeVariant].shortDescription}
+                  </p>
+                )}
               </div>
             )}
 

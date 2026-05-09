@@ -13,6 +13,8 @@ export interface IProductVariant {
   salePrice?: number;
   image?: string;
   stock: number;
+  /** Shown on the product page when this variant is selected */
+  shortDescription?: string;
 }
 
 export interface IProductAddon {
@@ -79,6 +81,7 @@ const ProductVariantSchema = new Schema<IProductVariant>(
     salePrice: { type: Number },
     image: { type: String },
     stock: { type: Number, default: 0 },
+    shortDescription: { type: String },
   },
   { _id: false }
 );

@@ -19,6 +19,7 @@ interface VariantRow {
   image: string;
   stock: number | string;
   sku: string;
+  shortDescription: string;
 }
 
 interface AddonRow {
@@ -98,7 +99,7 @@ export default function NewProductPage() {
 
   // Variant rows
   function addVariant() {
-    setVariants([...variants, { label: "", price: "", salePrice: "", image: "", stock: 0, sku: "" }]);
+    setVariants([...variants, { label: "", price: "", salePrice: "", image: "", stock: 0, sku: "", shortDescription: "" }]);
   }
   function removeVariant(index: number) {
     setVariants(variants.filter((_, i) => i !== index));
@@ -213,6 +214,7 @@ export default function NewProductPage() {
             image: v.image.trim() || undefined,
             sku: v.sku.trim() || undefined,
             stock: v.stock ? Number(v.stock) : 0,
+            shortDescription: v.shortDescription.trim() || undefined,
           }));
         if (validVariants.length > 0) body.variants = validVariants;
       }
@@ -580,6 +582,16 @@ export default function NewProductPage() {
                               compact
                             />
                           </div>
+                        </div>
+                        <div className="mt-3">
+                          <label className="text-xs text-gray-500 mb-1 block">Short description</label>
+                          <textarea
+                            value={v.shortDescription}
+                            onChange={(e) => updateVariant(index, "shortDescription", e.target.value)}
+                            placeholder="Optional — shown on the store when this variant is selected"
+                            rows={3}
+                            className={`${inputClass} resize-y min-h-[72px]`}
+                          />
                         </div>
                       </div>
                     ))}

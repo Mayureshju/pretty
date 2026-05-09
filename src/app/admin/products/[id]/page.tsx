@@ -20,6 +20,7 @@ interface VariantRow {
   image: string;
   stock: number | string;
   sku: string;
+  shortDescription: string;
 }
 
 interface AddonRow {
@@ -126,13 +127,14 @@ export default function EditProductPage({
         if (product.variants?.length > 0) {
           setVariants(
             product.variants.map(
-              (v: { label: string; price: number; salePrice?: number; image?: string; stock?: number; sku?: string }) => ({
+              (v: { label: string; price: number; salePrice?: number; image?: string; stock?: number; sku?: string; shortDescription?: string }) => ({
                 label: v.label || "",
                 price: v.price ?? "",
                 salePrice: v.salePrice ?? "",
                 image: v.image || "",
                 stock: v.stock ?? 0,
                 sku: v.sku || "",
+                shortDescription: v.shortDescription || "",
               })
             )
           );
@@ -181,7 +183,7 @@ export default function EditProductPage({
 
   // Variant rows
   function addVariant() {
-    setVariants([...variants, { label: "", price: "", salePrice: "", image: "", stock: 0, sku: "" }]);
+    setVariants([...variants, { label: "", price: "", salePrice: "", image: "", stock: 0, sku: "", shortDescription: "" }]);
   }
   function removeVariant(index: number) {
     setVariants(variants.filter((_, i) => i !== index));
@@ -290,6 +292,7 @@ export default function EditProductPage({
             image: v.image.trim() || undefined,
             sku: v.sku.trim() || undefined,
             stock: v.stock ? Number(v.stock) : 0,
+            shortDescription: v.shortDescription.trim() || undefined,
           }));
         body.variants = validVariants;
       } else {
@@ -677,6 +680,16 @@ export default function EditProductPage({
                               compact
                             />
                           </div>
+                        </div>
+                        <div className="mt-3">
+                          <label className="text-xs text-gray-500 mb-1 block">Short description</label>
+                          <textarea
+                            value={v.shortDescription}
+                            onChange={(e) => updateVariant(index, "shortDescription", e.target.value)}
+                            placeholder="Optional — shown on the store when this variant is selected"
+                            rows={3}
+                            className={`${inputClass} resize-y min-h-[72px]`}
+                          />
                         </div>
                       </div>
                     ))}
