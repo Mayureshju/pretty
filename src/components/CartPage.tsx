@@ -36,6 +36,9 @@ const browseCategories = [
   { name: "Plants", image: "/images/categories/plants.jpg", href: "/plants" },
 ];
 
+const ADDONS_GRID_COLUMNS = 4;
+const ADDONS_GRID_CAPACITY = ADDONS_GRID_COLUMNS * ADDONS_GRID_COLUMNS;
+
 /* ── Component ── */
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -58,8 +61,6 @@ export default function CartPage() {
   /* ── Addons state ── */
   const [addonProducts, setAddonProducts] = useState<AddonProduct[]>([]);
   const [addonsLoading, setAddonsLoading] = useState(false);
-  const addonsScrollRef = useRef<HTMLDivElement>(null);
-
 
   /* Load cart on mount and listen for updates */
   useEffect(() => {
@@ -102,7 +103,7 @@ export default function CartPage() {
     if (!mounted || cartItems.length === 0) return;
     let cancelled = false;
     setAddonsLoading(true);
-    fetch("/api/products?isAddon=true&limit=12")
+    fetch(`/api/products?isAddon=true&limit=${ADDONS_GRID_CAPACITY}`)
       .then((r) => r.json())
       .then((data) => {
         if (!cancelled) setAddonProducts(data.products || []);
@@ -128,12 +129,6 @@ export default function CartPage() {
       image: p.images?.[0]?.url || "/images/products/placeholder.jpg",
     });
     toast.success(`${p.name} added to cart`);
-  }, []);
-
-  const scrollAddons = useCallback((dir: 1 | -1) => {
-    const el = addonsScrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * 320, behavior: "smooth" });
   }, []);
 
   const handleUpdateQty = useCallback(
@@ -449,30 +444,12 @@ export default function CartPage() {
                     </p>
                   </div>
                 </div>
-                {availableAddons.length > 2 && (
-                  <div className="hidden md:flex items-center gap-1.5 shrink-0">
-                    <button
-                      onClick={() => scrollAddons(-1)}
-                      aria-label="Scroll left"
-                      className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
-                    </button>
-                    <button
-                      onClick={() => scrollAddons(1)}
-                      aria-label="Scroll right"
-                      className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center hover:bg-[#737530] hover:text-white text-[#737530] transition-colors cursor-pointer"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
-                    </button>
-                  </div>
-                )}
               </div>
 
               {addonsLoading ? (
-                <div className="relative flex gap-3 overflow-x-auto pb-1">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="shrink-0 w-[150px] rounded-xl bg-white/60 p-2 animate-pulse">
+                <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {Array.from({ length: ADDONS_GRID_COLUMNS }, (_, i) => (
+                    <div key={i} className="rounded-xl bg-white/60 p-2 animate-pulse">
                       <div className="aspect-square bg-gray-200 rounded-lg" />
                       <div className="h-3 bg-gray-200 rounded mt-2 w-3/4" />
                       <div className="h-3 bg-gray-200 rounded mt-2 w-1/2" />
@@ -481,9 +458,7 @@ export default function CartPage() {
                 </div>
               ) : (
                 <div
-                  ref={addonsScrollRef}
-                  className="relative flex gap-3 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory"
-                  style={{ scrollbarWidth: "none" }}
+                  className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
                 >
                   {availableAddons.map((p) => {
                     const img = p.images?.[0]?.url || "/images/products/placeholder.jpg";
@@ -491,7 +466,7 @@ export default function CartPage() {
                     return (
                       <div
                         key={p._id}
-                        className="shrink-0 w-[150px] md:w-[160px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
+                        className="rounded-xl bg-white border border-white/80 overflow-hidden group hover:shadow-md transition-shadow"
                       >
                         <a href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
                           <Image
