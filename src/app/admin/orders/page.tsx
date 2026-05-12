@@ -8,6 +8,7 @@ import Pagination from "@/components/admin/shared/Pagination";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
 import EmptyState from "@/components/admin/shared/EmptyState";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
+import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import toast from "react-hot-toast";
 
 interface OrderItem {
@@ -63,6 +64,7 @@ export default function OrdersPage() {
   const [pageSize, setPageSize] = useState(10);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [deleteTarget, setDeleteTarget] = useState<OrderItem | null>(null);
 
   const fetchOrders = useCallback(async () => {
     setLoading(true);
@@ -107,6 +109,30 @@ export default function OrdersPage() {
   function handlePageSizeChange(size: number) {
     setPageSize(size);
     setPage(1);
+  }
+
+  async function handleDelete() {
+    if (!deleteTarget) return;
+
+    try {
+      const res = await fetch(`/api/admin/orders/${deleteTarget._id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Failed to delete order");
+        return;
+      }
+
+      toast.success("Order deleted");
+      fetchOrders();
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setDeleteTarget(null);
+    }
   }
 
   const itemsCount = (items: { quantity: number }[]) =>
@@ -205,6 +231,9 @@ export default function OrdersPage() {
                   <th className="text-center px-4 py-3 font-medium text-gray-500">
                     Status
                   </th>
+                  <th className="text-right px-4 py-3 font-medium text-gray-500">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -239,6 +268,14 @@ export default function OrdersPage() {
                     <td className="px-4 py-3 text-center">
                       <StatusBadge status={order.status} size="sm" />
                     </td>
+                    <td className="px-4 py-3 text-right">
+                      <button
+                        onClick={() => setDeleteTarget(order)}
+                        className="text-xs font-medium text-red-600 hover:text-red-700 transition-colors cursor-pointer"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -258,6 +295,15 @@ export default function OrdersPage() {
           </div>
         </div>
       )}
+      <ConfirmDialog
+        isOpen={!!deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={handleDelete}
+        title="Delete Order"
+        message={`Are you sure you want to delete order ${deleteTarget?.orderNumber ?? ""}? This action cannot be undone.`}
+        confirmText="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

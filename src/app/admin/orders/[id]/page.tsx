@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect, useCallback, use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
+import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
 import toast from "react-hot-toast";
 
 interface OrderProduct {
@@ -129,11 +131,13 @@ export default function OrderDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
+  const router = useRouter();
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [newStatus, setNewStatus] = useState("");
   const [statusNote, setStatusNote] = useState("");
   const [updating, setUpdating] = useState(false);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 
   const fetchOrder = useCallback(async () => {
     try {
@@ -181,6 +185,28 @@ export default function OrderDetailPage({
       toast.error("Something went wrong");
     } finally {
       setUpdating(false);
+    }
+  }
+
+  async function handleDelete() {
+    try {
+      const res = await fetch(`/api/admin/orders/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Failed to delete order");
+        return;
+      }
+
+      toast.success("Order deleted");
+      router.push("/admin/orders");
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setDeleteConfirmOpen(false);
     }
   }
 
@@ -265,6 +291,12 @@ export default function OrderDetailPage({
               <path d="M6 9V2h12v7" /><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" /><rect x="6" y="14" width="12" height="8" />
             </svg>
             Print Delivery Challan
+          </button>
+          <button
+            onClick={() => setDeleteConfirmOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50 transition-colors cursor-pointer"
+          >
+            Delete Order
           </button>
           <StatusBadge status={order.status} />
         </div>
@@ -668,6 +700,15 @@ export default function OrderDetailPage({
           </div>
         </div>
       </div>
+      <ConfirmDialog
+        isOpen={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        onConfirm={handleDelete}
+        title="Delete Order"
+        message={`Are you sure you want to delete order ${order.orderNumber}? This action cannot be undone.`}
+        confirmText="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

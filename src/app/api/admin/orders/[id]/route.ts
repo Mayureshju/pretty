@@ -130,3 +130,34 @@ export async function PUT(
     return errorResponse("Failed to update order status");
   }
 }
+
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    await requireAdmin();
+  } catch (err) {
+    return handleAuthError(err);
+  }
+
+  try {
+    const { id } = await params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return notFoundResponse("Invalid order ID");
+    }
+
+    await connectDB();
+
+    const order = await Order.findByIdAndDelete(id);
+    if (!order) {
+      return notFoundResponse("Order not found");
+    }
+
+    return Response.json({ message: "Order deleted successfully" });
+  } catch (err) {
+    console.error("DELETE /api/admin/orders/[id] error:", err);
+    return errorResponse("Failed to delete order");
+  }
+}
