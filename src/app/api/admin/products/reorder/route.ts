@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Product from "@/models/Product";
@@ -31,6 +32,8 @@ export async function POST(request: NextRequest) {
     }));
 
     await Product.bulkWrite(operations);
+
+    revalidatePath("/");
 
     return Response.json({ message: "Products reordered successfully" });
   } catch (err) {

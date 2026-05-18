@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
-import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
+import { revalidateProductSurfaces } from "@/lib/revalidate-product";
 import {
   requireAdmin,
   handleAuthError,
@@ -97,6 +97,11 @@ export async function PUT(
       return notFoundResponse("Product not found");
     }
 
+    const oldSlug = existing.slug;
+    const oldCategoryIds = (existing.categories ?? []).map((c: unknown) =>
+      String(c)
+    );
+
     type VariantPrice = { price: number; salePrice?: number };
     const variants = (data as Record<string, unknown>).variants as
       | VariantPrice[]
@@ -148,8 +153,20 @@ export async function PUT(
       return notFoundResponse("Product not found");
     }
 
-    revalidatePath(`/product/${product.slug}`, "page");
-    revalidatePath("/", "layout");
+    const newCategoryIds = (product.categories ?? []).map(
+      (c: { _id?: unknown } | string) =>
+        String(typeof c === "object" && c !== null && "_id" in c ? c._id : c)
+    );
+    const categoryIds = [
+      ...new Set([...oldCategoryIds, ...newCategoryIds]),
+    ];
+
+    await revalidateProductSurfaces({
+      slug: product.slug,
+      oldSlug: data.slug && data.slug !== oldSlug ? oldSlug : undefined,
+      categoryIds,
+    });
+
     return Response.json(product);
   } catch (err) {
     console.error("PUT /api/admin/products/[id] error:", err);
@@ -184,8 +201,15 @@ export async function DELETE(
       return notFoundResponse("Product not found");
     }
 
-    revalidatePath(`/product/${product.slug}`, "page");
-    revalidatePath("/", "layout");
+    const categoryIds = (product.categories ?? []).map((c: unknown) =>
+      String(c)
+    );
+
+    await revalidateProductSurfaces({
+      slug: product.slug,
+      categoryIds,
+    });
+
     return Response.json({ message: "Product deleted successfully" });
   } catch (err) {
     console.error("DELETE /api/admin/products/[id] error:", err);
