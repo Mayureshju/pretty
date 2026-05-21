@@ -13,6 +13,7 @@ import ImageUploader from "@/components/admin/shared/ImageUploader";
 interface BannerItem {
   _id: string;
   title: string;
+  tag?: string;
   subtitle?: string;
   image: string;
   mobileImage?: string;
@@ -28,6 +29,7 @@ interface BannerItem {
 
 interface BannerForm {
   title: string;
+  tag: string;
   subtitle: string;
   image: string;
   mobileImage: string;
@@ -41,6 +43,7 @@ interface BannerForm {
 
 const defaultForm: BannerForm = {
   title: "",
+  tag: "",
   subtitle: "",
   image: "",
   mobileImage: "",
@@ -98,6 +101,7 @@ export default function AdminBannersPage() {
     setEditingBanner(banner);
     setForm({
       title: banner.title,
+      tag: banner.tag || "",
       subtitle: banner.subtitle || "",
       image: banner.image,
       mobileImage: banner.mobileImage || "",
@@ -133,6 +137,7 @@ export default function AdminBannersPage() {
         order: form.order,
         isActive: form.isActive,
       };
+      if (form.tag) payload.tag = form.tag;
       if (form.subtitle) payload.subtitle = form.subtitle;
       if (form.mobileImage) payload.mobileImage = form.mobileImage;
       if (form.link) payload.link = form.link;
@@ -382,6 +387,21 @@ export default function AdminBannersPage() {
             />
           </div>
 
+          {/* Tag */}
+          <div>
+            <label className={labelClass}>Tag</label>
+            <input
+              type="text"
+              value={form.tag}
+              onChange={(e) => setForm({ ...form, tag: e.target.value })}
+              className={inputClass}
+              placeholder="e.g. The Perfect Gift"
+            />
+            <p className="text-[11px] text-gray-400 mt-1">
+              Small gold label above the title. Leave empty to hide.
+            </p>
+          </div>
+
           {/* Subtitle */}
           <div>
             <label className={labelClass}>Subtitle</label>
@@ -390,7 +410,7 @@ export default function AdminBannersPage() {
               value={form.subtitle}
               onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
               className={inputClass}
-              placeholder="Optional subtitle"
+              placeholder="Description below the title"
             />
           </div>
 

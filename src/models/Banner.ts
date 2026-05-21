@@ -2,6 +2,8 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IBanner extends Document {
   title: string;
+  /** Small uppercase label above the title on the hero carousel */
+  tag?: string;
   subtitle?: string;
   image: string;
   mobileImage?: string;
@@ -18,6 +20,7 @@ export interface IBanner extends Document {
 const BannerSchema = new Schema<IBanner>(
   {
     title: { type: String, required: true },
+    tag: { type: String },
     subtitle: { type: String },
     image: { type: String, required: true },
     mobileImage: { type: String },

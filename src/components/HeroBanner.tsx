@@ -403,14 +403,16 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
               pointerEvents: idx === current ? "auto" : "none",
             }}
           >
-            {/* Tag */}
-            <span
-              data-tag
-              className="inline-block text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase mb-3 sm:mb-4"
-              style={{ color: "var(--accent-gold)", opacity: 0 }}
-            >
-              {b.tag}
-            </span>
+            {/* Tag — optional small label above title */}
+            {b.tag ? (
+              <span
+                data-tag
+                className="inline-block text-[11px] sm:text-xs font-medium tracking-[0.2em] uppercase mb-3 sm:mb-4"
+                style={{ color: "var(--accent-gold)", opacity: 0 }}
+              >
+                {b.tag}
+              </span>
+            ) : null}
 
             {/* Title */}
             <h1
@@ -422,13 +424,15 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
             </h1>
 
             {/* Subtitle */}
-            <p
-              data-subtitle
-              className="text-sm sm:text-base md:text-lg text-white/70 font-light max-w-md mb-6 sm:mb-8"
-              style={{ opacity: 0 }}
-            >
-              {b.subtitle}
-            </p>
+            {b.subtitle ? (
+              <p
+                data-subtitle
+                className="text-sm sm:text-base md:text-lg text-white/70 font-light max-w-md mb-6 sm:mb-8"
+                style={{ opacity: 0 }}
+              >
+                {b.subtitle}
+              </p>
+            ) : null}
 
             {/* CTA Button */}
             <Link

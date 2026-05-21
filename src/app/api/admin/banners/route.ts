@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
+import { revalidateHomeBanner } from "@/lib/revalidate-banner";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Banner from "@/models/Banner";
 import { createBannerSchema } from "@/lib/validators/banner";
@@ -45,6 +46,8 @@ export async function POST(request: NextRequest) {
 
     const banner = new Banner(parsed.data);
     await banner.save();
+
+    revalidateHomeBanner();
 
     return Response.json(banner, { status: 201 });
   } catch (err) {

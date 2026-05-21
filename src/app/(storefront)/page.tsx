@@ -49,7 +49,7 @@ async function getHeroBanners() {
 
   return banners.map((b) => ({
     id: String(b._id),
-    tag: b.subtitle || "",
+    tag: b.tag || "",
     title: b.title,
     subtitle: b.subtitle || "",
     cta: { text: "Shop Now", href: b.link || "/flowers/" },

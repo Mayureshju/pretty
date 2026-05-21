@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
+import { revalidateHomeBanner } from "@/lib/revalidate-banner";
 import {
   requireAdmin,
   handleAuthError,
@@ -80,6 +81,8 @@ export async function PUT(
       return notFoundResponse("Banner not found");
     }
 
+    revalidateHomeBanner();
+
     return Response.json(banner);
   } catch (err) {
     console.error("PUT /api/admin/banners/[id] error:", err);
@@ -113,6 +116,8 @@ export async function DELETE(
     if (!banner) {
       return notFoundResponse("Banner not found");
     }
+
+    revalidateHomeBanner();
 
     return Response.json({ message: "Banner deleted successfully" });
   } catch (err) {
