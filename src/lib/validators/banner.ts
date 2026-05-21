@@ -5,7 +5,10 @@ export const createBannerSchema = z.object({
   tag: z.string().optional(),
   subtitle: z.string().optional(),
   image: z.string().url("Image must be a valid URL"),
-  mobileImage: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  mobileImage: z
+    .union([z.string().url("Must be a valid URL"), z.literal(""), z.null()])
+    .optional()
+    .transform((v) => (v === "" || v === null ? undefined : v)),
   link: z.string().optional(),
   position: z.enum(["hero", "sidebar", "popup"]).default("hero"),
   order: z.number().int().default(0),

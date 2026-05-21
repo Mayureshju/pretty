@@ -72,10 +72,19 @@ export async function PUT(
       );
     }
 
-    const banner = await Banner.findByIdAndUpdate(id, parsed.data, {
+    const update: Record<string, unknown> = { ...parsed.data };
+    if (Object.prototype.hasOwnProperty.call(body, "mobileImage")) {
+      const raw = body.mobileImage;
+      update.mobileImage =
+        raw === null || raw === ""
+          ? null
+          : (parsed.data.mobileImage as string | undefined) ?? raw;
+    }
+
+    const banner = await Banner.findByIdAndUpdate(id, update, {
       new: true,
       runValidators: true,
-    });
+    }).lean();
 
     if (!banner) {
       return notFoundResponse("Banner not found");

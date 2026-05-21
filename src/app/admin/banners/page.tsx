@@ -72,6 +72,10 @@ export default function AdminBannersPage() {
   const [saving, setSaving] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<BannerItem | null>(null);
 
+  const patchForm = useCallback((patch: Partial<BannerForm>) => {
+    setForm((prev) => ({ ...prev, ...patch }));
+  }, []);
+
   const fetchBanners = useCallback(async () => {
     setLoading(true);
     try {
@@ -139,7 +143,7 @@ export default function AdminBannersPage() {
       };
       if (form.tag) payload.tag = form.tag;
       if (form.subtitle) payload.subtitle = form.subtitle;
-      if (form.mobileImage) payload.mobileImage = form.mobileImage;
+      payload.mobileImage = form.mobileImage.trim() || null;
       if (form.link) payload.link = form.link;
       if (form.startDate) payload.startDate = form.startDate;
       if (form.endDate) payload.endDate = form.endDate;
@@ -157,7 +161,13 @@ export default function AdminBannersPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to save banner");
+        const fieldErrors = err.details?.fieldErrors as
+          | Record<string, string[]>
+          | undefined;
+        const mobileErr = fieldErrors?.mobileImage?.[0];
+        throw new Error(
+          mobileErr || err.error || "Failed to save banner"
+        );
       }
 
       toast.success(
@@ -380,7 +390,7 @@ export default function AdminBannersPage() {
             <input
               type="text"
               value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
+              onChange={(e) => patchForm({ title: e.target.value })}
               className={inputClass}
               placeholder="Banner title"
               required
@@ -393,7 +403,7 @@ export default function AdminBannersPage() {
             <input
               type="text"
               value={form.tag}
-              onChange={(e) => setForm({ ...form, tag: e.target.value })}
+              onChange={(e) => patchForm({ tag: e.target.value })}
               className={inputClass}
               placeholder="e.g. The Perfect Gift"
             />
@@ -408,7 +418,7 @@ export default function AdminBannersPage() {
             <input
               type="text"
               value={form.subtitle}
-              onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
+              onChange={(e) => patchForm({ subtitle: e.target.value })}
               className={inputClass}
               placeholder="Description below the title"
             />
@@ -424,8 +434,8 @@ export default function AdminBannersPage() {
             </p>
             <ImageUploader
               value={form.image}
-              onUrlChange={(url) => setForm({ ...form, image: url })}
-              onRemove={() => setForm({ ...form, image: "" })}
+              onUrlChange={(url) => patchForm({ image: url })}
+              onRemove={() => patchForm({ image: "" })}
               folder="banners"
             />
           </div>
@@ -438,8 +448,8 @@ export default function AdminBannersPage() {
             </p>
             <ImageUploader
               value={form.mobileImage}
-              onUrlChange={(url) => setForm({ ...form, mobileImage: url })}
-              onRemove={() => setForm({ ...form, mobileImage: "" })}
+              onUrlChange={(url) => patchForm({ mobileImage: url })}
+              onRemove={() => patchForm({ mobileImage: "" })}
               folder="banners"
             />
           </div>
@@ -450,7 +460,7 @@ export default function AdminBannersPage() {
             <input
               type="text"
               value={form.link}
-              onChange={(e) => setForm({ ...form, link: e.target.value })}
+              onChange={(e) => patchForm({ link: e.target.value })}
               className={inputClass}
               placeholder="/collections/roses or https://..."
             />
@@ -463,8 +473,7 @@ export default function AdminBannersPage() {
               <select
                 value={form.position}
                 onChange={(e) =>
-                  setForm({
-                    ...form,
+                  patchForm({
                     position: e.target.value as "hero" | "sidebar" | "popup",
                   })
                 }
@@ -481,7 +490,7 @@ export default function AdminBannersPage() {
                 type="number"
                 value={form.order}
                 onChange={(e) =>
-                  setForm({ ...form, order: parseInt(e.target.value) || 0 })
+                  patchForm({ order: parseInt(e.target.value) || 0 })
                 }
                 className={inputClass}
                 min={0}
@@ -496,9 +505,7 @@ export default function AdminBannersPage() {
               <input
                 type="date"
                 value={form.startDate}
-                onChange={(e) =>
-                  setForm({ ...form, startDate: e.target.value })
-                }
+                onChange={(e) => patchForm({ startDate: e.target.value })}
                 className={inputClass}
               />
             </div>
@@ -507,7 +514,7 @@ export default function AdminBannersPage() {
               <input
                 type="date"
                 value={form.endDate}
-                onChange={(e) => setForm({ ...form, endDate: e.target.value })}
+                onChange={(e) => patchForm({ endDate: e.target.value })}
                 className={inputClass}
               />
             </div>
@@ -519,7 +526,9 @@ export default function AdminBannersPage() {
               type="button"
               role="switch"
               aria-checked={form.isActive}
-              onClick={() => setForm({ ...form, isActive: !form.isActive })}
+              onClick={() =>
+                setForm((prev) => ({ ...prev, isActive: !prev.isActive }))
+              }
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                 form.isActive ? "bg-[#737530]" : "bg-gray-200"
               }`}
