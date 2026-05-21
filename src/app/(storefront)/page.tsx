@@ -47,15 +47,23 @@ async function getHeroBanners() {
     .sort({ order: 1 })
     .lean();
 
-  return banners.map((b) => ({
-    id: String(b._id),
-    tag: b.tag || "",
-    title: b.title,
-    subtitle: b.subtitle || "",
-    cta: { text: "Shop Now", href: b.link || "/flowers/" },
-    image: b.image,
-    mobileImage: b.mobileImage || undefined,
-  }));
+  return banners.map((b) => {
+    const tag = (b.tag || "").trim();
+    let subtitle = (b.subtitle || "").trim();
+    // Avoid duplicate lines when admin used the same text for tag + subtitle
+    if (tag && subtitle && tag.toLowerCase() === subtitle.toLowerCase()) {
+      subtitle = "";
+    }
+    return {
+      id: String(b._id),
+      tag,
+      title: b.title,
+      subtitle,
+      cta: { text: "Shop Now", href: b.link || "/flowers/" },
+      image: b.image,
+      mobileImage: b.mobileImage || undefined,
+    };
+  });
 }
 
 async function getBestSellers() {
