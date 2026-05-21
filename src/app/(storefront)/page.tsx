@@ -48,11 +48,11 @@ async function getHeroBanners() {
     .lean();
 
   return banners.map((b) => {
-    const tag = (b.tag || "").trim();
-    let subtitle = (b.subtitle || "").trim();
-    // Avoid duplicate lines when admin used the same text for tag + subtitle
+    let tag = (b.tag || "").trim();
+    const subtitle = (b.subtitle || "").trim();
+    // Same text in tag + subtitle: keep subtitle under the title, hide the gold tag
     if (tag && subtitle && tag.toLowerCase() === subtitle.toLowerCase()) {
-      subtitle = "";
+      tag = "";
     }
     return {
       id: String(b._id),

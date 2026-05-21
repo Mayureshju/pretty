@@ -192,6 +192,7 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
     // Title SplitText reveal
     if (title) {
       cleanupSplit();
+      gsap.set(title, { opacity: 1, y: 0, clearProps: "transform,opacity" });
       splitInstanceRef.current = new SplitText(title, { type: "words" });
       tl.fromTo(
         splitInstanceRef.current.words,
@@ -267,15 +268,24 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
         },
       });
 
-      // Exit current slide content
+      // Exit current slide content (target elements, not raw children — SplitText wraps the title)
       if (currentContent) {
-        tl.to(currentContent.children, {
-          opacity: 0,
-          y: -30,
-          duration: 0.3,
-          stagger: 0.03,
-          ease: "power2.in",
-        }, 0);
+        cleanupSplit();
+        const exitEls = [
+          currentContent.querySelector("[data-tag]"),
+          currentContent.querySelector("[data-title]"),
+          currentContent.querySelector("[data-subtitle]"),
+          currentContent.querySelector("[data-cta]"),
+        ].filter(Boolean);
+        if (exitEls.length > 0) {
+          tl.to(exitEls, {
+            opacity: 0,
+            y: -30,
+            duration: 0.3,
+            stagger: 0.03,
+            ease: "power2.in",
+          }, 0);
+        }
       }
 
       // Exit current slide image
@@ -289,7 +299,7 @@ export default function HeroBanner({ banners: propBanners }: { banners?: BannerI
 
       kenBurnsRef.current?.kill();
     },
-    [isTransitioning, current]
+    [isTransitioning, current, cleanupSplit]
   );
 
   // Entrance animation on slide change
