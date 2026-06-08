@@ -4,7 +4,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import toast from "react-hot-toast";
 
 interface RichTextEditorProps {
@@ -13,6 +13,30 @@ interface RichTextEditorProps {
   placeholder?: string;
   minHeight?: string;
   uploadFolder?: "products" | "banners" | "categories" | "blogs";
+}
+
+type HeadingLevel = 0 | 1 | 2 | 3 | 4;
+
+function normalizeUrl(url: string): string {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+  if (
+    trimmed.startsWith("/") ||
+    trimmed.startsWith("#") ||
+    /^mailto:/i.test(trimmed) ||
+    /^tel:/i.test(trimmed)
+  ) {
+    return trimmed;
+  }
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
+function getActiveHeadingLevel(editor: NonNullable<ReturnType<typeof useEditor>>): HeadingLevel {
+  for (const level of [1, 2, 3, 4] as const) {
+    if (editor.isActive("heading", { level })) return level;
+  }
+  return 0;
 }
 
 function ToolbarButton({
@@ -50,23 +74,40 @@ export default function RichTextEditor({
   uploadFolder = "blogs",
 }: RichTextEditorProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const linkPopoverRef = useRef<HTMLDivElement>(null);
+  const isInternalUpdate = useRef(false);
   const [uploading, setUploading] = useState(false);
+  const [showLinkPopover, setShowLinkPopover] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("");
+  const [, rerender] = useReducer((n: number) => n + 1, 0);
 
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
       StarterKit.configure({
-        heading: { levels: [2, 3, 4] },
+        heading: { levels: [1, 2, 3, 4] },
       }),
       Link.configure({
         openOnClick: false,
-        HTMLAttributes: { class: "text-[#737530] underline" },
+        autolink: true,
+        linkOnPaste: true,
+        defaultProtocol: "https",
+        HTMLAttributes: {
+          class: "text-[#737530] underline",
+          target: "_blank",
+          rel: "noopener noreferrer",
+        },
+        isAllowedUri: (url, ctx) =>
+          url.startsWith("/") ||
+          url.startsWith("#") ||
+          ctx.defaultValidate(url),
       }),
       Image.configure({ inline: false }),
     ],
     content: value || "",
-    onUpdate: ({ editor }) => {
-      onChange(editor.getHTML());
+    onUpdate: ({ editor: ed }) => {
+      isInternalUpdate.current = true;
+      onChange(ed.getHTML());
     },
     editorProps: {
       attributes: {
@@ -76,13 +117,92 @@ export default function RichTextEditor({
     },
   });
 
-  // Sync external value changes (e.g., when loading data)
   useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value || "");
+    if (!editor) return;
+
+    const handleUpdate = () => rerender();
+    editor.on("selectionUpdate", handleUpdate);
+    editor.on("transaction", handleUpdate);
+
+    return () => {
+      editor.off("selectionUpdate", handleUpdate);
+      editor.off("transaction", handleUpdate);
+    };
+  }, [editor]);
+
+  useEffect(() => {
+    if (!editor) return;
+
+    if (isInternalUpdate.current) {
+      isInternalUpdate.current = false;
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+
+    if (value !== editor.getHTML()) {
+      editor.commands.setContent(value || "", { emitUpdate: false });
+    }
+  }, [value, editor]);
+
+  useEffect(() => {
+    if (!showLinkPopover) return;
+
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        linkPopoverRef.current &&
+        !linkPopoverRef.current.contains(e.target as Node)
+      ) {
+        setShowLinkPopover(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showLinkPopover]);
+
+  const openLinkPopover = useCallback(() => {
+    if (!editor) return;
+
+    const existingHref = editor.getAttributes("link").href as string | undefined;
+    setLinkUrl(existingHref || "");
+    setShowLinkPopover(true);
+  }, [editor]);
+
+  const applyLink = useCallback(() => {
+    if (!editor) return;
+
+    const normalized = normalizeUrl(linkUrl);
+    if (!normalized) {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+      setShowLinkPopover(false);
+      return;
+    }
+
+    const { from, to } = editor.state.selection;
+    if (from === to) {
+      toast.error("Select text first, then add a link");
+      return;
+    }
+
+    editor
+      .chain()
+      .focus()
+      .extendMarkRange("link")
+      .setLink({
+        href: normalized,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })
+      .run();
+
+    setShowLinkPopover(false);
+  }, [editor, linkUrl]);
+
+  const removeLink = useCallback(() => {
+    if (!editor) return;
+    editor.chain().focus().extendMarkRange("link").unsetLink().run();
+    setLinkUrl("");
+    setShowLinkPopover(false);
+  }, [editor]);
 
   async function handleImageFile(file: File) {
     if (!editor) return;
@@ -118,6 +238,8 @@ export default function RichTextEditor({
 
   if (!editor) return null;
 
+  const activeHeading = getActiveHeadingLevel(editor);
+
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#737530] focus-within:ring-1 focus-within:ring-[#737530]/20 transition-colors">
       {/* Toolbar */}
@@ -125,25 +247,18 @@ export default function RichTextEditor({
         {/* Headings */}
         <select
           onChange={(e) => {
-            const level = parseInt(e.target.value);
+            const level = parseInt(e.target.value, 10) as HeadingLevel;
             if (level === 0) {
               editor.chain().focus().setParagraph().run();
             } else {
-              editor.chain().focus().toggleHeading({ level: level as 2 | 3 | 4 }).run();
+              editor.chain().focus().setHeading({ level }).run();
             }
           }}
-          value={
-            editor.isActive("heading", { level: 2 })
-              ? 2
-              : editor.isActive("heading", { level: 3 })
-                ? 3
-                : editor.isActive("heading", { level: 4 })
-                  ? 4
-                  : 0
-          }
+          value={activeHeading}
           className="text-xs border border-gray-200 rounded px-1.5 py-1 bg-white text-gray-600 outline-none"
         >
           <option value={0}>Normal</option>
+          <option value={1}>Heading 1</option>
           <option value={2}>Heading 2</option>
           <option value={3}>Heading 3</option>
           <option value={4}>Heading 4</option>
@@ -215,24 +330,58 @@ export default function RichTextEditor({
         <div className="w-px h-5 bg-gray-200 mx-1" />
 
         {/* Link */}
-        <ToolbarButton
-          onClick={() => {
-            if (editor.isActive("link")) {
-              editor.chain().focus().unsetLink().run();
-            } else {
-              const url = window.prompt("Enter URL");
-              if (url) {
-                editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
-              }
-            }
-          }}
-          active={editor.isActive("link")}
-          title="Link"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" /></svg>
-        </ToolbarButton>
+        <div className="relative" ref={linkPopoverRef}>
+          <ToolbarButton
+            onClick={openLinkPopover}
+            active={editor.isActive("link")}
+            title="Link"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" /></svg>
+          </ToolbarButton>
 
-        {/* Image - click to upload, shift+click to paste URL */}
+          {showLinkPopover && (
+            <div className="absolute top-full left-0 z-20 mt-1 w-64 rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
+              <label className="text-xs font-medium text-gray-600 mb-1 block">
+                URL
+              </label>
+              <input
+                type="text"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    applyLink();
+                  }
+                  if (e.key === "Escape") setShowLinkPopover(false);
+                }}
+                placeholder="https://example.com or /blog"
+                className="w-full border border-gray-200 rounded px-2 py-1.5 text-xs outline-none focus:border-[#737530]"
+                autoFocus
+              />
+              <div className="flex items-center gap-1.5 mt-2">
+                <button
+                  type="button"
+                  onClick={applyLink}
+                  className="flex-1 bg-[#737530] hover:bg-[#4C4D27] text-white rounded px-2 py-1 text-xs font-medium"
+                >
+                  Apply
+                </button>
+                {editor.isActive("link") && (
+                  <button
+                    type="button"
+                    onClick={removeLink}
+                    className="px-2 py-1 text-xs text-red-600 hover:bg-red-50 rounded"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Image */}
         <input
           ref={fileInputRef}
           type="file"
@@ -249,7 +398,7 @@ export default function RichTextEditor({
             if (uploading) return;
             fileInputRef.current?.click();
           }}
-          title={uploading ? "Uploading..." : "Upload image (shift-click for URL)"}
+          title={uploading ? "Uploading..." : "Upload image"}
         >
           {uploading ? (
             <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none">

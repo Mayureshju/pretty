@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   },
   description:
     "Order premium flowers, cakes, plants & gifts online with same day delivery in Mumbai. Handcrafted bouquets for birthdays, anniversaries & all occasions.",
+  verification: {
+    google: "ILAk3vsXifAAHMlJNHHlViEMODsULgAJreyknIJ5X0E",
+  },
 };
 
 export default function RootLayout({

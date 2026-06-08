@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
 import RichTextEditor from "@/components/admin/shared/RichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
+import { buildBlogPayload, isValidHttpUrl, parseApiError } from "@/lib/api-client";
 
 interface BlogData {
   _id: string;
@@ -94,23 +95,13 @@ export default function EditBlogPage({
     setSaving(true);
 
     try {
-      const payload: Record<string, unknown> = {
-        title: form.title,
-        content: form.content,
-        excerpt: form.excerpt,
-        image: form.image || undefined,
-        author: form.author,
-        category: form.category,
-        isPublished: form.isPublished,
-        tags: form.tags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean),
-        seo: {
-          metaTitle: form.seo.metaTitle,
-          metaDescription: form.seo.metaDescription,
-        },
-      };
+      if (form.image.trim()) {
+        if (!isValidHttpUrl(form.image.trim())) {
+          throw new Error("Featured image must be a valid URL");
+        }
+      }
+
+      const payload = buildBlogPayload(form, "update");
 
       const res = await fetch(`/api/admin/blogs/${id}`, {
         method: "PUT",
@@ -119,8 +110,7 @@ export default function EditBlogPage({
       });
 
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Failed to update blog");
+        throw new Error(await parseApiError(res));
       }
 
       toast.success("Blog post updated successfully");

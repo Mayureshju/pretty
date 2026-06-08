@@ -1,10 +1,15 @@
 import { z } from "zod";
 
+const optionalImageUrl = z.preprocess(
+  (v) => (v === "" || v == null ? undefined : v),
+  z.string().url("Featured image must be a valid URL").optional()
+);
+
 export const createBlogSchema = z.object({
   title: z.string().min(1, "Title is required"),
   content: z.string().optional(),
   excerpt: z.string().optional(),
-  image: z.string().url("Image must be a valid URL").optional().or(z.literal("")),
+  image: optionalImageUrl,
   author: z.string().optional(),
   category: z.string().optional(),
   tags: z.array(z.string()).optional(),

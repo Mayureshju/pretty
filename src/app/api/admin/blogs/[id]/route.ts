@@ -9,6 +9,7 @@ import {
 } from "@/lib/auth";
 import Blog from "@/models/Blog";
 import { updateBlogSchema } from "@/lib/validators/blog";
+import { getBlogSaveErrorMessage } from "@/lib/api-client";
 import mongoose from "mongoose";
 
 function revalidateBlog(slug: string) {
@@ -70,7 +71,13 @@ export async function PUT(
       return notFoundResponse("Invalid blog ID");
     }
 
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return Response.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
+
     const parsed = updateBlogSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -106,9 +113,7 @@ export async function PUT(
     return Response.json(blog);
   } catch (err) {
     console.error("PUT /api/admin/blogs/[id] error:", err);
-    const message =
-      err instanceof Error ? err.message : "Failed to update blog";
-    return errorResponse(message);
+    return errorResponse(getBlogSaveErrorMessage(err, "Failed to update blog"));
   }
 }
 

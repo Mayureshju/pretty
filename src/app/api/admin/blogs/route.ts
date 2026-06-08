@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/db";
 import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Blog from "@/models/Blog";
 import { createBlogSchema } from "@/lib/validators/blog";
+import { getBlogSaveErrorMessage } from "@/lib/api-client";
 
 export async function GET(request: NextRequest) {
   try {
@@ -70,7 +71,13 @@ export async function POST(request: NextRequest) {
   try {
     await connectDB();
 
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return Response.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
+
     const parsed = createBlogSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -100,8 +107,6 @@ export async function POST(request: NextRequest) {
     return Response.json(blog, { status: 201 });
   } catch (err) {
     console.error("POST /api/admin/blogs error:", err);
-    const message =
-      err instanceof Error ? err.message : "Failed to create blog";
-    return errorResponse(message);
+    return errorResponse(getBlogSaveErrorMessage(err, "Failed to create blog"));
   }
 }

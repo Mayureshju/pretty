@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import RichTextEditor from "@/components/admin/shared/RichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
+import { buildBlogPayload, isValidHttpUrl, parseApiError } from "@/lib/api-client";
 
 export default function NewBlogPage() {
   const router = useRouter();
@@ -40,29 +41,13 @@ export default function NewBlogPage() {
     setSaving(true);
 
     try {
-      const payload: Record<string, unknown> = {
-        title: form.title,
-        isPublished: form.isPublished,
-      };
-      if (form.content) payload.content = form.content;
-      if (form.excerpt) payload.excerpt = form.excerpt;
-      if (form.image) payload.image = form.image;
-      if (form.author) payload.author = form.author;
-      if (form.category) payload.category = form.category;
-      if (form.tags.trim()) {
-        payload.tags = form.tags
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean);
+      if (form.image.trim()) {
+        if (!isValidHttpUrl(form.image.trim())) {
+          throw new Error("Featured image must be a valid URL");
+        }
       }
-      if (form.seo.metaTitle || form.seo.metaDescription) {
-        payload.seo = {};
-        if (form.seo.metaTitle)
-          (payload.seo as Record<string, string>).metaTitle = form.seo.metaTitle;
-        if (form.seo.metaDescription)
-          (payload.seo as Record<string, string>).metaDescription =
-            form.seo.metaDescription;
-      }
+
+      const payload = buildBlogPayload(form, "create");
 
       const res = await fetch("/api/admin/blogs", {
         method: "POST",
@@ -71,8 +56,7 @@ export default function NewBlogPage() {
       });
 
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Failed to create blog");
+        throw new Error(await parseApiError(res));
       }
 
       toast.success("Blog post created successfully");
