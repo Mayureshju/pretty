@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import gsap from "gsap";
 import { clearCart } from "@/lib/cart";
+import { reportPurchaseConversion } from "@/lib/gtag";
 
 interface OrderData {
   orderNumber: string;
@@ -41,6 +42,7 @@ function OrderConfirmationInner() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("id") || "";
   const containerRef = useRef<HTMLDivElement>(null);
+  const conversionFiredRef = useRef(false);
   const [order, setOrder] = useState<OrderData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,6 +63,30 @@ function OrderConfirmationInner() {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [orderId]);
+
+  /* ── Google Ads purchase conversion ── */
+  useEffect(() => {
+    if (!order || conversionFiredRef.current) return;
+
+    const transactionId =
+      order.payment.transactionId || order.orderNumber || orderId;
+    if (!transactionId) return;
+
+    const storageKey = `ads-conversion-${transactionId}`;
+    if (sessionStorage.getItem(storageKey)) {
+      conversionFiredRef.current = true;
+      return;
+    }
+
+    reportPurchaseConversion({
+      value: order.pricing.total,
+      currency: "INR",
+      transactionId,
+    });
+
+    sessionStorage.setItem(storageKey, "1");
+    conversionFiredRef.current = true;
+  }, [order, orderId]);
 
   /* ── GSAP fade-in ── */
   useEffect(() => {
