@@ -8,6 +8,10 @@ import {
   GOOGLE_ADS_ID,
   GOOGLE_ADS_PURCHASE_CONVERSION,
 } from "@/lib/gtag";
+import {
+  GoogleTagManagerHead,
+  GoogleTagManagerBody,
+} from "@/components/GoogleTagManager";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,7 +41,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <GoogleTagManagerHead />
+      </head>
       <body>
+        <GoogleTagManagerBody />
         <ClerkProvider>
           {children}
           <Toaster position="top-right" />
