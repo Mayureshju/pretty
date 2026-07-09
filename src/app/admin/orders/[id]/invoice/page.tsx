@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { Fragment, useState, useEffect, use } from "react";
 import { format } from "date-fns";
 
 interface OrderDetail {
@@ -71,6 +71,27 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
     return null;
   };
 
+  const formatPhone = (phone?: string) => {
+    const trimmed = phone?.trim();
+    if (!trimmed) return null;
+    return trimmed.startsWith("+") ? trimmed : `+91 ${trimmed}`;
+  };
+
+  const renderAddressLines = (lines: Array<string | null | undefined>) => {
+    const visibleLines = lines.filter((line): line is string => Boolean(line?.trim()));
+
+    return visibleLines.map((line, index) => (
+      <Fragment key={`${line}-${index}`}>
+        {line}
+        {index < visibleLines.length - 1 && <br />}
+      </Fragment>
+    ));
+  };
+
+  const shippingCityLine = [order.shipping.city, order.shipping.state].filter(Boolean).join(", ");
+  const billingPhone = formatPhone(order.customer.phone);
+  const shippingPhone = formatPhone(order.shipping.receiverPhone);
+
   return (
     <>
       <style>{`
@@ -126,19 +147,24 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
           <div>
             <h4>Billing Address:</h4>
             <p>
-              {order.customer.name}<br />
-              {order.shipping.city || "Mumbai"}<br />
-              Email: {order.customer.email}
-              {order.customer.phone && <><br />Phone: +91{order.customer.phone}</>}
+              {renderAddressLines([
+                order.customer.name,
+                order.shipping.city,
+                `Email: ${order.customer.email}`,
+                billingPhone ? `Phone: ${billingPhone}` : null,
+              ])}
             </p>
           </div>
           <div>
             <h4>Shipping Address:</h4>
             <p>
-              {order.customer.name}<br />
-              {order.shipping.city || "Mumbai"}<br />
-              Email: {order.customer.email}
-              {order.customer.phone && <><br />Phone: +91{order.customer.phone}</>}
+              {renderAddressLines([
+                order.shipping.receiverName || order.customer.name,
+                order.shipping.address,
+                shippingCityLine,
+                order.shipping.pincode ? `PIN: ${order.shipping.pincode}` : null,
+                shippingPhone ? `Phone: ${shippingPhone}` : null,
+              ])}
             </p>
           </div>
           <div>
