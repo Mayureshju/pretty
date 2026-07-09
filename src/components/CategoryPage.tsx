@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getWishlist, toggleWishlist as toggleWishlistLib } from "@/lib/wishlist";
@@ -60,7 +61,6 @@ interface CategoryPageProps {
 
 const priceFilters = [
   { label: "All Prices", value: "all" },
-  { label: "Under ₹500", value: "0-500" },
   { label: "₹500 - ₹1000", value: "500-1000" },
   { label: "₹1000 - ₹2000", value: "1000-2000" },
   { label: "Above ₹2000", value: "2000+" },
@@ -201,7 +201,10 @@ export default function CategoryPage({
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
       const newProducts = data.products as CategoryProduct[];
-      setAllProducts(prev => [...prev, ...newProducts]);
+      setAllProducts(prev => {
+        const seen = new Set(prev.map(p => p._id));
+        return [...prev, ...newProducts.filter(p => !seen.has(p._id))];
+      });
       setPage(nextPage);
       setHasMore(nextPage < data.pages);
     } catch {
@@ -368,7 +371,7 @@ export default function CategoryPage({
 
                   {/* Image container */}
                   <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--bg-lighter)]">
-                    <Image src={mainImage} alt={product.images?.[0]?.alt || product.name} fill unoptimized
+                    <SafeImage src={mainImage} alt={product.images?.[0]?.alt || product.name} fill unoptimized
                       className={`object-cover transition-all duration-700 ease-out ${hoverImage ? "group-hover:opacity-0" : "group-hover:scale-[1.06]"}`}
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw" loading="lazy" />
                     {hoverImage && (

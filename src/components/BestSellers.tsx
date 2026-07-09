@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -94,7 +95,7 @@ export default function BestSellers({ products }: { products?: BestSellerProduct
             >
               <Link href={`/product/${product.slug}/`} className="block">
                 <div className="aspect-square bg-[#F5F5F5] overflow-hidden relative">
-                  <Image
+                  <SafeImage
                     src={image}
                     alt={product.images?.[0]?.alt || product.name}
                     fill

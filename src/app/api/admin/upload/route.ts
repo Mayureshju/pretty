@@ -1,10 +1,17 @@
 import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import sharp from "sharp";
 import { s3Client, S3_BUCKET, getS3Url } from "@/lib/s3";
 import {
   requireAdmin,
   handleAuthError,
   errorResponse,
 } from "@/lib/auth";
+
+// Pass-through formats sharp shouldn't rasterize (vectors / animations).
+const PASSTHROUGH = ["image/svg+xml", "image/gif"];
+
+// Longest edge we ever need on the storefront; keeps files small + fast.
+const MAX_EDGE = 1600;
 
 export async function POST(request: Request) {
   try {
@@ -35,17 +42,48 @@ export async function POST(request: Request) {
 
     const sanitizedName = file.name
       .replace(/[^a-zA-Z0-9._-]/g, "-")
+      .replace(/\.[a-z0-9]+$/i, "")
       .toLowerCase();
-    const key = `${safeFolder}/${Date.now()}-${sanitizedName}`;
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const rawBuffer = Buffer.from(await file.arrayBuffer());
+
+    let body: Buffer = rawBuffer;
+    let contentType = file.type;
+    let ext = (file.name.match(/\.[a-z0-9]+$/i)?.[0] || "").toLowerCase();
+
+    // Compress + normalize raster images so we never store oversized/distorted
+    // originals. Vectors and GIFs are passed through untouched.
+    if (!PASSTHROUGH.includes(file.type)) {
+      try {
+        body = await sharp(rawBuffer)
+          .rotate() // respect EXIF orientation (prevents "sideways" distortion)
+          .resize({
+            width: MAX_EDGE,
+            height: MAX_EDGE,
+            fit: "inside",
+            withoutEnlargement: true,
+          })
+          .webp({ quality: 82 })
+          .toBuffer();
+        contentType = "image/webp";
+        ext = ".webp";
+      } catch (e) {
+        // If sharp can't decode it, fall back to the original bytes.
+        console.error("[upload] sharp compression failed, storing raw:", e);
+        body = rawBuffer;
+        contentType = file.type;
+      }
+    }
+
+    const key = `${safeFolder}/${Date.now()}-${sanitizedName}${ext}`;
 
     await s3Client.send(
       new PutObjectCommand({
         Bucket: S3_BUCKET,
         Key: key,
-        Body: buffer,
-        ContentType: file.type,
+        Body: body,
+        ContentType: contentType,
+        CacheControl: "public, max-age=31536000, immutable",
       })
     );
 

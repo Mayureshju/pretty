@@ -64,6 +64,11 @@ export default function FeaturedCollection() {
                 alt={col.title}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
+                onError={(e) => {
+                  const t = e.currentTarget;
+                  if (!t.src.endsWith("/images/products/placeholder.jpg"))
+                    t.src = "/images/products/placeholder.jpg";
+                }}
               />
             </div>
             <p className="mt-2 text-[14px] font-medium text-[#1C2120] group-hover:text-[#737530] transition-colors">

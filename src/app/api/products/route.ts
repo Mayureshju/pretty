@@ -44,12 +44,14 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Sort mapping
-    let sortObj: Record<string, 1 | -1> = { order: 1, "metrics.totalSales": -1 };
-    if (sort === "price-low") sortObj = { "pricing.currentPrice": 1 };
-    else if (sort === "price-high") sortObj = { "pricing.currentPrice": -1 };
-    else if (sort === "newest") sortObj = { createdAt: -1 };
-    else if (sort === "rating") sortObj = { "metrics.averageRating": -1 };
+    // Sort mapping. A stable `_id` tiebreak is appended so skip/limit pagination
+    // never repeats or drops a doc when the primary keys tie (which is the common
+    // case: most imported products share order:0 / totalSales:0).
+    let sortObj: Record<string, 1 | -1> = { order: 1, "metrics.totalSales": -1, _id: 1 };
+    if (sort === "price-low") sortObj = { "pricing.currentPrice": 1, _id: 1 };
+    else if (sort === "price-high") sortObj = { "pricing.currentPrice": -1, _id: 1 };
+    else if (sort === "newest") sortObj = { createdAt: -1, _id: 1 };
+    else if (sort === "rating") sortObj = { "metrics.averageRating": -1, _id: 1 };
 
     const skip = (page - 1) * limit;
 

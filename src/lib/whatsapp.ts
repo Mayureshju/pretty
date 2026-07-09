@@ -151,6 +151,62 @@ export async function sendOrderConfirmedWhatsApp(order: IOrder): Promise<void> {
   ]);
 }
 
+export async function sendProcessingWhatsApp(order: IOrder): Promise<void> {
+  const phone = formatPhoneForWhatsApp(order.customer.phone);
+  if (!phone) {
+    console.warn(
+      "[customer-whatsapp] skip (processing): no valid phone on order",
+      order.customer.phone
+    );
+    return;
+  }
+
+  await sendWhatsAppTemplate(phone, "pretty_petals_processing", [
+    { name: "customer_name", value: order.customer.name },
+    { name: "order_number", value: order.orderNumber },
+  ]);
+}
+
+function reviewLink(order: IOrder): string {
+  const base = (
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.prettypetals.com"
+  ).replace(/\/$/, "");
+  return `${base}/review/?order=${encodeURIComponent(order.orderNumber)}`;
+}
+
+// Post-delivery star-rating request. Sent to BOTH the sender (person who placed
+// the order) and the receiver (if a distinct receiver phone was captured).
+export async function sendReviewRequestWhatsApp(order: IOrder): Promise<void> {
+  const link = reviewLink(order);
+
+  const senderPhone = formatPhoneForWhatsApp(order.customer.phone);
+  const receiverPhone = formatPhoneForWhatsApp(order.shipping?.receiverPhone);
+
+  const targets: { phone: string; name: string }[] = [];
+  if (senderPhone) targets.push({ phone: senderPhone, name: order.customer.name });
+  if (receiverPhone && receiverPhone !== senderPhone) {
+    targets.push({
+      phone: receiverPhone,
+      name: order.shipping?.receiverName || "there",
+    });
+  }
+
+  if (targets.length === 0) {
+    console.warn("[customer-whatsapp] skip (review_request): no valid phones on order");
+    return;
+  }
+
+  await Promise.all(
+    targets.map((t) =>
+      sendWhatsAppTemplate(t.phone, "pretty_petals_review_request", [
+        { name: "customer_name", value: t.name },
+        { name: "order_number", value: order.orderNumber },
+        { name: "review_link", value: link },
+      ])
+    )
+  );
+}
+
 export async function sendOutForDeliveryWhatsApp(order: IOrder): Promise<void> {
   const phone = formatPhoneForWhatsApp(order.customer.phone);
   if (!phone) {

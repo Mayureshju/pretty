@@ -9,6 +9,7 @@ export const couponSchema = z.object({
   description: z.string().default(""),
   termsAndConditions: z.string().default(""),
   isPubliclyVisible: z.boolean().default(true),
+  autoApply: z.boolean().default(false),
   minOrderAmount: z.number().min(0).default(0),
   maxDiscount: z.number().min(0).optional(),
   usageLimit: z.number().int().min(1).optional(),

@@ -208,9 +208,10 @@ export default function Header() {
               </Show>
               {[
                 { label: "Flowers", href: "/flowers/" },
+                { label: "Handbunch", href: "/handbunch/" },
                 { label: "Cakes", href: "/cakes/" },
                 { label: "Combos", href: "/combos-gifts/" },
-                { label: "Premium Flower", href: "/premium-flower/" },
+                { label: "Premium Flower", href: "/popular/" },
                 { label: "Birthday", href: "/flowers/birthday/" },
                 { label: "Anniversary", href: "/flowers/anniversary/" },
                 { label: "Occasions", href: "/occasions/" },

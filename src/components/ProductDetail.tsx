@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import { addToCart } from "@/lib/cart";
 import { saveDeliveryInfo, updateSelectedDate } from "@/lib/delivery-store";
 import { isInWishlist, toggleWishlist as toggleWishlistLib } from "@/lib/wishlist";
+import ProductReviews from "@/components/ProductReviews";
+import SafeImage from "@/components/SafeImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -519,7 +521,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               onMouseLeave={() => setIsZooming(false)}
               onMouseMove={handleMouseMove}
             >
-              <Image
+              <SafeImage
                 src={images[activeImg].url}
                 alt={images[activeImg].alt || product.name}
                 fill
@@ -708,7 +710,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                           className="shrink-0 w-[130px] md:w-[140px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
                         >
                           <Link href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
-                            <Image
+                            <SafeImage
                               src={img}
                               alt={p.name}
                               width={140}
@@ -969,9 +971,22 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
             {product.description && (
               <div className="mt-5 p-4 rounded-xl border border-gray-200">
                 <h3 className="text-sm font-semibold text-[#1C2120] mb-2">Description</h3>
-                <p className="text-sm text-[#464646] leading-relaxed">{product.description}</p>
+                <div
+                  className="text-sm text-[#464646] leading-relaxed [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-[#737530] [&_a]:underline [&_strong]:font-semibold"
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                />
               </div>
             )}
+
+            {/* Seasonal availability note - shown on every product page */}
+            <div className="mt-3 p-4 rounded-xl border border-gray-200 bg-[#FAFAF5]">
+              <p className="text-xs italic text-[#6b6b6b] leading-relaxed">
+                Note: Flower colors may vary based on seasonal availability and the
+                freshness of blooms. Rest assured, any substitutions will be carefully
+                selected to maintain the overall style, quality, and beauty of the
+                arrangement.
+              </p>
+            </div>
 
             {/* Delivery Info */}
             {product.deliveryInfo && (
@@ -1012,6 +1027,9 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
           ))}
         </div>
 
+        {/* Customer Reviews */}
+        <ProductReviews productId={product._id} productName={product.name} />
+
         {/* Similar Products */}
         {similarProducts.length > 0 && (
           <div ref={similarRef} className="py-8 border-t border-gray-100">
@@ -1030,7 +1048,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                     className="sim-card bg-white rounded-xl border border-[#eee] overflow-hidden group transition-all hover:shadow-lg"
                   >
                     <div className="aspect-square overflow-hidden bg-[#f8f8f8] relative">
-                      <Image
+                      <SafeImage
                         src={simImage}
                         alt={p.name}
                         fill

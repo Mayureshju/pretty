@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import type { IOrder } from "@/models/Order";
 import { getNotificationSettings } from "@/lib/notification-settings";
+import { getDeliveryLink } from "@/lib/delivery-token";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -121,6 +122,67 @@ function formatDeliveryAddress(order: IOrder): string {
   if (!s?.address) return "As provided";
   const parts = [s.address, s.city, s.state, s.pincode].filter(Boolean);
   return parts.join(", ");
+}
+
+export async function sendProcessingEmail(order: IOrder) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[customer-email] skip (processing): RESEND_API_KEY not configured");
+    return;
+  }
+  if (!order.customer.email) {
+    console.warn("[customer-email] skip (processing): order has no customer email");
+    return;
+  }
+
+  const html = `
+  <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
+    <div style="background:#737530;padding:24px;text-align:center;">
+      <h1 style="color:#fff;margin:0;font-size:22px;">Pretty Petals</h1>
+    </div>
+
+    <div style="padding:24px;background:#fff;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="width:60px;height:60px;background:#FFF8E1;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:28px;color:#F9A825;">&#127804;</span>
+        </div>
+        <h2 style="margin:0 0 4px;font-size:20px;">Your Order is Being Prepared</h2>
+        <p style="color:#888;margin:0;font-size:14px;">Hi ${order.customer.name}, our florists are hand-crafting your order.</p>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:8px;padding:16px;margin-bottom:20px;">
+        <table style="width:100%;font-size:14px;">
+          <tr>
+            <td style="color:#888;">Order Number</td>
+            <td style="text-align:right;font-weight:bold;">${order.orderNumber}</td>
+          </tr>
+          ${order.deliverySlot ? `<tr><td style="color:#888;">Delivery Date</td><td style="text-align:right;">${new Date(order.deliverySlot).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}</td></tr>` : ""}
+        </table>
+      </div>
+
+      <p style="font-size:14px;color:#464646;line-height:1.6;margin:0;">
+        We'll let you know as soon as your order is out for delivery. Thank you for your patience!
+      </p>
+    </div>
+
+    <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
+      <p style="margin:0 0 4px;">Thank you for shopping with Pretty Petals &#10084;</p>
+    </div>
+  </div>`;
+
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: order.customer.email,
+    subject: `Order Being Prepared - ${order.orderNumber} | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[customer-email] Resend error (processing):", error);
+    return;
+  }
+  console.log(
+    `[customer-email] processing sent to ${order.customer.email} (id=${data?.id})`
+  );
 }
 
 export async function sendOutForDeliveryEmail(order: IOrder) {
@@ -361,6 +423,73 @@ export async function sendDeliveredSellerEmail(order: IOrder) {
   );
 }
 
+export async function sendOrderReminderEmail(order: IOrder) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("[reminder-email] skip: RESEND_API_KEY not configured");
+    return;
+  }
+  if (!order.customer.email) {
+    console.warn("[reminder-email] skip: order has no customer email");
+    return;
+  }
+
+  const orderDate = new Date(order.createdAt).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const receiverName = order.shipping?.receiverName || "your loved one";
+  const shopUrl = (
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.prettypetals.com"
+  ).replace(/\/$/, "");
+
+  const html = `
+  <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
+    <div style="background:#737530;padding:24px;text-align:center;">
+      <h1 style="color:#fff;margin:0;font-size:22px;">Pretty Petals</h1>
+    </div>
+
+    <div style="padding:24px;background:#fff;">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:34px;">&#127800;</div>
+        <h2 style="margin:8px 0 4px;font-size:20px;">A Special Day is Coming Up!</h2>
+      </div>
+
+      <p style="font-size:15px;color:#464646;line-height:1.7;margin:0 0 16px;">
+        Hi ${order.customer.name},<br/><br/>
+        Greetings from Pretty Petals &#127800;.<br/>
+        This is a gentle reminder that you placed an order with us for
+        <b>${receiverName}</b> on <b>${orderDate}</b>.<br/><br/>
+        Would you like to send flowers again this year?
+      </p>
+
+      <div style="text-align:center;margin:24px 0;">
+        <a href="${shopUrl}/flowers/" style="display:inline-block;background:#737530;color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-size:15px;font-weight:bold;">Send Flowers Again</a>
+      </div>
+    </div>
+
+    <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
+      <p style="margin:0 0 4px;">With love, Pretty Petals &#10084;</p>
+      <p style="margin:0;color:#888;">Reply to this email if you'd like help placing your order.</p>
+    </div>
+  </div>`;
+
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM || DEFAULT_FROM,
+    to: order.customer.email,
+    subject: `A special day is coming up 🌸 | Pretty Petals`,
+    html,
+  });
+
+  if (error) {
+    console.error("[reminder-email] Resend error:", error);
+    return;
+  }
+  console.log(
+    `[reminder-email] sent to ${order.customer.email} for order ${order.orderNumber} (id=${data?.id})`
+  );
+}
+
 export async function sendNewOrderSellerEmail(order: IOrder) {
   if (!process.env.RESEND_API_KEY) {
     console.warn("[seller-email] skip: RESEND_API_KEY not configured");
@@ -400,6 +529,13 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
         year: "numeric",
       })
     : "As scheduled";
+
+  let deliveryLink = "";
+  try {
+    deliveryLink = getDeliveryLink(String(order._id));
+  } catch (e) {
+    console.error("[seller-email] could not build delivery link:", e);
+  }
 
   const html = `
   <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
@@ -472,11 +608,18 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
       ${order.shipping?.address ? `
       <h3 style="font-size:16px;margin:20px 0 12px;border-bottom:2px solid #737530;padding-bottom:8px;">Delivery Address</h3>
       <p style="font-size:14px;color:#464646;margin:0;line-height:1.6;">
-        ${order.customer.name}<br/>
+        ${order.shipping.receiverName || order.customer.name}<br/>
         ${order.shipping.address}<br/>
         ${order.shipping.city || ""}${order.shipping.state ? `, ${order.shipping.state}` : ""} ${order.shipping.pincode || ""}<br/>
-        ${order.customer.phone ? `Phone: ${order.customer.phone}` : ""}
+        ${order.shipping.receiverPhone ? `Receiver Phone: ${order.shipping.receiverPhone}` : ""}
       </p>` : ""}
+
+      ${deliveryLink ? `
+      <div style="margin-top:20px;padding:16px;background:#FFF8E1;border:1px solid #F9E4A0;border-radius:8px;text-align:center;">
+        <p style="margin:0 0 10px;font-size:13px;color:#7a5b00;font-weight:bold;">Delivery Boy Status Link (internal only)</p>
+        <a href="${deliveryLink}" style="display:inline-block;background:#737530;color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;font-size:14px;font-weight:bold;">Open Delivery Update Page</a>
+        <p style="margin:10px 0 0;font-size:11px;color:#999;word-break:break-all;">${deliveryLink}</p>
+      </div>` : ""}
     </div>
 
     <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">

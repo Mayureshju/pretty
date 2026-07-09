@@ -1,12 +1,21 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const testimonials = [
+interface Testimonial {
+  id: string | number;
+  text: string;
+  name: string;
+  rating: number;
+  date: string;
+}
+
+// Curated seed shown until enough approved website/Google reviews accumulate.
+const seedTestimonials: Testimonial[] = [
   {
     id: 1,
     text: "Awesome flowers and beautifully arranged. Had ordered for my Gurumaa and she appreciated the thoughtful collection. God bless each of you in sourcing, putting all together and delivering it. Thank you",
@@ -51,6 +60,39 @@ function StarRating({ rating }: { rating: number }) {
 export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(seedTestimonials);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/reviews?featured=true&limit=6")
+      .then((r) => r.json())
+      .then((data) => {
+        const reviews = (data.reviews || []) as {
+          _id: string;
+          customerName: string;
+          rating: number;
+          comment?: string;
+          title?: string;
+          createdAt: string;
+        }[];
+        if (cancelled || reviews.length === 0) return;
+        setTestimonials(
+          reviews
+            .filter((r) => r.comment)
+            .map((r) => ({
+              id: r._id,
+              text: r.comment || r.title || "",
+              name: r.customerName,
+              rating: r.rating,
+              date: new Date(r.createdAt).toLocaleDateString("en-GB"),
+            }))
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;

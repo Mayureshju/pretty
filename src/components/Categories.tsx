@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 const categories = [
   { name: "Birthday", href: "/flowers/birthday/", image: "/images/categories/icons/birthday.png" },
   { name: "Anniversary", href: "/flowers/anniversary/", image: "/images/categories/icons/anniversary.png" },
-  { name: "Valentine's", href: "/flowers/valentines-day/", image: "/images/categories/icons/valentines.png" },
+  { name: "Premium Flowers", href: "/popular/", image: "/images/categories/exotic-flowers.png" },
+  { name: "Handbunch", href: "/handbunch/", image: "/images/categories/icons/flowers.png" },
   { name: "Funeral", href: "/flowers/funeral/", image: "/images/categories/icons/funeral.png" },
   { name: "Flowers", href: "/flowers/", image: "/images/categories/icons/flowers.png" },
   { name: "Wedding", href: "/flowers/wedding/", image: "/images/categories/icons/wedding.png" },

@@ -41,7 +41,6 @@ const COMPANY = {
   address:
     "Shop No. 3, 15A, Gagangiri CHS Off Carter Rd Golf Link Road, Union Park, Khar West, Mumbai - 400052",
   phone: "Ph: 9833100194 / 8369224582",
-  senderPhone: "+91 9833100194",
 };
 
 export default function PackingSlipPage({ params }: { params: Promise<{ id: string }> }) {
@@ -149,8 +148,7 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
                 <>Ph: {order.shipping.receiverPhone}<br /></>
               )}
               {order.shipping.address && <>{order.shipping.address}<br /></>}
-              {order.shipping.city}{order.shipping.state && `, ${order.shipping.state}`} {order.shipping.pincode}<br />
-              {order.shipping.city || "Mumbai"}
+              {order.shipping.city}{order.shipping.state && `, ${order.shipping.state}`} {order.shipping.pincode}
             </p>
           </div>
           <div>
@@ -159,7 +157,7 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
               {order.customer.name}<br />
               {order.shipping.city || "Mumbai"}<br />
               Email: {order.customer.email}<br />
-              Sender Phone: {COMPANY.senderPhone}
+              Sender Phone: {order.customer.phone ? `+91 ${order.customer.phone}` : "-"}
             </p>
           </div>
           <div>

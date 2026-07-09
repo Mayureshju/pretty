@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -185,7 +186,7 @@ function ProductCarousel({ products, title, city }: { products: CityProduct[]; t
             <div key={product._id} className="city-product-card shrink-0 w-[160px] md:w-auto bg-white rounded-xl overflow-hidden border border-[#F0F0F0] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-shadow">
               <Link href={`/product/${product.slug}/`} className="block">
                 <div className="aspect-[4/5] bg-[#F5F5F5] overflow-hidden relative">
-                  <Image
+                  <SafeImage
                     src={image}
                     alt={product.images?.[0]?.alt || product.name}
                     fill

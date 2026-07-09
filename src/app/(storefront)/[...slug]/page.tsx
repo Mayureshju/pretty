@@ -157,7 +157,7 @@ export default async function SlugPage({ params }: Props) {
     const [products, childCategories, totalProducts, activeSales] = await Promise.all([
       Product.find({ categories: category!._id, isActive: true })
         .select("name slug pricing images metrics isFeatured categories")
-        .sort({ order: 1, "metrics.totalSales": -1 })
+        .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
         .limit(24)
         .lean(),
       Category.find({ parent: category!._id, isActive: true })
@@ -199,7 +199,7 @@ export default async function SlugPage({ params }: Props) {
     const [products, childCategories, totalProducts, activeSales] = await Promise.all([
       Product.find({ categories: category._id, isActive: true })
         .select("name slug pricing images metrics isFeatured categories")
-        .sort({ order: 1, "metrics.totalSales": -1 })
+        .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
         .limit(24)
         .lean(),
       Category.find({ parent: category._id, isActive: true })

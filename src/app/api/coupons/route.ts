@@ -12,7 +12,7 @@ export async function GET() {
       validFrom: { $lte: now },
       validTo: { $gte: now },
     })
-      .select("code type value description termsAndConditions minOrderAmount maxDiscount validFrom validTo")
+      .select("code type value description termsAndConditions minOrderAmount maxDiscount autoApply validFrom validTo")
       .sort({ createdAt: -1 })
       .lean();
 

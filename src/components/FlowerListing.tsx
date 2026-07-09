@@ -366,6 +366,11 @@ export default function FlowerListing() {
                   alt={product.name}
                   className="product-img w-full h-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    const t = e.currentTarget;
+                    if (!t.src.endsWith("/images/products/placeholder.jpg"))
+                      t.src = "/images/products/placeholder.jpg";
+                  }}
                 />
                 {/* Image dots indicator */}
                 <div className="absolute bottom-2.5 left-3 flex items-center gap-1">

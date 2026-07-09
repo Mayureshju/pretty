@@ -18,6 +18,7 @@ interface CouponItem {
   description: string;
   termsAndConditions: string;
   isPubliclyVisible: boolean;
+  autoApply?: boolean;
   minOrderAmount: number;
   maxDiscount?: number;
   usageLimit?: number;
@@ -42,6 +43,7 @@ const defaultForm = {
   description: "",
   termsAndConditions: "",
   isPubliclyVisible: true,
+  autoApply: false,
   minOrderAmount: 0,
   maxDiscount: "",
   usageLimit: "",
@@ -103,6 +105,7 @@ export default function CouponsPage() {
       description: coupon.description || "",
       termsAndConditions: coupon.termsAndConditions || "",
       isPubliclyVisible: coupon.isPubliclyVisible ?? true,
+      autoApply: coupon.autoApply ?? false,
       minOrderAmount: coupon.minOrderAmount,
       maxDiscount:
         coupon.maxDiscount !== undefined ? String(coupon.maxDiscount) : "",
@@ -132,6 +135,7 @@ export default function CouponsPage() {
         description: form.description,
         termsAndConditions: form.termsAndConditions,
         isPubliclyVisible: form.isPubliclyVisible,
+        autoApply: form.autoApply,
         minOrderAmount: form.minOrderAmount,
         maxDiscount: form.maxDiscount ? Number(form.maxDiscount) : undefined,
         usageLimit: form.usageLimit ? Number(form.usageLimit) : undefined,
@@ -626,6 +630,22 @@ export default function CouponsPage() {
                 }`}
               >
                 {form.isPubliclyVisible ? "Visible" : "Hidden"}
+              </button>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Auto-apply at Checkout
+              </label>
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, autoApply: !form.autoApply })}
+                className={`relative inline-flex h-10 w-full items-center justify-center rounded-lg border text-sm font-medium transition-colors ${
+                  form.autoApply
+                    ? "border-amber-200 bg-amber-50 text-amber-700"
+                    : "border-gray-200 bg-gray-50 text-gray-500"
+                }`}
+              >
+                {form.autoApply ? "Auto-applies best" : "Manual only"}
               </button>
             </div>
           </div>

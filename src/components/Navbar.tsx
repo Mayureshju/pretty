@@ -21,6 +21,7 @@ interface TopMenuItem {
 }
 
 const FLORAL_TYPES = [
+  { label: "Handbunch", href: "/handbunch/" },
   { label: "Roses", href: "/flowers/roses/" },
   { label: "Mixed Flowers", href: "/flowers/mixed-flowers/" },
   { label: "Carnations", href: "/flowers/carnations/" },
@@ -153,7 +154,7 @@ const MENU: TopMenuItem[] = [
           { label: "Wedding Flowers", href: "/flowers/wedding/" },
           { label: "Get Well Soon", href: "/flowers/get-well-soon/" },
           { label: "Congratulations", href: "/flowers/congratulations/" },
-          { label: "Sympathy / Funeral", href: "/flowers/sympathy/" },
+          { label: "Sympathy / Funeral", href: "/flowers/funeral/" },
           { label: "Housewarming", href: "/flowers/house-warming/" },
           { label: "Corporate Gifting", href: "/corporate/" },
         ],

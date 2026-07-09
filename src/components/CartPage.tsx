@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import toast from "react-hot-toast";
@@ -325,7 +326,7 @@ export default function CartPage() {
                     className="relative shrink-0"
                   >
                     <div className="w-[80px] h-[80px] rounded-lg overflow-hidden bg-[#f8f8f8]">
-                      <Image
+                      <SafeImage
                         src={item.image}
                         alt={item.name}
                         width={80}
@@ -469,7 +470,7 @@ export default function CartPage() {
                         className="rounded-xl bg-white border border-white/80 overflow-hidden group hover:shadow-md transition-shadow"
                       >
                         <a href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
-                          <Image
+                          <SafeImage
                             src={img}
                             alt={p.name}
                             width={160}

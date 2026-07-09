@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
@@ -98,7 +99,7 @@ export default async function SearchPage({ searchParams }: Props) {
                         </div>
                       )}
                       <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--bg-lighter)]">
-                        <Image
+                        <SafeImage
                           src={mainImage}
                           alt={p.images?.[0]?.alt || p.name}
                           fill

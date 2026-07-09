@@ -21,6 +21,26 @@ interface DeliveryInfo {
   estimatedTime: string | null;
 }
 
+/* ── Public coupon shape (from GET /api/coupons) ── */
+interface PublicCoupon {
+  _id: string;
+  code: string;
+  type: "percentage" | "fixed";
+  value: number;
+  description?: string;
+  minOrderAmount: number;
+  maxDiscount?: number;
+  autoApply?: boolean;
+}
+
+/* ── Estimate a coupon's discount client-side (mirrors server validation) ── */
+function estimateDiscount(c: PublicCoupon, subtotal: number): number {
+  let d = c.type === "percentage" ? Math.round((subtotal * c.value) / 100) : c.value;
+  if (c.type === "percentage" && c.maxDiscount && d > c.maxDiscount) d = c.maxDiscount;
+  if (d > subtotal) d = subtotal;
+  return d;
+}
+
 /* ── Checkout form inner component (uses useSearchParams) ── */
 function CheckoutInner() {
   const router = useRouter();
@@ -75,10 +95,21 @@ function CheckoutInner() {
   const [couponMessage, setCouponMessage] = useState("");
   const [couponError, setCouponError] = useState("");
   const [couponLoading, setCouponLoading] = useState(false);
+  const [availableCoupons, setAvailableCoupons] = useState<PublicCoupon[]>([]);
+  const [showCouponList, setShowCouponList] = useState(false);
+  const autoApplyDone = useRef(false);
+
+  /* ── Free-delivery nudge popup ── */
+  const [showFreeDelivPopup, setShowFreeDelivPopup] = useState(false);
+  const freeDelivShownFor = useRef("");
 
   /* ── Coupon handlers ── */
-  const handleApplyCoupon = async () => {
-    if (!couponCode.trim()) return;
+  const applyCouponCode = async (
+    code: string,
+    opts?: { silent?: boolean }
+  ): Promise<boolean> => {
+    const trimmed = code.trim();
+    if (!trimmed) return false;
     setCouponLoading(true);
     setCouponError("");
     setCouponMessage("");
@@ -87,29 +118,35 @@ function CheckoutInner() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          code: couponCode.trim(),
+          code: trimmed,
           subtotal: cartItems.reduce((s, i) => s + i.price * i.quantity, 0),
         }),
       });
       const data = await res.json();
       if (data.valid) {
+        setCouponCode(data.couponCode || trimmed);
         setDiscount(data.discount);
         setCouponApplied(true);
         setCouponMessage(data.message);
         setCouponError("");
-        toast.success(data.message);
+        if (!opts?.silent) toast.success(data.message);
+        return true;
       } else {
         setDiscount(0);
         setCouponApplied(false);
-        setCouponError(data.message);
+        if (!opts?.silent) setCouponError(data.message);
         setCouponMessage("");
+        return false;
       }
     } catch {
-      setCouponError("Failed to validate coupon");
+      if (!opts?.silent) setCouponError("Failed to validate coupon");
+      return false;
     } finally {
       setCouponLoading(false);
     }
   };
+
+  const handleApplyCoupon = () => applyCouponCode(couponCode);
 
   const handleRemoveCoupon = () => {
     setCouponCode("");
@@ -117,6 +154,8 @@ function CheckoutInner() {
     setCouponApplied(false);
     setCouponMessage("");
     setCouponError("");
+    // Prevent auto-apply from immediately re-adding a coupon the user removed.
+    autoApplyDone.current = true;
   };
 
   /* ── Form state ── */
@@ -166,6 +205,35 @@ function CheckoutInner() {
       toast.error("Payment failed. Please try again.");
     }
   }, [searchParams]);
+
+  /* ── Fetch available coupons + auto-apply best eligible ── */
+  useEffect(() => {
+    if (!mounted) return;
+    let cancelled = false;
+    fetch("/api/coupons")
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        const list = (data.coupons || []) as PublicCoupon[];
+        setAvailableCoupons(list);
+
+        if (autoApplyDone.current || couponApplied) return;
+        const sub = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
+        const eligible = list
+          .filter((c) => c.autoApply && sub >= c.minOrderAmount)
+          .map((c) => ({ c, d: estimateDiscount(c, sub) }))
+          .sort((a, b) => b.d - a.d);
+        if (eligible.length > 0 && eligible[0].d > 0) {
+          autoApplyDone.current = true;
+          applyCouponCode(eligible[0].c.code, { silent: true });
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted]);
 
   /* ── GSAP entrance animation ── */
   useEffect(() => {
@@ -217,6 +285,21 @@ function CheckoutInner() {
 
     return () => controller.abort();
   }, [pincode]);
+
+  /* ── Free-delivery popup: nudge when the resolved city offers free delivery
+     above a threshold and the cart is still below it (e.g. Thane, Navi Mumbai,
+     Dahisar, Virar with ₹10,000 threshold). Data-driven off freeDeliveryAbove. ── */
+  useEffect(() => {
+    if (!deliveryInfo) return;
+    const threshold = deliveryInfo.freeDeliveryAbove;
+    if (!threshold || threshold <= 0) return;
+    if (deliveryInfo.deliveryCharge <= 0) return; // delivery already free here
+    const sub = cartItems.reduce((s, i) => s + i.price * i.quantity, 0);
+    if (sub >= threshold) return; // already qualifies
+    if (freeDelivShownFor.current === deliveryInfo.city) return;
+    freeDelivShownFor.current = deliveryInfo.city;
+    setShowFreeDelivPopup(true);
+  }, [deliveryInfo, cartItems]);
 
   /* ── Calendar helpers ── */
   const minDeliveryDate = useMemo(() => {
@@ -928,6 +1011,62 @@ function CheckoutInner() {
                     {couponError && (
                       <p className="text-xs text-[#EA1E61] mt-1">{couponError}</p>
                     )}
+
+                    {availableCoupons.length > 0 && (
+                      <div className="mt-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowCouponList((v) => !v)}
+                          className="text-xs font-semibold text-[#737530] hover:underline cursor-pointer"
+                        >
+                          {showCouponList ? "Hide" : "View"} available coupons ({availableCoupons.length})
+                        </button>
+
+                        {showCouponList && (
+                          <div className="mt-2 space-y-2">
+                            {availableCoupons.map((c) => {
+                              const eligible = subtotal >= c.minOrderAmount;
+                              return (
+                                <div
+                                  key={c._id}
+                                  className={`flex items-center justify-between gap-2 rounded-lg border px-3 py-2 ${
+                                    eligible ? "border-[#737530]/40 bg-[#FAFAF5]" : "border-gray-200 opacity-60"
+                                  }`}
+                                >
+                                  <div className="min-w-0">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-sm font-bold text-[#1C2120]">{c.code}</span>
+                                      <span className="text-[11px] text-[#737530] font-semibold">
+                                        {c.type === "percentage" ? `${c.value}% off` : `₹${c.value} off`}
+                                      </span>
+                                    </div>
+                                    {c.description && (
+                                      <p className="text-[11px] text-[#888] truncate">{c.description}</p>
+                                    )}
+                                    {!eligible && (
+                                      <p className="text-[11px] text-[#EA1E61]">
+                                        Add ₹{(c.minOrderAmount - subtotal).toLocaleString("en-IN")} more to use
+                                      </p>
+                                    )}
+                                  </div>
+                                  <button
+                                    type="button"
+                                    disabled={!eligible || couponLoading}
+                                    onClick={() => {
+                                      applyCouponCode(c.code);
+                                      setShowCouponList(false);
+                                    }}
+                                    className="shrink-0 px-3 py-1.5 text-xs font-semibold border-2 border-[#737530] text-[#737530] rounded-lg hover:bg-[#737530] hover:text-white transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                                  >
+                                    Apply
+                                  </button>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -1047,6 +1186,60 @@ function CheckoutInner() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Free-delivery nudge popup ── */}
+      {showFreeDelivPopup && deliveryInfo?.freeDeliveryAbove && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setShowFreeDelivPopup(false)}
+          />
+          <div className="relative z-10 w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setShowFreeDelivPopup(false)}
+              className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 cursor-pointer"
+              aria-label="Close"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <div className="text-4xl mb-2">🚚</div>
+            <h3 className="text-lg font-bold text-[#1C2120]">
+              FREE delivery to {deliveryInfo.city}!
+            </h3>
+            <p className="mt-2 text-sm text-[#464646] leading-relaxed">
+              You&apos;re just{" "}
+              <span className="font-bold text-[#737530]">
+                ₹{(deliveryInfo.freeDeliveryAbove - subtotal).toLocaleString("en-IN")}
+              </span>{" "}
+              away from <b>FREE delivery</b>. Orders above{" "}
+              ₹{deliveryInfo.freeDeliveryAbove.toLocaleString("en-IN")} to {deliveryInfo.city} ship free.
+            </p>
+            <div className="mt-5 flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowFreeDelivPopup(false);
+                  router.push("/flowers/");
+                }}
+                className="flex-1 rounded-lg bg-[#737530] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#4C4D27] transition-colors cursor-pointer"
+              >
+                Add more items
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowFreeDelivPopup(false)}
+                className="flex-1 rounded-lg border-2 border-gray-200 px-4 py-2.5 text-sm font-semibold text-[#464646] hover:bg-gray-50 transition-colors cursor-pointer"
+              >
+                No thanks
+              </button>
             </div>
           </div>
         </div>

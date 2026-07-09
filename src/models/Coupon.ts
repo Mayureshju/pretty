@@ -7,6 +7,7 @@ export interface ICoupon extends Document {
   description: string;
   termsAndConditions: string;
   isPubliclyVisible: boolean;
+  autoApply: boolean;
   minOrderAmount: number;
   maxDiscount?: number;
   usageLimit?: number;
@@ -28,6 +29,7 @@ const CouponSchema = new Schema<ICoupon>(
     description: { type: String, default: "" },
     termsAndConditions: { type: String, default: "" },
     isPubliclyVisible: { type: Boolean, default: true },
+    autoApply: { type: Boolean, default: false },
     minOrderAmount: { type: Number, default: 0 },
     maxDiscount: { type: Number },
     usageLimit: { type: Number },

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import { getWishlist, removeFromWishlist } from "@/lib/wishlist";
 import { addToCart } from "@/lib/cart";
 import toast from "react-hot-toast";
@@ -113,7 +114,7 @@ export default function WishlistContent() {
 
               <Link href={`/product/${product.slug}/`} className="block">
                 <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#f5f5f5]">
-                  <Image src={img} alt={product.name} fill unoptimized
+                  <SafeImage src={img} alt={product.name} fill unoptimized
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 20vw" loading="lazy" />
                 </div>
