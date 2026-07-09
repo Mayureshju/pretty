@@ -88,10 +88,7 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
       ${order.shipping?.address ? `
       <h3 style="font-size:16px;margin:20px 0 12px;border-bottom:2px solid #737530;padding-bottom:8px;">Delivery Address</h3>
       <p style="font-size:14px;color:#464646;margin:0;line-height:1.6;">
-        ${order.customer.name}<br/>
-        ${order.shipping.address}<br/>
-        ${order.shipping.city || ""}${order.shipping.state ? `, ${order.shipping.state}` : ""} ${order.shipping.pincode || ""}<br/>
-        ${order.customer.phone ? `Phone: ${order.customer.phone}` : ""}
+        ${formatDeliveryAddressHtml(order)}
       </p>` : ""}
     </div>
 
@@ -117,11 +114,19 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
   );
 }
 
-function formatDeliveryAddress(order: IOrder): string {
+function formatDeliveryAddressHtml(order: IOrder): string {
   const s = order.shipping;
   if (!s?.address) return "As provided";
-  const parts = [s.address, s.city, s.state, s.pincode].filter(Boolean);
-  return parts.join(", ");
+  const cityLine = [s.city, s.state].filter(Boolean).join(", ");
+  return [
+    s.receiverName || order.customer.name,
+    s.address,
+    cityLine,
+    s.pincode ? `PIN: ${s.pincode}` : "",
+    s.receiverPhone ? `Phone: ${s.receiverPhone}` : "",
+  ]
+    .filter(Boolean)
+    .join("<br/>");
 }
 
 export async function sendProcessingEmail(order: IOrder) {
@@ -221,15 +226,13 @@ export async function sendOutForDeliveryEmail(order: IOrder) {
 
       <h3 style="font-size:16px;margin:0 0 12px;border-bottom:2px solid #737530;padding-bottom:8px;">Delivery Address</h3>
       <p style="font-size:14px;color:#464646;margin:0;line-height:1.6;">
-        ${order.customer.name}<br/>
-        ${formatDeliveryAddress(order)}<br/>
-        ${order.customer.phone ? `Phone: ${order.customer.phone}` : ""}
+        ${formatDeliveryAddressHtml(order)}
       </p>
     </div>
 
     <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
       <p style="margin:0 0 4px;">Our delivery partner will reach you shortly.</p>
-      <p style="margin:0;color:#888;">Thank you for shopping with Pretty Petals &#10084;</p>
+      <p style="margin:0;color:#888;">Thank you,<br/>Pretty Petals &#10084;</p>
     </div>
   </div>`;
 
@@ -271,7 +274,7 @@ export async function sendDeliveredEmail(order: IOrder) {
           <span style="font-size:28px;color:#009D43;">&#10003;</span>
         </div>
         <h2 style="margin:0 0 4px;font-size:20px;">Order Delivered</h2>
-        <p style="color:#888;margin:0;font-size:14px;">Hi ${order.customer.name}, your order has been delivered.</p>
+        <p style="color:#888;margin:0;font-size:14px;">Hi ${order.customer.name}, your flowers have been delivered.</p>
       </div>
 
       <div style="background:#f9f9f9;border-radius:8px;padding:16px;margin-bottom:20px;">
@@ -284,13 +287,12 @@ export async function sendDeliveredEmail(order: IOrder) {
       </div>
 
       <p style="font-size:14px;color:#464646;line-height:1.6;margin:0;">
-        We hope you loved your flowers! If you have a moment, we'd be grateful if you shared your experience by replying to this email or leaving a review on the product page.
+        Your flowers from Pretty Petals have been delivered. We hope they brought a smile to your loved one's face! Please rate your experience by replying to this email or leaving a review on the product page.
       </p>
     </div>
 
     <div style="background:#F2F3E8;padding:20px;text-align:center;font-size:13px;color:#464646;">
       <p style="margin:0 0 4px;">Thank you for shopping with Pretty Petals &#10084;</p>
-      <p style="margin:0;color:#888;">We can't wait to bloom again with you.</p>
     </div>
   </div>`;
 

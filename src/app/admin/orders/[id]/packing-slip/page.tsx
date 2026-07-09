@@ -77,15 +77,15 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
     <>
       <style>{`
         @media print {
-          @page { size: A5 portrait; margin: 8mm 7mm; }
+          @page { size: A5 portrait; margin: 0; }
           html, body { width: auto; height: auto; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
           .slip-page {
-            padding: 0 !important;
+            padding: 8mm 7mm !important;
             max-width: none !important;
             width: 100% !important;
-            min-height: calc(210mm - 16mm) !important;
+            min-height: 210mm !important;
             height: auto !important;
             display: flex !important;
             flex-direction: column !important;
