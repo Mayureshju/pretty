@@ -78,30 +78,43 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
       <style>{`
         @media print {
           @page { size: A5 portrait; margin: 0; }
-          html, body { width: auto; height: auto; }
+          html, body {
+            width: auto;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
           .slip-page {
-            padding: 8mm 7mm !important;
+            padding: 5mm 6mm !important;
             max-width: none !important;
             width: 100% !important;
-            min-height: 210mm !important;
+            min-height: 0 !important;
             height: auto !important;
-            display: flex !important;
-            flex-direction: column !important;
+            display: block !important;
+            page-break-after: avoid;
+            break-after: avoid;
           }
-          .spacer { display: block !important; flex: 1 1 auto !important; }
+          /* Spacer was pushing footer past printable height → page 2 */
+          .spacer { display: none !important; }
           .footer {
-            margin-top: auto !important;
+            margin-top: 6px !important;
+            padding-top: 4px !important;
             page-break-inside: avoid;
             break-inside: avoid;
+            page-break-before: avoid;
+            break-before: avoid;
           }
           table, tr, td, th { page-break-inside: avoid; }
-          .grid-3 { gap: 8px !important; margin-bottom: 6px !important; }
-          .meta-section { margin-bottom: 4px !important; }
-          .divider { margin: 5px 0 !important; }
-          table { margin-bottom: 5px !important; }
-          th, td { padding: 4px 5px !important; }
+          .header { margin-bottom: 4px !important; }
+          .logo { height: 32px !important; }
+          .grid-3 { gap: 6px !important; margin-bottom: 4px !important; }
+          .meta-section { margin-bottom: 3px !important; }
+          .divider { margin: 4px 0 !important; }
+          table { margin-bottom: 4px !important; }
+          th, td { padding: 3px 4px !important; }
+          .item-img { width: 22px !important; height: 22px !important; }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #111; background: #fff; }
