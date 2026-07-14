@@ -95,43 +95,46 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         @media print {
           @page {
             size: A5 portrait;
+            /* margin: 0 removes browser URL/date/page chrome */
             margin: 0;
-            /* Suppress browser-generated header/footer (URL, page #, date) where supported */
-            @top-left { content: none; }
-            @top-center { content: none; }
-            @top-right { content: none; }
-            @bottom-left { content: none; }
-            @bottom-center { content: none; }
-            @bottom-right { content: none; }
+            @top-left { content: ""; }
+            @top-center { content: ""; }
+            @top-right { content: ""; }
+            @bottom-left { content: ""; }
+            @bottom-center { content: ""; }
+            @bottom-right { content: ""; }
           }
           html, body {
-            width: auto;
+            width: auto !important;
             height: auto !important;
+            min-height: 0 !important;
             margin: 0 !important;
             padding: 0 !important;
+            overflow: visible !important;
           }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .no-print { display: none !important; }
+          .no-print,
+          [data-rht-toaster],
+          iframe { display: none !important; }
           .slip-page {
-            position: relative !important;
-            padding: 5mm 6mm 12mm !important;
+            position: static !important;
+            padding: 6mm 7mm !important;
             max-width: none !important;
-            width: 148mm !important;
-            min-height: 210mm !important;
-            height: 210mm !important;
+            width: 100% !important;
+            min-height: 0 !important;
+            height: auto !important;
             display: block !important;
-            overflow: hidden !important;
+            overflow: visible !important;
             page-break-after: avoid;
             break-after: avoid;
+            page-break-inside: avoid;
+            break-inside: avoid;
           }
           .spacer { display: none !important; }
           .footer {
-            position: absolute !important;
-            left: 6mm;
-            right: 6mm;
-            bottom: 5mm;
-            margin-top: 0 !important;
-            padding-top: 4px !important;
+            position: static !important;
+            margin-top: 10px !important;
+            padding-top: 6px !important;
             page-break-inside: avoid;
             break-inside: avoid;
           }
