@@ -49,6 +49,16 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const prevTitle = document.title;
+    const clearPrintChrome = () => {
+      document.title = " ";
+    };
+    const restoreTitle = () => {
+      document.title = prevTitle;
+    };
+    window.addEventListener("beforeprint", clearPrintChrome);
+    window.addEventListener("afterprint", restoreTitle);
+
     fetch(`/api/admin/orders/${id}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
@@ -57,6 +67,12 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
         if (data) setTimeout(() => window.print(), 500);
       })
       .catch(() => setLoading(false));
+
+    return () => {
+      window.removeEventListener("beforeprint", clearPrintChrome);
+      window.removeEventListener("afterprint", restoreTitle);
+      document.title = prevTitle;
+    };
   }, [id]);
 
   if (loading) return <div style={{ padding: 40, textAlign: "center" }}>Loading packing slip...</div>;
@@ -77,7 +93,17 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
     <>
       <style>{`
         @media print {
-          @page { size: A5 portrait; margin: 0; }
+          @page {
+            size: A5 portrait;
+            margin: 0;
+            /* Suppress browser-generated header/footer (URL, page #, date) where supported */
+            @top-left { content: none; }
+            @top-center { content: none; }
+            @top-right { content: none; }
+            @bottom-left { content: none; }
+            @bottom-center { content: none; }
+            @bottom-right { content: none; }
+          }
           html, body {
             width: auto;
             height: auto !important;
@@ -87,24 +113,27 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .no-print { display: none !important; }
           .slip-page {
-            padding: 5mm 6mm !important;
+            position: relative !important;
+            padding: 5mm 6mm 12mm !important;
             max-width: none !important;
-            width: 100% !important;
-            min-height: 0 !important;
-            height: auto !important;
+            width: 148mm !important;
+            min-height: 210mm !important;
+            height: 210mm !important;
             display: block !important;
+            overflow: hidden !important;
             page-break-after: avoid;
             break-after: avoid;
           }
-          /* Spacer was pushing footer past printable height → page 2 */
           .spacer { display: none !important; }
           .footer {
-            margin-top: 6px !important;
+            position: absolute !important;
+            left: 6mm;
+            right: 6mm;
+            bottom: 5mm;
+            margin-top: 0 !important;
             padding-top: 4px !important;
             page-break-inside: avoid;
             break-inside: avoid;
-            page-break-before: avoid;
-            break-before: avoid;
           }
           table, tr, td, th { page-break-inside: avoid; }
           .header { margin-bottom: 4px !important; }
