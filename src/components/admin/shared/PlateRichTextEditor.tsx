@@ -14,7 +14,14 @@
  *   re-renders a button whose active state actually changed.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import toast from "react-hot-toast";
 import { KEYS, type TElement, type Value } from "platejs";
 import { Plate, useEditorRef, useEditorSelector, usePlateEditor } from "platejs/react";
@@ -26,7 +33,16 @@ import { Editor, EditorContainer } from "@/components/ui/editor";
 import { stripNonContentTags } from "@/lib/plate-html";
 import { HEADING_LEVELS, editorPlugins } from "./plate-plugins";
 
-const EMPTY_VALUE: Value = [{ type: "p", children: [{ text: "" }] }];
+/**
+ * Must return a fresh document every call. Slate takes ownership of the node
+ * objects it is given, so handing the same references to two editors on one
+ * page (the blog and product forms each render two) makes path lookups fail
+ * with "Unable to find the path for Slate node".
+ */
+const createEmptyValue = (): Value => [{ type: "p", children: [{ text: "" }] }];
+
+/** Stable no-op subscription: the client/server answer never changes. */
+const subscribeNoop = () => () => {};
 
 interface PlateRichTextEditorProps {
   /**
@@ -390,6 +406,19 @@ export default function PlateRichTextEditor({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
+  // The editor is deliberately not server-rendered. Seeding from `fallbackHtml`
+  // needs a DOM to parse the legacy markup, which the server does not have, so
+  // SSR would emit an empty editor and hydration would mismatch. This is an
+  // admin-only surface with no SEO value, so rendering after mount costs
+  // nothing. useSyncExternalStore is the hydration-safe way to ask "am I on the
+  // client" — it returns false during SSR and the first client render, so the
+  // two agree, then flips.
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false
+  );
+
   // Captured once: the editor owns its value after mount, so later prop changes
   // must not yank content out from under the author mid-edit.
   const initialJson = useRef(valueJson);
@@ -400,7 +429,11 @@ export default function PlateRichTextEditor({
     value: (ed) => {
       const json = initialJson.current;
       // Trust boundary: shape comes from the database, Plate normalises it.
-      if (Array.isArray(json) && json.length > 0) return json as Value;
+      // Cloned because Slate mutates the nodes it is handed, and this array is
+      // the parent form's React state.
+      if (Array.isArray(json) && json.length > 0) {
+        return structuredClone(json) as Value;
+      }
 
       const html = initialHtml.current;
       if (html && html.trim()) {
@@ -414,7 +447,7 @@ export default function PlateRichTextEditor({
           // Fall through to an empty document rather than blocking the editor.
         }
       }
-      return EMPTY_VALUE;
+      return createEmptyValue();
     },
   });
 
@@ -442,6 +475,17 @@ export default function PlateRichTextEditor({
   }, [editor]);
 
   const containerStyle = useMemo(() => ({ minHeight }), [minHeight]);
+
+  // Reserve the same box before mount so swapping in the editor does not shift
+  // the surrounding form.
+  if (!mounted) {
+    return (
+      <div
+        className="overflow-hidden rounded-xl border border-gray-200 bg-white"
+        style={containerStyle}
+      />
+    );
+  }
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-colors focus-within:border-[#737530] focus-within:ring-1 focus-within:ring-[#737530]/20">
