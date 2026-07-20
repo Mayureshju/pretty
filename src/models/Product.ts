@@ -26,8 +26,16 @@ export interface IProductAddon {
 export interface IProduct extends Document {
   name: string;
   slug: string;
+  /**
+   * Rendered HTML, derived on save from `descriptionJson`. Must stay a plain
+   * HTML string: ProductSchema carries a text index on this field and the
+   * storefront renders it directly.
+   */
   description?: string;
   shortDescription?: string;
+  /** Canonical Plate/Slate documents. Absent on records not yet re-saved. */
+  descriptionJson?: unknown[];
+  shortDescriptionJson?: unknown[];
   sku?: string;
   type: "simple" | "variable";
   pricing: {
@@ -101,6 +109,8 @@ const ProductSchema = new Schema<IProduct>(
     slug: { type: String, required: true, unique: true, lowercase: true },
     description: { type: String },
     shortDescription: { type: String },
+    descriptionJson: { type: Schema.Types.Mixed },
+    shortDescriptionJson: { type: Schema.Types.Mixed },
     sku: { type: String },
     type: {
       type: String,

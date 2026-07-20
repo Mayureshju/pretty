@@ -1,4 +1,11 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+/* Class-based dark variant only. The storefront has no dark mode, so this
+   prevents Plate/shadcn `dark:` utilities from activating via the visitor's
+   OS colour-scheme preference. */
+@custom-variant dark (&:is(.dark *));
 
 :root {
   /* Primary - Olive Green (FNP-inspired) */
@@ -57,6 +64,85 @@
   --color-border-light: var(--border-light);
   --color-border-card: var(--border-card);
   --font-sans: var(--font-inter), 'Inter', sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   shadcn/ui/Plate design tokens (admin editor only).
+
+   IMPORTANT: `--primary` is intentionally NOT redefined here. It is owned by
+   the brand palette above (olive #737530) and is consumed by bg-primary /
+   text-primary across the storefront. shadcn components inherit the brand
+   olive as their primary colour; only --primary-foreground is added so text
+   on olive stays legible.
+   --------------------------------------------------------------------------- */
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
 @layer base {
@@ -165,3 +251,70 @@
   }
 }
 
+
+/* ---------------------------------------------------------------------------
+   Admin rich-text editor (Plate) editing surface.
+
+   Previously these lived in a styled-jsx <style jsx global> block inside the
+   editor component, which needs a StyleRegistry to render correctly during SSR
+   in the App Router. Plain CSS here avoids that entirely.
+   --------------------------------------------------------------------------- */
+.admin-plate-content {
+  min-height: inherit;
+  white-space: normal;
+  word-break: break-word;
+}
+.admin-plate-content p {
+  margin: 0 0 0.75rem;
+  line-height: 1.75;
+}
+.admin-plate-content h1,
+.admin-plate-content h2,
+.admin-plate-content h3,
+.admin-plate-content h4 {
+  margin: 1.25rem 0 0.6rem;
+  color: #1c2120;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.admin-plate-content h1 { font-size: 1.75rem; }
+.admin-plate-content h2 { font-size: 1.45rem; }
+.admin-plate-content h3 { font-size: 1.2rem; }
+.admin-plate-content h4 { font-size: 1rem; }
+.admin-plate-content ul,
+.admin-plate-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+.admin-plate-content ul { list-style: disc; }
+.admin-plate-content ol { list-style: decimal; }
+.admin-plate-content li { margin: 0.25rem 0; }
+.admin-plate-content blockquote {
+  margin: 1rem 0;
+  border-left: 4px solid #737530;
+  background: #fafaf5;
+  padding: 0.75rem 1rem;
+  color: #464646;
+}
+.admin-plate-content code {
+  border-radius: 0.25rem;
+  background: #f3f4f6;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.85em;
+}
+.admin-plate-content a {
+  color: #737530;
+  text-decoration: underline;
+}
+.admin-plate-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 0.75rem;
+}
+.admin-plate-content hr {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+}

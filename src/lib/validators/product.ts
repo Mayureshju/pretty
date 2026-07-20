@@ -1,10 +1,21 @@
 import { z } from "zod";
 
+/**
+ * A Plate/Slate document. The node shapes are validated by the editor's schema,
+ * not here — this only guards the outer container so a malformed body cannot
+ * reach the serializer.
+ */
+const slateDocument = z.array(z.record(z.string(), z.unknown())).optional();
+
 export const createProductSchema = z.object({
   name: z.string().min(1, "Name is required"),
   slug: z.string().optional(),
+  // `description`/`shortDescription` are derived server-side from the *Json
+  // fields; they are still accepted so older clients keep working.
   description: z.string().optional(),
   shortDescription: z.string().optional(),
+  descriptionJson: slateDocument,
+  shortDescriptionJson: slateDocument,
   sku: z.string().optional(),
   type: z.enum(["simple", "variable"]).default("simple"),
   pricing: z.object({

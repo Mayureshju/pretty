@@ -5,6 +5,7 @@ import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Blog from "@/models/Blog";
 import { createBlogSchema } from "@/lib/validators/blog";
 import { getBlogSaveErrorMessage } from "@/lib/api-client";
+import { deriveHtmlFields } from "@/lib/plate-html";
 
 export async function GET(request: NextRequest) {
   try {
@@ -93,6 +94,13 @@ export async function POST(request: NextRequest) {
     if (data.image === "") {
       data.image = undefined;
     }
+
+    // The storefront renders `content`/`excerpt` as HTML; always regenerate
+    // them from the editor's JSON so the two can never drift apart.
+    deriveHtmlFields(data, [
+      ["contentJson", "content"],
+      ["excerptJson", "excerpt"],
+    ]);
 
     const blog = new Blog(data);
     await blog.save();

@@ -5,6 +5,7 @@ import { requireAdmin, handleAuthError, errorResponse } from "@/lib/auth";
 import Product from "@/models/Product";
 import "@/models/Category"; // Register Category model for populate
 import { createProductSchema } from "@/lib/validators/product";
+import { deriveHtmlFields } from "@/lib/plate-html";
 
 export async function GET(request: NextRequest) {
   try {
@@ -115,6 +116,14 @@ export async function POST(request: NextRequest) {
     if (!productData.categories || (productData.categories as unknown[]).length === 0) {
       delete productData.categories;
     }
+
+    // `description` carries a MongoDB text index and `shortDescription` feeds
+    // the meta description, so both must stay plain HTML derived from the
+    // editor's JSON — never raw JSON, and never trusted from the client.
+    deriveHtmlFields(productData, [
+      ["descriptionJson", "description"],
+      ["shortDescriptionJson", "shortDescription"],
+    ]);
 
     const product = new Product(productData);
     await product.save();

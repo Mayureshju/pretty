@@ -30,6 +30,13 @@ export function isValidHttpUrl(value: string): boolean {
 
 interface BlogFormPayload {
   title: string;
+  /**
+   * Canonical rich text from the editor. The server derives the stored HTML
+   * from these, so the legacy `content`/`excerpt` strings are only sent for
+   * records still holding un-migrated HTML.
+   */
+  contentJson?: unknown[];
+  excerptJson?: unknown[];
   content: string;
   excerpt: string;
   image: string;
@@ -52,12 +59,22 @@ export function buildBlogPayload(
     isPublished: form.isPublished,
   };
 
-  if (mode === "update") {
+  // Prefer the editor's JSON; the server regenerates the HTML from it. Fall
+  // back to the raw HTML only when the editor never produced JSON.
+  if (form.contentJson) {
+    payload.contentJson = form.contentJson;
+  } else if (mode === "update") {
     payload.content = form.content;
+  } else if (form.content) {
+    payload.content = form.content;
+  }
+
+  if (form.excerptJson) {
+    payload.excerptJson = form.excerptJson;
+  } else if (mode === "update") {
     payload.excerpt = form.excerpt;
-  } else {
-    if (form.content) payload.content = form.content;
-    if (form.excerpt) payload.excerpt = form.excerpt;
+  } else if (form.excerpt) {
+    payload.excerpt = form.excerpt;
   }
 
   const image = form.image.trim();

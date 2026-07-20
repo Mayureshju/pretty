@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import PlateRichTextEditor from "@/components/admin/shared/PlateRichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
 
 interface CategoryOption {
@@ -47,8 +47,8 @@ export default function NewProductPage() {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [slugManual, setSlugManual] = useState(false);
-  const [description, setDescription] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
+  const [descriptionJson, setDescriptionJson] = useState<unknown[] | undefined>();
+  const [shortDescriptionJson, setShortDescriptionJson] = useState<unknown[] | undefined>();
   const [sku, setSku] = useState("");
   const [regularPrice, setRegularPrice] = useState<number | string>("");
   const [salePrice, setSalePrice] = useState<number | string>("");
@@ -168,9 +168,9 @@ export default function NewProductPage() {
         isAddon,
       };
 
-      if (description.trim()) body.description = description.trim();
-      if (shortDescription.trim())
-        body.shortDescription = shortDescription.trim();
+      // The server derives the stored HTML from these.
+      if (descriptionJson) body.descriptionJson = descriptionJson;
+      if (shortDescriptionJson) body.shortDescriptionJson = shortDescriptionJson;
       if (sku.trim()) body.sku = sku.trim();
       if (selectedCategories.length > 0) body.categories = selectedCategories;
       if (deliveryInfo.trim()) body.deliveryInfo = deliveryInfo.trim();
@@ -345,9 +345,9 @@ export default function NewProductPage() {
                   <label htmlFor="description" className={labelClass}>
                     Description
                   </label>
-                  <RichTextEditor
-                    value={description}
-                    onChange={setDescription}
+                  <PlateRichTextEditor
+                    valueJson={descriptionJson}
+                    onChange={setDescriptionJson}
                     placeholder="Full product description..."
                     minHeight="200px"
                   />
@@ -356,9 +356,9 @@ export default function NewProductPage() {
                   <label htmlFor="shortDescription" className={labelClass}>
                     Short Description
                   </label>
-                  <RichTextEditor
-                    value={shortDescription}
-                    onChange={setShortDescription}
+                  <PlateRichTextEditor
+                    valueJson={shortDescriptionJson}
+                    onChange={setShortDescriptionJson}
                     placeholder="Brief summary for product listings..."
                     minHeight="100px"
                   />

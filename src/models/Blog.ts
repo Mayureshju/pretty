@@ -3,8 +3,15 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IBlog extends Document {
   title: string;
   slug: string;
+  /**
+   * Rendered HTML, derived on save from `contentJson`. Kept as the field the
+   * storefront reads so BlogPostPage and search need no changes.
+   */
   content?: string;
   excerpt?: string;
+  /** Canonical Plate/Slate document. Absent on records not yet re-saved. */
+  contentJson?: unknown[];
+  excerptJson?: unknown[];
   image?: string;
   author?: string;
   category?: string;
@@ -25,6 +32,8 @@ const BlogSchema = new Schema<IBlog>(
     slug: { type: String, required: true, unique: true, lowercase: true },
     content: { type: String },
     excerpt: { type: String },
+    contentJson: { type: Schema.Types.Mixed },
+    excerptJson: { type: Schema.Types.Mixed },
     image: { type: String },
     author: { type: String },
     category: { type: String },
