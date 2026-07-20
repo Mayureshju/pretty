@@ -3,14 +3,26 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import PlateRichTextEditor from "@/components/admin/shared/PlateRichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
 import { buildBlogPayload, isValidHttpUrl, parseApiError } from "@/lib/api-client";
 
 export default function NewBlogPage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{
+    title: string;
+    content: string;
+    excerpt: string;
+    contentJson?: unknown[];
+    excerptJson?: unknown[];
+    image: string;
+    author: string;
+    category: string;
+    tags: string;
+    isPublished: boolean;
+    seo: { metaTitle: string; metaDescription: string };
+  }>({
     title: "",
     content: "",
     excerpt: "",
@@ -26,6 +38,10 @@ export default function NewBlogPage() {
   });
 
   function updateField(field: string, value: string | boolean) {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function updateRichText(field: "contentJson" | "excerptJson", value: unknown[]) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -127,9 +143,9 @@ export default function NewBlogPage() {
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Content</label>
-                <RichTextEditor
-                  value={form.content}
-                  onChange={(v) => updateField("content", v)}
+                <PlateRichTextEditor
+                  valueJson={form.contentJson}
+                  onChange={(v) => updateRichText("contentJson", v)}
                   placeholder="Write your blog content here..."
                   minHeight="400px"
                 />
@@ -140,9 +156,9 @@ export default function NewBlogPage() {
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Excerpt</label>
-                <RichTextEditor
-                  value={form.excerpt}
-                  onChange={(v) => updateField("excerpt", v)}
+                <PlateRichTextEditor
+                  valueJson={form.excerptJson}
+                  onChange={(v) => updateRichText("excerptJson", v)}
                   placeholder="A short summary of the blog post..."
                   minHeight="100px"
                 />

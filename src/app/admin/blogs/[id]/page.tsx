@@ -4,7 +4,7 @@ import React, { use, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
-import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import PlateRichTextEditor from "@/components/admin/shared/PlateRichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
 import { buildBlogPayload, isValidHttpUrl, parseApiError } from "@/lib/api-client";
 
@@ -13,6 +13,9 @@ interface BlogData {
   title: string;
   content?: string;
   excerpt?: string;
+  /** Present once the post has been saved through the Plate editor. */
+  contentJson?: unknown[];
+  excerptJson?: unknown[];
   image?: string;
   author?: string;
   category?: string;
@@ -33,7 +36,19 @@ export default function EditBlogPage({
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{
+    title: string;
+    content: string;
+    excerpt: string;
+    contentJson?: unknown[];
+    excerptJson?: unknown[];
+    image: string;
+    author: string;
+    category: string;
+    tags: string;
+    isPublished: boolean;
+    seo: { metaTitle: string; metaDescription: string };
+  }>({
     title: "",
     content: "",
     excerpt: "",
@@ -59,6 +74,8 @@ export default function EditBlogPage({
           title: data.title,
           content: data.content || "",
           excerpt: data.excerpt || "",
+          contentJson: data.contentJson,
+          excerptJson: data.excerptJson,
           image: data.image || "",
           author: data.author || "",
           category: data.category || "",
@@ -80,6 +97,10 @@ export default function EditBlogPage({
   }, [id, router]);
 
   function updateField(field: string, value: string | boolean) {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function updateRichText(field: "contentJson" | "excerptJson", value: unknown[]) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
@@ -197,9 +218,10 @@ export default function EditBlogPage({
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Content</label>
-                <RichTextEditor
-                  value={form.content}
-                  onChange={(v) => updateField("content", v)}
+                <PlateRichTextEditor
+                  valueJson={form.contentJson}
+                  fallbackHtml={form.content}
+                  onChange={(v) => updateRichText("contentJson", v)}
                   placeholder="Write your blog content here..."
                   minHeight="400px"
                 />
@@ -210,9 +232,10 @@ export default function EditBlogPage({
             <div className="bg-white rounded-xl border border-gray-100 p-6">
               <div>
                 <label className={labelClass}>Excerpt</label>
-                <RichTextEditor
-                  value={form.excerpt}
-                  onChange={(v) => updateField("excerpt", v)}
+                <PlateRichTextEditor
+                  valueJson={form.excerptJson}
+                  fallbackHtml={form.excerpt}
+                  onChange={(v) => updateRichText("excerptJson", v)}
                   placeholder="A short summary of the blog post..."
                   minHeight="100px"
                 />

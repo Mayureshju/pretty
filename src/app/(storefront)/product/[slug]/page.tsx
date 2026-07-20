@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/db";
 import Product, { IProduct } from "@/models/Product";
 import "@/models/Category"; // Ensure Category schema is registered for populate
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
+import { htmlToPlainText } from "@/lib/plate-html";
 import ProductDetail from "@/components/ProductDetail";
 
 type Props = {
@@ -38,9 +39,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Not Found | Pretty Petals" };
 
   const title = product.seo?.metaTitle || product.name;
+  // shortDescription is rich text; strip the markup so the meta tag is prose.
   const description =
     product.seo?.metaDescription ||
-    product.shortDescription ||
+    htmlToPlainText(product.shortDescription) ||
     `Buy ${product.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
   const image = product.images?.[0]?.url;
 

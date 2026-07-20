@@ -9,6 +9,7 @@ import Category from "@/models/Category";
 import Blog, { IBlog } from "@/models/Blog";
 import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
+import { htmlToPlainText } from "@/lib/plate-html";
 import CategoryPage from "@/components/CategoryPage";
 import BlogPostPage from "@/components/BlogPostPage";
 
@@ -118,9 +119,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (blog) {
     const title = blog.seo?.metaTitle || blog.title;
+    // excerpt is rich text; strip the markup so the meta tag is prose.
     const description =
       blog.seo?.metaDescription ||
-      blog.excerpt ||
+      htmlToPlainText(blog.excerpt) ||
       `${blog.title} - Pretty Petals Blog`;
 
     return {

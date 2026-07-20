@@ -10,6 +10,7 @@ import {
 import Product from "@/models/Product";
 import "@/models/Category"; // Register Category model for populate
 import { updateProductSchema } from "@/lib/validators/product";
+import { deriveHtmlFields } from "@/lib/plate-html";
 import mongoose from "mongoose";
 
 export async function GET(
@@ -143,6 +144,14 @@ export async function PUT(
     if (data.categories && (data.categories as string[]).length === 0) {
       (data as Record<string, unknown>).categories = [];
     }
+
+    // `description` carries a MongoDB text index and `shortDescription` feeds
+    // the meta description, so both must stay plain HTML derived from the
+    // editor's JSON — never raw JSON, and never trusted from the client.
+    deriveHtmlFields(data as Record<string, unknown>, [
+      ["descriptionJson", "description"],
+      ["shortDescriptionJson", "shortDescription"],
+    ]);
 
     const product = await Product.findByIdAndUpdate(id, data, {
       new: true,

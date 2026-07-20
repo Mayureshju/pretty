@@ -10,6 +10,7 @@ import {
 import Blog from "@/models/Blog";
 import { updateBlogSchema } from "@/lib/validators/blog";
 import { getBlogSaveErrorMessage } from "@/lib/api-client";
+import { deriveHtmlFields } from "@/lib/plate-html";
 import mongoose from "mongoose";
 
 function revalidateBlog(slug: string) {
@@ -93,6 +94,13 @@ export async function PUT(
     if (data.image === "") {
       (data as Record<string, unknown>).image = undefined;
     }
+
+    // The storefront renders `content`/`excerpt` as HTML; always regenerate
+    // them from the editor's JSON so the two can never drift apart.
+    deriveHtmlFields(data as Record<string, unknown>, [
+      ["contentJson", "content"],
+      ["excerptJson", "excerpt"],
+    ]);
 
     // Capture the pre-update slug so we can bust the cache on the old URL
     // if the admin changes it.

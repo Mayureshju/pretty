@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
-import RichTextEditor from "@/components/admin/shared/RichTextEditor";
+import PlateRichTextEditor from "@/components/admin/shared/PlateRichTextEditor";
 import ImageUploader from "@/components/admin/shared/ImageUploader";
 
 interface CategoryOption {
@@ -55,6 +55,8 @@ export default function EditProductPage({
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
   const [shortDescription, setShortDescription] = useState("");
+  const [descriptionJson, setDescriptionJson] = useState<unknown[] | undefined>();
+  const [shortDescriptionJson, setShortDescriptionJson] = useState<unknown[] | undefined>();
   const [sku, setSku] = useState("");
   const [regularPrice, setRegularPrice] = useState<number | string>("");
   const [salePrice, setSalePrice] = useState<number | string>("");
@@ -96,6 +98,8 @@ export default function EditProductPage({
         setSlug(product.slug || "");
         setDescription(product.description || "");
         setShortDescription(product.shortDescription || "");
+        setDescriptionJson(product.descriptionJson);
+        setShortDescriptionJson(product.shortDescriptionJson);
         setSku(product.sku || "");
         setRegularPrice(product.pricing?.regularPrice ?? "");
         setSalePrice(product.pricing?.salePrice ?? "");
@@ -243,8 +247,12 @@ export default function EditProductPage({
       const body: Record<string, unknown> = {
         name: name.trim(),
         slug: slug.trim() || undefined,
-        description: description.trim() || undefined,
-        shortDescription: shortDescription.trim() || undefined,
+        // The server derives the stored HTML from these; the plain strings
+        // are only sent when the record has not been through the editor yet.
+        descriptionJson,
+        shortDescriptionJson,
+        ...(descriptionJson ? {} : { description: description.trim() || undefined }),
+        ...(shortDescriptionJson ? {} : { shortDescription: shortDescription.trim() || undefined }),
         sku: sku.trim() || undefined,
         pricing: {
           regularPrice: Number(regularPrice),
@@ -443,9 +451,10 @@ export default function EditProductPage({
                   <label htmlFor="description" className={labelClass}>
                     Description
                   </label>
-                  <RichTextEditor
-                    value={description}
-                    onChange={setDescription}
+                  <PlateRichTextEditor
+                    valueJson={descriptionJson}
+                    fallbackHtml={description}
+                    onChange={setDescriptionJson}
                     placeholder="Full product description..."
                     minHeight="200px"
                   />
@@ -454,9 +463,10 @@ export default function EditProductPage({
                   <label htmlFor="shortDescription" className={labelClass}>
                     Short Description
                   </label>
-                  <RichTextEditor
-                    value={shortDescription}
-                    onChange={setShortDescription}
+                  <PlateRichTextEditor
+                    valueJson={shortDescriptionJson}
+                    fallbackHtml={shortDescription}
+                    onChange={setShortDescriptionJson}
                     placeholder="Brief summary for product listings..."
                     minHeight="100px"
                   />

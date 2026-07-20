@@ -972,7 +972,11 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
               <div className="mt-5 p-4 rounded-xl border border-gray-200">
                 <h3 className="text-sm font-semibold text-[#1C2120] mb-2">Description</h3>
                 <div
-                  className="text-sm text-[#464646] leading-relaxed [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-[#737530] [&_a]:underline [&_strong]:font-semibold"
+                  className="prose prose-sm max-w-none text-[#464646] leading-relaxed
+                    prose-headings:text-[#1C2120] prose-headings:font-semibold
+                    prose-a:text-[#737530] prose-a:underline
+                    prose-img:rounded-xl prose-img:mx-auto
+                    prose-blockquote:border-l-[#737530] prose-blockquote:text-[#464646]"
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               </div>
