@@ -15,6 +15,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/** Local calendar date as YYYY-MM-DD (avoids IST off-by-one from toISOString). */
+function toISODate(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
 interface ProductImage {
   url: string;
   alt?: string;
@@ -175,6 +183,23 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
+  const [globalBlockedDates, setGlobalBlockedDates] = useState<string[]>([]);
+
+  // Global blocked delivery dates (apply even before pincode check)
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/blocked-delivery-dates")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled) setGlobalBlockedDates(data.blockedDates || []);
+      })
+      .catch(() => {
+        if (!cancelled) setGlobalBlockedDates([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Dynamic offers (admin-managed)
   interface OfferItem {
@@ -328,19 +353,20 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   }, [pincodeResult]);
 
   const blockedSet = useMemo(() => {
-    if (!pincodeResult) return new Set<string>();
-    return new Set(pincodeResult.blockedDates);
-  }, [pincodeResult]);
+    const fromPincode = pincodeResult?.blockedDates || [];
+    return new Set([...globalBlockedDates, ...fromPincode]);
+  }, [pincodeResult, globalBlockedDates]);
 
-  // Auto-select default date on mount and when pincode result arrives
+  // Auto-select first available date (skip blocked); re-run when blocks change
   useEffect(() => {
     const d = new Date(minDeliveryDate);
-    for (let i = 0; i < 30; i++) {
-      const iso = d.toISOString().split("T")[0];
+    for (let i = 0; i < 60; i++) {
+      const iso = toISODate(d);
       if (!blockedSet.has(iso)) {
         setSelectedDate(new Date(d));
         setCalendarMonth(new Date(d.getFullYear(), d.getMonth(), 1));
-        break;
+        updateSelectedDate(iso);
+        return;
       }
       d.setDate(d.getDate() + 1);
     }
@@ -351,10 +377,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   }
 
   function toISO(date: Date) {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-    return `${y}-${m}-${d}`;
+    return toISODate(date);
   }
 
   function isDayAvailable(day: number) {
@@ -891,7 +914,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                     {getCalendarDays().map((day, idx) => {
                       if (day === null) return <div key={`e-${idx}`} />;
                       const available = isDayAvailable(day);
-                      const selected = isDaySelected(day);
+                      const selected = available && isDaySelected(day);
                       const today = isToday(day);
 
                       return (

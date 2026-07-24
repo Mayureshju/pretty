@@ -41,6 +41,45 @@ import { HEADING_LEVELS, editorPlugins } from "./plate-plugins";
  */
 const createEmptyValue = (): Value => [{ type: "p", children: [{ text: "" }] }];
 
+/**
+ * Slate root children must be Elements (`{ type, children }`). Plate's HTML
+ * deserializer returns a bare `{ text }` leaf when the source is plain text
+ * (no tags) — rendering that crashes with
+ * `Array.from(t.children)` → "undefined is not iterable".
+ */
+function normalizeEditorValue(value: Value): Value {
+  return value.map((node) => {
+    if (node && typeof (node as { text?: unknown }).text === "string") {
+      return { type: "p", children: [node] } as TElement;
+    }
+    const el = node as TElement;
+    if (!Array.isArray(el.children)) {
+      return {
+        ...el,
+        type: el.type || "p",
+        children: [{ text: "" }],
+      } as TElement;
+    }
+    return el;
+  }) as Value;
+}
+
+function escapeHtmlText(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Wrap tag-less legacy copy so deserialize yields a real paragraph element. */
+function seedHtmlForDeserialize(raw: string): string {
+  const cleaned = stripNonContentTags(raw).trim();
+  if (!cleaned) return "";
+  if (/<[a-z][\s\S]*>/i.test(cleaned)) return cleaned;
+  return `<p>${escapeHtmlText(cleaned)}</p>`;
+}
+
 /** Stable no-op subscription: the client/server answer never changes. */
 const subscribeNoop = () => () => {};
 
@@ -432,17 +471,19 @@ export default function PlateRichTextEditor({
       // Cloned because Slate mutates the nodes it is handed, and this array is
       // the parent form's React state.
       if (Array.isArray(json) && json.length > 0) {
-        return structuredClone(json) as Value;
+        return normalizeEditorValue(structuredClone(json) as Value);
       }
 
       const html = initialHtml.current;
       if (html && html.trim()) {
         // One-time lazy migration: parse the legacy HTML into Slate JSON.
         try {
-          const parsed = ed.api.html.deserialize({
-            element: stripNonContentTags(html),
-          });
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed as Value;
+          const seeded = seedHtmlForDeserialize(html);
+          if (!seeded) return createEmptyValue();
+          const parsed = ed.api.html.deserialize({ element: seeded });
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return normalizeEditorValue(parsed as Value);
+          }
         } catch {
           // Fall through to an empty document rather than blocking the editor.
         }

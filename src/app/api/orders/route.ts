@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 import { connectDB } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import Order from "@/models/Order";
+import DeliveryCity from "@/models/DeliveryCity";
+import GlobalSettings from "@/models/GlobalSettings";
 import { generateTxnId, getPayUFormData } from "@/lib/payu";
 import { validateCoupon } from "@/lib/coupon-validation";
+
+function toDateKey(d: Date | string): string {
+  return new Date(d).toISOString().split("T")[0];
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,6 +31,33 @@ export async function POST(request: NextRequest) {
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    // Reject blocked delivery dates (global + city)
+    const slot = typeof body.deliverySlot === "string" ? body.deliverySlot.trim() : "";
+    if (slot) {
+      const slotKey = /^\d{4}-\d{2}-\d{2}/.test(slot) ? slot.slice(0, 10) : toDateKey(slot);
+      const globalSettings = await GlobalSettings.findOne({ key: "global" }).lean();
+      const globalBlocked = (globalSettings?.blockedDeliveryDates || []).map(toDateKey);
+
+      let cityBlocked: string[] = [];
+      const pincode = body.shipping?.pincode;
+      if (pincode) {
+        const deliveryCity = await DeliveryCity.findOne({
+          isActive: true,
+          "pincodes.code": String(pincode),
+        })
+          .select("blockedDates")
+          .lean();
+        cityBlocked = (deliveryCity?.blockedDates || []).map(toDateKey);
+      }
+
+      if ([...globalBlocked, ...cityBlocked].includes(slotKey)) {
+        return Response.json(
+          { error: "Selected delivery date is not available. Please choose another date." },
+          { status: 400 }
+        );
+      }
     }
 
     // Calculate totals

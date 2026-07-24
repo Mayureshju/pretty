@@ -83,6 +83,7 @@ function CheckoutInner() {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
+  const [globalBlockedDates, setGlobalBlockedDates] = useState<string[]>([]);
 
   /* ── Gifting ── */
   const [floristInstruction, setFloristInstruction] = useState("");
@@ -176,13 +177,29 @@ function CheckoutInner() {
     const saved = getSavedDelivery();
     if (saved) {
       setPincode(saved.pincode);
-      if (saved.selectedDate) {
+      if (saved.selectedDate && !(saved.blockedDates || []).includes(saved.selectedDate)) {
         setDeliveryDate(saved.selectedDate);
         const d = new Date(saved.selectedDate + "T00:00:00");
         setCalendarMonth(new Date(d.getFullYear(), d.getMonth(), 1));
       }
     }
   }, [router]);
+
+  /* ── Global blocked dates (before pincode resolves) ── */
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/blocked-delivery-dates")
+      .then((r) => r.json())
+      .then((data) => {
+        if (!cancelled) setGlobalBlockedDates(data.blockedDates || []);
+      })
+      .catch(() => {
+        if (!cancelled) setGlobalBlockedDates([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   /* ── Auto-skip gate for signed-in users or guest mode from cart ── */
   useEffect(() => {
@@ -313,9 +330,16 @@ function CheckoutInner() {
   }, [deliveryInfo]);
 
   const blockedSet = useMemo(() => {
-    if (!deliveryInfo) return new Set<string>();
-    return new Set(deliveryInfo.blockedDates);
-  }, [deliveryInfo]);
+    const fromDelivery = deliveryInfo?.blockedDates || [];
+    return new Set([...globalBlockedDates, ...fromDelivery]);
+  }, [deliveryInfo, globalBlockedDates]);
+
+  // Drop selection if it becomes blocked
+  useEffect(() => {
+    if (deliveryDate && blockedSet.has(deliveryDate)) {
+      setDeliveryDate("");
+    }
+  }, [deliveryDate, blockedSet]);
 
   function toISO(date: Date) {
     const y = date.getFullYear();
@@ -1162,7 +1186,7 @@ function CheckoutInner() {
               {getCalendarDays().map((day, idx) => {
                 if (day === null) return <div key={`e-${idx}`} />;
                 const available = isDayAvailable(day);
-                const selected = isDaySelected(day);
+                const selected = available && isDaySelected(day);
                 const today = isTodayDay(day);
 
                 return (
