@@ -4,6 +4,7 @@ import Product from "@/models/Product";
 import { getActiveSales, applyActiveSale } from "@/lib/sale-utils";
 import CityFlowerPage from "@/components/CityFlowerPage";
 import type { ContentSection, ContentSlot } from "@/components/CityFlowerPage";
+import { getCityCategoryChips } from "@/lib/city-categories";
 import { getPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -179,13 +180,6 @@ const naviMumbaiData = {
       rating: 5,
     },
   ],
-  categories: [
-    { name: "Flowers", count: 471, href: "/flowers/" },
-    { name: "Birthday", count: 467, href: "/birthday" },
-    { name: "Anniversary", count: 395, href: "/anniversary" },
-    { name: "Fruits", count: 10, href: "/gifts/fruits" },
-    { name: "Corporate", count: 310, href: "/gifts/corporate" },
-  ],
 };
 
 const faqStructuredData = JSON.stringify({
@@ -234,7 +228,10 @@ async function getProducts() {
 }
 
 export default async function SendFlowersNaviMumbai() {
-  const { bestSellers, popularProducts } = await getProducts();
+  const [{ bestSellers, popularProducts }, categories] = await Promise.all([
+    getProducts(),
+    getCityCategoryChips(),
+  ]);
 
   return (
     <>
@@ -246,6 +243,7 @@ export default async function SendFlowersNaviMumbai() {
       <CityFlowerPage
         data={{
           ...naviMumbaiData,
+          categories,
           bestSellers: JSON.parse(JSON.stringify(bestSellers)),
           popularProducts: JSON.parse(JSON.stringify(popularProducts)),
         }}

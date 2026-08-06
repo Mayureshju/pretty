@@ -71,7 +71,7 @@ const MENU: TopMenuItem[] = [
         title: "Cakes",
         links: [
           { label: "Photo Cake", href: "/cakes/photo-cake/" },
-          { label: "Premium Cake", href: "/photo-cake/" },
+          { label: "Premium Cake", href: "/cakes/premium-cakes/" },
         ],
       },
     ],
