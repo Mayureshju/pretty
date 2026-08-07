@@ -318,3 +318,47 @@
   border: 0;
   border-top: 1px solid #e5e7eb;
 }
+.admin-plate-content h5 { font-size: 0.95rem; }
+.admin-plate-content h6 { font-size: 0.875rem; }
+.admin-plate-content h5,
+.admin-plate-content h6 {
+  margin: 1.25rem 0 0.6rem;
+  color: #1c2120;
+  font-weight: 700;
+  line-height: 1.25;
+}
+/* Marks reachable from the toolbar but with no browser default worth keeping. */
+.admin-plate-content mark {
+  border-radius: 0.2rem;
+  background: #fef08a;
+  padding: 0 0.15rem;
+  color: inherit;
+}
+.admin-plate-content kbd {
+  border: 1px solid #d1d5db;
+  border-bottom-width: 2px;
+  border-radius: 0.3rem;
+  background: #f9fafb;
+  padding: 0.05rem 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8em;
+}
+.admin-plate-content sub,
+.admin-plate-content sup {
+  font-size: 0.72em;
+  line-height: 0;
+}
+/* A quote made with the toolbar wraps a paragraph; drop its trailing margin so
+   it matches a pasted quote, which has text directly inside. */
+.admin-plate-content blockquote > p:last-child { margin-bottom: 0; }
+
+/* Storefront parity: the editor can now emit <mark>, but @tailwindcss/typography
+   has no rule for it (it does cover kbd, sub, sup, figure and h5/h6), so a
+   highlight would render with the browser default and not match the editor. */
+.prose mark {
+  border-radius: 0.2rem;
+  background: #fef08a;
+  padding: 0 0.15rem;
+  color: inherit;
+}
+.prose blockquote > p:last-child { margin-bottom: 0; }

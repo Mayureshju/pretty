@@ -17,26 +17,63 @@
  *    widened here to match what the toolbar offers.
  */
 
+import { createPlatePlugin } from "platejs/react";
 import { KEYS } from "platejs";
 import {
   BlockquotePlugin,
   BoldPlugin,
   CodePlugin,
   HeadingPlugin,
+  HighlightPlugin,
   HorizontalRulePlugin,
   ItalicPlugin,
+  KbdPlugin,
   StrikethroughPlugin,
+  SubscriptPlugin,
+  SuperscriptPlugin,
   UnderlinePlugin,
 } from "@platejs/basic-nodes/react";
-import { TextAlignPlugin } from "@platejs/basic-styles/react";
+import {
+  FontBackgroundColorPlugin,
+  FontColorPlugin,
+  TextAlignPlugin,
+} from "@platejs/basic-styles/react";
 import { ListPlugin } from "@platejs/list-classic/react";
 import { LinkPlugin } from "@platejs/link/react";
 import { ImagePlugin } from "@platejs/media/react";
 
-/** Heading levels offered in the toolbar, kept in one place. */
-export const HEADING_LEVELS = [1, 2, 3, 4] as const;
+import { sanitizePastedHtml } from "@/lib/plate-html";
+import {
+  ALIGNABLE_TYPES,
+  DEFAULT_LINK_ATTRIBUTES,
+  HEADING_LEVELS,
+  imageHtmlDeserializer,
+} from "@/lib/plate-schema";
 
-export const ALIGNABLE_TYPES = [KEYS.p, KEYS.h1, KEYS.h2, KEYS.h3, KEYS.h4];
+export { ALIGNABLE_TYPES, HEADING_LEVELS };
+
+/**
+ * Sanitize pasted HTML before Plate's deserializer walks it.
+ *
+ * Plate drops unknown *tags* but still reads their text, so pasting markup that
+ * contains `<script>alert(1)</script>` left a visible paragraph reading
+ * "alert(1)", and a `<style>` block dumped raw CSS into the article. The same
+ * `stripNonContentTags` already guarded the legacy-HTML seed path on mount;
+ * paste was the hole. Nothing here is executable either way — the serializer
+ * escapes text — but both corrupt the document.
+ */
+const PasteSanitizePlugin = createPlatePlugin({
+  key: "pasteSanitize",
+  inject: {
+    plugins: {
+      [KEYS.html]: {
+        parser: {
+          transformData: ({ data }: { data: string }) => sanitizePastedHtml(data),
+        },
+      },
+    },
+  },
+});
 
 export const editorPlugins = [
   HeadingPlugin.configure({ options: { levels: [...HEADING_LEVELS] } }),
@@ -48,18 +85,27 @@ export const editorPlugins = [
   UnderlinePlugin,
   StrikethroughPlugin,
   CodePlugin,
+  SubscriptPlugin,
+  SuperscriptPlugin,
+  HighlightPlugin,
+  KbdPlugin,
+
+  FontColorPlugin,
+  FontBackgroundColorPlugin,
 
   ListPlugin,
 
   LinkPlugin.configure({
-    options: {
-      // Matches the storefront's expectation that outbound links are safe.
-      defaultLinkAttributes: { rel: "noopener noreferrer", target: "_blank" },
-    },
+    // Matches the storefront's expectation that outbound links are safe.
+    options: { defaultLinkAttributes: { ...DEFAULT_LINK_ATTRIBUTES } },
   }),
-  ImagePlugin,
+  ImagePlugin.configure({
+    parsers: { html: { deserializer: imageHtmlDeserializer } },
+  }),
 
   TextAlignPlugin.configure({
     inject: { targetPlugins: ALIGNABLE_TYPES },
   }),
+
+  PasteSanitizePlugin,
 ];

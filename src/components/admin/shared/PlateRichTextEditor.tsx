@@ -30,7 +30,9 @@ import { upsertLink, unwrapLink } from "@platejs/link";
 import { insertImage } from "@platejs/media";
 
 import { Editor, EditorContainer } from "@/components/ui/editor";
-import { stripNonContentTags } from "@/lib/plate-html";
+import { sanitizePastedHtml } from "@/lib/plate-html";
+import { TOGGLEABLE_MARKS } from "@/lib/plate-schema";
+import { ColorDialog, ImageDialog, LinkDialog } from "./editor-dialogs";
 import { HEADING_LEVELS, editorPlugins } from "./plate-plugins";
 
 /**
@@ -74,7 +76,7 @@ function escapeHtmlText(s: string): string {
 
 /** Wrap tag-less legacy copy so deserialize yields a real paragraph element. */
 function seedHtmlForDeserialize(raw: string): string {
-  const cleaned = stripNonContentTags(raw).trim();
+  const cleaned = sanitizePastedHtml(raw).trim();
   if (!cleaned) return "";
   if (/<[a-z][\s\S]*>/i.test(cleaned)) return cleaned;
   return `<p>${escapeHtmlText(cleaned)}</p>`;
@@ -98,21 +100,23 @@ interface PlateRichTextEditorProps {
   uploadFolder?: "products" | "banners" | "categories" | "blogs";
 }
 
-type AlignValue = "left" | "center" | "right";
+type AlignValue = "left" | "center" | "right" | "justify";
 
-function normalizeUrl(url: string): string {
-  const trimmed = url.trim();
-  if (!trimmed) return "";
-  if (
-    trimmed.startsWith("/") ||
-    trimmed.startsWith("#") ||
-    /^mailto:/i.test(trimmed) ||
-    /^tel:/i.test(trimmed)
-  ) {
-    return trimmed;
-  }
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return `https://${trimmed}`;
+/**
+ * ⌘ on Mac, Ctrl elsewhere — display only, for tooltips.
+ *
+ * Safe to read during render: the toolbar only mounts on the client (the whole
+ * editor is gated behind `mounted`), so there is no server/client divergence to
+ * reconcile and no need for an effect.
+ */
+function useModKey() {
+  return useMemo(
+    () =>
+      typeof navigator !== "undefined" && /Mac|iPhone|iPad|iPod/.test(navigator.userAgent)
+        ? "⌘"
+        : "Ctrl",
+    []
+  );
 }
 
 function ToolbarButton({
@@ -121,12 +125,15 @@ function ToolbarButton({
   children,
   title,
   disabled,
+  toggle = true,
 }: {
   onClick: () => void;
   active?: boolean;
   children: React.ReactNode;
   title: string;
   disabled?: boolean;
+  /** Toggles report pressed state; one-shot actions (undo, hr) do not. */
+  toggle?: boolean;
 }) {
   return (
     <button
@@ -135,6 +142,8 @@ function ToolbarButton({
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}
       title={title}
+      aria-label={title}
+      aria-pressed={toggle ? Boolean(active) : undefined}
       disabled={disabled}
       className={`inline-flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-xs font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
         active ? "bg-[#737530] text-white" : "text-gray-700 hover:bg-gray-100"
@@ -179,6 +188,61 @@ function MarkButton({
   );
 }
 
+/** Swatch button that opens a colour popover for a text/background mark. */
+function ColorButton({
+  markKey,
+  title,
+  label,
+}: {
+  markKey: string;
+  title: string;
+  label: React.ReactNode;
+}) {
+  const editor = useEditorRef();
+  const [open, setOpen] = useState(false);
+  const current = useEditorSelector(
+    (ed) => (ed.api.marks()?.[markKey] as string) ?? "",
+    [markKey]
+  );
+
+  const close = useCallback(() => setOpen(false), []);
+
+  return (
+    <>
+      <ToolbarButton
+        onClick={() => setOpen((v) => !v)}
+        active={Boolean(current)}
+        title={title}
+      >
+        <span className="flex flex-col items-center leading-none">
+          <span className="text-[11px]">{label}</span>
+          <span
+            className="mt-0.5 h-1 w-4 rounded-sm border border-gray-300"
+            style={{ backgroundColor: current || "transparent" }}
+          />
+        </span>
+      </ToolbarButton>
+      {open && (
+        <ColorDialog
+          title={title}
+          initial={current}
+          onSelect={(c) => {
+            editor.tf.addMark(markKey, c);
+            editor.tf.focus();
+            close();
+          }}
+          onClear={() => {
+            editor.tf.removeMark(markKey);
+            editor.tf.focus();
+            close();
+          }}
+          onClose={close}
+        />
+      )}
+    </>
+  );
+}
+
 /** A block button (blockquote, lists) driven by the current block type. */
 function BlockButton({
   type,
@@ -212,13 +276,14 @@ function BlockButton({
 function Toolbar({
   uploading,
   onUploadClick,
-  onInsertImageUrl,
 }: {
   uploading: boolean;
   onUploadClick: () => void;
-  onInsertImageUrl: () => void;
 }) {
   const editor = useEditorRef();
+  const mod = useModKey();
+  const [linkOpen, setLinkOpen] = useState(false);
+  const [imageOpen, setImageOpen] = useState(false);
 
   const headingLevel = useEditorSelector((ed) => {
     for (const level of HEADING_LEVELS) {
@@ -247,21 +312,37 @@ function Toolbar({
     [editor]
   );
 
-  const applyLink = useCallback(() => {
-    const input = window.prompt("Paste URL");
-    if (input === null) return;
-    const normalized = normalizeUrl(input);
-    if (!normalized) {
-      unwrapLink(editor);
-      editor.tf.focus();
-      return;
+  /** Existing link URL + the text the dialog should pre-fill. */
+  const readLinkContext = useCallback(() => {
+    const entry = editor.api.node<TElement & { url?: string }>({
+      match: { type: editor.getType(KEYS.link) },
+    });
+    const selected = editor.api.string(editor.selection ?? undefined) ?? "";
+    if (entry) {
+      return { url: entry[0].url ?? "", text: editor.api.string(entry[1]) ?? "" };
     }
-    upsertLink(editor, { url: normalized });
+    return { url: "", text: selected };
+  }, [editor]);
+
+  const clearFormatting = useCallback(() => {
+    for (const mark of TOGGLEABLE_MARKS) editor.tf.removeMark(mark);
+    editor.tf.removeMark(KEYS.color);
+    editor.tf.removeMark(KEYS.backgroundColor);
     editor.tf.focus();
   }, [editor]);
 
+  const insertHr = useCallback(() => {
+    editor.tf.insertNodes({
+      type: editor.getType(KEYS.hr),
+      children: [{ text: "" }],
+    });
+    editor.tf.focus();
+  }, [editor]);
+
+  const linkCtx = linkOpen ? readLinkContext() : { url: "", text: "" };
+
   return (
-    <div className="sticky top-0 z-10 flex items-center gap-1 overflow-x-auto border-b border-gray-100 bg-gray-50/95 px-2 py-2 backdrop-blur">
+    <div className="sticky top-0 z-10 relative flex flex-wrap items-center gap-x-1 gap-y-1 border-b border-gray-100 bg-gray-50/95 px-2 py-2 backdrop-blur">
       <select
         onChange={(e) => {
           const level = parseInt(e.target.value, 10);
@@ -283,19 +364,44 @@ function Toolbar({
 
       <Divider />
 
-      <MarkButton markKey={KEYS.bold} title="Bold">
+      <MarkButton markKey={KEYS.bold} title={`Bold (${mod}+B)`}>
         <strong>B</strong>
       </MarkButton>
-      <MarkButton markKey={KEYS.italic} title="Italic">
+      <MarkButton markKey={KEYS.italic} title={`Italic (${mod}+I)`}>
         <em>I</em>
       </MarkButton>
-      {/* Underline: available in the old editor's engine but never exposed. */}
-      <MarkButton markKey={KEYS.underline} title="Underline">
+      <MarkButton markKey={KEYS.underline} title={`Underline (${mod}+U)`}>
         <u>U</u>
       </MarkButton>
       <MarkButton markKey={KEYS.strikethrough} title="Strikethrough">
         <s>S</s>
       </MarkButton>
+      {/* Code, sub, sup, kbd and highlight were all registered as plugins and
+          handled by the serializer, but had no way to reach them. */}
+      <MarkButton markKey={KEYS.code} title={`Inline code (${mod}+E)`}>
+        <span className="font-mono">{"<>"}</span>
+      </MarkButton>
+      <MarkButton markKey={KEYS.sub} title="Subscript">
+        X<sub className="text-[9px]">2</sub>
+      </MarkButton>
+      <MarkButton markKey={KEYS.sup} title="Superscript">
+        X<sup className="text-[9px]">2</sup>
+      </MarkButton>
+      <MarkButton markKey={KEYS.kbd} title="Keyboard key">
+        <span className="font-mono text-[10px]">Kbd</span>
+      </MarkButton>
+      <MarkButton markKey={KEYS.highlight} title="Highlight">
+        <span className="rounded-sm bg-yellow-200 px-1 text-gray-900">H</span>
+      </MarkButton>
+
+      <Divider />
+
+      <ColorButton markKey={KEYS.color} title="Text colour" label="A" />
+      <ColorButton markKey={KEYS.backgroundColor} title="Background colour" label="BG" />
+
+      <ToolbarButton onClick={clearFormatting} title="Clear formatting" toggle={false}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 7h16M9 7l-1 13M15 7l1 13" /><path d="m3 3 18 18" /></svg>
+      </ToolbarButton>
 
       <Divider />
 
@@ -311,6 +417,11 @@ function Toolbar({
       <BlockButton type={KEYS.blockquote} title="Quote">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" /></svg>
       </BlockButton>
+      {/* Horizontal rule: plugin and serializer supported it all along, but
+          nothing in the UI could insert one. */}
+      <ToolbarButton onClick={insertHr} title="Horizontal rule" toggle={false}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="12" x2="21" y2="12" /></svg>
+      </ToolbarButton>
 
       <Divider />
 
@@ -318,10 +429,15 @@ function Toolbar({
       <ToolbarButton onClick={() => applyAlign("left")} active={currentAlign === "left" || currentAlign === "start"} title="Align left">L</ToolbarButton>
       <ToolbarButton onClick={() => applyAlign("center")} active={currentAlign === "center"} title="Align center">C</ToolbarButton>
       <ToolbarButton onClick={() => applyAlign("right")} active={currentAlign === "right"} title="Align right">R</ToolbarButton>
+      <ToolbarButton onClick={() => applyAlign("justify")} active={currentAlign === "justify"} title="Justify">J</ToolbarButton>
 
       <Divider />
 
-      <ToolbarButton onClick={applyLink} active={linkActive} title="Add/Edit Link">
+      <ToolbarButton
+        onClick={() => setLinkOpen((v) => !v)}
+        active={linkActive}
+        title={linkActive ? "Edit link" : "Add link"}
+      >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" /></svg>
       </ToolbarButton>
       <ToolbarButton
@@ -329,16 +445,36 @@ function Toolbar({
           unwrapLink(editor);
           editor.tf.focus();
         }}
-        title="Remove Link"
+        title="Remove link"
         disabled={!linkActive}
+        toggle={false}
       >
         Unlink
       </ToolbarButton>
+      {linkOpen && (
+        <LinkDialog
+          initialUrl={linkCtx.url}
+          initialText={linkCtx.text}
+          canRemove={linkActive}
+          onSubmit={(url, text) => {
+            upsertLink(editor, text ? { url, text } : { url });
+            setLinkOpen(false);
+            editor.tf.focus();
+          }}
+          onRemove={() => {
+            unwrapLink(editor);
+            setLinkOpen(false);
+            editor.tf.focus();
+          }}
+          onClose={() => setLinkOpen(false)}
+        />
+      )}
 
       <ToolbarButton
         onClick={onUploadClick}
-        title={uploading ? "Uploading..." : "Upload image"}
+        title={uploading ? "Uploading…" : "Upload image"}
         disabled={uploading}
+        toggle={false}
       >
         {uploading ? (
           <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -349,16 +485,33 @@ function Toolbar({
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
         )}
       </ToolbarButton>
-      <ToolbarButton onClick={onInsertImageUrl} title="Insert image URL">
+      <ToolbarButton onClick={() => setImageOpen((v) => !v)} title="Insert image by URL" toggle={false}>
         URL Img
       </ToolbarButton>
+      {imageOpen && (
+        <ImageDialog
+          initialUrl=""
+          initialAlt=""
+          onSubmit={(url, alt) => {
+            insertImage(editor, url);
+            // insertImage only writes `url`; alt is a separate prop on the node.
+            if (alt) {
+              const entry = editor.api.node({ match: { type: editor.getType(KEYS.img) }, at: [], reverse: true });
+              if (entry) editor.tf.setNodes({ alt }, { at: entry[1] });
+            }
+            setImageOpen(false);
+            editor.tf.focus();
+          }}
+          onClose={() => setImageOpen(false)}
+        />
+      )}
 
       <Divider />
 
-      <ToolbarButton onClick={() => editor.tf.undo()} title="Undo">
+      <ToolbarButton onClick={() => editor.tf.undo()} title={`Undo (${mod}+Z)`} toggle={false}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="1 4 1 10 7 10" /><path d="M3.51 15a9 9 0 105.64-11.36L1 10" /></svg>
       </ToolbarButton>
-      <ToolbarButton onClick={() => editor.tf.redo()} title="Redo">
+      <ToolbarButton onClick={() => editor.tf.redo()} title={`Redo (${mod}+Shift+Z)`} toggle={false}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="23 4 23 10 17 10" /><path d="M20.49 15a9 9 0 11-5.64-11.36L23 10" /></svg>
       </ToolbarButton>
     </div>
@@ -388,36 +541,75 @@ function ImageUploadBridge({
 }) {
   const editor = useEditorRef();
 
-  async function handleImageFile(file: File) {
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please select an image file");
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("Image must be under 5MB");
-      return;
-    }
+  const handleImageFile = useCallback(
+    async (file: File) => {
+      if (!file.type.startsWith("image/")) {
+        toast.error("Please select an image file");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Image must be under 5MB");
+        return;
+      }
 
-    setUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("folder", uploadFolder);
+      setUploading(true);
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", uploadFolder);
 
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Upload failed");
+        const res = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Upload failed");
 
-      insertImage(editor, data.url);
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Upload failed");
-    } finally {
-      setUploading(false);
-    }
-  }
+        insertImage(editor, data.url);
+      } catch (err: unknown) {
+        toast.error(err instanceof Error ? err.message : "Upload failed");
+      } finally {
+        setUploading(false);
+      }
+    },
+    [editor, uploadFolder, setUploading]
+  );
+
+  // Dropping a screenshot onto the editor, or pasting one from the clipboard,
+  // is how most people expect to add an image. Previously the only route was
+  // the toolbar's file picker.
+  useEffect(() => {
+    const el = editor.api.toDOMNode(editor);
+    if (!el) return;
+
+    const imageFrom = (dt: DataTransfer | null) =>
+      Array.from(dt?.files ?? []).find((f) => f.type.startsWith("image/"));
+
+    const onDrop = (e: DragEvent) => {
+      const file = imageFrom(e.dataTransfer);
+      if (!file) return;
+      e.preventDefault();
+      void handleImageFile(file);
+    };
+    const onDragOver = (e: DragEvent) => {
+      if (imageFrom(e.dataTransfer)) e.preventDefault();
+    };
+    const onPaste = (e: ClipboardEvent) => {
+      const file = imageFrom(e.clipboardData);
+      if (!file) return;
+      e.preventDefault();
+      void handleImageFile(file);
+    };
+
+    el.addEventListener("drop", onDrop);
+    el.addEventListener("dragover", onDragOver);
+    el.addEventListener("paste", onPaste);
+    return () => {
+      el.removeEventListener("drop", onDrop);
+      el.removeEventListener("dragover", onDragOver);
+      el.removeEventListener("paste", onPaste);
+    };
+  }, [editor, handleImageFile]);
 
   return (
     <input
@@ -427,7 +619,7 @@ function ImageUploadBridge({
       className="hidden"
       onChange={(e) => {
         const file = e.target.files?.[0];
-        if (file) handleImageFile(file);
+        if (file) void handleImageFile(file);
         if (fileInputRef.current) fileInputRef.current.value = "";
       }}
     />
@@ -535,12 +727,6 @@ export default function PlateRichTextEditor({
           uploading={uploading}
           onUploadClick={() => {
             if (!uploading) fileInputRef.current?.click();
-          }}
-          onInsertImageUrl={() => {
-            const input = window.prompt("Paste image URL");
-            if (!input) return;
-            const src = normalizeUrl(input);
-            if (src) insertImage(editor, src);
           }}
         />
         <ImageUploadBridge
