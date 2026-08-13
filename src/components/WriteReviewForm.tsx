@@ -4,6 +4,12 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 
+interface WriteReviewFormProps {
+  mode?: "order" | "offline";
+  title?: string;
+  description?: string;
+}
+
 function StarInput({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0);
   return (
@@ -27,9 +33,20 @@ function StarInput({ value, onChange }: { value: number; onChange: (v: number) =
   );
 }
 
-export default function WriteReviewForm() {
+export default function WriteReviewForm({
+  mode,
+  title = "Share Your Experience",
+  description,
+}: WriteReviewFormProps = {}) {
   const searchParams = useSearchParams();
-  const orderNumber = searchParams.get("order") || "";
+  const orderNumber = mode === "offline" ? "" : searchParams.get("order") || "";
+  const isOffline = mode === "offline" || !orderNumber;
+  const googleReviewUrl = process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL?.trim();
+  const formDescription =
+    description ||
+    (orderNumber
+      ? `We'd love to hear about your order ${orderNumber}.`
+      : "Tell us how we did — your feedback helps us bloom.");
 
   const [rating, setRating] = useState(5);
   const [name, setName] = useState("");
@@ -55,7 +72,7 @@ export default function WriteReviewForm() {
           rating,
           comment,
           orderNumber: orderNumber || undefined,
-          source: orderNumber ? "website" : "offline",
+          source: isOffline ? "offline" : "website",
         }),
       });
       const data = await res.json();
@@ -73,20 +90,18 @@ export default function WriteReviewForm() {
 
   return (
     <div className="max-w-xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-semibold text-[#1C2120] mb-1">Share Your Experience</h1>
+      <h1 className="text-2xl font-semibold text-[#1C2120] mb-1">{title}</h1>
       <p className="text-sm text-[#888] mb-6">
-        {orderNumber
-          ? `We'd love to hear about your order ${orderNumber}.`
-          : "Tell us how we did — your feedback helps us bloom."}
+        {formDescription}
       </p>
 
       {done ? (
         <div className="p-6 rounded-xl border border-gray-200 bg-[#F5FBF2] text-center">
           <div className="text-4xl mb-2">🌸</div>
           <p className="text-[#1C2120] font-medium">{done}</p>
-          {rating >= 4 && (
+          {rating >= 3 && googleReviewUrl && (
             <a
-              href="https://search.google.com/local/writereview?placeid=PLACE_ID_HERE"
+              href={googleReviewUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-block mt-4 px-6 py-2.5 text-sm font-medium bg-[#737530] text-white rounded-lg hover:bg-[#4C4D27] transition-all"

@@ -1,5 +1,5 @@
 import type { IOrder, IOrderItem } from "@/models/Order";
-import { getNotificationSettings } from "@/lib/notification-settings";
+import { getOrderReviewLink } from "@/lib/review-links";
 
 const WHATSAPP_API_URL = "https://graph.facebook.com/v21.0";
 
@@ -167,17 +167,10 @@ export async function sendProcessingWhatsApp(order: IOrder): Promise<void> {
   ]);
 }
 
-function reviewLink(order: IOrder): string {
-  const base = (
-    process.env.NEXT_PUBLIC_BASE_URL || "https://www.prettypetals.com"
-  ).replace(/\/$/, "");
-  return `${base}/review/?order=${encodeURIComponent(order.orderNumber)}`;
-}
-
 // Post-delivery star-rating request. Sent to BOTH the sender (person who placed
 // the order) and the receiver (if a distinct receiver phone was captured).
 export async function sendReviewRequestWhatsApp(order: IOrder): Promise<void> {
-  const link = reviewLink(order);
+  const link = getOrderReviewLink(order.orderNumber);
 
   const senderPhone = formatPhoneForWhatsApp(order.customer.phone);
   const receiverPhone = formatPhoneForWhatsApp(order.shipping?.receiverPhone);
@@ -289,6 +282,7 @@ function resolveSellerPhones(raw: string[] | undefined): string[] {
 }
 
 export async function sendDeliveredSellerWhatsApp(order: IOrder): Promise<void> {
+  const { getNotificationSettings } = await import("@/lib/notification-settings");
   const settings = await getNotificationSettings();
   if (!settings.sendSellerWhatsApp) {
     console.warn("[seller-whatsapp] skip (delivered): sendSellerWhatsApp toggle is OFF");
@@ -319,6 +313,7 @@ export async function sendDeliveredSellerWhatsApp(order: IOrder): Promise<void> 
 }
 
 export async function sendNewOrderSellerWhatsApp(order: IOrder): Promise<void> {
+  const { getNotificationSettings } = await import("@/lib/notification-settings");
   const settings = await getNotificationSettings();
   if (!settings.sendSellerWhatsApp) {
     console.warn("[seller-whatsapp] skip: sendSellerWhatsApp toggle is OFF");

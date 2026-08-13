@@ -1,14 +1,16 @@
 import { Resend } from "resend";
 import type { IOrder } from "@/models/Order";
-import { getNotificationSettings } from "@/lib/notification-settings";
 import { getDeliveryLink } from "@/lib/delivery-token";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { getOrderReviewLink } from "@/lib/review-links";
 
 // Until a custom domain is verified in Resend, fall back to their sandbox
 // sender. Set EMAIL_FROM="Pretty Petals <orders@prettypetals.com>" in Vercel
 // once the domain is verified.
 const DEFAULT_FROM = "Pretty Petals <onboarding@resend.dev>";
+
+function getResendClient(): Resend {
+  return new Resend(process.env.RESEND_API_KEY);
+}
 
 export async function sendOrderConfirmationEmail(order: IOrder) {
   if (!process.env.RESEND_API_KEY) {
@@ -98,7 +100,7 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: order.customer.email,
     subject: `Order Confirmed - ${order.orderNumber} | Pretty Petals`,
@@ -174,7 +176,7 @@ export async function sendProcessingEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: order.customer.email,
     subject: `Order Being Prepared - ${order.orderNumber} | Pretty Petals`,
@@ -236,7 +238,7 @@ export async function sendOutForDeliveryEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: order.customer.email,
     subject: `Out for Delivery - ${order.orderNumber} | Pretty Petals`,
@@ -261,6 +263,8 @@ export async function sendDeliveredEmail(order: IOrder) {
     console.warn("[customer-email] skip (delivered): order has no customer email");
     return;
   }
+
+  const reviewUrl = getOrderReviewLink(order.orderNumber);
 
   const html = `
   <div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif;color:#1C2120;">
@@ -287,7 +291,16 @@ export async function sendDeliveredEmail(order: IOrder) {
       </div>
 
       <p style="font-size:14px;color:#464646;line-height:1.6;margin:0;">
-        Your flowers from Pretty Petals have been delivered. We hope they brought a smile to your loved one's face! Please rate your experience by replying to this email or leaving a review on the product page.
+        Your flowers from Pretty Petals have been delivered. We hope they brought a smile to your loved one's face.
+      </p>
+      <div style="margin:22px 0;text-align:center;">
+        <p style="margin:0 0 8px;font-size:15px;color:#1C2120;font-weight:bold;">Please rate your experience</p>
+        <div style="font-size:24px;letter-spacing:2px;color:#FDCB6E;margin-bottom:12px;">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <a href="${reviewUrl}" style="display:inline-block;background:#737530;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:bold;">Open Feedback Box</a>
+        <p style="margin:10px 0 0;font-size:12px;color:#888;word-break:break-all;">${reviewUrl}</p>
+      </div>
+      <p style="font-size:14px;color:#464646;line-height:1.6;margin:0;">
+        Reviews of 3 stars and above may appear on our website. Lower ratings go privately to our team for follow-up.
       </p>
     </div>
 
@@ -296,7 +309,7 @@ export async function sendDeliveredEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: order.customer.email,
     subject: `Delivered - ${order.orderNumber} | Pretty Petals`,
@@ -318,6 +331,7 @@ export async function sendDeliveredSellerEmail(order: IOrder) {
     return;
   }
 
+  const { getNotificationSettings } = await import("@/lib/notification-settings");
   const settings = await getNotificationSettings();
   if (!settings.sendSellerEmail) {
     console.warn("[seller-email] skip (delivered): sendSellerEmail toggle is OFF");
@@ -409,7 +423,7 @@ export async function sendDeliveredSellerEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: recipients,
     subject: `Delivered - ${order.orderNumber} | Pretty Petals`,
@@ -476,7 +490,7 @@ export async function sendOrderReminderEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: order.customer.email,
     subject: `A special day is coming up 🌸 | Pretty Petals`,
@@ -498,6 +512,7 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
     return;
   }
 
+  const { getNotificationSettings } = await import("@/lib/notification-settings");
   const settings = await getNotificationSettings();
   if (!settings.sendSellerEmail) {
     console.warn("[seller-email] skip: sendSellerEmail toggle is OFF");
@@ -630,7 +645,7 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
     </div>
   </div>`;
 
-  const { data, error } = await resend.emails.send({
+  const { data, error } = await getResendClient().emails.send({
     from: process.env.EMAIL_FROM || DEFAULT_FROM,
     to: recipients,
     subject: `New Order - ${order.orderNumber} | Pretty Petals`,
