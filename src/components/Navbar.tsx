@@ -186,7 +186,20 @@ const MENU: TopMenuItem[] = [
       },
     ],
   },
-  { label: "Gifts", href: "/gifts/" },
+  {
+    label: "Gifts",
+    href: "/gifts/",
+    columns: [
+      {
+        title: "Gifts",
+        links: [
+          { label: "Premium Gifts", href: "/gifts/" },
+          { label: "Plants", href: "/plants/" },
+          { label: "Corporate", href: "/corporate/" },
+        ],
+      },
+    ],
+  },
   { label: "Fruits", href: "/fruits/" },
   { label: "Luxury Flower Arrangements", href: "/signature/" },
 ];

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 
 interface ConfirmDialogProps {
@@ -11,6 +11,8 @@ interface ConfirmDialogProps {
   message: string;
   confirmText?: string;
   variant?: "danger" | "warning" | "info";
+  /** If set, confirm stays disabled until the user types this exact value. */
+  typedConfirm?: string;
 }
 
 const variantStyles: Record<
@@ -45,8 +47,15 @@ export default function ConfirmDialog({
   message,
   confirmText = "Confirm",
   variant = "danger",
+  typedConfirm,
 }: ConfirmDialogProps) {
   const styles = variantStyles[variant];
+  const [typed, setTyped] = useState("");
+  const canConfirm = !typedConfirm || typed === typedConfirm;
+
+  useEffect(() => {
+    if (!isOpen) setTyped("");
+  }, [isOpen]);
 
   return (
     <Modal
@@ -64,10 +73,12 @@ export default function ConfirmDialog({
           </button>
           <button
             onClick={() => {
+              if (!canConfirm) return;
               onConfirm();
               onClose();
             }}
-            className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors ${styles.buttonBg} ${styles.buttonHoverBg}`}
+            disabled={!canConfirm}
+            className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${styles.buttonBg} ${styles.buttonHoverBg}`}
           >
             {confirmText}
           </button>
@@ -131,6 +142,21 @@ export default function ConfirmDialog({
         </div>
 
         <p className="text-sm text-gray-600 leading-relaxed">{message}</p>
+        {typedConfirm && (
+          <div className="w-full mt-4 text-left">
+            <label className="block text-xs font-medium text-gray-500 mb-1">
+              Type <span className="font-mono text-gray-800">{typedConfirm}</span>{" "}
+              to confirm
+            </label>
+            <input
+              type="text"
+              value={typed}
+              onChange={(e) => setTyped(e.target.value)}
+              autoComplete="off"
+              className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono text-gray-700 focus:border-[#C62828] focus:ring-1 focus:ring-[#C62828]/20 focus:outline-none"
+            />
+          </div>
+        )}
       </div>
     </Modal>
   );

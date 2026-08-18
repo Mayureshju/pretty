@@ -215,17 +215,36 @@ export default function Header() {
                 { label: "Birthday", href: "/flowers/birthday/" },
                 { label: "Anniversary", href: "/flowers/anniversary/" },
                 { label: "Occasions", href: "/occasions/" },
-                { label: "Gifts", href: "/gifts/" },
+                {
+                  label: "Gifts",
+                  href: "/gifts/",
+                  children: [
+                    { label: "Premium Gifts", href: "/gifts/" },
+                    { label: "Plants", href: "/plants/" },
+                    { label: "Corporate", href: "/corporate/" },
+                  ],
+                },
                 { label: "Fruits", href: "/fruits/" },
                 { label: "Luxury Flower Arrangements", href: "/signature/" },
               ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors"
-                >
-                  {item.label}
-                </a>
+                <div key={item.label}>
+                  <a
+                    href={item.href}
+                    className="block py-3 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                  {"children" in item &&
+                    item.children?.map((child) => (
+                      <a
+                        key={child.label}
+                        href={child.href}
+                        className="block py-2.5 pl-4 text-sm text-[#464646] border-b border-gray-50 hover:text-[#737530] transition-colors"
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                </div>
               ))}
             </nav>
           </div>

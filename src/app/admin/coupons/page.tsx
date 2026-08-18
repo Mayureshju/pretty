@@ -61,6 +61,8 @@ export default function CouponsPage() {
   const [form, setForm] = useState(defaultForm);
   const [saving, setSaving] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<CouponItem | null>(null);
+  const [deleteAllOpen, setDeleteAllOpen] = useState(false);
+  const [deletingAll, setDeletingAll] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [total, setTotal] = useState(0);
@@ -196,6 +198,32 @@ export default function CouponsPage() {
     }
   }
 
+  async function handleDeleteAll() {
+    setDeletingAll(true);
+    try {
+      const res = await fetch("/api/admin/coupons", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirm: "DELETE_ALL" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error || "Failed to delete coupons");
+        return;
+      }
+      toast.success(
+        `Deleted ${data.deletedCount ?? 0} coupon${data.deletedCount === 1 ? "" : "s"}`
+      );
+      setPage(1);
+      fetchCoupons();
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setDeletingAll(false);
+      setDeleteAllOpen(false);
+    }
+  }
+
   function handlePageSizeChange(size: number) {
     setPageSize(size);
     setPage(1);
@@ -211,10 +239,20 @@ export default function CouponsPage() {
             Manage discount coupons and promotions
           </p>
         </div>
-        <button
-          onClick={openAddModal}
-          className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
-        >
+        <div className="flex items-center gap-2">
+          {total > 0 && (
+            <button
+              onClick={() => setDeleteAllOpen(true)}
+              disabled={deletingAll}
+              className="px-4 py-2.5 bg-white text-red-600 text-sm font-medium rounded-lg border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
+            >
+              Delete all
+            </button>
+          )}
+          <button
+            onClick={openAddModal}
+            className="px-4 py-2.5 bg-[#737530] text-white text-sm font-medium rounded-lg hover:bg-[#0A3A4D] transition-colors flex items-center gap-2"
+          >
           <svg
             width="18"
             height="18"
@@ -232,6 +270,7 @@ export default function CouponsPage() {
           </svg>
           Create Coupon
         </button>
+        </div>
       </div>
 
       {/* Content */}
@@ -661,6 +700,17 @@ export default function CouponsPage() {
         message={`Are you sure you want to delete coupon "${deleteTarget?.code}"? This action cannot be undone.`}
         confirmText="Delete"
         variant="danger"
+      />
+
+      <ConfirmDialog
+        isOpen={deleteAllOpen}
+        onClose={() => setDeleteAllOpen(false)}
+        onConfirm={handleDeleteAll}
+        title="Delete all coupons"
+        message="This permanently deletes every coupon, including public offers. Type DELETE_ALL to confirm."
+        confirmText={deletingAll ? "Deleting..." : "Delete all"}
+        variant="danger"
+        typedConfirm="DELETE_ALL"
       />
     </div>
   );

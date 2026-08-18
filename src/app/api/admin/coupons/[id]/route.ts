@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import {
   requireAdmin,
@@ -8,6 +9,8 @@ import {
 } from "@/lib/auth";
 import Coupon from "@/models/Coupon";
 import { couponSchema } from "@/lib/validators/coupon";
+import { couponDateFields } from "@/lib/coupon-dates";
+import { isDuplicateKeyError } from "@/lib/api-client";
 
 export async function GET(
   _request: NextRequest,
@@ -59,25 +62,29 @@ export async function PUT(
 
     await connectDB();
 
-    const data = {
-      ...parsed.data,
-      code: parsed.data.code.toUpperCase(),
-      validFrom: new Date(parsed.data.validFrom),
-      validTo: new Date(parsed.data.validTo),
-    };
-
-    const coupon = await Coupon.findByIdAndUpdate(id, data, {
-      new: true,
-      runValidators: true,
-    });
+    const coupon = await Coupon.findByIdAndUpdate(
+      id,
+      couponDateFields(parsed.data),
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
     if (!coupon) {
       return notFoundResponse("Coupon not found");
     }
 
+    revalidatePath("/offers");
     return Response.json(coupon);
   } catch (err) {
     console.error("PUT /api/admin/coupons/[id] error:", err);
+    if (isDuplicateKeyError(err)) {
+      return Response.json(
+        { error: "Coupon code already exists" },
+        { status: 409 }
+      );
+    }
     return errorResponse("Failed to update coupon");
   }
 }
@@ -101,6 +108,7 @@ export async function DELETE(
       return notFoundResponse("Coupon not found");
     }
 
+    revalidatePath("/offers");
     return Response.json({ message: "Coupon deleted successfully" });
   } catch (err) {
     console.error("DELETE /api/admin/coupons/[id] error:", err);

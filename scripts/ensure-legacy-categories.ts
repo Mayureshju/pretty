@@ -93,6 +93,36 @@ const NESTED: NestedDef[] = [
     childSlug: "holi",
     childName: "Holi",
   },
+  {
+    parentSlug: "occasions",
+    parentName: "Occasions",
+    childSlug: "dussehra",
+    childName: "Dussehra",
+  },
+  {
+    parentSlug: "occasions",
+    parentName: "Occasions",
+    childSlug: "ganesh-chaturthi",
+    childName: "Ganesh Chaturthi",
+  },
+  {
+    parentSlug: "occasions",
+    parentName: "Occasions",
+    childSlug: "janmashtami",
+    childName: "Janmashtami",
+  },
+  {
+    parentSlug: "occasions",
+    parentName: "Occasions",
+    childSlug: "eid",
+    childName: "Eid",
+  },
+  {
+    parentSlug: "occasions",
+    parentName: "Occasions",
+    childSlug: "christmas-new-year",
+    childName: "Christmas & New Year",
+  },
 ];
 
 async function ensureParent(slug: string, name: string) {
@@ -127,9 +157,12 @@ async function ensureChild(
 
   const collision = await Category.findOne({ slug: childSlug });
   if (collision) {
-    console.warn(
-      `SKIP ${parentSlug}/${childSlug}: slug "${childSlug}" already exists under another parent (global unique slug).`
+    console.log(
+      `Reparent /${childSlug}/ → /${parentSlug}/${childSlug}/`
     );
+    collision.parent = parentId;
+    collision.isActive = true;
+    await collision.save();
     return;
   }
 
