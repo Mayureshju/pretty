@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/db";
 import Product from "@/models/Product";
 import Category from "@/models/Category";
 import Blog from "@/models/Blog";
+import { getServedCategoryPath } from "@/lib/slug-resolver";
 
 export const revalidate = 3600;
 
@@ -85,10 +86,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Categories: nested path for children, flat for parents/standalone
   const categoryUrls: MetadataRoute.Sitemap = categories.map((c) => {
-    const parent = c.parent as { slug: string } | null;
-    const path = parent && typeof parent === "object" && parent.slug
-      ? `/${parent.slug}/${c.slug}/`
-      : `/${c.slug}/`;
+    const path = getServedCategoryPath(
+      c as Parameters<typeof getServedCategoryPath>[0]
+    );
 
     return {
       url: `${BASE_URL}${path}`,

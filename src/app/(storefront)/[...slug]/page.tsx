@@ -1,9 +1,10 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import { connectDB } from "@/lib/db";
 import {
   resolveNestedCategory,
-  getCategoryPath,
+  getServedCategoryPath,
+  categoryRequestPath,
 } from "@/lib/slug-resolver";
 import Category from "@/models/Category";
 import Blog, { IBlog } from "@/models/Blog";
@@ -15,6 +16,20 @@ import BlogPostPage from "@/components/BlogPostPage";
 
 type Props = {
   params: Promise<{ slug: string[] }>;
+};
+
+type CategoryDoc = {
+  _id: unknown;
+  name: string;
+  slug: string;
+  description?: string;
+  parent?: { slug: string; name?: string } | null;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+  };
 };
 
 export async function generateStaticParams() {
@@ -29,13 +44,13 @@ export async function generateStaticParams() {
 
   const params: { slug: string[] }[] = [];
 
-  // Categories: single segment for parents/standalone, two segments for children
+  // Categories: served URL segments (flat when a legacy 308 wins, e.g. photo-cake)
   for (const c of categories) {
-    if (c.parent && typeof c.parent === "object" && "slug" in c.parent) {
-      params.push({ slug: [(c.parent as { slug: string }).slug, c.slug] });
-    } else {
-      params.push({ slug: [c.slug] });
-    }
+    const served = getServedCategoryPath(
+      c as Parameters<typeof getServedCategoryPath>[0]
+    );
+    const segments = served.replace(/^\/|\/$/g, "").split("/").filter(Boolean);
+    params.push({ slug: segments });
   }
 
   // Blogs: single segment
@@ -50,76 +65,82 @@ export const revalidate = 3600;
 
 const BASE_URL = "https://www.prettypetals.com";
 
+function asCategoryPathInput(category: CategoryDoc) {
+  return category as Parameters<typeof getServedCategoryPath>[0];
+}
+
+function redirectIfNotPreferred(segments: string[], category: CategoryDoc) {
+  const requested = categoryRequestPath(segments);
+  const served = getServedCategoryPath(asCategoryPathInput(category));
+  if (requested !== served) {
+    permanentRedirect(served);
+  }
+}
+
+function categoryMetadata(category: CategoryDoc, path: string): Metadata {
+  const seo = category.seo;
+  const title = seo?.metaTitle || category.name;
+  const description =
+    seo?.metaDescription ||
+    category.description ||
+    `Shop ${category.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
+
+  return {
+    title: seo?.metaTitle ? seo.metaTitle : `${category.name} | Pretty Petals`,
+    description,
+    alternates: { canonical: `${BASE_URL}${path}` },
+    openGraph: {
+      title: seo?.ogTitle || title,
+      description: seo?.ogDescription || description,
+      url: `${BASE_URL}${path}`,
+      type: "website",
+    },
+  };
+}
+
+async function loadCategoryBySlug(slug: string): Promise<CategoryDoc | null> {
+  await connectDB();
+  return Category.findOne({ slug, isActive: true })
+    .populate("parent", "name slug")
+    .lean<CategoryDoc>();
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const segments = (await params).slug;
 
-  // Two segments: nested category (e.g., /flowers/roses/)
   if (segments.length === 2) {
-    const category = await resolveNestedCategory(segments[0], segments[1]);
-    if (!category) return { title: "Not Found | Pretty Petals" };
-
-    const seo = (category as unknown as Record<string, unknown>).seo as { metaTitle?: string; metaDescription?: string; ogTitle?: string; ogDescription?: string } | undefined;
-    const title = seo?.metaTitle || category.name;
-    const description =
-      seo?.metaDescription ||
-      category.description ||
-      `Shop ${category.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
-    const path = getCategoryPath(category as Parameters<typeof getCategoryPath>[0]);
-
-    return {
-      title: seo?.metaTitle ? seo.metaTitle : `${category.name} | Pretty Petals`,
-      description,
-      alternates: { canonical: `${BASE_URL}${path}` },
-      openGraph: {
-        title: seo?.ogTitle || title,
-        description: seo?.ogDescription || description,
-        url: `${BASE_URL}${path}`,
-        type: "website",
-      },
-    };
+    let category = (await resolveNestedCategory(
+      segments[0],
+      segments[1]
+    )) as CategoryDoc | null;
+    if (!category) {
+      category = await loadCategoryBySlug(segments[1]);
+      if (!category) return { title: "Not Found | Pretty Petals" };
+    }
+    redirectIfNotPreferred(segments, category);
+    return categoryMetadata(category, categoryRequestPath(segments));
   }
 
-  // More than 2 segments: not found
   if (segments.length > 2) {
     return { title: "Not Found | Pretty Petals" };
   }
 
-  // Single segment: category or blog (products are at /product/[slug])
   const slug = segments[0];
-  await connectDB();
-
   const [category, blog] = await Promise.all([
-    Category.findOne({ slug, isActive: true })
-      .populate("parent", "name slug")
-      .lean(),
-    Blog.findOne({ slug, isPublished: true }).lean<IBlog>(),
+    loadCategoryBySlug(slug),
+    (async () => {
+      await connectDB();
+      return Blog.findOne({ slug, isPublished: true }).lean<IBlog>();
+    })(),
   ]);
 
   if (category) {
-    const seo = (category as unknown as Record<string, unknown>).seo as { metaTitle?: string; metaDescription?: string; ogTitle?: string; ogDescription?: string } | undefined;
-    const title = seo?.metaTitle || category.name;
-    const description =
-      seo?.metaDescription ||
-      (category.description as string) ||
-      `Shop ${category.name} online. Fresh flower delivery in Mumbai by Pretty Petals.`;
-    const path = getCategoryPath(category as Parameters<typeof getCategoryPath>[0]);
-
-    return {
-      title: seo?.metaTitle ? seo.metaTitle : `${category.name as string} | Pretty Petals`,
-      description,
-      alternates: { canonical: `${BASE_URL}${path}` },
-      openGraph: {
-        title: seo?.ogTitle || title,
-        description: seo?.ogDescription || description,
-        url: `${BASE_URL}${path}`,
-        type: "website",
-      },
-    };
+    redirectIfNotPreferred(segments, category);
+    return categoryMetadata(category, categoryRequestPath(segments));
   }
 
   if (blog) {
     const title = blog.seo?.metaTitle || blog.title;
-    // excerpt is rich text; strip the markup so the meta tag is prose.
     const description =
       blog.seo?.metaDescription ||
       htmlToPlainText(blog.excerpt) ||
@@ -142,94 +163,78 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: "Not Found | Pretty Petals" };
 }
 
+async function renderCategoryPage(category: CategoryDoc) {
+  await connectDB();
+  const [products, childCategories, totalProducts, activeSales] = await Promise.all([
+    Product.find({ categories: category._id, isActive: true })
+      .select("name slug pricing images metrics isFeatured categories")
+      .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
+      .limit(24)
+      .lean(),
+    Category.find({ parent: category._id, isActive: true })
+      .select("name slug image productCount")
+      .sort({ order: 1 })
+      .lean(),
+    Product.countDocuments({ categories: category._id, isActive: true }),
+    getActiveSales(),
+  ]);
+
+  const productsWithSales = products.map((p) => {
+    const sale = applyActiveSale(
+      { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
+      activeSales as Parameters<typeof applyActiveSale>[1]
+    );
+    return {
+      ...p,
+      _saleInfo: sale.hasSale
+        ? {
+            effectivePrice: sale.effectivePrice,
+            discountPercent: sale.discountPercent,
+            saleLabel: sale.saleLabel,
+          }
+        : null,
+    };
+  });
+
+  return (
+    <CategoryPage
+      category={JSON.parse(JSON.stringify(category))}
+      products={JSON.parse(JSON.stringify(productsWithSales))}
+      childCategories={JSON.parse(JSON.stringify(childCategories))}
+      totalProducts={totalProducts}
+    />
+  );
+}
+
 export default async function SlugPage({ params }: Props) {
   const segments = (await params).slug;
 
-  // More than 2 segments: not valid
   if (segments.length > 2) {
     notFound();
   }
 
-  // Two segments: parent/child category (e.g., /flowers/roses/)
   if (segments.length === 2) {
-    const category = await resolveNestedCategory(segments[0], segments[1]);
-    if (!category) notFound();
-
-    await connectDB();
-    const [products, childCategories, totalProducts, activeSales] = await Promise.all([
-      Product.find({ categories: category!._id, isActive: true })
-        .select("name slug pricing images metrics isFeatured categories")
-        .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
-        .limit(24)
-        .lean(),
-      Category.find({ parent: category!._id, isActive: true })
-        .select("name slug image productCount")
-        .sort({ order: 1 })
-        .lean(),
-      Product.countDocuments({ categories: category!._id, isActive: true }),
-      getActiveSales(),
-    ]);
-
-    // Pre-compute sale pricing per product on server
-    const productsWithSales = products.map((p) => {
-      const sale = applyActiveSale(
-        { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
-        activeSales as Parameters<typeof applyActiveSale>[1]
-      );
-      return { ...p, _saleInfo: sale.hasSale ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel } : null };
-    });
-
-    return (
-      <CategoryPage
-        category={JSON.parse(JSON.stringify(category))}
-        products={JSON.parse(JSON.stringify(productsWithSales))}
-        childCategories={JSON.parse(JSON.stringify(childCategories))}
-        totalProducts={totalProducts}
-      />
-    );
+    let category = (await resolveNestedCategory(
+      segments[0],
+      segments[1]
+    )) as CategoryDoc | null;
+    if (!category) {
+      category = await loadCategoryBySlug(segments[1]);
+      if (!category) notFound();
+    }
+    redirectIfNotPreferred(segments, category);
+    return renderCategoryPage(category);
   }
 
-  // Single segment: category or blog
   const slug = segments[0];
-  await connectDB();
-
-  const category = await Category.findOne({ slug, isActive: true })
-    .populate("parent", "name slug")
-    .lean();
+  const category = await loadCategoryBySlug(slug);
 
   if (category) {
-    const [products, childCategories, totalProducts, activeSales] = await Promise.all([
-      Product.find({ categories: category._id, isActive: true })
-        .select("name slug pricing images metrics isFeatured categories")
-        .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
-        .limit(24)
-        .lean(),
-      Category.find({ parent: category._id, isActive: true })
-        .select("name slug image productCount")
-        .sort({ order: 1 })
-        .lean(),
-      Product.countDocuments({ categories: category._id, isActive: true }),
-      getActiveSales(),
-    ]);
-
-    const productsWithSales = products.map((p) => {
-      const sale = applyActiveSale(
-        { pricing: p.pricing, categories: p.categories?.map((c: unknown) => String(c)) },
-        activeSales as Parameters<typeof applyActiveSale>[1]
-      );
-      return { ...p, _saleInfo: sale.hasSale ? { effectivePrice: sale.effectivePrice, discountPercent: sale.discountPercent, saleLabel: sale.saleLabel } : null };
-    });
-
-    return (
-      <CategoryPage
-        category={JSON.parse(JSON.stringify(category))}
-        products={JSON.parse(JSON.stringify(productsWithSales))}
-        childCategories={JSON.parse(JSON.stringify(childCategories))}
-        totalProducts={totalProducts}
-      />
-    );
+    redirectIfNotPreferred(segments, category);
+    return renderCategoryPage(category);
   }
 
+  await connectDB();
   const blog = await Blog.findOne({ slug, isPublished: true }).lean<IBlog>();
   if (blog) {
     return <BlogPostPage blog={JSON.parse(JSON.stringify(blog))} />;

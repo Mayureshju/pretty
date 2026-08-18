@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import Product, { IProduct } from "@/models/Product";
 import Category, { ICategory } from "@/models/Category";
 import Blog, { IBlog } from "@/models/Blog";
+import { LEGACY_REDIRECTS } from "@/lib/legacy-redirects";
 
 export type SlugResult =
   | { type: "product"; data: IProduct }
@@ -77,4 +78,33 @@ export function getCategoryPath(category: {
     return `/${category.parent.slug}/${category.slug}/`;
   }
   return `/${category.slug}/`;
+}
+
+/** Request path for a catch-all slug, always with trailing slash. */
+export function categoryRequestPath(segments: string[]): string {
+  return `/${segments.join("/")}/`;
+}
+
+/**
+ * URL we actually serve (200). If next.config already 308s the nested
+ * getCategoryPath() target back to a flat URL (photo-cake), use that flat
+ * URL so we never emit a canonical that redirects, and never 308-loop.
+ */
+export function getServedCategoryPath(category: {
+  slug: string;
+  parent?: { slug: string } | null;
+}): string {
+  const preferred = getCategoryPath(category);
+  const preferredNoSlash = preferred.replace(/\/+$/, "");
+
+  for (const rule of LEGACY_REDIRECTS) {
+    if (rule.source.includes(":")) continue;
+    if (rule.source.replace(/\/+$/, "") === preferredNoSlash) {
+      return rule.destination.endsWith("/")
+        ? rule.destination
+        : `${rule.destination}/`;
+    }
+  }
+
+  return preferred;
 }

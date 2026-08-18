@@ -6,7 +6,7 @@
  *
  * Notes:
  * - Slug is globally unique; `/photo-cake/` and `/cakes/photo-cake/` cannot both exist as categories.
- *   Production already resolves `/photo-cake/`; `/cakes/photo-cake/` is handled via redirect in next.config.ts.
+ *   `/photo-cake/` is the preferred URL (unparented). `/cakes/photo-cake/` 308s in next.config.ts.
  */
 
 import mongoose from "mongoose";
@@ -144,8 +144,25 @@ async function ensureChild(
   });
 }
 
+async function unparentPhotoCake() {
+  const doc = await Category.findOne({ slug: "photo-cake" });
+  if (!doc) {
+    console.log("SKIP photo-cake: category not found");
+    return;
+  }
+  if (doc.parent) {
+    console.log("Unparent photo-cake so canonical is /photo-cake/");
+    doc.parent = null;
+    await doc.save();
+    return;
+  }
+  console.log("OK: photo-cake already top-level /photo-cake/");
+}
+
 async function main() {
   await connectDB();
+
+  await unparentPhotoCake();
 
   const seenParents = new Map<string, mongoose.Types.ObjectId>();
 

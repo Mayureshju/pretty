@@ -33,7 +33,7 @@ const fallbackBanners: BannerItem[] = [
     tag: "Celebrate Every Moment",
     title: "Birthday\nSurprises",
     subtitle: "Cakes, flowers & gifts that make their day unforgettable",
-    cta: { text: "Shop Birthday", href: "/birthday/" },
+    cta: { text: "Shop Birthday", href: "/flowers/birthday/" },
     image: "/images/banners/birthday.jpg",
   },
   {
@@ -41,7 +41,7 @@ const fallbackBanners: BannerItem[] = [
     tag: "The Perfect Gift",
     title: "Curated\nHampers",
     subtitle: "Thoughtfully assembled hampers full of love and surprises",
-    cta: { text: "Browse Hampers", href: "/hampers/" },
+    cta: { text: "Browse Hampers", href: "/combos-gifts/" },
     image: "/images/banners/hamper.jpg",
   },
   {

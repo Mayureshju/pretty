@@ -30,11 +30,11 @@ interface AddonProduct {
 /* ── Browse categories for empty state ── */
 const browseCategories = [
   { name: "Flowers", image: "/images/categories/flowers.jpg", href: "/flowers/" },
-  { name: "Cakes", image: "/images/categories/cakes.jpg", href: "/cakes" },
-  { name: "Gifts", image: "/images/products/gifts-category.jpg", href: "/gifts" },
-  { name: "Combos", image: "/images/categories/combos.jpg", href: "/gift-hampers" },
-  { name: "Personalized Gifts", image: "/images/products/gifts-category.jpg", href: "/personalised-gifts" },
-  { name: "Plants", image: "/images/categories/plants.jpg", href: "/plants" },
+  { name: "Cakes", image: "/images/categories/cakes.jpg", href: "/cakes/" },
+  { name: "Gifts", image: "/images/products/gifts-category.jpg", href: "/gifts/" },
+  { name: "Combos", image: "/images/categories/combos.jpg", href: "/combos-gifts/" },
+  { name: "Personalized Gifts", image: "/images/products/gifts-category.jpg", href: "/combos-gifts/personalized-gifts/" },
+  { name: "Plants", image: "/images/categories/plants.jpg", href: "/plants/" },
 ];
 
 const ADDONS_GRID_COLUMNS = 4;

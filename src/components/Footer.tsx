@@ -2,21 +2,21 @@
 
 const footerLinks = {
   column1: [
-    { label: "About Us", href: "/about-us" },
-    { label: "Delivery & Refund Policy", href: "/delivery-and-refund-policy" },
-    { label: "Terms and Conditions", href: "/terms-and-conditions" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "About Us", href: "/about-us/" },
+    { label: "Delivery & Refund Policy", href: "/delivery-and-refund-policy/" },
+    { label: "Terms and Conditions", href: "/terms-and-conditions/" },
+    { label: "Privacy Policy", href: "/privacy-policy/" },
   ],
   column2: [
-    { label: "Blog", href: "/blog" },
-    { label: "Quotes", href: "/quotes" },
-    { label: "Coupons & Deals", href: "/offers" },
+    { label: "Blog", href: "/blog/" },
+    { label: "Quotes", href: "/quotes/" },
+    { label: "Coupons & Deals", href: "/offers/" },
     { label: "Sitemap", href: "/sitemap.xml" },
     { label: "Retail Stores", href: "https://share.google/aQtmjIlTnncsUqGmJ" },
   ],
   column3: [
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact Us", href: "/contact-us" },
+    { label: "FAQ", href: "/faq/" },
+    { label: "Contact Us", href: "/contact-us/" },
   ],
   deliveryCities: [
     { label: "Flowers in Mumbai", href: "/flowers/" },

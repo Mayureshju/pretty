@@ -189,10 +189,10 @@ const thaneData = {
   ],
   categories: [
     { name: "Flowers", count: 471, href: "/flowers/" },
-    { name: "Birthday", count: 467, href: "/birthday" },
-    { name: "Anniversary", count: 395, href: "/anniversary" },
-    { name: "Fruits", count: 10, href: "/gifts/fruits" },
-    { name: "Corporate", count: 310, href: "/gifts/corporate" },
+    { name: "Birthday", count: 467, href: "/flowers/birthday/" },
+    { name: "Anniversary", count: 395, href: "/flowers/anniversary/" },
+    { name: "Fruits", count: 10, href: "/fruits/" },
+    { name: "Corporate", count: 310, href: "/corporate/" },
   ],
 };
 

@@ -77,14 +77,14 @@ function StarRating({ rating }: { rating: number }) {
 /* ── Collection Grid ── */
 
 const collections = [
-  { title: "Luxury Roses", href: "/flowers/roses", image: "/images/products/red-roses.jpg" },
-  { title: "Gift Hampers", href: "/hampers/same-day-delivery", image: "/images/categories/hampers.jpg" },
-  { title: "Flower Boxes", href: "/flowers/in-box", image: "/images/products/flower-box.jpg" },
-  { title: "Birthday Specials", href: "/birthday/flowers", image: "/images/products/birthday-flowers.jpg" },
-  { title: "Wedding Collection", href: "/flowers/wedding", image: "/images/products/wedding-flowers.jpg" },
-  { title: "Premium Plants", href: "/plants/premium", image: "/images/products/premium-plants.jpg" },
+  { title: "Luxury Roses", href: "/flowers/roses/", image: "/images/products/red-roses.jpg" },
+  { title: "Gift Hampers", href: "/combos-gifts/", image: "/images/categories/hampers.jpg" },
+  { title: "Flower Boxes", href: "/flowers/", image: "/images/products/flower-box.jpg" },
+  { title: "Birthday Specials", href: "/flowers/birthday/", image: "/images/products/birthday-flowers.jpg" },
+  { title: "Wedding Collection", href: "/flowers/wedding/", image: "/images/products/wedding-flowers.jpg" },
+  { title: "Premium Plants", href: "/plants/", image: "/images/products/premium-plants.jpg" },
   { title: "Chocolates", href: "/gifts/", image: "/images/gifts/chocolates.jpg" },
-  { title: "Corporate Gifts", href: "/gifts/corporate", image: "/images/products/corporate-gifts.jpg" },
+  { title: "Corporate Gifts", href: "/corporate/", image: "/images/products/corporate-gifts.jpg" },
 ];
 
 function CollectionGrid({ city }: { city: string }) {

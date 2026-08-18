@@ -1,7 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db";
 import Category from "@/models/Category";
-import { getCategoryPath } from "@/lib/slug-resolver";
+import { getServedCategoryPath } from "@/lib/slug-resolver";
 
 /** Next.js revalidatePath expects no trailing slash. */
 function pathForRevalidate(path: string): string {
@@ -21,7 +21,7 @@ async function revalidateCategoriesByIds(categoryIds: string[]) {
     .lean<{ slug: string; parent?: { slug: string } | null }[]>();
 
   for (const cat of categories) {
-    revalidatePath(pathForRevalidate(getCategoryPath(cat)));
+    revalidatePath(pathForRevalidate(getServedCategoryPath(cat)));
   }
 }
 

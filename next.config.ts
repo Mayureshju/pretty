@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
 
 const nextConfig: NextConfig = {
   turbopack: {
@@ -51,34 +52,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    return [
-      {
-        source: "/p/flower/:slug",
-        destination: "/product/:slug/",
-        permanent: true,
-      },
-      {
-        source: "/category/:slug",
-        destination: "/:slug/",
-        permanent: true,
-      },
-      {
-        source: "/all-flowers",
-        destination: "/flowers/",
-        permanent: true,
-      },
-      // Slug "photo-cake" is top-level; mirrors old /cakes/photo-cake/ path
-      {
-        source: "/cakes/photo-cake",
-        destination: "/photo-cake/",
-        permanent: true,
-      },
-      {
-        source: "/cakes/photo-cake/",
-        destination: "/photo-cake/",
-        permanent: true,
-      },
-    ];
+    return LEGACY_REDIRECTS;
   },
 };
 

@@ -70,7 +70,7 @@ const MENU: TopMenuItem[] = [
       {
         title: "Cakes",
         links: [
-          { label: "Photo Cake", href: "/cakes/photo-cake/" },
+          { label: "Photo Cake", href: "/photo-cake/" },
           { label: "Premium Cake", href: "/photo-cake/" },
         ],
       },
@@ -93,7 +93,7 @@ const MENU: TopMenuItem[] = [
   },
   {
     label: "Premium Flower",
-    href: "/popular",
+    href: "/popular/",
     columns: [
       {
         title: "Premium Flower",
