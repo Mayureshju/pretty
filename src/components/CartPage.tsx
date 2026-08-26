@@ -38,7 +38,7 @@ const browseCategories = [
 ];
 
 const ADDONS_GRID_COLUMNS = 4;
-const ADDONS_GRID_CAPACITY = ADDONS_GRID_COLUMNS * ADDONS_GRID_COLUMNS;
+const ADDONS_GRID_CAPACITY = 48;
 
 /* ── Component ── */
 export default function CartPage() {
@@ -500,7 +500,7 @@ export default function CartPage() {
                           </div>
                           <button
                             onClick={() => handleAddAddon(p)}
-                            className="mt-2 w-full py-1.5 text-xs font-bold text-[#737530] border border-[#737530] rounded-md hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
+                            className="mt-2 w-full py-1.5 text-xs font-bold text-[#737530] border border-[#737530] rounded-full hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
                           >
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
                             ADD

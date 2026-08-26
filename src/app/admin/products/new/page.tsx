@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import PlateRichTextEditor from "@/components/admin/shared/PlateRichTextEditor";
@@ -39,7 +39,17 @@ const labelClass = "text-sm font-medium text-[#464646] mb-1.5 block";
 const cardClass = "bg-white rounded-xl border border-gray-100 p-6";
 
 export default function NewProductPage() {
+  return (
+    <Suspense fallback={<div className="text-sm text-gray-500">Loading...</div>}>
+      <NewProductForm />
+    </Suspense>
+  );
+}
+
+function NewProductForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromAddons = searchParams.get("addon") === "1";
   const [saving, setSaving] = useState(false);
   const [categories, setCategories] = useState<CategoryOption[]>([]);
 
@@ -54,7 +64,7 @@ export default function NewProductPage() {
   const [salePrice, setSalePrice] = useState<number | string>("");
   const [isActive, setIsActive] = useState(true);
   const [isFeatured, setIsFeatured] = useState(false);
-  const [isAddon, setIsAddon] = useState(false);
+  const [isAddon, setIsAddon] = useState(fromAddons);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [tags, setTags] = useState("");
   const [deliveryInfo, setDeliveryInfo] = useState("");
@@ -67,6 +77,10 @@ export default function NewProductPage() {
   const [addonSearch, setAddonSearch] = useState("");
   const [addonResults, setAddonResults] = useState<{ _id: string; name: string; pricing: { currentPrice: number }; images: { url: string }[] }[]>([]);
   const [showAddonDropdown, setShowAddonDropdown] = useState(false);
+
+  useEffect(() => {
+    if (fromAddons) setIsAddon(true);
+  }, [fromAddons]);
 
   // Fetch categories
   useEffect(() => {
@@ -240,8 +254,8 @@ export default function NewProductPage() {
         throw new Error(data.error || "Failed to create product");
       }
 
-      toast.success("Product created successfully");
-      router.push("/admin/products");
+      toast.success(isAddon ? "Addon created successfully" : "Product created successfully");
+      router.push(isAddon ? "/admin/addons" : "/admin/products");
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "Failed to create product"
@@ -257,7 +271,7 @@ export default function NewProductPage() {
       <div className="flex items-center justify-between">
         <div>
           <Link
-            href="/admin/products"
+            href={fromAddons ? "/admin/addons" : "/admin/products"}
             className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#737530] transition-colors mb-2"
           >
             <svg
@@ -275,10 +289,10 @@ export default function NewProductPage() {
                 strokeLinejoin="round"
               />
             </svg>
-            Back to Products
+            {fromAddons ? "Back to Addons" : "Back to Products"}
           </Link>
           <h1 className="text-2xl font-bold text-[#1C2120]">
-            Add New Product
+            {fromAddons ? "Add Addon" : "Add New Product"}
           </h1>
         </div>
       </div>
@@ -838,7 +852,7 @@ export default function NewProductPage() {
         <div className="flex justify-end mt-6 pt-6 border-t border-gray-100">
           <div className="flex items-center gap-3">
             <Link
-              href="/admin/products"
+              href={fromAddons ? "/admin/addons" : "/admin/products"}
               className="px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
             >
               Cancel
@@ -848,7 +862,7 @@ export default function NewProductPage() {
               disabled={saving}
               className="bg-[#737530] hover:bg-[#4C4D27] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {saving ? "Saving..." : "Save Product"}
+              {saving ? "Saving..." : fromAddons ? "Save Addon" : "Save Product"}
             </button>
           </div>
         </div>

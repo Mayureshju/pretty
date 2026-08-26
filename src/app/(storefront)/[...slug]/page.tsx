@@ -166,7 +166,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 async function renderCategoryPage(category: CategoryDoc) {
   await connectDB();
   const [products, childCategories, totalProducts, activeSales] = await Promise.all([
-    Product.find({ categories: category._id, isActive: true })
+    Product.find({ categories: category._id, isActive: true, isAddon: { $ne: true } })
       .select("name slug pricing images metrics isFeatured categories")
       .sort({ order: 1, "metrics.totalSales": -1, _id: 1 })
       .limit(24)
@@ -175,7 +175,7 @@ async function renderCategoryPage(category: CategoryDoc) {
       .select("name slug image productCount")
       .sort({ order: 1 })
       .lean(),
-    Product.countDocuments({ categories: category._id, isActive: true }),
+    Product.countDocuments({ categories: category._id, isActive: true, isAddon: { $ne: true } }),
     getActiveSales(),
   ]);
 

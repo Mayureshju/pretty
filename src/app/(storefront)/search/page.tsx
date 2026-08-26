@@ -194,6 +194,7 @@ async function fetchResults(q: string, page: number): Promise<{ products: Search
   const regex = new RegExp(escapeRegex(q), "i");
   const filter = {
     isActive: true,
+    isAddon: { $ne: true },
     $or: [{ name: regex }, { shortDescription: regex }, { tags: regex }],
   };
 

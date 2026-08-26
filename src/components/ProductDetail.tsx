@@ -242,7 +242,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
   useEffect(() => {
     let cancelled = false;
     setAddonsLoading(true);
-    fetch(`/api/products?isAddon=true&excludeIds=${product._id}&limit=10`)
+    fetch(`/api/products?isAddon=true&excludeIds=${product._id}&limit=48`)
       .then((r) => r.json())
       .then((data) => {
         if (!cancelled) setAddonSuggestions(data.products || []);
@@ -711,7 +711,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                 {addonsLoading ? (
                   <div className="relative flex gap-2.5 overflow-x-auto pb-1">
                     {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="shrink-0 w-[130px] rounded-xl bg-white/60 p-2 animate-pulse">
+                      <div key={i} className="shrink-0 w-[150px] md:w-[168px] rounded-xl bg-white/60 p-2 animate-pulse">
                         <div className="aspect-square bg-gray-200 rounded-lg" />
                         <div className="h-3 bg-gray-200 rounded mt-2 w-3/4" />
                         <div className="h-3 bg-gray-200 rounded mt-2 w-1/2" />
@@ -721,7 +721,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                 ) : (
                   <div
                     ref={addonsScrollRef}
-                    className="relative flex gap-2.5 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory"
+                    className="relative flex gap-3 overflow-x-auto pb-1 scroll-smooth snap-x snap-mandatory"
                     style={{ scrollbarWidth: "none" }}
                   >
                     {addonSuggestions.map((p) => {
@@ -730,14 +730,14 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                       return (
                         <div
                           key={p._id}
-                          className="shrink-0 w-[130px] md:w-[140px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
+                          className="shrink-0 w-[150px] md:w-[168px] rounded-xl bg-white border border-white/80 overflow-hidden snap-start group hover:shadow-md transition-shadow"
                         >
                           <Link href={`/product/${p.slug}/`} className="block relative aspect-square bg-[#f8f8f8] overflow-hidden">
                             <SafeImage
                               src={img}
                               alt={p.name}
-                              width={140}
-                              height={140}
+                              width={168}
+                              height={168}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                               unoptimized
                             />
@@ -747,8 +747,8 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                               </span>
                             )}
                           </Link>
-                          <div className="p-2">
-                            <p className="text-[11px] md:text-[12px] font-medium text-[#1C2120] leading-tight line-clamp-2 min-h-[2.3em]">
+                          <div className="p-2.5">
+                            <p className="text-[12px] md:text-[13px] font-medium text-[#1C2120] leading-tight line-clamp-2 min-h-[2.3em]">
                               {p.name}
                             </p>
                             <div className="flex items-center gap-1 mt-1">
@@ -763,7 +763,7 @@ export default function ProductDetail({ product, similarProducts, saleInfo }: Pr
                             </div>
                             <button
                               onClick={() => handleAddAddon(p)}
-                              className="mt-1.5 w-full py-1 text-[11px] font-bold text-[#737530] border border-[#737530] rounded-md hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
+                              className="mt-2 w-full py-1.5 text-[11px] font-bold text-[#737530] border border-[#737530] rounded-full hover:bg-[#737530] hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-1"
                             >
                               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
                               ADD

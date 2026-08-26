@@ -210,12 +210,12 @@ const faqStructuredData = JSON.stringify({
 async function getProducts() {
   await connectDB();
   const [bestSellers, popular, activeSales] = await Promise.all([
-    Product.find({ isActive: true })
+    Product.find({ isActive: true, isAddon: { $ne: true } })
       .select("name slug pricing images metrics isFeatured categories")
       .sort({ "metrics.totalSales": -1 })
       .limit(8)
       .lean(),
-    Product.find({ isActive: true })
+    Product.find({ isActive: true, isAddon: { $ne: true } })
       .select("name slug pricing images metrics isFeatured categories")
       .sort({ createdAt: -1 })
       .limit(8)

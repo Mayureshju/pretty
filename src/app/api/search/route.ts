@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
     const regex = new RegExp(escapeRegex(q), "i");
     const filter = {
       isActive: true,
+      isAddon: { $ne: true },
       $or: [
         { name: regex },
         { shortDescription: regex },

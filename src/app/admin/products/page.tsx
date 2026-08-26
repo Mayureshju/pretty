@@ -139,7 +139,7 @@ export default function AdminProductsPage() {
   // Reorder functions
   async function enterReorderMode() {
     try {
-      const params = new URLSearchParams({ limit: "100", sort: "order", order: "asc" });
+      const params = new URLSearchParams({ limit: "100", sort: "order", order: "asc", isAddon: "false" });
       if (categoryFilter) params.set("category", categoryFilter);
       const res = await fetch(`/api/admin/products?${params.toString()}`);
       if (!res.ok) throw new Error("Failed to fetch products for reorder");

@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     const isAddonParam = searchParams.get("isAddon");
     if (isAddonParam === "true") {
       filter.isAddon = true;
-    } else if (isAddonParam === "false") {
+    } else {
       filter.isAddon = { $ne: true };
     }
 

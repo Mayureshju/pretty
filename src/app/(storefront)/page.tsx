@@ -68,7 +68,7 @@ async function getHeroBanners() {
 async function getBestSellers() {
   await connectDB();
   const [products, activeSales] = await Promise.all([
-    Product.find({ isActive: true })
+    Product.find({ isActive: true, isAddon: { $ne: true } })
       .select("name slug pricing images metrics isFeatured categories")
       .sort({ "metrics.totalSales": -1 })
       .limit(8)
@@ -100,6 +100,7 @@ async function getCakeProducts() {
 
   const products = await Product.find({
     isActive: true,
+    isAddon: { $ne: true },
     categories: { $in: categoryIds },
   })
     .select("name slug images pricing")

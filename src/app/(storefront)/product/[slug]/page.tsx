@@ -75,6 +75,7 @@ export default async function ProductPage({ params }: Props) {
         categories:
           primaryCategory._id ?? primaryCategory,
         isActive: true,
+        isAddon: { $ne: true },
         _id: { $ne: product._id },
       })
         .limit(4)

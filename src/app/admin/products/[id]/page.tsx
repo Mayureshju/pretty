@@ -328,8 +328,8 @@ export default function EditProductPage({
         throw new Error(data.error || "Failed to update product");
       }
 
-      toast.success("Product updated successfully");
-      router.push("/admin/products");
+      toast.success(isAddon ? "Addon updated successfully" : "Product updated successfully");
+      router.push(isAddon ? "/admin/addons" : "/admin/products");
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "Failed to update product"
@@ -379,7 +379,7 @@ export default function EditProductPage({
       <div className="flex items-center justify-between">
         <div>
           <Link
-            href="/admin/products"
+            href={isAddon ? "/admin/addons" : "/admin/products"}
             className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-[#737530] transition-colors mb-2"
           >
             <svg
@@ -397,9 +397,9 @@ export default function EditProductPage({
                 strokeLinejoin="round"
               />
             </svg>
-            Back to Products
+            {isAddon ? "Back to Addons" : "Back to Products"}
           </Link>
-          <h1 className="text-2xl font-bold text-[#1C2120]">Edit Product</h1>
+          <h1 className="text-2xl font-bold text-[#1C2120]">{isAddon ? "Edit Addon" : "Edit Product"}</h1>
         </div>
       </div>
 
@@ -946,7 +946,7 @@ export default function EditProductPage({
         <div className="flex justify-end mt-6 pt-6 border-t border-gray-100">
           <div className="flex items-center gap-3">
             <Link
-              href="/admin/products"
+              href={isAddon ? "/admin/addons" : "/admin/products"}
               className="px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
             >
               Cancel
@@ -956,7 +956,7 @@ export default function EditProductPage({
               disabled={saving}
               className="bg-[#737530] hover:bg-[#4C4D27] text-white rounded-lg px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {saving ? "Saving..." : "Update Product"}
+              {saving ? "Saving..." : isAddon ? "Update Addon" : "Update Product"}
             </button>
           </div>
         </div>

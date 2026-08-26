@@ -56,6 +56,8 @@ export async function GET(request: NextRequest) {
     const isAddon = searchParams.get("isAddon");
     if (isAddon === "true") {
       filter.isAddon = true;
+    } else if (isAddon === "false") {
+      filter.isAddon = { $ne: true };
     }
 
     const skip = (page - 1) * limit;
@@ -115,6 +117,14 @@ export async function POST(request: NextRequest) {
     // Remove empty categories
     if (!productData.categories || (productData.categories as unknown[]).length === 0) {
       delete productData.categories;
+    }
+
+    if (data.isAddon) {
+      const lastAddon = await Product.findOne({ isAddon: true })
+        .sort({ order: -1 })
+        .select("order")
+        .lean();
+      productData.order = (lastAddon?.order ?? -1) + 1;
     }
 
     // `description` carries a MongoDB text index and `shortDescription` feeds

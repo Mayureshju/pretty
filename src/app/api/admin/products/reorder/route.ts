@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { orderedIds } = body;
+    const { orderedIds, isAddon } = body;
 
     if (!Array.isArray(orderedIds) || orderedIds.length === 0) {
       return Response.json(
@@ -24,7 +24,26 @@ export async function POST(request: NextRequest) {
 
     await connectDB();
 
-    const operations = orderedIds.map((id: string, index: number) => ({
+    let idsToWrite: string[] = orderedIds.map(String);
+
+    if (isAddon === true) {
+      const addons = await Product.find({
+        _id: { $in: idsToWrite },
+        isAddon: true,
+      })
+        .select("_id")
+        .lean();
+      const allowed = new Set(addons.map((a) => String(a._id)));
+      idsToWrite = idsToWrite.filter((id) => allowed.has(id));
+      if (idsToWrite.length === 0) {
+        return Response.json(
+          { error: "No addon products to reorder" },
+          { status: 400 }
+        );
+      }
+    }
+
+    const operations = idsToWrite.map((id, index) => ({
       updateOne: {
         filter: { _id: id },
         update: { $set: { order: index } },
