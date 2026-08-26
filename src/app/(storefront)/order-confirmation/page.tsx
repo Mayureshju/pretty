@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { clearCart } from "@/lib/cart";
 import { reportPurchaseConversion } from "@/lib/gtag";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 
 interface OrderData {
   orderNumber: string;
@@ -162,7 +163,7 @@ function OrderConfirmationInner() {
               <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-[#464646] mt-3 pt-3 border-t border-gray-100">
                 <span>Payment: <strong className="text-[#009D43]">{order.payment.status === "paid" ? "Paid" : order.payment.status}</strong></span>
                 {order.deliverySlot && (
-                  <span>Delivery: <strong>{new Date(order.deliverySlot).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })}</strong></span>
+                  <span>Delivery: <strong>{formatDeliveryDate(order.deliverySlot, { includeYear: false })}</strong></span>
                 )}
               </div>
             </div>

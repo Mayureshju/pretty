@@ -2,6 +2,7 @@
 
 import { useState, useEffect, use } from "react";
 import { format } from "date-fns";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 
 interface OrderDetail {
   _id: string;
@@ -28,12 +29,6 @@ interface OrderDetail {
   floristInstruction?: string;
   messageOnCard?: string;
   createdAt: string;
-}
-
-function formatDeliverySlot(iso: string): string {
-  const d = new Date(iso.length === 10 ? iso + "T00:00:00" : iso);
-  if (isNaN(d.getTime())) return iso;
-  return format(d, "EEE, dd MMM yyyy");
 }
 
 const COMPANY = {
@@ -216,7 +211,7 @@ export default function PackingSlipPage({ params }: { params: Promise<{ id: stri
             {order.deliverySlot && (
               <p>
                 <strong>Delivery Date:</strong>{" "}
-                {formatDeliverySlot(order.deliverySlot)}
+                {formatDeliveryDate(order.deliverySlot)}
               </p>
             )}
           </div>

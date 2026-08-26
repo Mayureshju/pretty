@@ -1,5 +1,6 @@
 import type { IOrder, IOrderItem } from "@/models/Order";
 import { getOrderReviewLink } from "@/lib/review-links";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 
 const WHATSAPP_API_URL = "https://graph.facebook.com/v21.0";
 
@@ -107,20 +108,6 @@ async function sendWhatsAppTemplate(
   }
 }
 
-function formatDeliveryDate(slot: string | undefined): string {
-  if (!slot) return "As scheduled";
-  try {
-    return new Date(slot).toLocaleDateString("en-IN", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    });
-  } catch {
-    return slot;
-  }
-}
-
 function formatAddress(shipping: IOrder["shipping"]): string {
   const parts = [
     shipping?.address,
@@ -146,7 +133,7 @@ export async function sendOrderConfirmedWhatsApp(order: IOrder): Promise<void> {
     { name: "order_number", value: order.orderNumber },
     { name: "items", value: buildItemSummary(order.items) },
     { name: "order_total", value: order.pricing.total.toLocaleString("en-IN") },
-    { name: "delivery_date", value: formatDeliveryDate(order.deliverySlot) },
+    { name: "delivery_date", value: formatDeliveryDate(order.deliverySlot) || "As scheduled" },
     { name: "invoice_number", value: order.invoice?.number || "Will be generated" },
   ]);
 }

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 import StatusBadge from "@/components/admin/shared/StatusBadge";
 import LoadingSkeleton from "@/components/admin/shared/LoadingSkeleton";
 import ConfirmDialog from "@/components/admin/shared/ConfirmDialog";
@@ -102,12 +103,6 @@ function formatStatus(status: string): string {
   return status
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function formatDeliveryDate(iso: string): string {
-  const d = new Date(iso.length === 10 ? iso + "T00:00:00" : iso);
-  if (isNaN(d.getTime())) return iso;
-  return format(d, "EEE, dd MMM yyyy");
 }
 
 function getProductName(item: OrderItemDetail): string {

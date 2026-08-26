@@ -7,6 +7,7 @@ import DeliveryCity from "@/models/DeliveryCity";
 import GlobalSettings from "@/models/GlobalSettings";
 import { generateTxnId, getPayUFormData } from "@/lib/payu";
 import { validateCoupon } from "@/lib/coupon-validation";
+import { normalizeDeliverySlot } from "@/lib/format-delivery-date";
 
 function toDateKey(d: Date | string): string {
   return new Date(d).toISOString().split("T")[0];
@@ -35,8 +36,9 @@ export async function POST(request: NextRequest) {
 
     // Reject blocked delivery dates (global + city)
     const slot = typeof body.deliverySlot === "string" ? body.deliverySlot.trim() : "";
-    if (slot) {
-      const slotKey = /^\d{4}-\d{2}-\d{2}/.test(slot) ? slot.slice(0, 10) : toDateKey(slot);
+    const deliverySlot = slot ? normalizeDeliverySlot(slot) : "";
+    if (deliverySlot) {
+      const slotKey = deliverySlot;
       const globalSettings = await GlobalSettings.findOne({ key: "global" }).lean();
       const globalBlocked = (globalSettings?.blockedDeliveryDates || []).map(toDateKey);
 
@@ -120,7 +122,7 @@ export async function POST(request: NextRequest) {
         receiverPhone: body.shipping?.receiverPhone?.trim() || "",
       },
       deliveryCharge,
-      deliverySlot: body.deliverySlot || "",
+      deliverySlot,
       floristInstruction: body.floristInstruction?.trim() || "",
       messageOnCard: body.messageOnCard?.trim() || "",
       pricing: {

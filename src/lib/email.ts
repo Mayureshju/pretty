@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import type { IOrder } from "@/models/Order";
 import { getDeliveryLink } from "@/lib/delivery-token";
 import { getOrderReviewLink } from "@/lib/review-links";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 
 // Until a custom domain is verified in Resend, fall back to their sandbox
 // sender. Set EMAIL_FROM="Pretty Petals <orders@prettypetals.com>" in Vercel
@@ -55,7 +56,7 @@ export async function sendOrderConfirmationEmail(order: IOrder) {
             <td style="text-align:right;font-weight:bold;">${order.orderNumber}</td>
           </tr>
           ${order.invoice?.number ? `<tr><td style="color:#888;">Invoice</td><td style="text-align:right;font-weight:bold;">${order.invoice.number}</td></tr>` : ""}
-          ${order.deliverySlot ? `<tr><td style="color:#888;">Delivery Date</td><td style="text-align:right;">${new Date(order.deliverySlot).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}</td></tr>` : ""}
+          ${order.deliverySlot ? `<tr><td style="color:#888;">Delivery Date</td><td style="text-align:right;">${formatDeliveryDate(order.deliverySlot)}</td></tr>` : ""}
         </table>
       </div>
 
@@ -162,7 +163,7 @@ export async function sendProcessingEmail(order: IOrder) {
             <td style="color:#888;">Order Number</td>
             <td style="text-align:right;font-weight:bold;">${order.orderNumber}</td>
           </tr>
-          ${order.deliverySlot ? `<tr><td style="color:#888;">Delivery Date</td><td style="text-align:right;">${new Date(order.deliverySlot).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}</td></tr>` : ""}
+          ${order.deliverySlot ? `<tr><td style="color:#888;">Delivery Date</td><td style="text-align:right;">${formatDeliveryDate(order.deliverySlot)}</td></tr>` : ""}
         </table>
       </div>
 
@@ -538,14 +539,7 @@ export async function sendNewOrderSellerEmail(order: IOrder) {
     )
     .join("");
 
-  const deliveryDate = order.deliverySlot
-    ? new Date(order.deliverySlot).toLocaleDateString("en-IN", {
-        weekday: "short",
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : "As scheduled";
+  const deliveryDate = formatDeliveryDate(order.deliverySlot) || "As scheduled";
 
   let deliveryLink = "";
   try {

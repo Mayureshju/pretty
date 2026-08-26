@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, use, useCallback } from "react";
+import { formatDeliveryDate } from "@/lib/format-delivery-date";
 
 interface DeliveryOrder {
   orderNumber: string;
@@ -167,16 +168,7 @@ export default function DeliveryUpdatePage({
 
           {order.deliverySlot && (
             <Section title="Delivery Date">
-              {new Date(
-                order.deliverySlot.length === 10
-                  ? order.deliverySlot + "T00:00:00"
-                  : order.deliverySlot
-              ).toLocaleDateString("en-IN", {
-                weekday: "short",
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              })}
+              {formatDeliveryDate(order.deliverySlot)}
             </Section>
           )}
 
