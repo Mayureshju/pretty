@@ -23,6 +23,8 @@ interface OrderData {
     city?: string;
     state?: string;
     pincode?: string;
+    receiverName?: string;
+    receiverPhone?: string;
   };
   deliverySlot?: string;
   pricing: {
@@ -216,10 +218,12 @@ function OrderConfirmationInner() {
               <div className="bg-white rounded-xl border border-gray-100 p-5" style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.05)" }}>
                 <h2 className="text-base font-semibold text-[#1C2120] mb-2">Delivery Address</h2>
                 <p className="text-sm text-[#464646] leading-relaxed">
-                  {order.customer.name}<br />
+                  {order.shipping.receiverName || order.customer.name}<br />
                   {order.shipping.address}<br />
                   {order.shipping.city}{order.shipping.state ? `, ${order.shipping.state}` : ""} {order.shipping.pincode}<br />
-                  {order.customer.phone && <>Phone: {order.customer.phone}</>}
+                  {(order.shipping.receiverPhone || order.customer.phone) && (
+                    <>Phone: {order.shipping.receiverPhone || order.customer.phone}</>
+                  )}
                 </p>
               </div>
             )}
