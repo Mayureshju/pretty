@@ -889,12 +889,13 @@ function CheckoutInner() {
                   </label>
                   <textarea
                     value={floristInstruction}
-                    onChange={(e) => setFloristInstruction(e.target.value.slice(0, 500))}
+                    onChange={(e) => setFloristInstruction(e.target.value.slice(0, 250))}
+                    maxLength={250}
                     placeholder="Any special instructions for the florist (e.g., preferred colors, arrangement style)"
                     rows={3}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors resize-none"
                   />
-                  <p className="text-xs text-[#888] mt-1 text-right">{floristInstruction.length}/500</p>
+                  <p className="text-xs text-[#888] mt-1 text-right">{floristInstruction.length}/250</p>
                 </div>
 
                 <div>
@@ -903,12 +904,13 @@ function CheckoutInner() {
                   </label>
                   <textarea
                     value={messageOnCard}
-                    onChange={(e) => setMessageOnCard(e.target.value.slice(0, 250))}
+                    onChange={(e) => setMessageOnCard(e.target.value.slice(0, 500))}
+                    maxLength={500}
                     placeholder="Your personal message for the recipient"
                     rows={3}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:border-[#737530] transition-colors resize-none"
                   />
-                  <p className="text-xs text-[#888] mt-1 text-right">{messageOnCard.length}/250</p>
+                  <p className="text-xs text-[#888] mt-1 text-right">{messageOnCard.length}/500</p>
                 </div>
               </div>
             </div>

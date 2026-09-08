@@ -123,8 +123,8 @@ export async function POST(request: NextRequest) {
       },
       deliveryCharge,
       deliverySlot,
-      floristInstruction: body.floristInstruction?.trim() || "",
-      messageOnCard: body.messageOnCard?.trim() || "",
+      floristInstruction: (body.floristInstruction?.trim() || "").slice(0, 250),
+      messageOnCard: (body.messageOnCard?.trim() || "").slice(0, 500),
       pricing: {
         subtotal,
         discount,
