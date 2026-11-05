@@ -1,11 +1,36 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { isMaintenanceEnabled } from "@/lib/maintenance";
 
 const isAdminRoute = createRouteMatcher(["/admin(.*)"]);
 const isAdminApiRoute = createRouteMatcher(["/api/admin(.*)"]);
 const isAccountRoute = createRouteMatcher(["/account(.*)"]);
+const isMaintenancePage = createRouteMatcher(["/maintenance(.*)"]);
+const isMaintenanceBypass = createRouteMatcher([
+  "/maintenance(.*)",
+  "/admin(.*)",
+  "/api/admin(.*)",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/payu(.*)",
+  "/api/webhooks(.*)",
+  "/api/cron(.*)",
+  "/delivery(.*)",
+  "/api/delivery(.*)",
+]);
 
 export const proxy = clerkMiddleware(async (auth, req) => {
+  if (isMaintenanceEnabled()) {
+    if (!isMaintenanceBypass(req)) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/maintenance/";
+      url.search = "";
+      return NextResponse.rewrite(url);
+    }
+  } else if (isMaintenancePage(req)) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
   const { userId, sessionClaims } = await auth();
 
   if (isAdminRoute(req) || isAdminApiRoute(req)) {
